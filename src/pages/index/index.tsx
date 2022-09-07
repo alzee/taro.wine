@@ -20,7 +20,7 @@ export default class Index extends Component<PropsWithChildren> {
       <View className='index'>
 
       <Swiper
-      className='test-h'
+      className='top'
       indicatorColor='#999'
       indicatorActiveColor='#333'
       // vertical
@@ -28,6 +28,7 @@ export default class Index extends Component<PropsWithChildren> {
       indicatorDots
       autoplay>
       <SwiperItem>
+
       <View className='demo-text-1'>1</View>
       </SwiperItem>
       <SwiperItem>

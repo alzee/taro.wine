@@ -2,6 +2,7 @@ import { Component, PropsWithChildren } from 'react'
 import { View, Text } from '@tarojs/components'
 import './index.scss'
 import { AtList, AtListItem, AtCard } from "taro-ui"
+import { AtAvatar } from 'taro-ui'
 
 export default class Me extends Component<PropsWithChildren> {
 
@@ -18,6 +19,17 @@ export default class Me extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='me'>
+        <View className="at-row top">
+		<AtAvatar className="avatar" circle image="https://jdc.jd.com/img/200"></AtAvatar>
+        <View className="name">
+        <Text className='main'>用户名</Text>
+        <Text className='secondary'>角色</Text>
+        </View>
+        <View className="voucher">
+        <Text className='main'>500</Text>
+        <Text className='secondary'>代金券</Text>
+        </View>
+        </View>
 
       <AtList>
       <AtListItem
