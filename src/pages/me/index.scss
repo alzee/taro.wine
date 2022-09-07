@@ -1,20 +1,22 @@
-.avatar{
-  margin-right: 1rem;
-}
-.name, .voucher{
-  margin-top: .4rem;
-  .main{
-    display: block;
+.me{
+  .avatar{
+    margin-right: 1rem;
   }
-  .secondary{
-    font-size: .8rem;
-    color: #c4c4c4;
+  .name, .voucher{
+    margin-top: .4rem;
+    .main{
+      display: block;
+    }
+    .secondary{
+      font-size: .8rem;
+      color: #c4c4c4;
+    }
   }
-}
-.voucher{
-  margin-left: 2rem;
-  .main{
-    color: red;
-    font-size: 1.2rem;
+  .voucher{
+    margin-left: 2rem;
+    .main{
+      color: red;
+      font-size: 1.2rem;
+    }
   }
 }
