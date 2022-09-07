@@ -10,6 +10,9 @@ export default defineAppConfig({
     'pages/voucher/index',
     'pages/withdraw/index',
     'pages/withdrawNew/index',
+    'pages/retail/index',
+    'pages/orderRestaurant/index',
+    'pages/myInfo/index',
   ],
   window: {
     backgroundTextStyle: 'light',
