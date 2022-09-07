@@ -15,6 +15,19 @@ export default class Index extends Component<PropsWithChildren> {
 
   componentDidHide () { }
 
+  constructor () {
+    super(...arguments)
+    this.state = {
+      current: 0
+    }
+  }
+
+  handleClick (value) {
+    this.setState({
+      current: value
+    })
+  }
+
   render () {
     return (
       <View className='index'>
@@ -32,6 +45,8 @@ export default class Index extends Component<PropsWithChildren> {
         // { title: '提现', iconType: 'money' },
         { title: '我', iconType: 'user' }
         ]}
+        onClick={this.handleClick.bind(this)}
+        current={this.state.current}
         />
       </View>
     )

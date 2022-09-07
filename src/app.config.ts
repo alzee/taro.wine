@@ -16,5 +16,27 @@ export default defineAppConfig({
     navigationBarBackgroundColor: '#fff',
     navigationBarTitleText: 'WeChat',
     navigationBarTextStyle: 'black'
+  },
+  tabBar: {
+      list: [
+          {
+              pagePath: 'pages/index/index',
+              text: '首页',
+              // iconPath:
+              // selectedIconPath: // 40kb, 81px*81px
+          },
+          {
+              pagePath: 'pages/org/index',
+              text: '机构',
+              // iconPath:
+              // selectedIconPath: // 40kb, 81px*81px
+          },
+          {
+              pagePath: 'pages/me/index',
+              text: '我的',
+              // iconPath:
+              // selectedIconPath: // 40kb, 81px*81px
+          },
+      ]
   }
 })

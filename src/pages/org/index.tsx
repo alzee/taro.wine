@@ -15,6 +15,19 @@ export default class Org extends Component<PropsWithChildren> {
 
   componentDidHide () { }
 
+  constructor () {
+    super(...arguments)
+    this.state = {
+      current: 1
+    }
+  }
+
+  handleClick (value) {
+    this.setState({
+      current: value
+    })
+  }
+
   render () {
     return (
       <View className='org'>
@@ -27,6 +40,8 @@ export default class Org extends Component<PropsWithChildren> {
         { title: '机构', iconType: 'link' },
         { title: '我', iconType: 'user' }
         ]}
+        onClick={this.handleClick.bind(this)}
+        current={this.state.current}
         />
       </View>
     )
