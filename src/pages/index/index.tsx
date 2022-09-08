@@ -1,7 +1,8 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text, Swiper, SwiperItem } from '@tarojs/components'
+import { View, Text, Swiper, SwiperItem, Image } from '@tarojs/components'
 import './index.scss'
 import { AtButton, AtAvatar, AtTabBar, AtIcon } from 'taro-ui'
+import namedPng from './img/400x220.png'
 
 export default class Index extends Component<PropsWithChildren> {
 
@@ -29,13 +30,13 @@ export default class Index extends Component<PropsWithChildren> {
       autoplay>
       <SwiperItem>
 
-      <View className='demo-text-1'>1</View>
+      <View className='demo-text-1'><Image src={namedPng}></Image></View>
       </SwiperItem>
       <SwiperItem>
-      <View className='demo-text-2'>2</View>
+      <View className='demo-text-1'><Image src={namedPng}></Image></View>
       </SwiperItem>
       <SwiperItem>
-      <View className='demo-text-3'>3</View>
+      <View className='demo-text-1'><Image src={namedPng}></Image></View>
       </SwiperItem>
       </Swiper>
 
