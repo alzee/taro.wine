@@ -4,14 +4,48 @@ import './index.scss'
 import { AtButton, AtAvatar, AtTabBar, AtIcon } from 'taro-ui'
 import { AtSearchBar } from 'taro-ui'
 import { AtNoticebar } from 'taro-ui'
+import Taro from '@tarojs/taro'
 import img1 from './img/400x220.png'
 import img2 from './img/80x80.png'
 
+interface Data {
+  [propName: string]: any;
+}
+
 export default class Index extends Component<PropsWithChildren> {
+  baseUrl = 'https://127.0.0.1:8000/';
+  apiUrl = this.baseUrl + 'api/nodes/';
+  imgUrl = this.baseUrl + 'uploads/';
+  nodes = [];
+  isLoding: boolean = true;
+
 
   componentWillMount () { }
 
-  componentDidMount () { }
+  componentDidMount () {
+const self = this;
+      Taro.request({
+        url: this.apiUrl,
+        data: {
+          x: '',
+          y: ''
+        },
+        that: this,
+        success: function (res) {
+        self.setState({data: res.data})
+            //console.log(res.data);
+            //console.log(this.nodes)
+            //console.log(res.data[0])
+        }
+    }).then((res) =>{
+this.nodes = res.data;
+    console.log(this.nodes);
+    console.log(this.nodes[0].img);
+    this.isLoding = false;
+  this.render();
+    }
+  )
+  }
 
   componentWillUnmount () { }
 
@@ -46,12 +80,9 @@ export default class Index extends Component<PropsWithChildren> {
       </SwiperItem>
       </Swiper>
 
-		<AtNoticebar marquee close>
-            滚动信息， 滚动信息， 滚动信息， 滚动信息
-        </AtNoticebar>
 		<View className='at-row highlight1'>
             <View className="at-col">
-                <AtAvatar className="avatar" circle size="small" image={img2}></AtAvatar>
+                <AtAvatar className="avatar" circle size="small" image={ this.state && this.state.data && this.imgUrl+ this.nodes[0].img}></AtAvatar>
                 <Text>推荐1</Text>
             </View>
             <View className="at-col">
