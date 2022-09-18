@@ -145,7 +145,7 @@ export default class Index extends Component<PropsWithChildren> {
         {this.state && this.state.data && this.list2}
 
     { this.isLogged ||
-      <AtActionSheet >
+      <AtActionSheet isOpened>
         <AtActionSheetItem>
         <AtButton type="primary" size="small" onClick={this.navTo('wxlogin')}>微信登录</AtButton>
         <Text className="text" onClick={this.navTo('login')}>机构登录</Text>
