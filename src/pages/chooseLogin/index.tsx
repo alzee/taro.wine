@@ -20,10 +20,15 @@ export default class Chooselogin extends Component<PropsWithChildren> {
     Taro.navigateTo({ url: 'pages/' + page + '/index' })
   }
 
+  wxlogin() {
+    // Taro.login();
+    console.log('fuck');
+  }
+
   render () {
     return (
       <View className='chooseLogin'>
-      <AtButton className="btn" type="primary" size="small" onClick={() => this.navTo('wxlogin')}>微信登录</AtButton>
+      <AtButton className="btn" type="primary" size="small" onClick={this.wxlogin}>微信登录</AtButton>
       <Text className="text" onClick={()=>this.navTo('login')}>机构登录</Text>
       </View>
     )
