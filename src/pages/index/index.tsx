@@ -68,16 +68,16 @@ export default class Index extends Component<PropsWithChildren> {
             );
       }
     }
-    for (let i in nodes1) {
-      if (i < 4) {
-        list1.push(
-            <View className="at-col">
-                <AtAvatar className="avatar" circle size="small" image={ this.state && this.state.data && this.imgUrl+ nodes1[i].img}></AtAvatar>
-                <Text>推荐1</Text>
-            </View>
-            );
-      }
-    }
+    // for (let i in nodes1) {
+    //   if (i < 4) {
+    //     list1.push(
+    //         <View className="at-col">
+    //             <AtAvatar className="avatar" circle size="small" image={ this.state && this.state.data && this.imgUrl+ nodes1[i].img}></AtAvatar>
+    //             <Text>{nodes1[i].title}</Text>
+    //         </View>
+    //         );
+    //   }
+    // }
     for (let i in nodes2) {
       if (i < 2) {
         list2.push(
@@ -105,7 +105,22 @@ export default class Index extends Component<PropsWithChildren> {
         </Swiper>
 
         <View className='at-row highlight1'>
-        {list1}
+          <View className="at-col">
+              <AtAvatar className="avatar" circle size="small" image={ this.imgUrl + '80x80.png'}></AtAvatar>
+              <Text>门店</Text>
+          </View>
+          <View className="at-col">
+              <AtAvatar className="avatar" circle size="small" image={ this.imgUrl + '80x80.png'}></AtAvatar>
+              <Text>餐厅</Text>
+          </View>
+          <View className="at-col">
+              <AtAvatar className="avatar" circle size="small" image={ this.imgUrl + '80x80.png'}></AtAvatar>
+              <Text>推荐</Text>
+          </View>
+          <View className="at-col">
+              <AtAvatar className="avatar" circle size="small" image={ this.imgUrl + '80x80.png'}></AtAvatar>
+              <Text>生活</Text>
+          </View>
         </View>
 
         {list2}
