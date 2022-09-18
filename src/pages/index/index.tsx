@@ -23,7 +23,6 @@ export default class Index extends Component<PropsWithChildren> {
   componentWillMount () { }
 
   componentDidMount () {
-console.log(this.http);
     const self = this;
     Taro.request({
         url: Env.apiUrl + 'nodes',
