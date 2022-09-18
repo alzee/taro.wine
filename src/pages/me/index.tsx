@@ -1,7 +1,7 @@
 import { Component, PropsWithChildren } from 'react'
 import { View, Text } from '@tarojs/components'
 import './index.scss'
-import { AtList, AtListItem, AtCard } from "taro-ui"
+import { AtButton, AtList, AtListItem, AtCard } from "taro-ui"
 import { AtAvatar } from 'taro-ui'
 import Taro from '@tarojs/taro'
 
@@ -16,6 +16,10 @@ export default class Me extends Component<PropsWithChildren> {
   componentDidShow () { }
 
   componentDidHide () { }
+
+  navTo(page: string) {
+    Taro.navigateTo({ url: 'pages/' + page + '/index' })
+  }
 
   handleClick1 () {
     Taro.navigateTo({

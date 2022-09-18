@@ -22,8 +22,14 @@ export default class Index extends Component<PropsWithChildren> {
   http: HttpService;
   isLogged: false;
 
-  navTo(page: string) {
-    Taro.navigateTo({ url: 'pages/' + page + '/index' })
+  navToWxlogin(page: string) {
+    // Taro.navigateTo({ url: 'pages/' + page + '/index' })
+    Taro.navigateTo({ url: 'pages/wxlogin/index' })
+  }
+
+  navToLogin(page: string) {
+    // Taro.navigateTo({ url: 'pages/' + page + '/index' })
+    Taro.navigateTo({ url: 'pages/login/index' })
   }
 
   componentWillMount () { }
@@ -147,8 +153,8 @@ export default class Index extends Component<PropsWithChildren> {
     { this.isLogged ||
       <AtActionSheet isOpened>
         <AtActionSheetItem>
-        <AtButton type="primary" size="small" onClick={this.navTo('wxlogin')}>微信登录</AtButton>
-        <Text className="text" onClick={this.navTo('login')}>机构登录</Text>
+        <AtButton type="primary" size="small" onClick={this.navToWxlogin}>微信登录</AtButton>
+        <Text className="text" onClick={this.navToLogin}>机构登录</Text>
         </AtActionSheetItem>
         <AtActionSheetItem>
         </AtActionSheetItem>
