@@ -23,8 +23,8 @@ export default class Chooselogin extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='chooseLogin'>
-      <AtButton type="primary" size="small" onClick={() => this.navTo('wxlogin')}>微信登录</AtButton>
-      <AtButton size="small" onClick={()=>this.navTo('login')}>机构登录</AtButton>
+      <AtButton className="btn" type="primary" size="small" onClick={() => this.navTo('wxlogin')}>微信登录</AtButton>
+      <Text className="text" onClick={()=>this.navTo('login')}>机构登录</Text>
       </View>
     )
   }
