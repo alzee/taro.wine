@@ -15,6 +15,9 @@
 }
 .highlight2{
   position: relative;
-  .img, .text{
+  .text{
+    position: absolute;
+    left: .5rem;
+    bottom: .5rem;
   }
 }
