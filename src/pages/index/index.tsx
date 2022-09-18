@@ -5,13 +5,11 @@ import { AtButton, AtAvatar, AtTabBar, AtIcon } from 'taro-ui'
 import { AtSearchBar } from 'taro-ui'
 import { AtNoticebar } from 'taro-ui'
 import Taro from '@tarojs/taro'
-import img1 from './img/400x220.png'
-import img2 from './img/80x80.png'
+import { env } from '../../env/env'
 
 export default class Index extends Component<PropsWithChildren> {
-  baseUrl = 'https://127.0.0.1:8000/';
-  apiUrl = this.baseUrl + 'api/nodes/';
-  imgUrl = this.baseUrl + 'uploads/';
+  apiUrl = env.apiUrl;
+  imgUrl = env.imgUrl;
   nodes = [];
   nodes0 = [];
   nodes1 = [];
