@@ -5,11 +5,12 @@ import { AtButton, AtAvatar, AtTabBar, AtIcon } from 'taro-ui'
 import { AtSearchBar } from 'taro-ui'
 import { AtNoticebar } from 'taro-ui'
 import Taro from '@tarojs/taro'
-import { env } from '../../env/env'
+import { Env } from '../../env/env'
+import { HttpService } from '../../services/http.service'
 
 export default class Index extends Component<PropsWithChildren> {
-  apiUrl = env.apiUrl;
-  imgUrl = env.imgUrl;
+  apiUrl = Env.apiUrl;
+  imgUrl = Env.imgUrl;
   nodes = [];
   nodes0 = [];
   nodes1 = [];
@@ -17,13 +18,15 @@ export default class Index extends Component<PropsWithChildren> {
   list0 = [];
   list1 = [];
   list2 = [];
+  http: HttpService;
 
   componentWillMount () { }
 
   componentDidMount () {
+console.log(this.http);
     const self = this;
     Taro.request({
-        url: this.apiUrl,
+        url: Env.apiUrl + 'nodes',
         success: function (res) { self.setState({data: res.data}) }
         }).then((res) =>{
           this.nodes = res.data;
