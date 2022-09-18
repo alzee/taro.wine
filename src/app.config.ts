@@ -14,6 +14,7 @@ export default defineAppConfig({
     'pages/orderRestaurant/index',
     'pages/myInfo/index',
     'pages/wxlogin/index',
+    'pages/login/index',
   ],
   window: {
     backgroundTextStyle: 'light',

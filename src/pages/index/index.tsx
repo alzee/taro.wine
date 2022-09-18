@@ -4,6 +4,7 @@ import './index.scss'
 import { AtButton, AtAvatar, AtTabBar, AtIcon } from 'taro-ui'
 import { AtSearchBar } from 'taro-ui'
 import { AtNoticebar } from 'taro-ui'
+import { AtActionSheet, AtActionSheetItem } from "taro-ui"
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 import { HttpService } from '../../services/http.service'
@@ -19,6 +20,11 @@ export default class Index extends Component<PropsWithChildren> {
   list1 = [];
   list2 = [];
   http: HttpService;
+  isLogged: false;
+
+  navTo(page: string) {
+    Taro.navigateTo({ url: 'pages/' + page + '/index' })
+  }
 
   componentWillMount () { }
 
@@ -83,6 +89,21 @@ export default class Index extends Component<PropsWithChildren> {
   componentDidHide () { }
 
   render () {
+    Taro.getStorage({
+      key: Env.storageKey,
+      success: res => {
+        console.log(res.data)
+        if (res.data.uid == 0) {
+          console.log('need to login');
+          this.isLogged = false;
+        } else {
+          this.isLogged = true;
+        }
+      },
+      fail: res => {
+        console.log('fuck')
+      },
+    });
     return (
       <View className='index'>
       {/*
@@ -122,6 +143,17 @@ export default class Index extends Component<PropsWithChildren> {
         </View>
 
         {this.state && this.state.data && this.list2}
+
+    { this.isLogged ||
+      <AtActionSheet >
+        <AtActionSheetItem>
+        <AtButton type="primary" size="small" onClick={this.navTo('wxlogin')}>微信登录</AtButton>
+        <Text className="text" onClick={this.navTo('login')}>机构登录</Text>
+        </AtActionSheetItem>
+        <AtActionSheetItem>
+        </AtActionSheetItem>
+        </AtActionSheet>
+    }
       </View>
       )
   }
