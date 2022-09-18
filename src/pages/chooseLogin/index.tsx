@@ -1,0 +1,31 @@
+import { Component, PropsWithChildren } from 'react'
+import { View, Text } from '@tarojs/components'
+import './index.scss'
+import { AtButton } from 'taro-ui'
+import Taro from '@tarojs/taro'
+
+export default class Chooselogin extends Component<PropsWithChildren> {
+
+  componentWillMount () { }
+
+  componentDidMount () { }
+
+  componentWillUnmount () { }
+
+  componentDidShow () { }
+
+  componentDidHide () { }
+
+  navTo(page: string) {
+    Taro.navigateTo({ url: 'pages/' + page + '/index' })
+  }
+
+  render () {
+    return (
+      <View className='chooseLogin'>
+      <AtButton type="primary" size="small" onClick={() => this.navTo('wxlogin')}>微信登录</AtButton>
+      <AtButton size="small" onClick={()=>this.navTo('login')}>机构登录</AtButton>
+      </View>
+    )
+  }
+}

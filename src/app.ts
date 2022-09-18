@@ -27,7 +27,7 @@ class App extends Component<PropsWithChildren> {
         console.log(res.data)
         if (res.data.uid == 0) {
           console.log('need to login');
-          // Taro.redirectTo({ url: 'pages/welogin/index' })
+          Taro.redirectTo({ url: 'pages/chooseLogin/index' })
         }
       },
       fail: res => {

@@ -15,6 +15,7 @@ export default defineAppConfig({
     'pages/myInfo/index',
     'pages/wxlogin/index',
     'pages/login/index',
+    'pages/chooseLogin/index',
   ],
   window: {
     backgroundTextStyle: 'light',

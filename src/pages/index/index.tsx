@@ -22,19 +22,30 @@ export default class Index extends Component<PropsWithChildren> {
   http: HttpService;
   isLogged: false;
 
-  navToWxlogin(page: string) {
-    // Taro.navigateTo({ url: 'pages/' + page + '/index' })
-    Taro.navigateTo({ url: 'pages/wxlogin/index' })
-  }
-
-  navToLogin(page: string) {
-    // Taro.navigateTo({ url: 'pages/' + page + '/index' })
-    Taro.navigateTo({ url: 'pages/login/index' })
+  navTo(page: string) {
+    Taro.navigateTo({ url: 'pages/' + page + '/index' })
   }
 
   componentWillMount () { }
 
   componentDidMount () {
+    Taro.getStorage({
+      key: Env.storageKey,
+      success: res => {
+        console.log(res.data)
+        if (res.data.uid == 0) {
+          console.log('need to login');
+          this.isLogged = false;
+          //this.navTo('chooseLogin');
+        } else {
+          this.isLogged = true;
+        }
+      },
+      fail: res => {
+        console.log('fuck')
+      },
+    });
+
     const self = this;
     Taro.request({
         url: Env.apiUrl + 'nodes',
@@ -95,21 +106,6 @@ export default class Index extends Component<PropsWithChildren> {
   componentDidHide () { }
 
   render () {
-    Taro.getStorage({
-      key: Env.storageKey,
-      success: res => {
-        console.log(res.data)
-        if (res.data.uid == 0) {
-          console.log('need to login');
-          this.isLogged = false;
-        } else {
-          this.isLogged = true;
-        }
-      },
-      fail: res => {
-        console.log('fuck')
-      },
-    });
     return (
       <View className='index'>
       {/*
@@ -150,15 +146,15 @@ export default class Index extends Component<PropsWithChildren> {
 
         {this.state && this.state.data && this.list2}
 
-    { this.isLogged ||
-      <AtActionSheet isOpened>
-        <AtActionSheetItem>
-        <AtButton type="primary" size="small" onClick={this.navToWxlogin}>微信登录</AtButton>
-        <Text className="text" onClick={this.navToLogin}>机构登录</Text>
-        </AtActionSheetItem>
-        <AtActionSheetItem>
-        </AtActionSheetItem>
-        </AtActionSheet>
+    {//  this.isLogged ||
+     //  <AtActionSheet isOpened>
+     //    <AtActionSheetItem>
+     //    <AtButton type="primary" size="small" onClick={this.navToWxlogin}>微信登录</AtButton>
+     //    <Text className="text" onClick={this.navToLogin}>机构登录</Text>
+     //    </AtActionSheetItem>
+     //    <AtActionSheetItem>
+     //    </AtActionSheetItem>
+     //    </AtActionSheet>
     }
       </View>
       )
