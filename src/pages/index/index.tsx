@@ -62,7 +62,7 @@ export default class Index extends Component<PropsWithChildren> {
           //   }
           // }
           for (let i in this.nodes2) {
-            if (i < 2) {
+            if (i < 3) {
               this.list2.push(
                   <View className="highlight2">
                   <Image className='img' src={this.imgUrl + this.nodes2[i].img}></Image>
@@ -85,9 +85,9 @@ export default class Index extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='index'>
-        <AtSearchBar
-        actionName='搜一下'
-        />
+      {/*
+        <AtSearchBar actionName='搜一下' />
+        */}
 
         { this.state && this.state.data &&
         <Swiper
