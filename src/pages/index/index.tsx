@@ -17,34 +17,22 @@ export default class Index extends Component<PropsWithChildren> {
   apiUrl = this.baseUrl + 'api/nodes/';
   imgUrl = this.baseUrl + 'uploads/';
   nodes = [];
-  isLoding: boolean = true;
-
 
   componentWillMount () { }
 
   componentDidMount () {
-const self = this;
-      Taro.request({
+    const self = this;
+    Taro.request({
         url: this.apiUrl,
         data: {
           x: '',
           y: ''
         },
         that: this,
-        success: function (res) {
-        self.setState({data: res.data})
-            //console.log(res.data);
-            //console.log(this.nodes)
-            //console.log(res.data[0])
-        }
-    }).then((res) =>{
-this.nodes = res.data;
-    console.log(this.nodes);
-    console.log(this.nodes[0].img);
-    this.isLoding = false;
-  this.render();
-    }
-  )
+        success: function (res) { self.setState({data: res.data}) }
+        }).then((res) =>{
+          this.nodes = res.data;
+          })
   }
 
   componentWillUnmount () { }
@@ -54,58 +42,73 @@ this.nodes = res.data;
   componentDidHide () { }
 
   render () {
+    let nodes0 = [];
+    let nodes1 = [];
+    let nodes2 = [];
+    let list0 = [];
+    let list1 = [];
+    let list2 = [];
+    for (let i in this.nodes) {
+      if (this.nodes[i].tag == 0) {
+        nodes0.push(this.nodes[i]);
+      }
+      if (this.nodes[i].tag == 1) {
+        nodes1.push(this.nodes[i]);
+      }
+      if (this.nodes[i].tag == 2) {
+        nodes2.push(this.nodes[i]);
+      }
+    }
+    for (let i in nodes0) {
+      if (i < 3) {
+        list0.push(
+            <SwiperItem>
+            <View className='demo-text-1'><Image src={ this.imgUrl + nodes0[i].img }></Image></View>
+            </SwiperItem>
+            );
+      }
+    }
+    for (let i in nodes1) {
+      if (i < 4) {
+        list1.push(
+            <View className="at-col">
+                <AtAvatar className="avatar" circle size="small" image={ this.state && this.state.data && this.imgUrl+ nodes1[i].img}></AtAvatar>
+                <Text>推荐1</Text>
+            </View>
+            );
+      }
+    }
+    for (let i in nodes2) {
+      if (i < 2) {
+        list2.push(
+        <View className="highlight2">
+            <Image className='img' src={this.imgUrl + nodes2[i].img}>11</Image>
+        </View>
+            );
+      }
+    }
     return (
       <View className='index'>
-		<AtSearchBar
+        <AtSearchBar
         actionName='搜一下'
         />
 
-      <Swiper
-      className='swiper'
-      indicatorColor='#999'
-      indicatorActiveColor='#333'
-      // vertical
-      circular
-      indicatorDots
-      autoplay>
-      <SwiperItem>
+        <Swiper
+        className='swiper'
+        indicatorColor='#999'
+        indicatorActiveColor='#333'
+        // vertical
+        circular
+        indicatorDots
+        autoplay>
+        {list0}
+        </Swiper>
 
-      <View className='demo-text-1'><Image src={img1}></Image></View>
-      </SwiperItem>
-      <SwiperItem>
-      <View className='demo-text-1'><Image src={img1}></Image></View>
-      </SwiperItem>
-      <SwiperItem>
-      <View className='demo-text-1'><Image src={img1}></Image></View>
-      </SwiperItem>
-      </Swiper>
-
-		<View className='at-row highlight1'>
-            <View className="at-col">
-                <AtAvatar className="avatar" circle size="small" image={ this.state && this.state.data && this.imgUrl+ this.nodes[0].img}></AtAvatar>
-                <Text>推荐1</Text>
-            </View>
-            <View className="at-col">
-                <AtAvatar circle size="small" image={img2}></AtAvatar>
-                <Text>推荐2</Text>
-            </View>
-            <View className="at-col">
-                <AtAvatar circle size="small" image={img2}></AtAvatar>
-                <Text>推荐3</Text>
-            </View>
-            <View className="at-col">
-                <AtAvatar circle size="small" image={img2}></AtAvatar>
-                <Text>推荐4</Text>
-            </View>
+        <View className='at-row highlight1'>
+        {list1}
         </View>
 
-        <View className="highlight2">
-            <Image className='img' src={img1}>11</Image>
-        </View>
-        <View className="highlight2">
-            <Image className='img' src={img1}>11</Image>
-        </View>
-
+        {list2}
       </View>
       )
   }
