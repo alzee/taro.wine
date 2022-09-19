@@ -22,9 +22,6 @@ export default class Index extends Component<PropsWithChildren> {
   http: HttpService;
   isLogged: false;
 
-  navTo(page: string) {
-    Taro.navigateTo({ url: 'pages/' + page + '/index' })
-  }
   navToNode(id: int) {
     Taro.navigateTo({ url: 'pages/node/index?id=' + id })
   }
@@ -34,7 +31,11 @@ export default class Index extends Component<PropsWithChildren> {
       current: 0
     }
   }
-  handleClick (value) {
+  navTo(page: string) {
+    Taro.navigateTo({ url: 'pages/' + page + '/index' })
+  }
+  switchTab (value) {
+    // return;
     if (value == this.state.current) {
       return;
     }
@@ -42,12 +43,12 @@ export default class Index extends Component<PropsWithChildren> {
       current: value
     })
     let i: string;
-    switch (this.state.current) {
+    switch (value) {
       case 0:
         i = 'index';
         break;
       case 1:
-        i = 'me';
+        i = 'org';
         break;
       case 2:
         i = 'me';
@@ -193,12 +194,12 @@ export default class Index extends Component<PropsWithChildren> {
       fixed
       tabList={[
         { title: '首页', iconType: 'home' },
-        { title: '零售', iconType: 'shopping-bag-2' },
-        { title: '消费', iconType: 'credit-card' },
+        // { title: '零售', iconType: 'shopping-bag-2' },
+        // { title: '消费', iconType: 'credit-card' },
         { title: '门店', iconType: 'shopping-bag' },
         { title: '我', iconType: 'user' }
       ]}
-      onClick={this.handleClick.bind(this)}
+      onClick={this.switchTab.bind(this)}
       current={this.state.current}
       />
       </View>

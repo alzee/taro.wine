@@ -4,10 +4,9 @@ import './index.scss'
 import { AtButton, AtAvatar, AtTabBar, AtIcon } from 'taro-ui'
 import { AtList, AtListItem, AtCard } from "taro-ui"
 import { AtTabs, AtTabsPane } from 'taro-ui'
+import Taro from '@tarojs/taro'
 
 export default class Org extends Component<PropsWithChildren> {
-
-  componentWillMount () { }
 
   componentDidMount () { }
 
@@ -28,6 +27,36 @@ export default class Org extends Component<PropsWithChildren> {
     this.setState({
       current: value
     })
+  }
+  navTo(page: string) {
+    Taro.navigateTo({ url: 'pages/' + page + '/index' })
+  }
+  switchTab (value) {
+    if (value == this.state.current) {
+      return;
+    }
+    this.setState({
+      current: value
+    })
+    let i: string;
+    switch (value) {
+      case 0:
+        i = 'index';
+        break;
+      case 1:
+        i = 'org';
+        break;
+      case 2:
+        i = 'me';
+        break;
+      case 3:
+        i = 'me';
+        break;
+      case 4:
+        i = 'me';
+        break;
+    }
+    this.navTo(i);
   }
 
   render () {
@@ -92,6 +121,16 @@ export default class Org extends Component<PropsWithChildren> {
         </AtTabsPane>
       </AtTabs>
 
+      <AtTabBar
+      fixed
+      tabList={[
+        { title: '首页', iconType: 'home' },
+        { title: '门店', iconType: 'shopping-bag' },
+        { title: '我', iconType: 'user' }
+      ]}
+      onClick={this.switchTab.bind(this)}
+      current={this.state.current}
+      />
       </View>
     )
   }
