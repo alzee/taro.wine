@@ -32,13 +32,31 @@ export default class Index extends Component<PropsWithChildren> {
     }
   }
   handleClick (value) {
+    if (value == this.state.current) {
+      return;
+    }
     this.setState({
       current: value
     })
-    console.log(this.state.current);
-    Taro.navigateTo({ url: 'pages/login/index' })
+    let i: string;
     switch (this.state.current) {
+      case 0:
+        i = 'index';
+        break;
+      case 1:
+        i = 'me';
+        break;
+      case 2:
+        i = 'me';
+        break;
+      case 3:
+        i = 'me';
+        break;
+      case 4:
+        i = 'me';
+        break;
     }
+    this.navTo(i);
   }
 
   componentDidMount () {
