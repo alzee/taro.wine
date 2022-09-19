@@ -21,10 +21,14 @@ class App extends Component<PropsWithChildren> {
         console.log('fuck');
       }
     })
+    // only for test
+    Taro.setStorage({
+      key: Env.storageKey,
+      data: {uid: 0, role: 1, token: 0}
+    });
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        console.log(res.data)
         if (res.data.uid == 0) {
           console.log('need to login');
           // Taro.redirectTo({ url: 'pages/chooseLogin/index' })

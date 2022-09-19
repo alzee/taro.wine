@@ -4,12 +4,21 @@ import './index.scss'
 import { AtButton, AtList, AtListItem, AtTabBar } from "taro-ui"
 import { AtAvatar } from 'taro-ui'
 import Taro from '@tarojs/taro'
+import { Env } from '../../env/env'
 
 export default class Me extends Component<PropsWithChildren> {
+  role: int;
 
   componentWillMount () { }
 
-  componentDidMount () { }
+  componentDidMount () {
+    Taro.getStorage({
+      key: Env.storageKey,
+      success: res => {
+        this.role = res.data.role
+        console.log(this.role)
+      }})
+  }
 
   componentWillUnmount () { }
 
