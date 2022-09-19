@@ -25,6 +25,9 @@ export default class Index extends Component<PropsWithChildren> {
   navTo(page: string) {
     Taro.navigateTo({ url: 'pages/' + page + '/index' })
   }
+  navToNode(id: int) {
+    Taro.navigateTo({ url: 'pages/node/index?id=' + id })
+  }
   constructor () {
     super(...arguments)
     this.state = {
@@ -99,7 +102,7 @@ export default class Index extends Component<PropsWithChildren> {
           this.list0.push(
             <SwiperItem key={i}>
             <View className=''>
-            <Image src={ this.imgUrl + this.nodes0[i].img }></Image>
+            <Image src={ this.imgUrl + this.nodes0[i].img } onClick={()=>this.navToNode(i)}></Image>
             </View>
             </SwiperItem>
           );
@@ -119,7 +122,7 @@ export default class Index extends Component<PropsWithChildren> {
         if (i < 3) {
           this.list2.push(
             <View className="highlight2" key={i}>
-            <Image className='img' src={this.imgUrl + this.nodes2[i].img}></Image>
+            <Image className='img' src={this.imgUrl + this.nodes2[i].img} ></Image>
             <Text className="text">
             {this.nodes2[i].title}
             </Text>
