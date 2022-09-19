@@ -35,7 +35,10 @@ export default class Index extends Component<PropsWithChildren> {
     this.setState({
       current: value
     })
-      console.log(this.state.current);
+    console.log(this.state.current);
+    Taro.navigateTo({ url: 'pages/login/index' })
+    switch (this.state.current) {
+    }
   }
 
   componentDidMount () {
@@ -58,55 +61,55 @@ export default class Index extends Component<PropsWithChildren> {
 
     const self = this;
     Taro.request({
-        url: Env.apiUrl + 'nodes',
-        success: function (res) { self.setState({data: res.data}) }
-        }).then((res) =>{
-          this.nodes = res.data;
-          for (let i in this.nodes) {
-            if (this.nodes[i].tag == 0) {
-            this.nodes0.push(this.nodes[i]);
-            }
-            // if (this.nodes[i].tag == 1) {
-            // this.nodes1.push(this.nodes[i]);
-            // }
-            if (this.nodes[i].tag == 2) {
-            this.nodes2.push(this.nodes[i]);
-            }
-          }
-          for (let i in this.nodes0) {
-            if (i < 3) {
-            this.list0.push(
-                <SwiperItem key={i}>
-                <View className=''>
-                <Image src={ this.imgUrl + this.nodes0[i].img }></Image>
-                </View>
-                </SwiperItem>
-                );
-            }
-          }
-          // for (let i in nodes1) {
-          //   if (i < 4) {
-          //     list1.push(
-          //         <View className="at-col">
-          //             <AtAvatar className="avatar" circle size="small" image={ this.state && this.state.data && this.imgUrl+ nodes1[i].img}></AtAvatar>
-          //             <Text>{nodes1[i].title}</Text>
-          //         </View>
-          //         );
-          //   }
-          // }
-          for (let i in this.nodes2) {
-            if (i < 3) {
-              this.list2.push(
-                  <View className="highlight2" key={i}>
-                  <Image className='img' src={this.imgUrl + this.nodes2[i].img}></Image>
-                  <Text className="text">
-                  {this.nodes2[i].title}
-                  </Text>
-                  </View>
-                  );
-            }
-          }
-          })
+      url: Env.apiUrl + 'nodes',
+      success: function (res) { self.setState({data: res.data}) }
+    }).then((res) =>{
+      this.nodes = res.data;
+      for (let i in this.nodes) {
+        if (this.nodes[i].tag == 0) {
+          this.nodes0.push(this.nodes[i]);
+        }
+        // if (this.nodes[i].tag == 1) {
+        // this.nodes1.push(this.nodes[i]);
+        // }
+        if (this.nodes[i].tag == 2) {
+          this.nodes2.push(this.nodes[i]);
+        }
+      }
+      for (let i in this.nodes0) {
+        if (i < 3) {
+          this.list0.push(
+            <SwiperItem key={i}>
+            <View className=''>
+            <Image src={ this.imgUrl + this.nodes0[i].img }></Image>
+            </View>
+            </SwiperItem>
+          );
+        }
+      }
+      // for (let i in nodes1) {
+      //   if (i < 4) {
+      //     list1.push(
+      //         <View className="at-col">
+      //             <AtAvatar className="avatar" circle size="small" image={ this.state && this.state.data && this.imgUrl+ nodes1[i].img}></AtAvatar>
+      //             <Text>{nodes1[i].title}</Text>
+      //         </View>
+      //         );
+      //   }
+      // }
+      for (let i in this.nodes2) {
+        if (i < 3) {
+          this.list2.push(
+            <View className="highlight2" key={i}>
+            <Image className='img' src={this.imgUrl + this.nodes2[i].img}></Image>
+            <Text className="text">
+            {this.nodes2[i].title}
+            </Text>
+            </View>
+          );
+        }
+      }
+    })
   }
 
   componentWillUnmount () { }
@@ -119,66 +122,66 @@ export default class Index extends Component<PropsWithChildren> {
     return (
       <View className='index'>
       {/*
-        <AtSearchBar actionName='搜一下' />
-        */}
+          <AtSearchBar actionName='搜一下' />
+          */}
 
-        { this.state && this.state.data &&
+      { this.state && this.state.data &&
         <Swiper
-        className='swiper'
-        indicatorColor='#999'
-        indicatorActiveColor='#333'
-        // vertical
-        circular
-        indicatorDots
-        autoplay>
-        {this.list0}
-        </Swiper>
-        }
+      className='swiper'
+      indicatorColor='#999'
+      indicatorActiveColor='#333'
+      // vertical
+      circular
+      indicatorDots
+      autoplay>
+      {this.list0}
+      </Swiper>
+      }
 
-        <View className='at-row highlight1'>
-          <View className="at-col">
-              <AtAvatar className="avatar" circle size="small" image={ this.imgUrl + '80x80.png'}></AtAvatar>
-              <Text>门店</Text>
-          </View>
-          <View className="at-col">
-              <AtAvatar className="avatar" circle size="small" image={ this.imgUrl + '80x80.png'}></AtAvatar>
-              <Text>餐厅</Text>
-          </View>
-          <View className="at-col">
-              <AtAvatar className="avatar" circle size="small" image={ this.imgUrl + '80x80.png'}></AtAvatar>
-              <Text>推荐</Text>
-          </View>
-          <View className="at-col">
-              <AtAvatar className="avatar" circle size="small" image={ this.imgUrl + '80x80.png'}></AtAvatar>
-              <Text>生活</Text>
-          </View>
-        </View>
-
-        {this.state && this.state.data && this.list2}
-
-    {//  this.isLogged ||
-     //  <AtActionSheet isOpened>
-     //    <AtActionSheetItem>
-     //    <AtButton type="primary" size="small" onClick={this.navToWxlogin}>微信登录</AtButton>
-     //    <Text className="text" onClick={this.navToLogin}>机构登录</Text>
-     //    </AtActionSheetItem>
-     //    <AtActionSheetItem>
-     //    </AtActionSheetItem>
-     //    </AtActionSheet>
-    }
-<AtTabBar
-  fixed
-  tabList={[
-    { title: '首页', iconType: 'home' },
-    { title: '零售', iconType: 'shopping-bag-2' },
-    { title: '消费', iconType: 'credit-card' },
-    { title: '门店', iconType: 'shopping-bag' },
-    { title: '我', iconType: 'user' }
-  ]}
-  onClick={this.handleClick.bind(this)}
-  current={this.state.current}
-/>
+      <View className='at-row highlight1'>
+      <View className="at-col">
+      <AtAvatar className="avatar" circle size="small" image={ this.imgUrl + '80x80.png'}></AtAvatar>
+      <Text>门店</Text>
       </View>
-      )
+      <View className="at-col">
+      <AtAvatar className="avatar" circle size="small" image={ this.imgUrl + '80x80.png'}></AtAvatar>
+      <Text>餐厅</Text>
+      </View>
+      <View className="at-col">
+      <AtAvatar className="avatar" circle size="small" image={ this.imgUrl + '80x80.png'}></AtAvatar>
+      <Text>推荐</Text>
+      </View>
+      <View className="at-col">
+      <AtAvatar className="avatar" circle size="small" image={ this.imgUrl + '80x80.png'}></AtAvatar>
+      <Text>生活</Text>
+      </View>
+      </View>
+
+      {this.state && this.state.data && this.list2}
+
+      {//  this.isLogged ||
+        //  <AtActionSheet isOpened>
+        //    <AtActionSheetItem>
+        //    <AtButton type="primary" size="small" onClick={this.navToWxlogin}>微信登录</AtButton>
+        //    <Text className="text" onClick={this.navToLogin}>机构登录</Text>
+        //    </AtActionSheetItem>
+        //    <AtActionSheetItem>
+        //    </AtActionSheetItem>
+        //    </AtActionSheet>
+      }
+      <AtTabBar
+      fixed
+      tabList={[
+        { title: '首页', iconType: 'home' },
+        { title: '零售', iconType: 'shopping-bag-2' },
+        { title: '消费', iconType: 'credit-card' },
+        { title: '门店', iconType: 'shopping-bag' },
+        { title: '我', iconType: 'user' }
+      ]}
+      onClick={this.handleClick.bind(this)}
+      current={this.state.current}
+      />
+      </View>
+    )
   }
 }
