@@ -25,6 +25,18 @@ export default class Index extends Component<PropsWithChildren> {
   navTo(page: string) {
     Taro.navigateTo({ url: 'pages/' + page + '/index' })
   }
+  constructor () {
+    super(...arguments)
+    this.state = {
+      current: 0
+    }
+  }
+  handleClick (value) {
+    this.setState({
+      current: value
+    })
+      console.log(this.state.current);
+  }
 
   componentDidMount () {
     Taro.getStorage({
@@ -163,6 +175,8 @@ export default class Index extends Component<PropsWithChildren> {
     { title: '门店', iconType: 'shopping-bag' },
     { title: '我', iconType: 'user' }
   ]}
+  onClick={this.handleClick.bind(this)}
+  current={this.state.current}
 />
       </View>
       )
