@@ -48,10 +48,7 @@ export default class Node extends Component<PropsWithChildren> {
       src={Env.imgUrl + this.node.img}
       mode='widthFix' />
       <View className='at-article__content'>
-      <View className='at-article__section'>
-      <View className='at-article__p'>
-      {this.node.body}
-      </View>
+      <View dangerouslySetInnerHTML={{__html: this.node.body}} className='at-article__section'>
       </View>
       </View>
       </View>
