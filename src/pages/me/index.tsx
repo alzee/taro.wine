@@ -1,7 +1,7 @@
 import { Component, PropsWithChildren } from 'react'
 import { View, Text } from '@tarojs/components'
 import './index.scss'
-import { AtButton, AtList, AtListItem, AtCard } from "taro-ui"
+import { AtButton, AtList, AtListItem, AtTabBar } from "taro-ui"
 import { AtAvatar } from 'taro-ui'
 import Taro from '@tarojs/taro'
 
@@ -17,8 +17,42 @@ export default class Me extends Component<PropsWithChildren> {
 
   componentDidHide () { }
 
+  constructor () {
+    super(...arguments)
+    this.state = {
+      current: 2,
+    }
+  }
+
   navTo(page: string) {
     Taro.navigateTo({ url: 'pages/' + page + '/index' })
+  }
+  switchTab (value) {
+    if (value == this.state.current) {
+      return;
+    }
+    // this.setState({
+    //   current: value
+    // })
+    let i: string;
+    switch (value) {
+      case 0:
+        i = 'index';
+        break;
+      case 1:
+        i = 'org';
+        break;
+      case 2:
+        i = 'me';
+        break;
+      case 3:
+        i = 'me';
+        break;
+      case 4:
+        i = 'me';
+        break;
+    }
+    this.navTo(i);
   }
 
   handleClick1 () {
@@ -128,6 +162,16 @@ export default class Me extends Component<PropsWithChildren> {
       />
       </AtList>
 
+      <AtTabBar
+      fixed
+      tabList={[
+        { title: '首页', iconType: 'home' },
+        { title: '门店', iconType: 'shopping-bag' },
+        { title: '我', iconType: 'user' }
+      ]}
+      onClick={this.switchTab.bind(this)}
+      current={this.state.current}
+      />
       </View>
       )
   }
