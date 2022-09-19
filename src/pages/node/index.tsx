@@ -9,8 +9,6 @@ export default class Node extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   node = {};
 
-  componentWillMount () { }
-
   componentDidMount () {
     let id = this.instance.router.params.id
     const self = this;
