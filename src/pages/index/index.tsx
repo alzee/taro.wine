@@ -154,6 +154,16 @@ export default class Index extends Component<PropsWithChildren> {
      //    </AtActionSheetItem>
      //    </AtActionSheet>
     }
+<AtTabBar
+  fixed
+  tabList={[
+    { title: '首页', iconType: 'home' },
+    { title: '零售', iconType: 'shopping-bag-2' },
+    { title: '消费', iconType: 'credit-card' },
+    { title: '门店', iconType: 'shopping-bag' },
+    { title: '我', iconType: 'user' }
+  ]}
+/>
       </View>
       )
   }
