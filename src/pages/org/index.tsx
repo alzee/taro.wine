@@ -19,13 +19,14 @@ export default class Org extends Component<PropsWithChildren> {
   constructor () {
     super(...arguments)
     this.state = {
-      current: 0,
+      current: 1,
+      seg: 0,
     }
   }
 
   handleClick (value) {
     this.setState({
-      current: value
+      seg: value
     })
   }
   navTo(page: string) {
@@ -35,9 +36,9 @@ export default class Org extends Component<PropsWithChildren> {
     if (value == this.state.current) {
       return;
     }
-    this.setState({
-      current: value
-    })
+    // this.setState({
+    //   current: value
+    // })
     let i: string;
     switch (value) {
       case 0:
@@ -60,12 +61,17 @@ export default class Org extends Component<PropsWithChildren> {
   }
 
   render () {
-      const tabList = [{ title: '代理商' }, { title: '门店' }, { title: '餐厅' }]
+      const tabList = [
+        // { title: '代理商' },
+        { title: '门店' },
+        { title: '餐厅' }]
     return (
       <View className='org'>
 
-      <AtTabs current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
-        <AtTabsPane current={this.state.current} index={0} >
+      <AtTabs current={this.state.seg} tabList={tabList} onClick={this.handleClick.bind(this)}>
+      {
+        /*
+        <AtTabsPane current={this.state.seg} index={0} >
           <AtList>
           <AtListItem
           title='代理商1号'
@@ -83,7 +89,9 @@ export default class Org extends Component<PropsWithChildren> {
           />
           </AtList>
         </AtTabsPane>
-        <AtTabsPane current={this.state.current} index={1}>
+       */
+      }
+        <AtTabsPane current={this.state.seg} index={0}>
           <AtList>
           <AtListItem
           title='门店1号'
@@ -101,7 +109,7 @@ export default class Org extends Component<PropsWithChildren> {
           />
           </AtList>
         </AtTabsPane>
-        <AtTabsPane current={this.state.current} index={2}>
+        <AtTabsPane current={this.state.seg} index={1}>
           <AtList>
           <AtListItem
           title='餐厅1号'

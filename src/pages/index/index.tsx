@@ -39,9 +39,9 @@ export default class Index extends Component<PropsWithChildren> {
     if (value == this.state.current) {
       return;
     }
-    this.setState({
-      current: value
-    })
+    // this.setState({
+    //   current: value
+    // })
     let i: string;
     switch (value) {
       case 0:
