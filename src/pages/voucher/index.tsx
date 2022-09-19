@@ -17,17 +17,13 @@ export default class Voucher extends Component<PropsWithChildren> {
 
   componentDidHide () { }
 
-  handleClick () {
-    Taro.navigateBack()
-  }
-
   render () {
     return (
       <View className='voucher'>
         <AtNavBar
-          onClickRgIconSt={this.handleClick}
-          onClickRgIconNd={this.handleClick}
-          onClickLeftIcon={this.handleClick}
+          onClickRgIconSt={Taro.navigateBack}
+          onClickRgIconNd={Taro.navigateBack}
+          onClickLeftIcon={Taro.navigateBack}
           color='#000'
           leftIconType='chevron-left'
           fixed

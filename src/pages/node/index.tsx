@@ -1,12 +1,27 @@
 import { Component, PropsWithChildren } from 'react'
 import { View, Text, Image } from '@tarojs/components'
+import Taro from '@tarojs/taro'
 import './index.scss'
+import { Env } from '../../env/env'
+import { AtNavBar } from 'taro-ui'
 
 export default class Node extends Component<PropsWithChildren> {
+  instance = Taro.getCurrentInstance();
+  node = {};
 
   componentWillMount () { }
 
-  componentDidMount () { }
+  componentDidMount () {
+    let id = this.instance.router.params.id
+    const self = this;
+    Taro.request({
+      url: Env.apiUrl + 'nodes/' + id,
+      success: function (res) { self.setState({data: res.data}) }
+    }).then((res) =>{
+      this.node = res.data
+      console.log(this.node)
+    })
+  }
 
   componentWillUnmount () { }
 
@@ -17,26 +32,29 @@ export default class Node extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='at-article'>
+        <AtNavBar
+          onClickRgIconSt={Taro.navigateBack}
+          onClickRgIconNd={Taro.navigateBack}
+          onClickLeftIcon={Taro.navigateBack}
+          color='#000'
+          leftIconType='chevron-left'
+          // fixed
+        />
       <View className='at-article__h1'>
-      这是一级标题这是一级标题
+      {this.node.title}
       </View>
       <View className='at-article__info'>
-      2017-05-07&nbsp;&nbsp;&nbsp;这是作者
-      </View>
-      <View className='at-article__content'>
-      <View className='at-article__section'>
-      <View className='at-article__h2'>这是二级标题</View>
-      <View className='at-article__h3'>这是三级标题</View>
-      <View className='at-article__p'>
-      这是文本段落。这是文本段落。这是文本段落。这是文本段落。这是文本段落。这是文本段落。这是文本段落。这是文本落。这是文本段落。1234567890123456789012345678901234567890 ABCDEFGHIJKLMNOPQRSTUVWXYZ
-      </View>
-      <View className='at-article__p'>
-      这是文本段落。这是文本段落。
+      {this.node.date}
       </View>
       <Image 
       className='at-article__img' 
-      src='https://jdc.jd.com/img/400x400' 
+      src={Env.imgUrl + this.node.img}
       mode='widthFix' />
+      <View className='at-article__content'>
+      <View className='at-article__section'>
+      <View className='at-article__p'>
+      {this.node.body}
+      </View>
       </View>
       </View>
       </View>
