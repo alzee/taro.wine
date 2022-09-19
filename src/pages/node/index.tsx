@@ -19,7 +19,6 @@ export default class Node extends Component<PropsWithChildren> {
       success: function (res) { self.setState({data: res.data}) }
     }).then((res) =>{
       this.node = res.data
-      console.log(this.node)
     })
   }
 

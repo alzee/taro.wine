@@ -66,7 +66,6 @@ export default class Index extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        console.log(res.data)
         if (res.data.uid == 0) {
           console.log('need to login');
           this.isLogged = false;
