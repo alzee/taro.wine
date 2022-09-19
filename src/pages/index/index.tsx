@@ -26,8 +26,6 @@ export default class Index extends Component<PropsWithChildren> {
     Taro.navigateTo({ url: 'pages/' + page + '/index' })
   }
 
-  componentWillMount () { }
-
   componentDidMount () {
     Taro.getStorage({
       key: Env.storageKey,
@@ -66,7 +64,7 @@ export default class Index extends Component<PropsWithChildren> {
           for (let i in this.nodes0) {
             if (i < 3) {
             this.list0.push(
-                <SwiperItem>
+                <SwiperItem key={i}>
                 <View className=''>
                 <Image src={ this.imgUrl + this.nodes0[i].img }></Image>
                 </View>
@@ -87,7 +85,7 @@ export default class Index extends Component<PropsWithChildren> {
           for (let i in this.nodes2) {
             if (i < 3) {
               this.list2.push(
-                  <View className="highlight2">
+                  <View className="highlight2" key={i}>
                   <Image className='img' src={this.imgUrl + this.nodes2[i].img}></Image>
                   <Text className="text">
                   {this.nodes2[i].title}
