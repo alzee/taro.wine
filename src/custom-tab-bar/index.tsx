@@ -2,56 +2,19 @@ import { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { CoverView, CoverImage } from '@tarojs/components'
 import { Env } from '../env/env'
+import { Items } from './items'
 
 import './index.scss'
 
 export default class Index extends Component {
-  USER_PAGE = {
-    memberTabbarList : [
-      {
-        "pagePath": "/pages/index/index",
-        "text": "首页",
-        "iconPath": "/image/index_dark.png",
-        "selectedIconPath": "/image/index_light.png"
-      },
-      {
-        "pagePath": "/pages/search/index",
-        "text": "订单",
-        "iconPath": "/image/search_dark.png",
-        "selectedIconPath": "/image/search_light.png"
-      },
-      {
-        "pagePath": "/pages/member/index",
-        "text": "我的",
-        "iconPath": "/image/member_dark.png",
-        "selectedIconPath": "/image/member_light.png"
-      }
+  USER_TABBAR = {
+    agency : [
+      Items[0],
+      Items[1],
     ],
-    adminTabbarList : [
-      {
-        "pagePath": "/pages/index/index",
-        "text": "首页",
-        "iconPath": "/image/index_dark.png",
-        "selectedIconPath": "/image/index_light.png"
-      },
-      {
-        "pagePath": "/pages/search/index",
-        "text": "订单",
-        "iconPath": "/image/search_dark.png",
-        "selectedIconPath": "/image/search_light.png"
-      },
-      {
-        "pagePath": "/pages/admin/index",
-        "text": "管理",
-        "iconPath": "/image/admin_dark.png",
-        "selectedIconPath": "/image/admin_light.png"
-      },
-      {
-        "pagePath": "/pages/member/index",
-        "text": "我的",
-        "iconPath": "/image/member_dark.png",
-        "selectedIconPath": "/image/member_light.png"
-      }
+    store : [
+      Items[2],
+      Items[3],
     ]
   }
 
@@ -60,29 +23,30 @@ export default class Index extends Component {
     // let list = []
     // switch (role) {
     //   case 1:
-    //     list = this.USER_PAGE.memberTabbarList
+    //     list = this.USER_TABBAR.agency
     //   break
     //   case 2:
-    //     list = this.USER_PAGE.adminTabbarList
+    //     list = this.USER_TABBAR.store
     //   break
     // }
     // this.setState({list: list})
   }
 
   constructor(){
+    console.log(Items)
     super(...arguments)
     let role = Taro.getStorageSync(Env.storageKey).role
-    // list = this.USER_PAGE.memberTabbarList
-    // list = this.USER_PAGE.adminTabbarList
+    // list = this.USER_TABBAR.agency
+    // list = this.USER_TABBAR.store
     let list = []
     switch (role) {
       case 1:
         console.log('user')
-        list = this.USER_PAGE.memberTabbarList
+        list = this.USER_TABBAR.agency
       break
       case 2:
         console.log('admi')
-        list = this.USER_PAGE.adminTabbarList
+        list = this.USER_TABBAR.store
       break
     }
     console.log(role)
