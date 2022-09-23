@@ -29,14 +29,6 @@ export default class Node extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='at-article'>
-        <AtNavBar
-          onClickRgIconSt={Taro.navigateBack}
-          onClickRgIconNd={Taro.navigateBack}
-          onClickLeftIcon={Taro.navigateBack}
-          color='#000'
-          leftIconType='chevron-left'
-          // fixed
-        />
       <View className='at-article__h1'>
       {this.node.title}
       </View>
