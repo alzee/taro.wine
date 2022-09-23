@@ -1,7 +1,7 @@
 import { Component, PropsWithChildren } from 'react'
 import { View, Text, Swiper, SwiperItem, Image } from '@tarojs/components'
 import './index.scss'
-import { AtButton, AtAvatar, AtTabBar, AtIcon } from 'taro-ui'
+import { AtButton, AtAvatar, AtIcon } from 'taro-ui'
 import { AtSearchBar } from 'taro-ui'
 import { AtNoticebar } from 'taro-ui'
 import { AtActionSheet, AtActionSheetItem } from "taro-ui"
@@ -195,18 +195,6 @@ export default class Index extends Component<PropsWithChildren> {
         //    </AtActionSheetItem>
         //    </AtActionSheet>
       }
-      <AtTabBar
-      fixed
-      tabList={[
-        { title: '首页', iconType: 'home' },
-        // { title: '零售', iconType: 'shopping-bag-2' },
-        // { title: '消费', iconType: 'credit-card' },
-        { title: '门店', iconType: 'shopping-bag' },
-        { title: '我', iconType: 'user' }
-      ]}
-      onClick={this.switchTab.bind(this)}
-      current={this.state.current}
-      />
       </View>
     )
   }

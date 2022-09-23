@@ -1,7 +1,7 @@
 import { Component, PropsWithChildren } from 'react'
 import { View, Text } from '@tarojs/components'
 import './index.scss'
-import { AtButton, AtList, AtListItem, AtTabBar } from "taro-ui"
+import { AtButton, AtList, AtListItem} from "taro-ui"
 import { AtAvatar } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
@@ -170,17 +170,6 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={this.handleClick7}
       />
       </AtList>
-
-      <AtTabBar
-      fixed
-      tabList={[
-        { title: '首页', iconType: 'home' },
-        { title: '门店', iconType: 'shopping-bag' },
-        { title: '我', iconType: 'user' }
-      ]}
-      onClick={this.switchTab.bind(this)}
-      current={this.state.current}
-      />
       </View>
       )
   }
