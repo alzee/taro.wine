@@ -3,10 +3,11 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 100px;
+  height: 115px;
   background: white;
   display: flex;
   padding-bottom: env(safe-area-inset-bottom);
+  padding: 10px 0;
 }
 
 .tab-bar-border {
@@ -31,6 +32,7 @@
 .tab-bar-item cover-image {
   width: 54px;
   height: 54px;
+  margin-bottom: 5px;
 }
 
 .tab-bar-item cover-view {

@@ -89,7 +89,7 @@ export default class Index extends Component {
     this.state = {
       selected: 0,
       color: '#000000',
-      selectedColor: '#DC143C',
+      selectedColor: '#000000',
       list: list
     }
     console.log(this.state)
@@ -98,7 +98,7 @@ export default class Index extends Component {
   state = {
     selected: 0,
     color: '#000000',
-    selectedColor: '#DC143C',
+    selectedColor: '#000000',
     list: []
   }
 

@@ -2,6 +2,20 @@ import home from './icon/home.png'
 import homeFill from './icon/home-fill.png'
 import wine from './icon/wine-bottle.png'
 import wineFill from './icon/wine-bottle-fill.png'
+import company from './icon/company.png'
+import companyFill from './icon/company-fill.png'
+import order from './icon/order.png'
+import orderFill from './icon/orderFill.png'
+import cart from './icon/cart.png'
+import cartFill from './icon/cartFill.png'
+import store from './icon/store.png'
+import storeFill from './icon/storeFill.png'
+import account from './icon/account.png'
+import accountFill from './icon/accountFill.png'
+import discounts from './icon/discounts.png'
+import discountsFill from './icon/discountsFill.png'
+import dine from './icon/dine.png'
+import dineFill from './icon/dineFill.png'
 
 export const Items = [
       { // 0
@@ -13,8 +27,8 @@ export const Items = [
       { // 1
         "pagePath": "/pages/org/index",
         "text": "机构",
-        "iconPath": "/image/index_dark.png",
-        "selectedIconPath": "/image/index_light.png"
+        "iconPath": company,
+        "selectedIconPath": companyFill
       },
       { // 2
         "pagePath": "/pages/product/index",
@@ -25,43 +39,43 @@ export const Items = [
       { // 3
         "pagePath": "/pages/order/index",
         "text": "订单",
-        "iconPath": "/image/index_dark.png",
-        "selectedIconPath": "/image/index_light.png"
+        "iconPath": order,
+        "selectedIconPath": orderFill
       },
       { // 4
         "pagePath": "/pages/return/index",
         "text": "退货",
-        "iconPath": "/image/index_dark.png",
-        "selectedIconPath": "/image/index_light.png"
+        // "iconPath": "/image/index_dark.png",
+        // "selectedIconPath": "/image/index_light.png"
       },
       { // 5
         "pagePath": "/pages/withdraw/index",
         "text": "提现",
-        "iconPath": "/image/index_dark.png",
-        "selectedIconPath": "/image/index_light.png"
+        "iconPath": discounts,
+        "selectedIconPath": discountsFill
       },
       { // 6
         "pagePath": "/pages/retail/index",
         "text": "零售",
-        "iconPath": "/image/index_dark.png",
-        "selectedIconPath": "/image/index_light.png"
+        "iconPath": cart,
+        "selectedIconPath": cartFill
       },
       { // 7
         "pagePath": "/pages/dine/index",
         "text": "餐饮",
-        "iconPath": "/image/index_dark.png",
-        "selectedIconPath": "/image/index_light.png"
+        "iconPath": dine,
+        "selectedIconPath": dineFill
       },
       { // 8
         "pagePath": "/pages/store/index",
         "text": "门店",
-        "iconPath": "/image/index_dark.png",
-        "selectedIconPath": "/image/index_light.png"
+        "iconPath": store,
+        "selectedIconPath": storeFill
       },
       { // 9
         "pagePath": "/pages/me/index",
         "text": "我",
-        "iconPath": "/image/index_dark.png",
-        "selectedIconPath": "/image/index_light.png"
+        "iconPath": acount,
+        "selectedIconPath": acountFill
       },
 ]
