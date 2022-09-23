@@ -30,12 +30,11 @@ export default class Index extends Component {
     restaurant: [
       Items[2],
       Items[3],
-      Items[5],
       Items[6],
       Items[7],
       Items[9],
     ],
-    customer: [
+    consumer: [
       Items[0],
       Items[8],
       Items[9],
@@ -64,14 +63,24 @@ export default class Index extends Component {
     // list = this.USER_TABBAR.store
     let list = []
     switch (role) {
+      case 0:
+        list = this.USER_TABBAR.head
+        break
       case 1:
-        console.log('user')
         list = this.USER_TABBAR.agency
-      break
+        break
       case 2:
-        console.log('admi')
         list = this.USER_TABBAR.store
-      break
+        break
+      case 3:
+        list = this.USER_TABBAR.restaurant
+        break
+      case 4:
+        list = this.USER_TABBAR.consumer
+        break
+      default:
+        list = this.USER_TABBAR.consumer
+          
     }
     console.log(role)
     console.log(list)

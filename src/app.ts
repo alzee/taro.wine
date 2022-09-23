@@ -24,7 +24,7 @@ class App extends Component<PropsWithChildren> {
     // only for test
     Taro.setStorage({
       key: Env.storageKey,
-      data: {uid: 0, role: 1, token: 0}
+      data: {uid: 0, role: 3, token: 0}
     });
     Taro.getStorage({
       key: Env.storageKey,
