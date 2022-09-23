@@ -8,13 +8,37 @@ import './index.scss'
 
 export default class Index extends Component {
   USER_TABBAR = {
-    agency : [
-      Items[0],
+    head: [
       Items[1],
-    ],
-    store : [
       Items[2],
       Items[3],
+      Items[9],
+    ],
+    agency: [
+      Items[1],
+      Items[2],
+      Items[3],
+      Items[5],
+      Items[9],
+    ],
+    store: [
+      Items[2],
+      Items[3],
+      Items[6],
+      Items[9],
+    ],
+    restaurant: [
+      Items[2],
+      Items[3],
+      Items[5],
+      Items[6],
+      Items[7],
+      Items[9],
+    ],
+    customer: [
+      Items[0],
+      Items[8],
+      Items[9],
     ]
   }
 
