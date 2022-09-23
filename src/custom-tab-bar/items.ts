@@ -1,9 +1,14 @@
+import home from './icon/home.png'
+import homeFill from './icon/home-fill.png'
+import wine from './icon/wine-bottle.png'
+import wineFill from './icon/wine-bottle-fill.png'
+
 export const Items = [
       { // 0
         "pagePath": "/pages/index/index",
         "text": "首页",
-        "iconPath": "/image/index_dark.png",
-        "selectedIconPath": "/image/index_light.png"
+        "iconPath": home,
+        "selectedIconPath": homeFill
       },
       { // 1
         "pagePath": "/pages/org/index",
@@ -14,8 +19,8 @@ export const Items = [
       { // 2
         "pagePath": "/pages/product/index",
         "text": "产品",
-        "iconPath": "/image/index_dark.png",
-        "selectedIconPath": "/image/index_light.png"
+        "iconPath": wine,
+        "selectedIconPath": wineFill
       },
       { // 3
         "pagePath": "/pages/order/index",

@@ -80,7 +80,6 @@ export default class Index extends Component {
         break
       default:
         list = this.USER_TABBAR.consumer
-          
     }
     console.log(role)
     console.log(list)
