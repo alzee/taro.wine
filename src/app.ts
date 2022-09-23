@@ -30,6 +30,7 @@ class App extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         if (res.data.uid == 0) {
+          console.log(res.data);
           console.log('need to login');
           // Taro.redirectTo({ url: 'pages/chooseLogin/index' })
         }

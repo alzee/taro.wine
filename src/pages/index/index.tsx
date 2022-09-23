@@ -8,8 +8,10 @@ import { AtActionSheet, AtActionSheetItem } from "taro-ui"
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 import { HttpService } from '../../services/http.service'
+import type CustomTabBar from '../../custom-tab-bar'
 
 export default class Index extends Component<PropsWithChildren> {
+  pageCtx = Taro.getCurrentInstance().page
   apiUrl = Env.apiUrl;
   imgUrl = Env.imgUrl;
   nodes = [];
@@ -135,7 +137,10 @@ export default class Index extends Component<PropsWithChildren> {
 
   componentWillUnmount () { }
 
-  componentDidShow () { }
+  componentDidShow () {
+    const tabbar = Taro.getTabBar<CustomTabBar>(this.pageCtx)
+    tabbar?.setSelected(0)
+  }
 
   componentDidHide () { }
 
