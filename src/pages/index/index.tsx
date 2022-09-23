@@ -130,7 +130,7 @@ export default class Index extends Component<PropsWithChildren> {
           );
         }
       }
-    })
+    }).catch(() => {console.log('fuck')})
   }
 
   componentWillUnmount () { }

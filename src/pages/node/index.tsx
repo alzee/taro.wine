@@ -9,6 +9,9 @@ export default class Node extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   node = {};
 
+  constructor () {
+    super(...arguments)
+  }
   componentDidMount () {
     let id = this.instance.router.params.id
     const self = this;
@@ -29,6 +32,7 @@ export default class Node extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='at-article'>
+
       <View className='at-article__h1'>
       {this.node.title}
       </View>
@@ -37,12 +41,13 @@ export default class Node extends Component<PropsWithChildren> {
       </View>
       <Image 
       className='at-article__img' 
-      src={Env.imgUrl + this.node.img}
+      src={ this.node.img && Env.imgUrl + this.node.img}
       mode='widthFix' />
       <View className='at-article__content'>
       <View dangerouslySetInnerHTML={{__html: this.node.body}} className='at-article__section'>
       </View>
       </View>
+
       </View>
     )
   }
