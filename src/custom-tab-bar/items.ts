@@ -5,17 +5,17 @@ import wineFill from './icon/wine-bottle-fill.png'
 import company from './icon/company.png'
 import companyFill from './icon/company-fill.png'
 import order from './icon/order.png'
-import orderFill from './icon/orderFill.png'
+import orderFill from './icon/order-fill.png'
 import cart from './icon/cart.png'
-import cartFill from './icon/cartFill.png'
+import cartFill from './icon/cart-fill.png'
 import store from './icon/store.png'
-import storeFill from './icon/storeFill.png'
+import storeFill from './icon/store-fill.png'
 import account from './icon/account.png'
-import accountFill from './icon/accountFill.png'
+import accountFill from './icon/account-fill.png'
 import discounts from './icon/discounts.png'
-import discountsFill from './icon/discountsFill.png'
+import discountsFill from './icon/discounts-fill.png'
 import dine from './icon/dine.png'
-import dineFill from './icon/dineFill.png'
+import dineFill from './icon/dine-fill.png'
 
 export const Items = [
       { // 0
@@ -37,13 +37,13 @@ export const Items = [
         "selectedIconPath": wineFill
       },
       { // 3
-        "pagePath": "/pages/order/index",
+        "pagePath": "/pages/orders/index",
         "text": "订单",
         "iconPath": order,
         "selectedIconPath": orderFill
       },
       { // 4
-        "pagePath": "/pages/return/index",
+        "pagePath": "/pages/returns/index",
         "text": "退货",
         // "iconPath": "/image/index_dark.png",
         // "selectedIconPath": "/image/index_light.png"
