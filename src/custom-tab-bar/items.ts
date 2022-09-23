@@ -75,7 +75,7 @@ export const Items = [
       { // 9
         "pagePath": "/pages/me/index",
         "text": "我",
-        "iconPath": acount,
-        "selectedIconPath": acountFill
+        "iconPath": account,
+        "selectedIconPath": accountFill
       },
 ]
