@@ -6,6 +6,11 @@
     margin-bottom: 1rem;
   }
 }
+.highlight0{
+  .img{
+    width: 100%;
+  }
+}
 .highlight1{
   font-size: .7rem;
   margin: 1rem 0;
@@ -19,6 +24,9 @@
 .highlight2{
   font-size: .7rem;
   position: relative;
+  .img{
+    width: 100%;
+  }
   .text{
     position: absolute;
     left: .5rem;

@@ -23,7 +23,7 @@ export default class Index extends Component<PropsWithChildren> {
   isLogged: false;
 
   navToNode(id: int) {
-    Taro.navigateTo({ url: 'pages/node/index?id=' + id })
+    Taro.navigateTo({ url: '/pages/node/index?id=' + id })
   }
   constructor () {
     super(...arguments)
@@ -32,7 +32,7 @@ export default class Index extends Component<PropsWithChildren> {
     }
   }
   navTo(page: string) {
-    Taro.navigateTo({ url: 'pages/' + page + '/index' })
+    Taro.navigateTo({ url: '/pages/' + page + '/index' })
   }
   switchTab (value) {
     // return;
@@ -101,8 +101,8 @@ export default class Index extends Component<PropsWithChildren> {
         if (i < 3) {
           this.list0.push(
             <SwiperItem key={i}>
-            <View className=''>
-            <Image src={ this.imgUrl + this.nodes0[i].img } onClick={()=>this.navToNode(this.nodes0[i].id)}></Image>
+            <View className='highlight0'>
+            <Image className='img' mode='scaleToFill' src={ this.imgUrl + this.nodes0[i].img } onClick={()=>this.navToNode(this.nodes0[i].id)}></Image>
             </View>
             </SwiperItem>
           );
@@ -122,7 +122,7 @@ export default class Index extends Component<PropsWithChildren> {
         if (i < 3) {
           this.list2.push(
             <View className="highlight2" key={i}>
-            <Image className='img' src={this.imgUrl + this.nodes2[i].img} onClick={()=>this.navToNode(this.nodes2[i].id)} ></Image>
+            <Image className='img' mode='widthFix' src={this.imgUrl + this.nodes2[i].img} onClick={()=>this.navToNode(this.nodes2[i].id)} ></Image>
             <Text className="text">
             {this.nodes2[i].title}
             </Text>
