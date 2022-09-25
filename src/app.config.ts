@@ -6,6 +6,7 @@ export default defineAppConfig({
     'pages/orders/index',
     'pages/returns/index',
     'pages/voucher/index',
+    'pages/voucher/new/index',
     'pages/withdraw/index',
     'pages/retail/index',
     'pages/orderRestaurant/index',
