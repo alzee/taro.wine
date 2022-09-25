@@ -43,7 +43,7 @@ export default class Orders extends Component<PropsWithChildren> {
   }
 
   render () {
-    const tabList = [{ title: '进货' }, { title: '销售' }]
+    const tabList = [{ title: '进货' }, { title: '销售' }, {title: '我的退货'}, {title, '销售退货'}]
     return (
       <View className='orders'>
       <AtTabs className='first' current={this.state.current} tabList={tabList} onClick={this.handleClick1.bind(this)}>
