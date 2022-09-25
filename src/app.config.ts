@@ -17,6 +17,9 @@ export default defineAppConfig({
     'pages/login/index',
     'pages/chooseLogin/index',
     'pages/node/index',
+    'pages/product/index',
+    'pages/dine/index',
+    'pages/store/index',
   ],
   window: {
     backgroundTextStyle: 'light',
