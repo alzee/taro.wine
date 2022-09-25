@@ -4,7 +4,7 @@
   "description": "",
   "appid": "wx3ac6cc7a99b55d20",
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": false,
     "enhance": false,
     "compileHotReLoad": false,
@@ -14,7 +14,9 @@
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
-    }
+    },
+    "minifyWXML": false,
+    "minifyWXSS": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.26.1",
