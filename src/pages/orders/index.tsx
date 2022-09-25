@@ -9,6 +9,7 @@ import { Env } from '../../env/env'
 import type CustomTabBar from '../../custom-tab-bar'
 
 export default class Orders extends Component<PropsWithChildren> {
+  pageCtx = Taro.getCurrentInstance().page
 
   componentWillMount () { }
 
