@@ -137,6 +137,7 @@ export default class Org extends Component<PropsWithChildren> {
         </AtTabsPane>
       </AtTabs>
 
+      <AtButton type='primary' size='small'>按钮文案</AtButton>
       </View>
     )
   }

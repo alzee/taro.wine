@@ -1,9 +1,10 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text } from '@tarojs/components'
+import { View, Text, ScrollView } from '@tarojs/components'
 import './index.scss'
 import { AtList, AtListItem, AtCard, AtButton } from "taro-ui"
 import { AtNavBar } from 'taro-ui'
 import { AtTabs, AtTabsPane } from 'taro-ui'
+import { AtFab } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 import type CustomTabBar from '../../custom-tab-bar'
@@ -42,11 +43,12 @@ export default class Orders extends Component<PropsWithChildren> {
   }
 
   render () {
-    const tabList = [{ title: '进货' }, { title: '出货' }]
+    const tabList = [{ title: '进货' }, { title: '销售' }]
     return (
       <View className='orders'>
       <AtTabs className='first' current={this.state.current} tabList={tabList} onClick={this.handleClick1.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
+        <AtButton className='new-btn' type='primary' size='small'>新增销售</AtButton>
           <AtList className="list">
           <AtListItem
           title='代理商-请货'
@@ -96,7 +98,8 @@ export default class Orders extends Component<PropsWithChildren> {
           </AtList>
         </AtTabsPane>
         </AtTabs>
-        <AtButton type='primary' size='small'>按钮文案</AtButton>
+
+
       </View>
     )
   }
