@@ -1,7 +1,7 @@
 import { Component, PropsWithChildren } from 'react'
 import { View, Text } from '@tarojs/components'
 import './index.scss'
-import { AtList, AtListItem, AtCard } from "taro-ui"
+import { AtList, AtListItem, AtCard, AtButton } from "taro-ui"
 import { AtNavBar } from 'taro-ui'
 import { AtTabs, AtTabsPane } from 'taro-ui'
 import Taro from '@tarojs/taro'
@@ -45,15 +45,6 @@ export default class Orders extends Component<PropsWithChildren> {
     const tabList = [{ title: '进货' }, { title: '出货' }]
     return (
       <View className='orders'>
-        <AtNavBar className=''
-          onClickRgIconSt={this.handleClick}
-          onClickRgIconNd={this.handleClick}
-          onClickLeftIcon={this.handleClick}
-          color='#000'
-          leftIconType='chevron-left'
-          fixed
-        />
-
       <AtTabs className='first' current={this.state.current} tabList={tabList} onClick={this.handleClick1.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
           <AtList className="list">
@@ -105,6 +96,7 @@ export default class Orders extends Component<PropsWithChildren> {
           </AtList>
         </AtTabsPane>
         </AtTabs>
+        <AtButton type='primary' size='small'>按钮文案</AtButton>
       </View>
     )
   }
