@@ -5,6 +5,8 @@ import { AtList, AtListItem, AtCard } from "taro-ui"
 import { AtNavBar } from 'taro-ui'
 import { AtTabs, AtTabsPane } from 'taro-ui'
 import Taro from '@tarojs/taro'
+import { Env } from '../../env/env'
+import type CustomTabBar from '../../custom-tab-bar'
 
 export default class Orders extends Component<PropsWithChildren> {
 
@@ -14,7 +16,10 @@ export default class Orders extends Component<PropsWithChildren> {
 
   componentWillUnmount () { }
 
-  componentDidShow () { }
+  componentDidShow () {
+    const tabbar = Taro.getTabBar<CustomTabBar>(this.pageCtx)
+    tabbar?.setSelected(2)
+  }
 
   componentDidHide () { }
 

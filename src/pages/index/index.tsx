@@ -6,8 +6,8 @@ import { AtSearchBar } from 'taro-ui'
 import { AtNoticebar } from 'taro-ui'
 import { AtActionSheet, AtActionSheetItem } from "taro-ui"
 import Taro from '@tarojs/taro'
-import { Env } from '../../env/env'
 import { HttpService } from '../../services/http.service'
+import { Env } from '../../env/env'
 import type CustomTabBar from '../../custom-tab-bar'
 
 export default class Index extends Component<PropsWithChildren> {
