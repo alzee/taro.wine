@@ -9,34 +9,30 @@ import './index.scss'
 export default class Index extends Component {
   USER_TABBAR = {
     head: [
+      Items[0],
       Items[1],
-      Items[2],
       Items[3],
       Items[9],
     ],
     agency: [
+      Items[0],
       Items[1],
-      Items[2],
       Items[3],
-      Items[5],
       Items[9],
     ],
     store: [
-      Items[2],
+      Items[0],
       Items[3],
-      Items[6],
       Items[9],
     ],
     restaurant: [
-      Items[2],
+      Items[0],
       Items[3],
-      Items[6],
-      Items[7],
       Items[9],
     ],
     consumer: [
       Items[0],
-      Items[8],
+      Items[1],
       Items[9],
     ]
   }
@@ -65,6 +61,7 @@ export default class Index extends Component {
     switch (role) {
       case 0:
         list = this.USER_TABBAR.head
+        list[1].text = '代理商'
         break
       case 1:
         list = this.USER_TABBAR.agency

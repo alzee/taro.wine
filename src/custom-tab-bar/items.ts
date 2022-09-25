@@ -26,7 +26,7 @@ export const Items = [
       },
       { // 1
         "pagePath": "/pages/org/index",
-        "text": "机构",
+        "text": "门店",
         "iconPath": company,
         "selectedIconPath": companyFill
       },
