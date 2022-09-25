@@ -100,7 +100,7 @@ export default class Org extends Component<PropsWithChildren> {
        */
       }
         <AtTabsPane current={this.state.seg} index={0}>
-        <AtButton className='new-btn' type='primary' size='small'>新增门店</AtButton>
+        <AtButton className='new-btn' type='secondary' size='small'>新增门店</AtButton>
           <AtList>
           <AtListItem
           title='门店1号'
@@ -119,7 +119,7 @@ export default class Org extends Component<PropsWithChildren> {
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={1}>
-        <AtButton className='new-btn' type='primary' size='small'>新增餐厅</AtButton>
+        <AtButton className='new-btn' type='secondary' size='small'>新增餐厅</AtButton>
           <AtList>
           <AtListItem
           title='餐厅1号'

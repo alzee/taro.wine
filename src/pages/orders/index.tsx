@@ -48,7 +48,7 @@ export default class Orders extends Component<PropsWithChildren> {
       <View className='orders'>
       <AtTabs className='first' current={this.state.current} tabList={tabList} onClick={this.handleClick1.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
-        <AtButton className='new-btn' type='primary' size='small'>新增销售</AtButton>
+        <AtButton className='new-btn' type='secondary' size='small'>新增销售</AtButton>
           <AtList className="list">
           <AtListItem
           title='代理商-请货'
