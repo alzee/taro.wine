@@ -104,7 +104,8 @@ export default class Index extends Component {
 
   switchTab(index, url) {
     this.setSelected(index)
-    Taro.switchTab({ url })
+    // Taro.switchTab({ url })
+    Taro.navigateTo({ url })
   }
 
   setSelected (idx: number) {
