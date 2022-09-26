@@ -19,6 +19,14 @@ export default class Me extends Component<PropsWithChildren> {
   componentWillMount () { }
 
   componentDidMount () {
+  }
+
+  componentWillUnmount () { }
+
+  componentDidShow () { 
+    const tabbar = Taro.getTabBar<CustomTabBar>(this.pageCtx)
+    tabbar?.setSelected(this.tabBarIndex)
+
     const self = this;
     Taro.getStorage({
       key: Env.storageKey,
@@ -46,13 +54,6 @@ export default class Me extends Component<PropsWithChildren> {
       }})
   }
 
-  componentWillUnmount () { }
-
-  componentDidShow () { 
-    const tabbar = Taro.getTabBar<CustomTabBar>(this.pageCtx)
-    tabbar?.setSelected(this.tabBarIndex)
-  }
-
   componentDidHide () { }
 
   constructor () {
@@ -77,7 +78,7 @@ export default class Me extends Component<PropsWithChildren> {
             data: {uid: 0, role: -1, token: 0}
           });
           // redirect
-          Taro.redirectTo({ url: '/pages/index/index' })
+          Taro.switchTab({ url: '/pages/index/index' })
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
