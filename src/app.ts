@@ -10,10 +10,11 @@ class App extends Component<PropsWithChildren> {
     // Taro.clearStorage()
     Taro.getStorageInfo({
       success: res => {
+        // if not found
         if (res.keys.indexOf(Env.storageKey) == -1) {
           Taro.setStorage({
             key: Env.storageKey,
-            data: {uid: 0, role: 0, token: 0}
+            data: {uid: 0, role: -1, token: 0}
           });
         }
       },

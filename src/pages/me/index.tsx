@@ -20,7 +20,7 @@ export default class Me extends Component<PropsWithChildren> {
       success: res => {
         this.role = res.data.role
         console.log(this.role)
-        if (this.role == 1) {
+        if (this.role == -1) {
           Taro.redirectTo({ url: '/pages/chooseLogin/index' })
         }
         if (this.role > 1) {
@@ -43,6 +43,29 @@ export default class Me extends Component<PropsWithChildren> {
     this.state = {
       current: 2,
     }
+  }
+
+  logout(){
+    console.log('out')
+    Taro.showModal({
+      title: '提示',
+      content: '确定要退出当前账号？',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          // clear
+          // Taro.clearStorage()
+          Taro.setStorage({
+            key: Env.storageKey,
+            data: {uid: 0, role: -1, token: 0}
+          });
+          // redirect
+          Taro.redirectTo({ url: '/pages/index/index' })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   }
 
   navTo(page: string) {
@@ -149,6 +172,8 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={this.handleClick7}
       />
       </AtList>
+
+      <AtButton size='small' onClick={this.logout}>退出登录</AtButton>
       </View>
       )
   }
