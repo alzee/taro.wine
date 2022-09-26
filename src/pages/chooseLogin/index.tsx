@@ -3,6 +3,7 @@ import { View, Text } from '@tarojs/components'
 import './index.scss'
 import { AtButton } from 'taro-ui'
 import Taro from '@tarojs/taro'
+import { Env } from '../../env/env'
 
 export default class Chooselogin extends Component<PropsWithChildren> {
 
@@ -17,11 +18,39 @@ export default class Chooselogin extends Component<PropsWithChildren> {
   componentDidHide () { }
 
   navTo(page: string) {
-    Taro.navigateTo({ url: 'pages/' + page + '/index' })
+    Taro.navigateTo({ url: '/pages/' + page + '/index' })
+  }
+  toLoginPage() {
+    // Taro.navigateTo({ url: '/pages/login/index' })
+    Taro.redirectTo({ url: '/pages/login/index' })
+    // Taro.redirectTo({ url: '/pages/retail/index' })
   }
 
   wxlogin() {
-    // Taro.login();
+    Taro.login({
+      success: function (res) {
+        console.log(res)
+        if (res.code) {
+          //发起网络请求
+          Taro.request({
+            method: 'POST',
+            url: Env.apiUrl + 'consumer_login',
+            data: {
+              code: res.code
+            }
+          }).then((res) => {
+            console.log(res)
+            Taro.setStorage({
+              key: Env.storageKey,
+              data: res.data
+            });
+            Taro.redirectTo({ url: '/pages/index/index' })
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    })
     console.log('fuck');
   }
 
@@ -29,7 +58,7 @@ export default class Chooselogin extends Component<PropsWithChildren> {
     return (
       <View className='chooseLogin'>
       <AtButton className="btn" type="primary" size="small" onClick={this.wxlogin}>微信登录</AtButton>
-      <Text className="text" onClick={()=>this.navTo('login')}>机构登录</Text>
+      <Text className="text" onClick={this.toLoginPage}>机构登录</Text>
       </View>
     )
   }

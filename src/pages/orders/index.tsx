@@ -95,6 +95,36 @@ export default class Orders extends Component<PropsWithChildren> {
           note='2022-09-05 19:05:05'
           extraText='50'
           />
+          <AtListItem
+          title='代理商-请货'
+          note='2022-09-05 19:05:05'
+          extraText='50'
+          />
+          <AtListItem
+          title='代理商-请货'
+          note='2022-09-05 19:05:05'
+          extraText='50'
+          />
+          <AtListItem
+          title='代理商-请货'
+          note='2022-09-05 19:05:05'
+          extraText='50'
+          />
+          <AtListItem
+          title='代理商-请货'
+          note='2022-09-05 19:05:05'
+          extraText='50'
+          />
+          <AtListItem
+          title='代理商-请货'
+          note='2022-09-05 19:05:05'
+          extraText='50'
+          />
+          <AtListItem
+          title='代理商-请货'
+          note='2022-09-05 19:05:05'
+          extraText='50'
+          />
           </AtList>
         </AtTabsPane>
         </AtTabs>
