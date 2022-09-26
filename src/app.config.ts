@@ -10,7 +10,6 @@ export default defineAppConfig({
     'pages/retail/index',
     'pages/orderRestaurant/index',
     'pages/myInfo/index',
-    'pages/wxlogin/index',
     'pages/login/index',
     'pages/chooseLogin/index',
     'pages/node/index',

@@ -10,6 +10,7 @@ import type CustomTabBar from '../../custom-tab-bar'
 export default class Me extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
   role: int;
+  tabBarIndex = 3;
 
   componentWillMount () { }
 
@@ -22,6 +23,9 @@ export default class Me extends Component<PropsWithChildren> {
         if (this.role == 1) {
           Taro.redirectTo({ url: '/pages/chooseLogin/index' })
         }
+        if (this.role > 1) {
+          this.tabBarIndex = 2;
+        }
       }})
   }
 
@@ -29,7 +33,7 @@ export default class Me extends Component<PropsWithChildren> {
 
   componentDidShow () { 
     const tabbar = Taro.getTabBar<CustomTabBar>(this.pageCtx)
-    tabbar?.setSelected(3)
+    tabbar?.setSelected(this.tabBarIndex)
   }
 
   componentDidHide () { }

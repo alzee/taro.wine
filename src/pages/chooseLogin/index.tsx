@@ -21,9 +21,8 @@ export default class Chooselogin extends Component<PropsWithChildren> {
     Taro.navigateTo({ url: '/pages/' + page + '/index' })
   }
   toLoginPage() {
-    // Taro.navigateTo({ url: '/pages/login/index' })
-    Taro.redirectTo({ url: '/pages/login/index' })
-    // Taro.redirectTo({ url: '/pages/retail/index' })
+    Taro.navigateTo({ url: '/pages/login/index' })
+    // Taro.redirectTo({ url: '/pages/wxlogin/index' })
   }
 
   wxlogin() {
