@@ -19,6 +19,7 @@ export default class Me extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.role = res.data.role
+        console.log(res)
         console.log(this.role)
         if (this.role == -1) {
           Taro.redirectTo({ url: '/pages/chooseLogin/index' })
