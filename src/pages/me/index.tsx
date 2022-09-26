@@ -11,21 +11,37 @@ export default class Me extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
   role: int;
   tabBarIndex = 3;
+  avatar: string;
+  username: string;
+  orgName: string;
+
 
   componentWillMount () { }
 
   componentDidMount () {
+    const self = this;
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
+        self.setState({data: res.data})
         this.role = res.data.role
-        console.log(res)
+        console.log(res.data)
         console.log(this.role)
         if (this.role == -1) {
           Taro.redirectTo({ url: '/pages/chooseLogin/index' })
+          return
         }
         if (this.role > 1) {
           this.tabBarIndex = 2;
+        }
+        switch (res.data.role) {
+          case 4:
+            this.orgName = '顾客'
+            this.username = ''
+            break;
+          default:
+            this.orgName = res.data.org.name
+            this.username = res.data.username
         }
       }})
   }
@@ -72,78 +88,15 @@ export default class Me extends Component<PropsWithChildren> {
   navTo(page: string) {
     Taro.navigateTo({ url: 'pages/' + page + '/index' })
   }
-  switchTab (value) {
-    if (value == this.state.current) {
-      return;
-    }
-    // this.setState({
-    //   current: value
-    // })
-    let i: string;
-    switch (value) {
-      case 0:
-        i = 'index';
-        break;
-      case 1:
-        i = 'org';
-        break;
-      case 2:
-        i = 'me';
-        break;
-      case 3:
-        i = 'me';
-        break;
-      case 4:
-        i = 'me';
-        break;
-    }
-    this.navTo(i);
-  }
-
-  handleClick1 () {
-    Taro.navigateTo({
-        url: 'pages/voucher/index'
-            })
-  }
-  handleClick2 () {
-    Taro.navigateTo({
-        url: 'pages/orders/index'
-            })
-  }
-  handleClick3 () {
-    Taro.navigateTo({
-        url: 'pages/returns/index'
-            })
-  }
-  handleClick4 () {
-    Taro.navigateTo({
-        url: 'pages/withdraw/index'
-            })
-  }
-  handleClick5 () {
-    Taro.navigateTo({
-        url: 'pages/retail/index'
-            })
-  }
-  handleClick6 () {
-    Taro.navigateTo({
-        url: 'pages/orderRestaurant/index'
-            })
-  }
-  handleClick7 () {
-    Taro.navigateTo({
-        url: 'pages/myInfo/index'
-            })
-  }
 
   render () {
     return (
       <View className='me'>
         <View className="at-row top">
-		<AtAvatar className="avatar" circle image="https://jdc.jd.com/img/200"></AtAvatar>
+        <AtAvatar className="avatar" circle image={this.avatar}></AtAvatar>
         <View className="name">
-        <Text className='main'>用户名</Text>
-        <Text className='secondary'>角色</Text>
+        <Text className='main'>{this.state && this.username}</Text>
+        <Text className='secondary'>{this.state && this.orgName}</Text>
         </View>
         </View>
 
@@ -154,7 +107,7 @@ export default class Me extends Component<PropsWithChildren> {
       // extraText='详细信息'
       arrow='right'
       thumb='http://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png'
-      onClick={this.handleClick1}
+      onClick={() => this.navTo('1')}
       />
       <AtListItem
       title='提现'
@@ -162,7 +115,7 @@ export default class Me extends Component<PropsWithChildren> {
       // extraText='详细信息'
       arrow='right'
       thumb='http://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png'
-      onClick={this.handleClick4}
+      onClick={() => this.navTo('1')}
       />
       <AtListItem
       title='我的信息'
@@ -170,7 +123,7 @@ export default class Me extends Component<PropsWithChildren> {
       // extraText='详细信息'
       arrow='right'
       thumb='http://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png'
-      onClick={this.handleClick7}
+      onClick={() => this.navTo('1')}
       />
       </AtList>
 
