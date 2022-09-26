@@ -52,16 +52,18 @@ export default class Login extends Component<PropsWithChildren> {
       onSubmit={this.formSubmit}
       >
         <Input 
+        className="input"
           name='username' 
           type='text' 
           placeholder='用户名' 
         />
         <Input 
+        className="input"
           name='password' 
           type='password' 
           placeholder='密码' 
         />
-        <Button size="small" type="primary" formType='submit'>登录</Button>
+        <Button type='default' formType='submit'>登录</Button>
       </Form>
       </View>
     )

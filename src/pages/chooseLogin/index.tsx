@@ -56,7 +56,7 @@ export default class Chooselogin extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='chooseLogin'>
-      <AtButton className="btn" type="primary" size="small" onClick={this.wxlogin}>微信登录</AtButton>
+      <AtButton className="btn" onClick={this.wxlogin}>微信登录</AtButton>
       <Text className="text" onClick={this.toLoginPage}>机构登录</Text>
       </View>
     )
