@@ -54,7 +54,7 @@ export default class Org extends Component<PropsWithChildren> {
       for (let i in this.stores) {
         this.list.push(
           <AtListItem
-          onClick={() => navToDetail(this.stores[i].id)}
+          onClick={() => this.navToDetail(this.stores[i].id)}
           title={this.stores[i].name}
           note={this.stores[i].address}
           // extraText='详细信息'
@@ -65,7 +65,7 @@ export default class Org extends Component<PropsWithChildren> {
       for (let i in this.restaurants) {
         this.list1.push(
           <AtListItem
-          onClick={() => navToDetail(this.restaurants[i].id)}
+          onClick={() => this.navToDetail(this.restaurants[i].id)}
           title={this.restaurants[i].name}
           note={this.restaurants[i].address}
           // extraText='详细信息'
@@ -76,7 +76,7 @@ export default class Org extends Component<PropsWithChildren> {
       for (let i in this.agencies) {
         this.list2.push(
           <AtListItem
-          onClick={() => navToDetail(this.agencies[i].id)}
+          onClick={() => this.navToDetail(this.agencies[i].id)}
           title={this.agencies[i].name}
           note={this.agencies[i].address}
           // extraText='详细信息'
