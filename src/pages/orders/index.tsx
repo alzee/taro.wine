@@ -148,10 +148,9 @@ export default class Orders extends Component<PropsWithChildren> {
     return (
       <View className='orders'>
 
-      <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
 
       { this.role == 0 &&
-        <div>
+      <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
           <AtButton className='new-btn' type='secondary' size='small'>新增销售</AtButton>
           <AtList className="list">
@@ -164,11 +163,11 @@ export default class Orders extends Component<PropsWithChildren> {
           {this.returnsToMe}
           </AtList>
         </AtTabsPane>
-        </div>
+      </AtTabs>
       }
 
       { this.role == 1 &&
-        <div>
+      <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
           <AtList className="list">
           {this.buys}
@@ -189,11 +188,11 @@ export default class Orders extends Component<PropsWithChildren> {
           {this.returnsToMe}
           </AtList>
         </AtTabsPane>
-        </div>
+      </AtTabs>
       }
 
       { this.role == 2 &&
-        <div>
+      <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
           <AtList className="list">
           {this.myReturns}
@@ -209,11 +208,11 @@ export default class Orders extends Component<PropsWithChildren> {
           {this.retailReturns}
           </AtList>
         </AtTabsPane>
-        </div>
+      </AtTabs>
       }
 
       { this.role == 3 &&
-        <div>
+      <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
           <AtList className="list">
           {this.myReturns}
@@ -234,11 +233,11 @@ export default class Orders extends Component<PropsWithChildren> {
           {this.dines}
           </AtList>
         </AtTabsPane>
-        </div>
+      </AtTabs>
       }
 
       { this.role == 4 &&
-        <div>
+      <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
           <AtList className="list">
           {this.retails}
@@ -249,10 +248,8 @@ export default class Orders extends Component<PropsWithChildren> {
           {this.dines}
           </AtList>
         </AtTabsPane>
-        </div>
-      }
-
       </AtTabs>
+      }
 
       </View>
     )
