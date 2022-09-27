@@ -1,42 +1,84 @@
 import { Component, PropsWithChildren } from 'react'
 import { View, Text } from '@tarojs/components'
 import './index.scss'
-import { AtList, AtListItem, AtCard } from "taro-ui"
-import { AtNavBar } from 'taro-ui'
+import { AtList, AtListItem, AtCard, AtButton } from "taro-ui"
+import { AtTabs, AtTabsPane } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 
 export default class Withdraw extends Component<PropsWithChildren> {
   list = []
   query: string = '?page=1&itemsPerPage=20'
+  tabList = []
+  orgid: int
+  myWithdraws = []
+  downstreamWithdraws = []
+  role: int
 
   componentWillMount () { }
+
+  getData (type: string) {
+    const self = this;
+    let api: string = 'withdraws'
+    let filter: string
+    let title: string
+    let note: string
+    let extraText: string
+    switch (type) {
+      case 'myWithdraws':
+        filter = 'applicant'
+        title = 'amount'
+        note = 'date'
+        extraText = 'status'
+        break
+      case 'downstreamWithdraws':
+        filter = 'approver'
+        title = 'amount'
+        note = 'date'
+        extraText = 'status'
+        break
+    }
+    Taro.request({
+      url: Env.apiUrl + api + '?page=1&itemsPerPage=15&' + filter + '=' + this.orgid,
+      success: function (res) { self.setState({data: res.data}) }
+    }).then((res) =>{
+      for (let i in res.data){
+        this[type].push(
+          <AtListItem
+          onClick={() => this.navToDetail(res.data[i].id)}
+          title={res.data[i][title]}
+          note={res.data[i][note]}
+          extraText={res.data[i][extraText]}
+          arrow='right'
+          />
+        )
+      }
+    })
+  }
 
   componentDidMount () {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
         let data = res.data
+        this.orgid = res.data.org.id
+        this.role = res.data.role
         const self = this;
-        if (data.role == 4) {
-        } else {
+        switch (this.role) {
+          case 0:
+            this.tabList = [{ title: '下级提现' }]
+            this.getData('downstreamWithdraws')
+            break
+          case 1:
+            this.tabList = [{ title: '我的提现' }, { title: '下级提现' }]
+            this.getData('myWithdraws')
+            this.getData('downstreamWithdraws')
+            break
+          case 3:
+            this.tabList = [{title: '我的提现'}]
+            this.getData('myWithdraws')
+            break
         }
-        Taro.request({
-          url: Env.apiUrl + 'withdraws' + this.query,
-          success: function (res) { self.setState({data: res.data}) }
-        }).then((res) =>{
-          let records = res.data
-          for (let i in records) {
-            this.list.push(
-              <AtListItem
-              title={'提现 ' + records[i].amount / 100}
-              note={records[i].date}
-              extraText={records[i].status}
-              // arrow='right'
-              />
-            )
-          }
-        })
       },
       fail: res => {
         console.log('fuck')
@@ -50,16 +92,53 @@ export default class Withdraw extends Component<PropsWithChildren> {
 
   componentDidHide () { }
 
-  handleClick () {
-    Taro.navigateBack()
+  navToDetail(id){
+    Taro.navigateTo({url: '/pages/withdrawDetail/index?id=' + id})
+  }
+
+  handleClick (value) {
+    console.log(value)
+    this.setState({
+      current: value
+    })
   }
 
   render () {
     return (
       <View className='withdraw'>
-          <AtList className="list first">
-          {this.list}
+      { this.role == 0 &&
+      <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
+        <AtTabsPane current={this.state.current} index={0} >
+          <AtList className="list">
+          {this.downstreamWithdraws}
           </AtList>
+        </AtTabsPane>
+      </AtTabs>
+      }
+      { this.role == 1 &&
+      <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
+        <AtTabsPane current={this.state.current} index={0} >
+          <AtButton className='new-btn' type='secondary' size='small'>申请提现</AtButton>
+          <AtList className="list">
+          {this.myWithdraws}
+          </AtList>
+        </AtTabsPane>
+        <AtTabsPane current={this.state.current} index={1} >
+          <AtList className="list">
+          {this.downstreamWithdraws}
+          </AtList>
+        </AtTabsPane>
+      </AtTabs>
+      }
+      { this.role == 3 &&
+      <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
+        <AtTabsPane current={this.state.current} index={0} >
+          <AtList className="list">
+          {this.myWithdraws}
+          </AtList>
+        </AtTabsPane>
+      </AtTabs>
+      }
       </View>
     )
   }
