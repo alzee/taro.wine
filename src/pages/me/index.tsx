@@ -127,7 +127,7 @@ export default class Me extends Component<PropsWithChildren> {
 
       { (this.role == 0 || this.role == 1 || this.role == 3 ) &&
       <AtListItem
-      title='提现'
+      title='提现管理'
       // note='描述信息'
       // extraText='详细信息'
       arrow='right'
