@@ -94,11 +94,13 @@ export default class Me extends Component<PropsWithChildren> {
         <Text className='main'>{this.state && this.username}</Text>
         <Text className='secondary'>{this.state && this.orgName}</Text>
         </View>
+        { this.role == 4 &&
         <View className='qr' onClick={() => this.navTo('qr')}>
         <Image
         style='width: 48px;height: 48px'
         src={qr} />
         </View>
+        }
         </View>
 
       <AtList>
