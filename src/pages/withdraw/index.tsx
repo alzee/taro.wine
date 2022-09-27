@@ -4,12 +4,45 @@ import './index.scss'
 import { AtList, AtListItem, AtCard } from "taro-ui"
 import { AtNavBar } from 'taro-ui'
 import Taro from '@tarojs/taro'
+import { Env } from '../../env/env'
 
 export default class Withdraw extends Component<PropsWithChildren> {
+  list = []
+  query: string = '?page=1&itemsPerPage=20'
 
   componentWillMount () { }
 
-  componentDidMount () { }
+  componentDidMount () {
+    Taro.getStorage({
+      key: Env.storageKey,
+      success: res => {
+        let data = res.data
+        const self = this;
+        if (data.role == 4) {
+        } else {
+        }
+        Taro.request({
+          url: Env.apiUrl + 'withdraws' + this.query,
+          success: function (res) { self.setState({data: res.data}) }
+        }).then((res) =>{
+          let records = res.data
+          for (let i in records) {
+            this.list.push(
+              <AtListItem
+              title={'提现 ' + records[i].amount / 100}
+              note={records[i].date}
+              extraText={records[i].status}
+              // arrow='right'
+              />
+            )
+          }
+        })
+      },
+      fail: res => {
+        console.log('fuck')
+      },
+    });
+  }
 
   componentWillUnmount () { }
 
@@ -25,51 +58,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
     return (
       <View className='withdraw'>
           <AtList className="list first">
-          <AtListItem
-          title='提现申请-50元'
-          note='2022-09-05 19:05:05'
-          extraText='已完成'
-          />
-          <AtListItem
-          title='提现申请-50元'
-          note='2022-09-05 19:05:05'
-          extraText='已完成'
-          />
-          <AtListItem
-          title='提现申请-50元'
-          note='2022-09-05 19:05:05'
-          extraText='已完成'
-          />
-          <AtListItem
-          title='提现申请-50元'
-          note='2022-09-05 19:05:05'
-          extraText='已完成'
-          />
-          <AtListItem
-          title='提现申请-50元'
-          note='2022-09-05 19:05:05'
-          extraText='已完成'
-          />
-          <AtListItem
-          title='提现申请-50元'
-          note='2022-09-05 19:05:05'
-          extraText='已完成'
-          />
-          <AtListItem
-          title='提现申请-50元'
-          note='2022-09-05 19:05:05'
-          extraText='已完成'
-          />
-          <AtListItem
-          title='提现申请-50元'
-          note='2022-09-05 19:05:05'
-          extraText='已完成'
-          />
-          <AtListItem
-          title='提现申请-50元'
-          note='2022-09-05 19:05:05'
-          extraText='已完成'
-          />
+          {this.list}
           </AtList>
       </View>
     )

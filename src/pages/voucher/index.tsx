@@ -45,7 +45,6 @@ export default class Voucher extends Component<PropsWithChildren> {
         console.log('fuck')
       },
     });
-
   }
 
   componentWillUnmount () { }

@@ -29,12 +29,9 @@ export default class Me extends Component<PropsWithChildren> {
         self.setState({data: res.data})
         this.role = res.data.role
         console.log(res.data)
-        console.log(this.role)
         if (this.role == -1) {
           Taro.redirectTo({ url: '/pages/chooseLogin/index' })
           return
-        }
-        if (this.role > 1) {
         }
         switch (res.data.role) {
           case 4:
@@ -45,7 +42,8 @@ export default class Me extends Component<PropsWithChildren> {
             this.orgName = res.data.org.name
             this.username = res.data.username
         }
-      }})
+      }
+    })
   }
 
   componentDidHide () { }
@@ -106,6 +104,8 @@ export default class Me extends Component<PropsWithChildren> {
       thumb='http://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png'
       onClick={() => this.navTo('voucher')}
       />
+
+      { (this.role == 0 || this.role == 1 || this.role == 3 ) &&
       <AtListItem
       title='提现'
       // note='描述信息'
@@ -114,6 +114,8 @@ export default class Me extends Component<PropsWithChildren> {
       thumb='http://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png'
       onClick={() => this.navTo('withdraw')}
       />
+      }
+
       </AtList>
 
       <AtButton className='logout' size='small' onClick={this.logout}>退出登录</AtButton>
