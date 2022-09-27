@@ -50,7 +50,7 @@ export default class Orders extends Component<PropsWithChildren> {
     }
   }
 
-  handleClick1 (value) {
+  handleClick (value) {
     console.log(value)
     this.setState({
       current: value
@@ -77,39 +77,63 @@ export default class Orders extends Component<PropsWithChildren> {
         break
     }
 
+    let panes = []
+    for (let i in tabList) {
+      panes.push(
+        <AtTabsPane current={this.state.current} index={0} >
+        </AtTabsPane>
+      )
+    }
+
+    let list = [
+    ]
+    list.push(
+      <AtListItem
+      title='代理商-请货'
+      note='2022-09-05 19:05:05'
+      extraText='50'
+      />
+    )
+
     return (
       <View className='orders'>
 
-      <AtTabs scroll className='first' current={this.state.current} tabList={tabList} onClick={this.handleClick1.bind(this)}>
+      <AtTabs scroll className='first' current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
+        <AtList className="list">
+        {list}
+        </AtList>
 
-        <AtTabsPane current={this.state.current} index={0} >
-          <AtList className="list">
-          <AtListItem
-          title='代理商-请货'
-          note='2022-09-05 19:05:05'
-          extraText='50'
-          />
-          </AtList>
-        </AtTabsPane>
+      {
+        // panes
+        // <AtTabsPane current={this.state.current} index={0} >
+        //   <AtList className="list">
+        //   <AtListItem
+        //   title='代理商-请货'
+        //   note='2022-09-05 19:05:05'
+        //   extraText='50'
+        //   />
+        //   </AtList>
+        // </AtTabsPane>
 
-        <AtTabsPane current={this.state.current} index={1} >
-        <AtButton className='new-btn' type='secondary' size='small'>新增销售</AtButton>
-        </AtTabsPane>
+        // <AtTabsPane current={this.state.current} index={1} >
+        // <AtButton className='new-btn' type='secondary' size='small'>新增销售</AtButton>
+        // </AtTabsPane>
 
-        <AtTabsPane current={this.state.current} index={2} >
-        </AtTabsPane>
+        // <AtTabsPane current={this.state.current} index={2} >
+        // </AtTabsPane>
 
-        <AtTabsPane current={this.state.current} index={3} >
-        <AtButton className='new-btn' type='secondary' size='small'>新增销售退货</AtButton>
-        </AtTabsPane>
+        // <AtTabsPane current={this.state.current} index={3} >
+        // <AtButton className='new-btn' type='secondary' size='small'>新增销售退货</AtButton>
+        // </AtTabsPane>
 
-        <AtTabsPane current={this.state.current} index={4} >
-        <AtButton className='new-btn' type='secondary' size='small' onClick={this.scan}>新增零售</AtButton>
-        </AtTabsPane>
+        // <AtTabsPane current={this.state.current} index={4} >
+        // <AtButton className='new-btn' type='secondary' size='small' onClick={this.scan}>新增零售</AtButton>
+        // </AtTabsPane>
 
-        <AtTabsPane current={this.state.current} index={5} >
-        <AtButton className='new-btn' type='secondary' size='small'>新增零售退货</AtButton>
-        </AtTabsPane>
+        // <AtTabsPane current={this.state.current} index={5} >
+        // <AtButton className='new-btn' type='secondary' size='small'>新增零售退货</AtButton>
+        // </AtTabsPane>
+      }
 
         </AtTabs>
 
