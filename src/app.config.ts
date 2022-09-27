@@ -32,8 +32,7 @@ export default defineAppConfig({
     'pages/withdrawDetail/index',
     'pages/storeDetail/index',
     'pages/dineDetail/index',
-    'pages/fuck/index',
-    'pages/fuck1/index',
+    'pages/qr/index',
   ],
   window: {
     backgroundTextStyle: 'light',
