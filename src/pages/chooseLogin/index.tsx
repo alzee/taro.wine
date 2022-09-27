@@ -43,7 +43,8 @@ export default class Chooselogin extends Component<PropsWithChildren> {
               key: Env.storageKey,
               data: res.data
             });
-            Taro.switchTab({ url: '/pages/me/index' })
+            // Taro.switchTab({ url: '/pages/me/index' })
+            Taro.reLaunch({ url: '/pages/me/index' })
           })
         } else {
           console.log('登录失败！' + res.errMsg)

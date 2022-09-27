@@ -7,7 +7,6 @@ import { AtTabs, AtTabsPane } from 'taro-ui'
 import { AtFab } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
-import type CustomTabBar from '../../custom-tab-bar'
 
 export default class Orders extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
@@ -19,8 +18,6 @@ export default class Orders extends Component<PropsWithChildren> {
   componentWillUnmount () { }
 
   componentDidShow () {
-    const tabbar = Taro.getTabBar<CustomTabBar>(this.pageCtx)
-    tabbar?.setSelected(2)
   }
 
   componentDidHide () { }

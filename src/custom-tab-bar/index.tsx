@@ -110,6 +110,10 @@ export default class Index extends Component {
     })
   }
 
+  componentDidShow () {
+    console.log('fuck')
+  }
+
   render() {
     const { list, selected, color, selectedColor } = this.state
     console.log(this.state)

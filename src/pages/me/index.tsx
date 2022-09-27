@@ -5,12 +5,10 @@ import { AtButton, AtList, AtListItem} from "taro-ui"
 import { AtAvatar } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
-import type CustomTabBar from '../../custom-tab-bar'
 
 export default class Me extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
   role: int;
-  tabBarIndex = 3;
   avatar: string;
   username: string;
   orgName: string;
@@ -24,9 +22,6 @@ export default class Me extends Component<PropsWithChildren> {
   componentWillUnmount () { }
 
   componentDidShow () { 
-    const tabbar = Taro.getTabBar<CustomTabBar>(this.pageCtx)
-    tabbar?.setSelected(this.tabBarIndex)
-
     const self = this;
     Taro.getStorage({
       key: Env.storageKey,
@@ -40,7 +35,6 @@ export default class Me extends Component<PropsWithChildren> {
           return
         }
         if (this.role > 1) {
-          this.tabBarIndex = 2;
         }
         switch (res.data.role) {
           case 4:
@@ -72,13 +66,15 @@ export default class Me extends Component<PropsWithChildren> {
         if (res.confirm) {
           console.log('用户点击确定')
           // clear
-          // Taro.clearStorage()
+          Taro.clearStorage()
           Taro.setStorage({
             key: Env.storageKey,
             data: {uid: 0, role: -1, token: 0}
           });
           // redirect
-          Taro.switchTab({ url: '/pages/index/index' })
+          // Taro.switchTab({ url: '/pages/index/index' })
+          // Taro.reLaunch({ url: '/pages/index/index' })
+          Taro.redirectTo({ url: '/pages/chooseLogin/index'})
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
