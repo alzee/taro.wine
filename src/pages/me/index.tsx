@@ -104,6 +104,18 @@ export default class Me extends Component<PropsWithChildren> {
         </View>
 
       <AtList>
+
+      { this.role != 4  &&
+      <AtListItem
+      title='我的产品'
+      // note='描述信息'
+      // extraText='详细信息'
+      arrow='right'
+      thumb='http://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png'
+      onClick={() => this.navTo('product')}
+      />
+      }
+
       <AtListItem
       title='代金券明细'
       // note='描述信息'
