@@ -19,9 +19,47 @@ export default class Orders extends Component<PropsWithChildren> {
   retailReturns = []
   dines = []
   tabList = []
+  orgid: int
 
   componentWillMount () { }
 
+  getSales () {
+    const self = this;
+    Taro.request({
+      url: Env.apiUrl + 'orders' + '?page=1&itemsPerPage=15&seller=' + this.orgid,
+      success: function (res) { self.setState({data: res.data}) }
+    }).then((res) =>{
+      console.log(res)
+      for (let i in res.data){
+        this.sales.push(
+          <AtListItem
+          title={res.data[i].amount}
+          note={res.data[i].date}
+          extraText={i}
+          />
+        )
+      }
+    })
+  }
+
+  getReturnsToMe () {
+    const self = this;
+    Taro.request({
+      url: Env.apiUrl + 'orders' + '?page=1&itemsPerPage=15&seller=' + res.data.org.id,
+      success: function (res) { self.setState({data: res.data}) }
+    }).then((res) =>{
+      for (let i in res.data){
+        console.log(i)
+        this.sales.push(
+          <AtListItem
+          title={res.data.amount}
+          note={res.data.date}
+          extraText={i}
+          />
+        )
+      }
+    })
+  }
   componentDidMount () {
     const self = this;
     Taro.getStorage({
@@ -29,9 +67,13 @@ export default class Orders extends Component<PropsWithChildren> {
       success: res => {
         self.setState({data: res.data})
         this.role = res.data.role
+        if (this.role != 4) {
+          this.orgid = res.data.org.id
+        }
         switch (this.role) {
           case 0:
             this.tabList = [{ title: '销售' }, {title: '售后退货'}]
+            this.getSales()
             break
           case 1:
             this.tabList = [{ title: '进货' }, { title: '销售' }, {title: '我的退货'}, {title: '售后退货'}]
@@ -49,16 +91,6 @@ export default class Orders extends Component<PropsWithChildren> {
       }
     })
 
-    for (let i in [1,2,3,4,5]){
-      console.log(i)
-      this.sales.push(
-      <AtListItem
-      title='代理商-请货'
-      note='2022-09-05 19:05:05'
-      extraText={i}
-      />
-      )
-    }
 
     for (let i in [6,7,8,9,10]){
       console.log(i)
