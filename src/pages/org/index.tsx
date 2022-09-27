@@ -16,9 +16,18 @@ export default class Org extends Component<PropsWithChildren> {
   list = []
   list1 = []
   list2 = []
+  role: int;
 
   componentDidMount () { 
     const self = this;
+    Taro.getStorage({
+      key: Env.storageKey,
+      success: res => {
+        self.setState({data: res.data})
+        this.role = res.data.role
+      }
+    })
+
     Taro.request({
       url: Env.apiUrl + 'orgs' + this.query,
       success: function (res) { self.setState({data: res.data}) }
@@ -115,23 +124,35 @@ export default class Org extends Component<PropsWithChildren> {
   }
 
   render () {
-    const tabList = [
-      { title: '门店' },
-      { title: '餐厅' },
-      { title: '代理商' },
-    ]
+    let tabList = []
+    if (this.role == 0) {
+      tabList = [
+        { title: '门店' },
+        { title: '餐厅' },
+        { title: '代理商' },
+      ]
+    } else {
+      tabList = [
+        { title: '门店' },
+        { title: '餐厅' },
+      ]
+    }
     return (
       <View className='org'>
 
       <AtTabs current={this.state.seg} tabList={tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.seg} index={0}>
+        { this.role == 1 &&
         <AtButton className='new-btn' type='secondary' size='small'>新增门店</AtButton>
+        }
           <AtList>
           { this.list }
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={1}>
+        { this.role == 1 &&
         <AtButton className='new-btn' type='secondary' size='small'>新增餐厅</AtButton>
+        }
           <AtList>
           { this.list1 }
           </AtList>
