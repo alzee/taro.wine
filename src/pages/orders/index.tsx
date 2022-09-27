@@ -168,12 +168,12 @@ export default class Orders extends Component<PropsWithChildren> {
       { this.role == 1 &&
       <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
-          <AtButton className='new-btn' type='secondary' size='small'>新增销售</AtButton>
           <AtList className="list">
           {this.buys}
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={1} >
+          <AtButton className='new-btn' type='secondary' size='small'>新增销售</AtButton>
           <AtList className="list">
           {this.sales}
           </AtList>
