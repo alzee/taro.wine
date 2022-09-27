@@ -148,7 +148,6 @@ export default class Orders extends Component<PropsWithChildren> {
     return (
       <View className='orders'>
 
-
       { this.role == 0 &&
       <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
