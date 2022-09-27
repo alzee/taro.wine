@@ -13,6 +13,9 @@ export default class Org extends Component<PropsWithChildren> {
   stores = []
   restaurants = []
   query: string = '?page=1&itemsPerPage=100'
+  list = []
+  list1 = []
+  list2 = []
 
   componentDidMount () { 
     const self = this;
@@ -37,6 +40,37 @@ export default class Org extends Component<PropsWithChildren> {
         console.log(this.agencies)
         console.log(this.stores)
         console.log(this.restaurants)
+      }
+
+      for (let i in this.stores) {
+        this.list.push(
+          <AtListItem
+          title={this.stores[i].name}
+          // note='描述信息'
+          // extraText='详细信息'
+          arrow='right'
+          />
+        )
+      }
+      for (let i in this.restaurants) {
+        this.list1.push(
+          <AtListItem
+          title={this.restaurants[i].name}
+          // note='描述信息'
+          // extraText='详细信息'
+          arrow='right'
+          />
+        )
+      }
+      for (let i in this.agencies) {
+        this.list2.push(
+          <AtListItem
+          title={this.agencies[i].name}
+          // note='描述信息'
+          // extraText='详细信息'
+          arrow='right'
+          />
+        )
       }
     })
 
@@ -93,57 +127,19 @@ export default class Org extends Component<PropsWithChildren> {
         <AtTabsPane current={this.state.seg} index={0}>
         <AtButton className='new-btn' type='secondary' size='small'>新增门店</AtButton>
           <AtList>
-          <AtListItem
-          title='门店1号'
-          // note='描述信息'
-          // extraText='详细信息'
-          arrow='right'
-          />
-          <AtListItem
-          title='门店2号'
-          arrow='right'
-          />
-          <AtListItem
-          title='门店3号'
-          arrow='right'
-          />
+          { this.list }
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={1}>
         <AtButton className='new-btn' type='secondary' size='small'>新增餐厅</AtButton>
           <AtList>
-          <AtListItem
-          title='餐厅1号'
-          // note='描述信息'
-          // extraText='详细信息'
-          arrow='right'
-          />
-          <AtListItem
-          title='餐厅2号'
-          arrow='right'
-          />
-          <AtListItem
-          title='餐厅3号'
-          arrow='right'
-          />
+          { this.list1 }
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={2} >
+        <AtButton className='new-btn' type='secondary' size='small'>新增代理商</AtButton>
           <AtList>
-          <AtListItem
-          title='代理商1号'
-          // note='描述信息'
-          // extraText='详细信息'
-          arrow='right'
-          />
-          <AtListItem
-          title='代理商2号'
-          arrow='right'
-          />
-          <AtListItem
-          title='代理商3号'
-          arrow='right'
-          />
+          { this.list2 }
           </AtList>
         </AtTabsPane>
       </AtTabs>
