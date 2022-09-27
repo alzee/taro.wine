@@ -54,8 +54,9 @@ export default class Org extends Component<PropsWithChildren> {
       for (let i in this.stores) {
         this.list.push(
           <AtListItem
+          onClick={() => navToDetail(this.stores[i].id)}
           title={this.stores[i].name}
-          // note='描述信息'
+          note={this.stores[i].address}
           // extraText='详细信息'
           arrow='right'
           />
@@ -64,8 +65,9 @@ export default class Org extends Component<PropsWithChildren> {
       for (let i in this.restaurants) {
         this.list1.push(
           <AtListItem
+          onClick={() => navToDetail(this.restaurants[i].id)}
           title={this.restaurants[i].name}
-          // note='描述信息'
+          note={this.restaurants[i].address}
           // extraText='详细信息'
           arrow='right'
           />
@@ -74,8 +76,9 @@ export default class Org extends Component<PropsWithChildren> {
       for (let i in this.agencies) {
         this.list2.push(
           <AtListItem
+          onClick={() => navToDetail(this.agencies[i].id)}
           title={this.agencies[i].name}
-          // note='描述信息'
+          note={this.agencies[i].address}
           // extraText='详细信息'
           arrow='right'
           />
@@ -121,6 +124,10 @@ export default class Org extends Component<PropsWithChildren> {
 
   navTo(page: string) {
     Taro.navigateTo({ url: 'pages/' + page + '/index' })
+  }
+
+  navToDetail(id){
+    Taro.navigateTo({url: '/pages/orgDetail/index?id=' + id})
   }
 
   render () {
