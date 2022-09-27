@@ -23,43 +23,81 @@ export default class Orders extends Component<PropsWithChildren> {
 
   componentWillMount () { }
 
-  getSales () {
+  getData (type: string) {
     const self = this;
+    let query: string
+    let api: string
+    let filter: string
+    let title: string
+    let note: string
+    let extraText: string
+    switch (type) {
+      case 'sales':
+        api = 'orders'
+        filter = 'seller'
+        title = 'amount'
+        note = 'date'
+        extraText = 'voucher'
+        break
+      case 'returnsToMe':
+        api = 'returns'
+        filter = 'recipient'
+        title = 'amount'
+        note = 'date'
+        extraText = 'voucher'
+        break
+      case 'buys':
+        api = 'orders'
+        filter = 'buyer'
+        title = 'amount'
+        note = 'date'
+        extraText = 'voucher'
+        break
+      case 'myReturns':
+        api = 'returns'
+        filter = 'sender'
+        title = 'amount'
+        note = 'date'
+        extraText = 'voucher'
+        break
+      case 'retails':
+        api = 'retail'
+        filter = 'store'
+        title = 'amount'
+        note = 'date'
+        extraText = 'voucher'
+        break
+      case 'retailReturns':
+        api = 'retailReturn'
+        filter = 'store'
+        title = 'amount'
+        note = 'date'
+        extraText = 'voucher'
+        break
+      case 'dines':
+        api = 'orderRestaurant'
+        filter = 'restaurant'
+        title = 'voucher'
+        note = 'date'
+        extraText = 'voucher'
+        break
+    }
     Taro.request({
-      url: Env.apiUrl + 'orders' + '?page=1&itemsPerPage=15&seller=' + this.orgid,
+      url: Env.apiUrl + api + '?page=1&itemsPerPage=15&=' + filter + '=' + this.orgid,
       success: function (res) { self.setState({data: res.data}) }
     }).then((res) =>{
-      console.log(res)
       for (let i in res.data){
-        this.sales.push(
+        this[type].push(
           <AtListItem
-          title={res.data[i].amount}
-          note={res.data[i].date}
-          extraText={i}
+          title={res.data[i][title]}
+          note={res.data[i][note]}
+          extraText={res.data[i][extraText]}
           />
         )
       }
     })
   }
-
-  getReturnsToMe () {
-    const self = this;
-    Taro.request({
-      url: Env.apiUrl + 'orders' + '?page=1&itemsPerPage=15&seller=' + res.data.org.id,
-      success: function (res) { self.setState({data: res.data}) }
-    }).then((res) =>{
-      for (let i in res.data){
-        console.log(i)
-        this.sales.push(
-          <AtListItem
-          title={res.data.amount}
-          note={res.data.date}
-          extraText={i}
-          />
-        )
-      }
-    })
-  }
+  
   componentDidMount () {
     const self = this;
     Taro.getStorage({
@@ -73,75 +111,37 @@ export default class Orders extends Component<PropsWithChildren> {
         switch (this.role) {
           case 0:
             this.tabList = [{ title: '销售' }, {title: '售后退货'}]
-            this.getSales()
+            this.getData('sales')
+            this.getData('returnsToMe')
             break
           case 1:
             this.tabList = [{ title: '进货' }, { title: '销售' }, {title: '我的退货'}, {title: '售后退货'}]
+            this.getData('buys')
+            this.getData('sales')
+            this.getData('myReturns')
+            this.getData('returnsToMe')
             break
           case 2:
             this.tabList = [{title: '我的退货'}, {title: '零售'}, {title: '零售退货'}]
+            this.getData('myReturns')
+            this.getData('retails')
+            this.getData('retailReturns')
             break
           case 3:
             this.tabList = [{title: '我的退货'}, {title: '零售'}, {title: '零售退货'}, {title: '餐饮'}]
+            this.getData('myReturns')
+            this.getData('retails')
+            this.getData('retailReturns')
+            this.getData('dines')
             break
           case 4:
             this.tabList = [{title: '买酒'}, {title: '餐饮'}]
+            this.getData('retails')
+            this.getData('dine')
             break
         }
       }
     })
-
-
-    for (let i in [6,7,8,9,10]){
-      console.log(i)
-      this.returnsToMe.push(
-      <AtListItem
-      title='代理商-请货'
-      note='2022-09-05 19:05:05'
-      extraText={i}
-      />
-      )
-    }
-    for (let i in [6,7,8,9,10]){
-      console.log(i)
-      this.buys.push(
-      <AtListItem
-      title='代理商-请货'
-      note='2022-09-05 19:05:05'
-      extraText={i}
-      />
-      )
-    }
-    for (let i in [6,7,8,9,10]){
-      console.log(i)
-      this.myReturns.push(
-      <AtListItem
-      title='代理商-请货'
-      note='2022-09-05 19:05:05'
-      extraText={i}
-      />
-      )
-    }
-    for (let i in [6,7,8,9,10]){
-      console.log(i)
-      this.retails.push(
-      <AtListItem
-      title='代理商-请货'
-      note='2022-09-05 19:05:05'
-      extraText={i}
-      />
-      )
-    }
-    for (let i in [6,7,8,9,10]){
-      console.log(i)
-      this.retailReturns.push(
-      <AtListItem
-      title='代理商-请货'
-      note='2022-09-05 19:05:05'
-      extraText={i}
-      />
-      )
-    }
   }
 
   componentWillUnmount () { }
