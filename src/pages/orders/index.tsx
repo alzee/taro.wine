@@ -83,7 +83,7 @@ export default class Orders extends Component<PropsWithChildren> {
         break
     }
     Taro.request({
-      url: Env.apiUrl + api + '?page=1&itemsPerPage=15&=' + filter + '=' + this.orgid,
+      url: Env.apiUrl + api + '?page=1&itemsPerPage=15&' + filter + '=' + this.orgid,
       success: function (res) { self.setState({data: res.data}) }
     }).then((res) =>{
       for (let i in res.data){
