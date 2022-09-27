@@ -22,6 +22,17 @@ export default class Orders extends Component<PropsWithChildren> {
 
   componentDidHide () { }
 
+  scan(){
+    Taro.scanCode({
+      onlyFromCamera: true,
+      success: (res) => {
+        console.log(res)
+        let data = res.result
+        Taro.navigateTo({url: '/pages/retailNew/index?data=' + data})
+      }
+    })
+  }
+
   constructor () {
     super(...arguments)
     this.state = {
@@ -35,17 +46,12 @@ export default class Orders extends Component<PropsWithChildren> {
     })
   }
 
-  handleClick () {
-    Taro.navigateBack()
-  }
-
   render () {
-    const tabList = [{ title: '进货' }, { title: '销售' }, {title: '我的退货'}, {title: '销售退货'}, {title: '零售退货'}]
+    const tabList = [{ title: '进货' }, { title: '销售' }, {title: '我的退货'}, {title: '销售退货'}, {title: '零售'}, {title: '零售退货'}]
     return (
       <View className='orders'>
       <AtTabs scroll className='first' current={this.state.current} tabList={tabList} onClick={this.handleClick1.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
-        <AtButton className='new-btn' type='secondary' size='small'>新增销售</AtButton>
           <AtList className="list">
           <AtListItem
           title='代理商-请货'
@@ -124,8 +130,21 @@ export default class Orders extends Component<PropsWithChildren> {
           />
           </AtList>
         </AtTabsPane>
+        <AtTabsPane current={this.state.current} index={1} >
+        <AtButton className='new-btn' type='secondary' size='small'>新增销售</AtButton>
+        </AtTabsPane>
+        <AtTabsPane current={this.state.current} index={2} >
+        </AtTabsPane>
+        <AtTabsPane current={this.state.current} index={3} >
+        <AtButton className='new-btn' type='secondary' size='small'>新增销售退货</AtButton>
+        </AtTabsPane>
+        <AtTabsPane current={this.state.current} index={4} >
+        <AtButton className='new-btn' type='secondary' size='small' onClick={this.scan}>新增零售</AtButton>
+        </AtTabsPane>
+        <AtTabsPane current={this.state.current} index={5} >
+        <AtButton className='new-btn' type='secondary' size='small'>新增零售退货</AtButton>
+        </AtTabsPane>
         </AtTabs>
-
 
       </View>
     )
