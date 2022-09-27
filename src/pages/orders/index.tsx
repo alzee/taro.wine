@@ -10,10 +10,20 @@ import { Env } from '../../env/env'
 
 export default class Orders extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
+  role: int;
 
   componentWillMount () { }
 
-  componentDidMount () { }
+  componentDidMount () {
+    const self = this;
+    Taro.getStorage({
+      key: Env.storageKey,
+      success: res => {
+        self.setState({data: res.data})
+        this.role = res.data.role
+      }
+    })
+  }
 
   componentWillUnmount () { }
 
@@ -41,13 +51,32 @@ export default class Orders extends Component<PropsWithChildren> {
   }
 
   handleClick1 (value) {
+    console.log(value)
     this.setState({
       current: value
     })
   }
 
   render () {
-    const tabList = [{ title: '进货' }, { title: '销售' }, {title: '我的退货'}, {title: '销售退货'}, {title: '零售'}, {title: '零售退货'}]
+    let tabList = []
+    switch (this.role) {
+      case 0:
+        tabList = [{ title: '销售' }, {title: '售后退货'}]
+        break
+      case 1:
+        tabList = [{ title: '进货' }, { title: '销售' }, {title: '我的退货'}, {title: '售后退货'}]
+        break
+      case 2:
+        tabList = [{title: '我的退货'}, {title: '零售'}, {title: '零售退货'}]
+        break
+      case 3:
+        tabList = [{title: '我的退货'}, {title: '零售'}, {title: '零售退货'}, {title: '餐饮'}]
+        break
+      case 4:
+        tabList = [{title: '买酒'}, {title: '餐饮'}]
+        break
+    }
+    // const tabList = [{ title: '进货' }, { title: '销售' }, {title: '我的退货'}, {title: '销售退货'}, {title: '零售'}, {title: '零售退货'}]
     return (
       <View className='orders'>
       <AtTabs scroll className='first' current={this.state.current} tabList={tabList} onClick={this.handleClick1.bind(this)}>
