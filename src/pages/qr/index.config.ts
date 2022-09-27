@@ -1,3 +1,5 @@
 export default definePageConfig({
-  navigationBarTitleText: '首页'
+  navigationBarTitleText: '我的二维码',
+  "usingComponents": {
+  }
 })
