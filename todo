@@ -1,1 +1,21 @@
-service
+detail:
+  - org
+  - order
+  - return
+  - retail
+  - retailreturn
+  - product
+  - withdraw
+new:
+  - product
+  - restaurant
+  - store
+  - agency
+  - order
+  - return
+  - retail
+  - retailreturn
+  - dine
+  - withdraw
+
+# vim:ft=yaml
