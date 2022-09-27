@@ -11,9 +11,6 @@ import { Env } from '../../env/env'
 export default class Orders extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
   role: int;
-  list = []
-  list0 = []
-  list1 = []
   sales = []
   returnsToMe = []
   buys = []
@@ -21,6 +18,7 @@ export default class Orders extends Component<PropsWithChildren> {
   retails = []
   retailReturns = []
   dines = []
+  tabList = []
 
   componentWillMount () { }
 
@@ -31,12 +29,29 @@ export default class Orders extends Component<PropsWithChildren> {
       success: res => {
         self.setState({data: res.data})
         this.role = res.data.role
+        switch (this.role) {
+          case 0:
+            this.tabList = [{ title: '销售' }, {title: '售后退货'}]
+            break
+          case 1:
+            this.tabList = [{ title: '进货' }, { title: '销售' }, {title: '我的退货'}, {title: '售后退货'}]
+            break
+          case 2:
+            this.tabList = [{title: '我的退货'}, {title: '零售'}, {title: '零售退货'}]
+            break
+          case 3:
+            this.tabList = [{title: '我的退货'}, {title: '零售'}, {title: '零售退货'}, {title: '餐饮'}]
+            break
+          case 4:
+            this.tabList = [{title: '买酒'}, {title: '餐饮'}]
+            break
+        }
       }
     })
 
     for (let i in [1,2,3,4,5]){
       console.log(i)
-      this.list0.push(
+      this.sales.push(
       <AtListItem
       title='代理商-请货'
       note='2022-09-05 19:05:05'
@@ -44,11 +59,50 @@ export default class Orders extends Component<PropsWithChildren> {
       />
       )
     }
-    this.list = this.list0
 
     for (let i in [6,7,8,9,10]){
       console.log(i)
-      this.list1.push(
+      this.returnsToMe.push(
+      <AtListItem
+      title='代理商-请货'
+      note='2022-09-05 19:05:05'
+      extraText={i}
+      />
+      )
+    }
+    for (let i in [6,7,8,9,10]){
+      console.log(i)
+      this.buys.push(
+      <AtListItem
+      title='代理商-请货'
+      note='2022-09-05 19:05:05'
+      extraText={i}
+      />
+      )
+    }
+    for (let i in [6,7,8,9,10]){
+      console.log(i)
+      this.myReturns.push(
+      <AtListItem
+      title='代理商-请货'
+      note='2022-09-05 19:05:05'
+      extraText={i}
+      />
+      )
+    }
+    for (let i in [6,7,8,9,10]){
+      console.log(i)
+      this.retails.push(
+      <AtListItem
+      title='代理商-请货'
+      note='2022-09-05 19:05:05'
+      extraText={i}
+      />
+      )
+    }
+    for (let i in [6,7,8,9,10]){
+      console.log(i)
+      this.retailReturns.push(
       <AtListItem
       title='代理商-请货'
       note='2022-09-05 19:05:05'
@@ -88,58 +142,13 @@ export default class Orders extends Component<PropsWithChildren> {
     this.setState({
       current: value
     })
-    switch(value){
-      case 0:
-        this.list=this.list0
-        break
-      case 1:
-        this.list=this.list1
-        break
-    }
   }
 
   render () {
-    let tabList = []
-    switch (this.role) {
-      case 0:
-        tabList = [{ title: '销售' }, {title: '售后退货'}]
-        break
-      case 1:
-        tabList = [{ title: '进货' }, { title: '销售' }, {title: '我的退货'}, {title: '售后退货'}]
-        break
-      case 2:
-        tabList = [{title: '我的退货'}, {title: '零售'}, {title: '零售退货'}]
-        break
-      case 3:
-        tabList = [{title: '我的退货'}, {title: '零售'}, {title: '零售退货'}, {title: '餐饮'}]
-        break
-      case 4:
-        tabList = [{title: '买酒'}, {title: '餐饮'}]
-        break
-    }
-
-    let panes = []
-    for (let i in tabList) {
-      panes.push(
-        <AtTabsPane current={this.state.current} index={0} >
-        </AtTabsPane>
-      )
-    }
-
-    let list = [
-    ]
-    list.push(
-      <AtListItem
-      title='代理商-请货'
-      note='2022-09-05 19:05:05'
-      extraText='50'
-      />
-    )
-
     return (
       <View className='orders'>
 
-      <AtTabs scroll className='first' current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
+      <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
 
       { this.role == 0 &&
         <div>
