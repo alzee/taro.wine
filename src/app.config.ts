@@ -32,6 +32,7 @@ export default defineAppConfig({
     'pages/withdrawDetail/index',
     'pages/storeDetail/index',
     'pages/dineDetail/index',
+    'pages/productDetail/index',
     'pages/qr/index',
   ],
   window: {

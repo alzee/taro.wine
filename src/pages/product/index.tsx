@@ -9,6 +9,10 @@ export default class Product extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
   list = []
 
+  navToDetail(id){
+    Taro.navigateTo({url: '/pages/productDetail/index?id=' + id})
+  }
+
   componentWillMount () {
     const self = this;
     Taro.getStorage({
@@ -25,6 +29,7 @@ export default class Product extends Component<PropsWithChildren> {
           for (let i in res.data) {
             this.list.push(
               <AtListItem
+              onClick={() => this.navToDetail(res.data[i].id)}
               title={res.data[i].name}
               note={'规格: ' + res.data[i].spec + ' 库存: ' + res.data[i].stock}
               // extraText={'库存: ' + res.data[i].stock}
