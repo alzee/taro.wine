@@ -83,7 +83,7 @@ export default class Me extends Component<PropsWithChildren> {
   }
 
   navTo(page: string) {
-    Taro.navigateTo({ url: 'pages/' + page + '/index' })
+    Taro.navigateTo({ url: '/pages/' + page + '/index' })
   }
 
   render () {
@@ -104,7 +104,7 @@ export default class Me extends Component<PropsWithChildren> {
       // extraText='详细信息'
       arrow='right'
       thumb='http://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png'
-      onClick={() => this.navTo('1')}
+      onClick={() => this.navTo('voucher')}
       />
       <AtListItem
       title='提现'
@@ -112,15 +112,7 @@ export default class Me extends Component<PropsWithChildren> {
       // extraText='详细信息'
       arrow='right'
       thumb='http://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png'
-      onClick={() => this.navTo('1')}
-      />
-      <AtListItem
-      title='我的信息'
-      // note='描述信息'
-      // extraText='详细信息'
-      arrow='right'
-      thumb='http://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png'
-      onClick={() => this.navTo('1')}
+      onClick={() => this.navTo('withdraw')}
       />
       </AtList>
 
