@@ -11,6 +11,16 @@ import { Env } from '../../env/env'
 export default class Orders extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
   role: int;
+  list = []
+  list0 = []
+  list1 = []
+  sales = []
+  returnsToMe = []
+  buys = []
+  myReturns = []
+  retails = []
+  retailReturns = []
+  dines = []
 
   componentWillMount () { }
 
@@ -23,6 +33,29 @@ export default class Orders extends Component<PropsWithChildren> {
         this.role = res.data.role
       }
     })
+
+    for (let i in [1,2,3,4,5]){
+      console.log(i)
+      this.list0.push(
+      <AtListItem
+      title='代理商-请货'
+      note='2022-09-05 19:05:05'
+      extraText={i}
+      />
+      )
+    }
+    this.list = this.list0
+
+    for (let i in [6,7,8,9,10]){
+      console.log(i)
+      this.list1.push(
+      <AtListItem
+      title='代理商-请货'
+      note='2022-09-05 19:05:05'
+      extraText={i}
+      />
+      )
+    }
   }
 
   componentWillUnmount () { }
@@ -55,6 +88,14 @@ export default class Orders extends Component<PropsWithChildren> {
     this.setState({
       current: value
     })
+    switch(value){
+      case 0:
+        this.list=this.list0
+        break
+      case 1:
+        this.list=this.list1
+        break
+    }
   }
 
   render () {
@@ -99,43 +140,110 @@ export default class Orders extends Component<PropsWithChildren> {
       <View className='orders'>
 
       <AtTabs scroll className='first' current={this.state.current} tabList={tabList} onClick={this.handleClick.bind(this)}>
-        <AtList className="list">
-        {list}
-        </AtList>
 
-      {
-        // panes
-        // <AtTabsPane current={this.state.current} index={0} >
-        //   <AtList className="list">
-        //   <AtListItem
-        //   title='代理商-请货'
-        //   note='2022-09-05 19:05:05'
-        //   extraText='50'
-        //   />
-        //   </AtList>
-        // </AtTabsPane>
-
-        // <AtTabsPane current={this.state.current} index={1} >
-        // <AtButton className='new-btn' type='secondary' size='small'>新增销售</AtButton>
-        // </AtTabsPane>
-
-        // <AtTabsPane current={this.state.current} index={2} >
-        // </AtTabsPane>
-
-        // <AtTabsPane current={this.state.current} index={3} >
-        // <AtButton className='new-btn' type='secondary' size='small'>新增销售退货</AtButton>
-        // </AtTabsPane>
-
-        // <AtTabsPane current={this.state.current} index={4} >
-        // <AtButton className='new-btn' type='secondary' size='small' onClick={this.scan}>新增零售</AtButton>
-        // </AtTabsPane>
-
-        // <AtTabsPane current={this.state.current} index={5} >
-        // <AtButton className='new-btn' type='secondary' size='small'>新增零售退货</AtButton>
-        // </AtTabsPane>
+      { this.role == 0 &&
+        <div>
+        <AtTabsPane current={this.state.current} index={0} >
+          <AtButton className='new-btn' type='secondary' size='small'>新增销售</AtButton>
+          <AtList className="list">
+          {this.sales}
+          </AtList>
+        </AtTabsPane>
+        <AtTabsPane current={this.state.current} index={1} >
+          <AtButton className='new-btn' type='secondary' size='small'>新增售后退货</AtButton>
+          <AtList className="list">
+          {this.returnsToMe}
+          </AtList>
+        </AtTabsPane>
+        </div>
       }
 
-        </AtTabs>
+      { this.role == 1 &&
+        <div>
+        <AtTabsPane current={this.state.current} index={0} >
+          <AtList className="list">
+          {this.buys}
+          </AtList>
+        </AtTabsPane>
+        <AtTabsPane current={this.state.current} index={1} >
+          <AtList className="list">
+          {this.sales}
+          </AtList>
+        </AtTabsPane>
+        <AtTabsPane current={this.state.current} index={2} >
+          <AtList className="list">
+          {this.myReturns}
+          </AtList>
+        </AtTabsPane>
+        <AtTabsPane current={this.state.current} index={3} >
+          <AtList className="list">
+          {this.returnsToMe}
+          </AtList>
+        </AtTabsPane>
+        </div>
+      }
+
+      { this.role == 2 &&
+        <div>
+        <AtTabsPane current={this.state.current} index={0} >
+          <AtList className="list">
+          {this.myReturns}
+          </AtList>
+        </AtTabsPane>
+        <AtTabsPane current={this.state.current} index={1} >
+          <AtList className="list">
+          {this.retails}
+          </AtList>
+        </AtTabsPane>
+        <AtTabsPane current={this.state.current} index={2} >
+          <AtList className="list">
+          {this.retailReturns}
+          </AtList>
+        </AtTabsPane>
+        </div>
+      }
+
+      { this.role == 3 &&
+        <div>
+        <AtTabsPane current={this.state.current} index={0} >
+          <AtList className="list">
+          {this.myReturns}
+          </AtList>
+        </AtTabsPane>
+        <AtTabsPane current={this.state.current} index={1} >
+          <AtList className="list">
+          {this.retails}
+          </AtList>
+        </AtTabsPane>
+        <AtTabsPane current={this.state.current} index={2} >
+          <AtList className="list">
+          {this.retailReturns}
+          </AtList>
+        </AtTabsPane>
+        <AtTabsPane current={this.state.current} index={3} >
+          <AtList className="list">
+          {this.dines}
+          </AtList>
+        </AtTabsPane>
+        </div>
+      }
+
+      { this.role == 4 &&
+        <div>
+        <AtTabsPane current={this.state.current} index={0} >
+          <AtList className="list">
+          {this.retails}
+          </AtList>
+        </AtTabsPane>
+        <AtTabsPane current={this.state.current} index={1} >
+          <AtList className="list">
+          {this.dines}
+          </AtList>
+        </AtTabsPane>
+        </div>
+      }
+
+      </AtTabs>
 
       </View>
     )
