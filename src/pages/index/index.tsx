@@ -21,7 +21,6 @@ export default class Index extends Component<PropsWithChildren> {
   list1 = [];
   list2 = [];
   http: HttpService;
-  isLogged: false;
 
   navToNode(id: int) {
     Taro.navigateTo({ url: '/pages/node/index?id=' + id })
@@ -35,46 +34,16 @@ export default class Index extends Component<PropsWithChildren> {
   navTo(page: string) {
     Taro.navigateTo({ url: '/pages/' + page + '/index' })
   }
-  switchTab (value) {
-    // return;
-    if (value == this.state.current) {
-      return;
-    }
-    // this.setState({
-    //   current: value
-    // })
-    let i: string;
-    switch (value) {
-      case 0:
-        i = 'index';
-        break;
-      case 1:
-        i = 'org';
-        break;
-      case 2:
-        i = 'me';
-        break;
-      case 3:
-        i = 'me';
-        break;
-      case 4:
-        i = 'me';
-        break;
-    }
-    this.navTo(i);
-  }
 
   componentDidMount () {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        if (res.data.uid == 0) {
-          console.log('need to login');
-          this.isLogged = false;
-          //this.navTo('chooseLogin');
-        } else {
-          this.isLogged = true;
-        }
+        // if (res.data.uid == 0) {
+        //   console.log('need to login');
+        //   //this.navTo('chooseLogin');
+        // } else {
+        // }
       },
       fail: res => {
         console.log('fuck')
@@ -182,16 +151,6 @@ export default class Index extends Component<PropsWithChildren> {
 
       {this.state && this.state.data && this.list2}
 
-      {//  this.isLogged ||
-        //  <AtActionSheet isOpened>
-        //    <AtActionSheetItem>
-        //    <AtButton type="primary" size="small" onClick={this.navToWxlogin}>微信登录</AtButton>
-        //    <Text className="text" onClick={this.navToLogin}>机构登录</Text>
-        //    </AtActionSheetItem>
-        //    <AtActionSheetItem>
-        //    </AtActionSheetItem>
-        //    </AtActionSheet>
-      }
       </View>
     )
   }

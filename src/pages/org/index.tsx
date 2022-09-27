@@ -9,8 +9,51 @@ import { Env } from '../../env/env'
 
 export default class Org extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
+  agencies = []
+  stores = []
+  restaurants = []
+  query: string = '?page=1&itemsPerPage=100'
 
-  componentDidMount () { }
+  componentDidMount () { 
+    const self = this;
+    Taro.request({
+      url: Env.apiUrl + 'orgs' + this.query,
+      success: function (res) { self.setState({data: res.data}) }
+    }).then((res) =>{
+      let orgs = res.data
+      console.log(orgs)
+      for (let i in orgs) {
+        switch (orgs[i].type) {
+          case 1:
+            this.agencies = [...this.agencies, orgs[i]]
+            break;
+          case 2:
+            this.stores = [...this.stores, orgs[i]]
+            break;
+          case 3:
+            this.restaurants = [...this.restaurants, orgs[i]]
+            break;
+        }
+        console.log(this.agencies)
+        console.log(this.stores)
+        console.log(this.restaurants)
+      }
+    })
+
+    Taro.getStorage({
+      key: Env.storageKey,
+      success: res => {
+        if (res.data.uid == 0) {
+          console.log('need to login');
+          //this.navTo('chooseLogin');
+        } else {
+        }
+      },
+      fail: res => {
+        console.log('fuck')
+      },
+    });
+  }
 
   componentWillUnmount () { }
 
@@ -32,68 +75,21 @@ export default class Org extends Component<PropsWithChildren> {
       seg: value
     })
   }
+
   navTo(page: string) {
     Taro.navigateTo({ url: 'pages/' + page + '/index' })
   }
-  switchTab (value) {
-    if (value == this.state.current) {
-      return;
-    }
-    // this.setState({
-    //   current: value
-    // })
-    let i: string;
-    switch (value) {
-      case 0:
-        i = 'index';
-        break;
-      case 1:
-        i = 'org';
-        break;
-      case 2:
-        i = 'me';
-        break;
-      case 3:
-        i = 'me';
-        break;
-      case 4:
-        i = 'me';
-        break;
-    }
-    this.navTo(i);
-  }
 
   render () {
-      const tabList = [
-        // { title: '代理商' },
-        { title: '门店' },
-        { title: '餐厅' }]
+    const tabList = [
+      { title: '门店' },
+      { title: '餐厅' },
+      { title: '代理商' },
+    ]
     return (
       <View className='org'>
 
       <AtTabs current={this.state.seg} tabList={tabList} onClick={this.handleClick.bind(this)}>
-      {
-        /*
-        <AtTabsPane current={this.state.seg} index={0} >
-          <AtList>
-          <AtListItem
-          title='代理商1号'
-          // note='描述信息'
-          // extraText='详细信息'
-          arrow='right'
-          />
-          <AtListItem
-          title='代理商2号'
-          arrow='right'
-          />
-          <AtListItem
-          title='代理商3号'
-          arrow='right'
-          />
-          </AtList>
-        </AtTabsPane>
-       */
-      }
         <AtTabsPane current={this.state.seg} index={0}>
         <AtButton className='new-btn' type='secondary' size='small'>新增门店</AtButton>
           <AtList>
@@ -128,6 +124,24 @@ export default class Org extends Component<PropsWithChildren> {
           />
           <AtListItem
           title='餐厅3号'
+          arrow='right'
+          />
+          </AtList>
+        </AtTabsPane>
+        <AtTabsPane current={this.state.seg} index={2} >
+          <AtList>
+          <AtListItem
+          title='代理商1号'
+          // note='描述信息'
+          // extraText='详细信息'
+          arrow='right'
+          />
+          <AtListItem
+          title='代理商2号'
+          arrow='right'
+          />
+          <AtListItem
+          title='代理商3号'
           arrow='right'
           />
           </AtList>
