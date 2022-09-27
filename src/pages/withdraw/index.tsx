@@ -24,14 +24,6 @@ export default class Withdraw extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='withdraw'>
-        <AtNavBar
-          onClickRgIconSt={this.handleClick}
-          onClickRgIconNd={this.handleClick}
-          onClickLeftIcon={this.handleClick}
-          color='#000'
-          leftIconType='chevron-left'
-          fixed
-        />
           <AtList className="list first">
           <AtListItem
           title='提现申请-50元'

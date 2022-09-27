@@ -17,9 +17,13 @@ export default class Voucher extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        this.orgId = res.data.org.id
+        let data = res.data
         const self = this;
-        this.query = '?page=1&itemsPerPage=20&org=' + this.orgId
+        if (data.role == 4) {
+          this.query = '?page=1&itemsPerPage=20&consumer=' + data.cid
+        } else {
+          this.query = '?page=1&itemsPerPage=20&org=' + data.org.id
+        }
         Taro.request({
           url: Env.apiUrl + 'vouchers' + this.query,
           success: function (res) { self.setState({data: res.data}) }
