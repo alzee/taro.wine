@@ -1,16 +1,14 @@
 detail:
+  - product
   - org
   - order
   - return
   - retail
   - retailreturn
-  - product
   - withdraw
 new:
   - product
-  - restaurant
-  - store
-  - agency
+  - restaurant/store/agency
   - order
   - return
   - retail
