@@ -168,6 +168,7 @@ export default class Orders extends Component<PropsWithChildren> {
       { this.role == 1 &&
       <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
+          <AtButton className='new-btn' type='secondary' size='small'>新增销售</AtButton>
           <AtList className="list">
           {this.buys}
           </AtList>
@@ -183,6 +184,7 @@ export default class Orders extends Component<PropsWithChildren> {
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={3} >
+          <AtButton className='new-btn' type='secondary' size='small'>新增售后退货</AtButton>
           <AtList className="list">
           {this.returnsToMe}
           </AtList>
@@ -198,11 +200,13 @@ export default class Orders extends Component<PropsWithChildren> {
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={1} >
+          <AtButton className='new-btn' type='secondary' size='small'>新增零售</AtButton>
           <AtList className="list">
           {this.retails}
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={2} >
+          <AtButton className='new-btn' type='secondary' size='small'>新增零售退货</AtButton>
           <AtList className="list">
           {this.retailReturns}
           </AtList>
@@ -218,16 +222,19 @@ export default class Orders extends Component<PropsWithChildren> {
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={1} >
+          <AtButton className='new-btn' type='secondary' size='small'>新增零售</AtButton>
           <AtList className="list">
           {this.retails}
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={2} >
+          <AtButton className='new-btn' type='secondary' size='small'>新增零售退货</AtButton>
           <AtList className="list">
           {this.retailReturns}
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={3} >
+          <AtButton className='new-btn' type='secondary' size='small'>新增餐饮消费</AtButton>
           <AtList className="list">
           {this.dines}
           </AtList>
