@@ -1,10 +1,11 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Image } from '@tarojs/components'
 import './index.scss'
 import { AtButton, AtList, AtListItem} from "taro-ui"
 import { AtAvatar } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
+import qr from './img/qr.png'
 
 export default class Me extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
@@ -92,6 +93,11 @@ export default class Me extends Component<PropsWithChildren> {
         <View className="name">
         <Text className='main'>{this.state && this.username}</Text>
         <Text className='secondary'>{this.state && this.orgName}</Text>
+        </View>
+        <View className='qr' onClick={() => this.navTo('qr')}>
+        <Image
+        style='width: 48px;height: 48px'
+        src={qr} />
         </View>
         </View>
 
