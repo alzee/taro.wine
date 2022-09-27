@@ -61,21 +61,21 @@ export default class Orders extends Component<PropsWithChildren> {
         extraText = 'voucher'
         break
       case 'retails':
-        api = 'retail'
+        api = 'retails'
         filter = 'store'
         title = 'amount'
         note = 'date'
         extraText = 'voucher'
         break
       case 'retailReturns':
-        api = 'retailReturn'
+        api = 'retail_returns'
         filter = 'store'
         title = 'amount'
         note = 'date'
         extraText = 'voucher'
         break
       case 'dines':
-        api = 'orderRestaurant'
+        api = 'order_restaurants'
         filter = 'restaurant'
         title = 'voucher'
         note = 'date'
@@ -89,13 +89,19 @@ export default class Orders extends Component<PropsWithChildren> {
       for (let i in res.data){
         this[type].push(
           <AtListItem
+          onClick={() => this.navToDetail(res.data[i].id)}
           title={res.data[i][title]}
           note={res.data[i][note]}
           extraText={res.data[i][extraText]}
+          arrow='right'
           />
         )
       }
     })
+  }
+
+  navToDetail(id){
+    Taro.navigateTo({url: '/pages/orderDetail/index?id=' + id})
   }
   
   componentDidMount () {
