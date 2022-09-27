@@ -32,7 +32,7 @@ export default class Login extends Component<PropsWithChildren> {
           key: Env.storageKey,
           data: res.data.data
         })
-        Taro.switchTab({ url: '/pages/index/index' })
+        Taro.switchTab({ url: '/pages/me/index' })
       } else {
         // toast: wrong password
         console.log('wrong')
