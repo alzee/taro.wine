@@ -6,6 +6,9 @@ import { AtAvatar } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 import qr from './img/qr.png'
+import wine from '../../icon/wine.png'
+import voucher from '../../icon/voucher.png'
+import cash from '../../icon/cash.png'
 
 export default class Me extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
@@ -111,7 +114,7 @@ export default class Me extends Component<PropsWithChildren> {
       // note='描述信息'
       // extraText='详细信息'
       arrow='right'
-      thumb='http://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png'
+      thumb={wine}
       onClick={() => this.navTo('product')}
       />
       }
@@ -121,7 +124,7 @@ export default class Me extends Component<PropsWithChildren> {
       // note='描述信息'
       // extraText='详细信息'
       arrow='right'
-      thumb='http://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png'
+      thumb={voucher}
       onClick={() => this.navTo('voucher')}
       />
 
@@ -131,7 +134,7 @@ export default class Me extends Component<PropsWithChildren> {
       // note='描述信息'
       // extraText='详细信息'
       arrow='right'
-      thumb='http://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png'
+      thumb={cash}
       onClick={() => this.navTo('withdraw')}
       />
       }
