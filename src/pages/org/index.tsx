@@ -17,6 +17,30 @@ export default class Org extends Component<PropsWithChildren> {
   list1 = []
   list2 = []
   role: int;
+  latitude: float
+  longitude: float
+
+  Rad(d) { 
+    //根据经纬度判断距离
+    return d * Math.PI / 180.0;
+  }
+
+  getDistance(lat1, lng1, lat2, lng2) {
+      // lat1用户的纬度
+      // lng1用户的经度
+      // lat2商家的纬度
+      // lng2商家的经度
+      var radLat1 = this.Rad(lat1);
+      var radLat2 = this.Rad(lat2);
+      var a = radLat1 - radLat2;
+      var b = this.Rad(lng1) - this.Rad(lng2);
+      var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
+      s = s * 6378.137;
+      s = Math.round(s * 10000) / 10000;
+      s = s.toFixed(1) + 'km' //保留两位小数
+      console.log('经纬度计算的距离:' + s)
+      return s
+  }
 
   componentDidMount () { 
     const self = this;
@@ -54,7 +78,7 @@ export default class Org extends Component<PropsWithChildren> {
       for (let i in this.stores) {
         this.list.push(
           <AtListItem
-          onClick={() => this.navToDetail(this.stores[i].id)}
+          onClick={() => {if (this.role == 4 || this.role == -1) this.openMap(this.stores[i].latitude, this.stores[i].longitude); else this.navToDetail(this.stores[i].id)}}
           title={this.stores[i].name}
           note={this.stores[i].address}
           // extraText='详细信息'
@@ -65,7 +89,8 @@ export default class Org extends Component<PropsWithChildren> {
       for (let i in this.restaurants) {
         this.list1.push(
           <AtListItem
-          onClick={() => this.navToDetail(this.restaurants[i].id)}
+          // onClick={() => this.navToDetail(this.restaurants[i].id)}
+          onClick={() => {if (this.role == 4 || this.role == -1) this.openMap(this.restaurants[i].latitude, this.restaurants[i].longitude); else this.navToDetail(this.restaurants[i].id)}}
           title={this.restaurants[i].name}
           note={this.restaurants[i].address}
           // extraText='详细信息'
@@ -126,38 +151,16 @@ export default class Org extends Component<PropsWithChildren> {
     Taro.navigateTo({ url: 'pages/' + page + '/index' })
   }
 
+  openMap(latitude, longitude){
+    Taro.openLocation({
+      latitude,
+      longitude,
+      scale: 18
+    })
+  }
+
   navToDetail(id){
-    if (this.role == 4 || this.role == -1) {
-      // Taro.showModal({
-      //   title: '提示',
-      //   content: '将跳转至导航',
-      //   success: function (res) {
-      //     if (res.confirm) {
-      //       console.log('用户点击确定')
-      //     } else if (res.cancel) {
-      //       console.log('用户点击取消')
-      //     }
-      //   }
-      // })
-      
-      Taro.getLocation({
-        // type: 'wgs84',
-        type: 'gcj02',
-        success: function (res) {
-          const latitude = res.latitude
-          const longitude = res.longitude
-          const speed = res.speed
-          const accuracy = res.accuracy
-          Taro.openLocation({
-            latitude,
-            longitude,
-            scale: 18
-          })
-        }
-      })
-    } else {
-      Taro.navigateTo({url: '/pages/orgDetail/index?id=' + id})
-    }
+    Taro.navigateTo({url: '/pages/orgDetail/index?id=' + id})
   }
 
   orgNew(orgType: int){
