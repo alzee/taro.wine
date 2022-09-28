@@ -9,6 +9,7 @@ import qr from './img/qr.png'
 import wine from '../../icon/wine.png'
 import voucher from '../../icon/voucher.png'
 import cash from '../../icon/cash.png'
+import coord from '../../icon/coord.png'
 
 export default class Me extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
@@ -16,16 +17,11 @@ export default class Me extends Component<PropsWithChildren> {
   avatar: string;
   username: string;
   orgName: string;
-
+  orgid: int
 
   componentWillMount () { }
 
   componentDidMount () {
-  }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { 
     const self = this;
     Taro.getStorage({
       key: Env.storageKey,
@@ -45,9 +41,45 @@ export default class Me extends Component<PropsWithChildren> {
           default:
             this.orgName = res.data.org.name
             this.username = res.data.username
+            this.orgid = res.data.org.id
         }
       }
     })
+  }
+
+  componentWillUnmount () { }
+
+  getLocation(){
+    const self = this;
+    console.log(self)
+    Taro.getLocation({
+      // type: 'wgs84',
+      type: 'gcj02',
+      success: function (res) {
+        const latitude = res.latitude
+        const longitude = res.longitude
+        console.log(res)
+        Taro.request({
+          method: 'PATCH',
+          url: Env.apiUrl + 'orgs/' + self.orgid,
+          data: {latitude: latitude, longitude: longitude},
+          header: {
+            'content-type': 'application/merge-patch+json'
+          },
+          success: function (res) { self.setState({data: res.data}) }
+        }).then((res) =>{
+          console.log(res.data)
+          Taro.showToast({
+            title: '更新成功',
+            icon: 'success',
+            duration: 2000
+          })
+        })
+      }
+    })
+  }
+
+  componentDidShow () { 
   }
 
   componentDidHide () { }
@@ -136,6 +168,17 @@ export default class Me extends Component<PropsWithChildren> {
       arrow='right'
       thumb={cash}
       onClick={() => this.navTo('withdraw')}
+      />
+      }
+
+      { (this.role == 2 || this.role == 3) &&
+      <AtListItem
+      title='更新门店坐标'
+      // note='描述信息'
+      // extraText='详细信息'
+      arrow='right'
+      thumb={coord}
+      onClick={this.getLocation.bind(this)}
       />
       }
 
