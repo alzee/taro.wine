@@ -27,6 +27,28 @@ export default class Orders extends Component<PropsWithChildren> {
 
   componentWillMount () { }
 
+  create(type: int){
+    let page: string
+    switch (type) {
+      case 1:
+        page = 'orderNew'
+        break
+      case 10:
+        page = 'orderReturnNew'
+        break
+      case 2:
+        page = 'retailNew'
+        break
+      case 20:
+        page = 'retailReturnNew'
+        break
+      case 3:
+        page = 'dineNew'
+        break
+    }
+    Taro.navigateTo({url: '/pages/' + page + '/index'})
+  }
+
   getData (type: string) {
     const self = this;
     let query: string
@@ -225,13 +247,13 @@ export default class Orders extends Component<PropsWithChildren> {
       { this.role == 0 &&
       <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
-          <AtButton className='new-btn' type='secondary' size='small'>新增销售</AtButton>
+          <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.create(1)}>新增销售</AtButton>
           <AtList className="list">
           {this.sales}
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={1} >
-          <AtButton className='new-btn' type='secondary' size='small'>新增售后退货</AtButton>
+          <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.create(10)}>新增售后退货</AtButton>
           <AtList className="list">
           {this.returnsToMe}
           </AtList>
@@ -247,7 +269,7 @@ export default class Orders extends Component<PropsWithChildren> {
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={1} >
-          <AtButton className='new-btn' type='secondary' size='small'>新增销售</AtButton>
+          <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.create(1)}>新增销售</AtButton>
           <AtList className="list">
           {this.sales}
           </AtList>
@@ -258,7 +280,7 @@ export default class Orders extends Component<PropsWithChildren> {
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={3} >
-          <AtButton className='new-btn' type='secondary' size='small'>新增售后退货</AtButton>
+          <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.create(10)}>新增售后退货</AtButton>
           <AtList className="list">
           {this.returnsToMe}
           </AtList>
@@ -274,13 +296,13 @@ export default class Orders extends Component<PropsWithChildren> {
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={1} >
-          <AtButton className='new-btn' type='secondary' size='small'>新增零售</AtButton>
+          <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.scan()}>新增零售</AtButton>
           <AtList className="list">
           {this.retails}
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={2} >
-          <AtButton className='new-btn' type='secondary' size='small'>新增零售退货</AtButton>
+          <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.scan()}>新增零售退货</AtButton>
           <AtList className="list">
           {this.retailReturns}
           </AtList>
@@ -296,19 +318,19 @@ export default class Orders extends Component<PropsWithChildren> {
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={1} >
-          <AtButton className='new-btn' type='secondary' size='small'>新增零售</AtButton>
+          <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.scan()}>新增零售</AtButton>
           <AtList className="list">
           {this.retails}
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={2} >
-          <AtButton className='new-btn' type='secondary' size='small'>新增零售退货</AtButton>
+          <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.scan()}>新增零售退货</AtButton>
           <AtList className="list">
           {this.retailReturns}
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={3} >
-          <AtButton className='new-btn' type='secondary' size='small'>新增餐饮消费</AtButton>
+          <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.scan()}>新增餐饮消费</AtButton>
           <AtList className="list">
           {this.dines}
           </AtList>
