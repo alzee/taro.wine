@@ -29,56 +29,41 @@ export default class Orders extends Component<PropsWithChildren> {
     let api: string
     let filter: string
     let title: string
-    let note: string
     let extraText: string
     switch (type) {
       case 'sales':
         api = 'orders'
         filter = 'seller'
-        title = 'amount'
-        note = 'date'
         extraText = 'voucher'
         break
       case 'returnsToMe':
         api = 'returns'
         filter = 'recipient'
-        title = 'amount'
-        note = 'date'
         extraText = 'voucher'
         break
       case 'buys':
         api = 'orders'
         filter = 'buyer'
-        title = 'amount'
-        note = 'date'
         extraText = 'voucher'
         break
       case 'myReturns':
         api = 'returns'
         filter = 'sender'
-        title = 'amount'
-        note = 'date'
         extraText = 'voucher'
         break
       case 'retails':
         api = 'retails'
         filter = 'store'
-        title = 'amount'
-        note = 'date'
         extraText = 'voucher'
         break
       case 'retailReturns':
         api = 'retail_returns'
         filter = 'store'
-        title = 'amount'
-        note = 'date'
         extraText = 'voucher'
         break
       case 'dines':
         api = 'order_restaurants'
         filter = 'restaurant'
-        title = 'voucher'
-        note = 'date'
         extraText = 'voucher'
         break
     }
@@ -87,12 +72,17 @@ export default class Orders extends Component<PropsWithChildren> {
       success: function (res) { self.setState({data: res.data}) }
     }).then((res) =>{
       for (let i in res.data){
+        if (type == 'dines') {
+          title = res.data[i].consumer.name
+        } else {
+          title = '编号: ' + res.data[i].id
+        }
         this[type].push(
           <AtListItem
           onClick={() => this.navToDetail(res.data[i].id, type)}
-          title={'编号: ' + res.data[i].id}
+          title={title}
           note={res.data[i].date}
-          extraText={res.data[i].amount / 100}
+          extraText={res.data[i][extraText]/ 100}
           arrow='right'
           />
         )
