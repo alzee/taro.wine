@@ -70,5 +70,20 @@ export default defineAppConfig({
         "selectedIconPath": './icon/account-fill.png'
       },
     ]
-  }
+  },
+ requiredPrivateInfos: [
+   "getLocation",
+   // "getFuzzylocation",
+   // "choosePoi",
+   // "chooseLocation",
+   // "chooseAddress",
+   // "onLocationChange",
+   // "startLocationUpdate",
+   // "startLocationUpdateBackground"
+ ],
+ permission: {
+   'scope.userLocation': {
+     desc: "你的位置信息将用于小程序位置接口的效果展示" // 高速公路行驶持续后台定位
+   }
+ }
 })
