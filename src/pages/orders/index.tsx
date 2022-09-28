@@ -7,6 +7,7 @@ import { AtTabs, AtTabsPane } from 'taro-ui'
 import { AtFab } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
+import { fmtDate } from '../../fmtDate'
 
 export default class Orders extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
@@ -97,7 +98,7 @@ export default class Orders extends Component<PropsWithChildren> {
           <AtListItem
           onClick={() => this.navToDetail(res.data[i].id, type)}
           title={title}
-          note={res.data[i].date}
+          note={fmtDate(res.data[i].date)}
           extraText={res.data[i][extraText] / 100}
           arrow='right'
           />
