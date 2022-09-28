@@ -92,7 +92,7 @@ export default class Orders extends Component<PropsWithChildren> {
           onClick={() => this.navToDetail(res.data[i].id, type)}
           title={'编号: ' + res.data[i].id}
           note={res.data[i].date}
-          extraText={res.data[i][extraText]}
+          extraText={res.data[i].amount / 100}
           arrow='right'
           />
         )
