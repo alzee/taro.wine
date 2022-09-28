@@ -40,7 +40,7 @@ export default class Me extends Component<PropsWithChildren> {
         switch (res.data.role) {
           case 4:
             this.orgName = '顾客'
-            this.username = ''
+            this.username = res.data.name
             break;
           default:
             this.orgName = res.data.org.name
