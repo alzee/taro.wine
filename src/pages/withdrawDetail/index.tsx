@@ -3,10 +3,13 @@ import { View, Text } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
+import { AtButton, AtList, AtListItem} from "taro-ui"
+import { Taxon } from '../../Taxon'
 
 export default class Withdrawdetail extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   id: int
+  entity = {}
 
   componentWillMount () { }
 
@@ -17,7 +20,8 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
       url: Env.apiUrl + 'withdraws/' + this.id,
       success: function (res) { self.setState({data: res.data}) }
     }).then((res) =>{
-      this.node = res.data
+      this.entity = res.data
+      console.log(this.entity)
     })
   }
 
@@ -30,7 +34,13 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='withdrawDetail'>
-        <Text>Hello world! id is {this.id}</Text>
+      <AtList>
+      <AtListItem title='状态' extraText={Taxon.status[this.entity.status]} />
+      <AtListItem title='申请金额' extraText={this.entity.amount / 100} />
+      <AtListItem title='实际到账' extraText={this.entity.actualAmount / 100} />
+      <AtListItem title='日期' extraText={this.entity.date} />
+      <AtListItem title='备注' extraText={this.entity.note} />
+      </AtList>
       </View>
     )
   }

@@ -5,6 +5,7 @@ import { AtList, AtListItem, AtCard, AtButton } from "taro-ui"
 import { AtTabs, AtTabsPane } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
+import { Taxon } from '../../Taxon'
 
 export default class Withdraw extends Component<PropsWithChildren> {
   list = []
@@ -24,6 +25,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
     let title: string
     let note: string
     let extraText: string
+    let titlePrefix: string = ''
     switch (type) {
       case 'myWithdraws':
         filter = 'applicant'
@@ -43,12 +45,15 @@ export default class Withdraw extends Component<PropsWithChildren> {
       success: function (res) { self.setState({data: res.data}) }
     }).then((res) =>{
       for (let i in res.data){
+        if (type == 'downstreamWithdraws') {
+          titlePrefix = res.data[i].applicant.name + '-'
+        }
         this[type].push(
           <AtListItem
           onClick={() => this.navToDetail(res.data[i].id)}
-          title={res.data[i][title]}
+          title={titlePrefix + '申请提现 '+ res.data[i][title] / 100}
           note={res.data[i][note]}
-          extraText={res.data[i][extraText]}
+          extraText={Taxon.status[res.data[i][extraText]]}
           arrow='right'
           />
         )
