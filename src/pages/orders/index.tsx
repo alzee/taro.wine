@@ -18,8 +18,11 @@ export default class Orders extends Component<PropsWithChildren> {
   retails = []
   retailReturns = []
   dines = []
+  myRetails = []
+  myDines = []
   tabList = []
   orgid: int
+  cid: int
 
   componentWillMount () { }
 
@@ -30,6 +33,7 @@ export default class Orders extends Component<PropsWithChildren> {
     let filter: string
     let title: string
     let extraText: string
+    let me = this.orgid
     switch (type) {
       case 'sales':
         api = 'orders'
@@ -66,9 +70,21 @@ export default class Orders extends Component<PropsWithChildren> {
         filter = 'restaurant'
         extraText = 'voucher'
         break
+      case 'myDines':
+        api = 'order_restaurants'
+        filter = 'consumer'
+        extraText = 'voucher'
+        me = this.cid
+        break
+      case 'myRetails':
+        api = 'retails'
+        filter = 'consumer'
+        extraText = 'voucher'
+        me = this.cid
+        break
     }
     Taro.request({
-      url: Env.apiUrl + api + '?page=1&itemsPerPage=15&' + filter + '=' + this.orgid,
+      url: Env.apiUrl + api + '?page=1&itemsPerPage=15&' + filter + '=' + me,
       success: function (res) { self.setState({data: res.data}) }
     }).then((res) =>{
       for (let i in res.data){
@@ -82,7 +98,7 @@ export default class Orders extends Component<PropsWithChildren> {
           onClick={() => this.navToDetail(res.data[i].id, type)}
           title={title}
           note={res.data[i].date}
-          extraText={res.data[i][extraText]/ 100}
+          extraText={res.data[i][extraText] / 100}
           arrow='right'
           />
         )
@@ -107,6 +123,12 @@ export default class Orders extends Component<PropsWithChildren> {
     if (type == 'dines') {
       page = 'dineDetail'
     }
+    if (type == 'myRetails') {
+      page = 'retailDetail'
+    }
+    if (type == 'myDines') {
+      page = 'dineDetail'
+    }
     Taro.navigateTo({url: '/pages/' + page + '/index?id=' + id})
   }
   
@@ -119,6 +141,8 @@ export default class Orders extends Component<PropsWithChildren> {
         this.role = res.data.role
         if (this.role != 4) {
           this.orgid = res.data.org.id
+        } else {
+          this.cid = res.data.cid
         }
         switch (this.role) {
           case 0:
@@ -147,9 +171,9 @@ export default class Orders extends Component<PropsWithChildren> {
             this.getData('dines')
             break
           case 4:
-            this.tabList = [{title: '买酒'}, {title: '餐饮'}]
-            this.getData('retails')
-            this.getData('dine')
+            this.tabList = [{title: '购酒'}, {title: '餐饮'}]
+            this.getData('myRetails')
+            this.getData('myDines')
             break
         }
       }
@@ -290,12 +314,12 @@ export default class Orders extends Component<PropsWithChildren> {
       <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
           <AtList className="list">
-          {this.retails}
+          {this.myRetails}
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={1} >
           <AtList className="list">
-          {this.dines}
+          {this.myDines}
           </AtList>
         </AtTabsPane>
       </AtTabs>
