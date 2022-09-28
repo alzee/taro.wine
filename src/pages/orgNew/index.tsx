@@ -45,18 +45,9 @@ export default class Orgnew extends Component<PropsWithChildren> {
     console.log(this.type)
     return (
       <View className='orgNew'>
-        <Text>Hello world! + {this.type}</Text>
       <Form className='form'
       onSubmit={this.formSubmit}
       >
-        <Input 
-        className="input"
-          name='type' 
-          type='text' 
-          placeholder='类型' 
-          value='saf'
-          disabled
-        />
         <Input 
         className="input"
           name='name' 
