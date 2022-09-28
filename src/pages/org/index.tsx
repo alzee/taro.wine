@@ -128,26 +128,33 @@ export default class Org extends Component<PropsWithChildren> {
 
   navToDetail(id){
     if (this.role == 4) {
-      Taro.showModal({
-        title: '提示',
-        content: '将跳转至导航',
-        success: function (res) {
-          if (res.confirm) {
-            console.log('用户点击确定')
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
-        }
-      })
-      // Taro.getLocation({
-      //   type: 'wgs84',
+      // Taro.showModal({
+      //   title: '提示',
+      //   content: '将跳转至导航',
       //   success: function (res) {
-      //     const latitude = res.latitude
-      //     const longitude = res.longitude
-      //     const speed = res.speed
-      //     const accuracy = res.accuracy
+      //     if (res.confirm) {
+      //       console.log('用户点击确定')
+      //     } else if (res.cancel) {
+      //       console.log('用户点击取消')
+      //     }
       //   }
       // })
+      
+      Taro.getLocation({
+        // type: 'wgs84',
+        type: 'gcj02',
+        success: function (res) {
+          const latitude = res.latitude
+          const longitude = res.longitude
+          const speed = res.speed
+          const accuracy = res.accuracy
+          Taro.openLocation({
+            latitude,
+            longitude,
+            scale: 18
+          })
+        }
+      })
     } else {
       Taro.navigateTo({url: '/pages/orgDetail/index?id=' + id})
     }
