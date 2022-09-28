@@ -43,7 +43,17 @@ export default class Org extends Component<PropsWithChildren> {
   }
 
   componentDidMount () { 
+    console.log(this.getDistance(32.62918, 110.79801,32.62918, 110.79801))
     const self = this;
+    Taro.getLocation({
+      // type: 'wgs84',
+      type: 'gcj02',
+      success: function (res) {
+        self.latitude = res.latitude
+        self.longitude = res.longitude
+        console.log(self)
+      }
+    })
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
@@ -70,9 +80,6 @@ export default class Org extends Component<PropsWithChildren> {
             this.restaurants = [...this.restaurants, orgs[i]]
             break;
         }
-        console.log(this.agencies)
-        console.log(this.stores)
-        console.log(this.restaurants)
       }
 
       for (let i in this.stores) {
@@ -81,7 +88,8 @@ export default class Org extends Component<PropsWithChildren> {
           onClick={() => {if (this.role == 4 || this.role == -1) this.openMap(this.stores[i].latitude, this.stores[i].longitude); else this.navToDetail(this.stores[i].id)}}
           title={this.stores[i].name}
           note={this.stores[i].address}
-          // extraText='详细信息'
+          // extraText={self.getDistance(self.latitude, self.longitude, self.stores[i].latitude, self.stores[i].longitude)}
+          extraText={this.getDistance(self.latitude, self.longitude,self.stores[i].latitude, self.stores[i].longitude)}
           arrow='right'
           />
         )
@@ -93,7 +101,7 @@ export default class Org extends Component<PropsWithChildren> {
           onClick={() => {if (this.role == 4 || this.role == -1) this.openMap(this.restaurants[i].latitude, this.restaurants[i].longitude); else this.navToDetail(this.restaurants[i].id)}}
           title={this.restaurants[i].name}
           note={this.restaurants[i].address}
-          // extraText='详细信息'
+          extraText={this.getDistance(self.latitude, self.longitude,self.restaurants[i].latitude, self.restaurants[i].longitude)}
           arrow='right'
           />
         )
