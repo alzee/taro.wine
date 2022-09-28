@@ -160,6 +160,18 @@ export default class Org extends Component<PropsWithChildren> {
     }
   }
 
+  orgNew(orgType: int){
+    switch (orgType) {
+      case 1:
+        break
+      case 2:
+        break
+      case 3:
+        break
+    }
+    Taro.navigateTo({url: '/pages/orgNew/index?type=' + orgType})
+  }
+
   render () {
     let tabList = []
     if (this.role == 0) {
@@ -180,7 +192,7 @@ export default class Org extends Component<PropsWithChildren> {
       <AtTabs current={this.state.seg} tabList={tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.seg} index={0}>
         { this.role == 1 &&
-        <AtButton className='new-btn' type='secondary' size='small'>新增门店</AtButton>
+        <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(2)}>新增门店</AtButton>
         }
           <AtList>
           { this.list }
@@ -188,14 +200,14 @@ export default class Org extends Component<PropsWithChildren> {
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={1}>
         { this.role == 1 &&
-        <AtButton className='new-btn' type='secondary' size='small'>新增餐厅</AtButton>
+        <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(3)}>新增餐厅</AtButton>
         }
           <AtList>
           { this.list1 }
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={2} >
-        <AtButton className='new-btn' type='secondary' size='small'>新增代理商</AtButton>
+        <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(1)}>新增代理商</AtButton>
           <AtList>
           { this.list2 }
           </AtList>
