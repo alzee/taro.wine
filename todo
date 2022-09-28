@@ -1,3 +1,5 @@
+index:
+  - user
 new:
   - product
   - restaurant/store/agency
@@ -7,5 +9,12 @@ new:
   - retailreturn
   - dine
   - withdraw
+  - user
+edit:
+  - product
+  - restaurant/store/agency
+  - order
+  - return
+  - user
 
 # vim:ft=yaml
