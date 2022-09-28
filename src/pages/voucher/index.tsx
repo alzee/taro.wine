@@ -6,6 +6,7 @@ import { AtNavBar } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 import { Taxon } from '../../Taxon'
+import { fmtDate } from '../../fmtDate'
 
 export default class Voucher extends Component<PropsWithChildren> {
   query: string = '?page=1&itemsPerPage=20'
@@ -35,7 +36,7 @@ export default class Voucher extends Component<PropsWithChildren> {
             this.list.push(
               <AtListItem
               title={Taxon.voucherType[records[i].type]}
-              note={records[i].date}
+              note={fmtDate(records[i].date)}
               extraText={records[i].voucher / 100}
               // arrow='right'
               />

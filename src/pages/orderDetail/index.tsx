@@ -5,6 +5,7 @@ import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
 import { AtButton, AtList, AtListItem} from "taro-ui"
 import { Taxon } from '../../Taxon'
+import { fmtDate } from '../../fmtDate'
 
 export default class Orderdetail extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
@@ -52,7 +53,7 @@ export default class Orderdetail extends Component<PropsWithChildren> {
       {this.itemList}
       <AtListItem title='金额' extraText={this.entity.amount / 100} />
       <AtListItem title='代金券' extraText={this.entity.voucher / 100} />
-      <AtListItem title='日期' extraText={this.entity.date} />
+      <AtListItem title='日期' extraText={fmtDate(this.entity.date)} />
       <AtListItem title='备注' extraText={this.entity.note} />
       </AtList>
       }

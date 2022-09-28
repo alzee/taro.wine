@@ -6,6 +6,7 @@ import { AtTabs, AtTabsPane } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 import { Taxon } from '../../Taxon'
+import { fmtDate } from '../../fmtDate'
 
 export default class Withdraw extends Component<PropsWithChildren> {
   list = []
@@ -23,20 +24,17 @@ export default class Withdraw extends Component<PropsWithChildren> {
     let api: string = 'withdraws'
     let filter: string
     let title: string
-    let note: string
     let extraText: string
     let titlePrefix: string = ''
     switch (type) {
       case 'myWithdraws':
         filter = 'applicant'
         title = 'amount'
-        note = 'date'
         extraText = 'status'
         break
       case 'downstreamWithdraws':
         filter = 'approver'
         title = 'amount'
-        note = 'date'
         extraText = 'status'
         break
     }
@@ -52,7 +50,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
           <AtListItem
           onClick={() => this.navToDetail(res.data[i].id)}
           title={titlePrefix + '申请提现 '+ res.data[i][title] / 100}
-          note={res.data[i][note]}
+          note={fmtDate(res.data[i].date)}
           extraText={Taxon.status[res.data[i][extraText]]}
           arrow='right'
           />

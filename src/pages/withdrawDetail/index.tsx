@@ -5,6 +5,7 @@ import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
 import { AtButton, AtList, AtListItem} from "taro-ui"
 import { Taxon } from '../../Taxon'
+import { fmtDate } from '../../fmtDate'
 
 export default class Withdrawdetail extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
@@ -42,7 +43,7 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
       <AtListItem title='审核方' extraText={this.entity.approver.name} />
       <AtListItem title='申请金额' extraText={this.entity.amount / 100} />
       <AtListItem title='实际到账' extraText={this.entity.actualAmount / 100} />
-      <AtListItem title='日期' extraText={this.entity.date} />
+      <AtListItem title='日期' extraText={fmtDate(this.entity.date)} />
       <AtListItem title='状态' extraText={Taxon.status[this.entity.status]} />
       <AtListItem title='备注' extraText={this.entity.note} />
       </AtList>
