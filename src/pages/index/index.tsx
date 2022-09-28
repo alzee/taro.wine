@@ -132,20 +132,16 @@ export default class Index extends Component<PropsWithChildren> {
 
       <View className='at-row highlight1'>
       <View className="at-col">
-      <AtAvatar className="avatar" circle size="small" image={ this.imgUrl + '80x80.png'}></AtAvatar>
-      <Text>门店</Text>
+      <AtAvatar className="avatar" circle image={ this.imgUrl + '80x80.png'}></AtAvatar>
+      <Text>剑南老窖</Text>
       </View>
       <View className="at-col">
-      <AtAvatar className="avatar" circle size="small" image={ this.imgUrl + '80x80.png'}></AtAvatar>
-      <Text>餐厅</Text>
+      <AtAvatar className="avatar" circle image={ this.imgUrl + '80x80.png'}></AtAvatar>
+      <Text>门店导航</Text>
       </View>
       <View className="at-col">
-      <AtAvatar className="avatar" circle size="small" image={ this.imgUrl + '80x80.png'}></AtAvatar>
-      <Text>推荐</Text>
-      </View>
-      <View className="at-col">
-      <AtAvatar className="avatar" circle size="small" image={ this.imgUrl + '80x80.png'}></AtAvatar>
-      <Text>生活</Text>
+      <AtAvatar className="avatar" circle image={ this.imgUrl + '80x80.png'}></AtAvatar>
+      <Text>合作餐厅</Text>
       </View>
       </View>
 
