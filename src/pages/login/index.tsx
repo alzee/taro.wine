@@ -28,7 +28,7 @@ export default class Login extends Component<PropsWithChildren> {
     }).then((res) => {
       console.log(res.data)
       if (res.data.code == 0) {
-        Taro.clearStorage()
+        // Taro.clearStorage()
         Taro.setStorage({
           key: Env.storageKey,
           data: res.data.data

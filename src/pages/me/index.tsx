@@ -100,7 +100,7 @@ export default class Me extends Component<PropsWithChildren> {
         if (res.confirm) {
           console.log('用户点击确定')
           // clear
-          Taro.clearStorage()
+          // Taro.clearStorage()
           Taro.setStorage({
             key: Env.storageKey,
             data: {uid: 0, role: -1, token: 0}

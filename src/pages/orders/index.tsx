@@ -111,9 +111,36 @@ export default class Orders extends Component<PropsWithChildren> {
       success: function (res) { self.setState({data: res.data}) }
     }).then((res) =>{
       for (let i in res.data){
-        if (type == 'dines') {
-          title = res.data[i].consumer.name
-        } else {
+        console.log(res.data[i])
+        switch (type) {
+          case 'dines':
+            title = res.data[i].consumer.name
+            break
+          case 'myDines':
+            title = res.data[i].restaurant.name
+            break
+          case 'myRetails':
+            title = res.data[i].store.name
+            break
+          case 'retails':
+            title = res.data[i].product.name + ' x ' + res.data[i].quantity
+            break
+          case 'retailReturns':
+            title = res.data[i].product.name + ' x ' + res.data[i].quantity
+            break
+          case 'sales':
+            title = res.data[i].orderItems[0].product.name + ' x ' + res.data[i].orderItems[0].quantity + ' ...'
+            break
+          case 'buys':
+            title = res.data[i].orderItems[0].product.name + ' x ' + res.data[i].orderItems[0].quantity + ' ...'
+            break
+          case 'myReturns':
+            title = res.data[i].returnItems[0].product.name + ' x ' + res.data[i].returnItems[0].quantity + ' ...'
+            break
+          case 'returnsToMe':
+            title = res.data[i].returnItems[0].product.name + ' x ' + res.data[i].returnItems[0].quantity + ' ...'
+            break
+          default:
           title = '编号: ' + res.data[i].id
         }
         this[type].push(

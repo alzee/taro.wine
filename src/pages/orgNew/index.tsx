@@ -3,7 +3,7 @@ import { View, Text, Form, Input, Button } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
-import { AtButton, AtList, AtListItem} from "taro-ui"
+import { AtButton, AtList, AtListItem, AtInput} from "taro-ui"
 import { Taxon } from '../../Taxon'
 
 export default class Orgnew extends Component<PropsWithChildren> {
