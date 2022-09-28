@@ -5,6 +5,7 @@ import { AtList, AtListItem, AtCard } from "taro-ui"
 import { AtNavBar } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
+import { Taxon } from '../../Taxon'
 
 export default class Voucher extends Component<PropsWithChildren> {
   query: string = '?page=1&itemsPerPage=20'
@@ -14,6 +15,7 @@ export default class Voucher extends Component<PropsWithChildren> {
   componentWillMount () { }
 
   componentDidMount () {
+    console.log(Taxon.voucherType)
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
@@ -32,7 +34,7 @@ export default class Voucher extends Component<PropsWithChildren> {
           for (let i in records) {
             this.list.push(
               <AtListItem
-              title={records[i].type}
+              title={Taxon.voucherType[records[i].type]}
               note={records[i].date}
               extraText={records[i].voucher / 100}
               // arrow='right'
