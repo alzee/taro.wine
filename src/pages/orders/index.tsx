@@ -89,9 +89,9 @@ export default class Orders extends Component<PropsWithChildren> {
       for (let i in res.data){
         this[type].push(
           <AtListItem
-          onClick={() => this.navToDetail(res.data[i].id)}
-          title={res.data[i][title]}
-          note={res.data[i][note]}
+          onClick={() => this.navToDetail(res.data[i].id, type)}
+          title={'编号: ' + res.data[i].id}
+          note={res.data[i].date}
           extraText={res.data[i][extraText]}
           arrow='right'
           />
@@ -100,8 +100,24 @@ export default class Orders extends Component<PropsWithChildren> {
     })
   }
 
-  navToDetail(id){
-    Taro.navigateTo({url: '/pages/orderDetail/index?id=' + id})
+  navToDetail(id: int, type: string){
+    let page: string
+    if (type == 'sales' || type == 'buys') {
+      page = 'orderDetail'
+    }
+    if (type == 'returnsToMe' || type == 'myReturns') {
+      page = 'returnDetail'
+    }
+    if (type == 'retails') {
+      page = 'retailDetail'
+    }
+    if (type == 'retailReturns') {
+      page = 'retailReturnDetail'
+    }
+    if (type == 'dines') {
+      page = 'dineDetail'
+    }
+    Taro.navigateTo({url: '/pages/' + page + '/index?id=' + id})
   }
   
   componentDidMount () {

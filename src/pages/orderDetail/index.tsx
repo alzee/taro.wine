@@ -45,6 +45,7 @@ export default class Orderdetail extends Component<PropsWithChildren> {
       <View className='orderDetail'>
       { this.state &&
       <AtList>
+      <AtListItem title='订单编号' extraText={this.entity.id} />
       <AtListItem title='发货方' extraText={this.entity.seller.name} />
       <AtListItem title='进货方' extraText={this.entity.buyer.name} />
       <AtListItem title='订单商品' />
