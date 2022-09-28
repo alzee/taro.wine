@@ -127,7 +127,7 @@ export default class Org extends Component<PropsWithChildren> {
   }
 
   navToDetail(id){
-    if (this.role == 4) {
+    if (this.role == 4 || this.role == -1) {
       // Taro.showModal({
       //   title: '提示',
       //   content: '将跳转至导航',
