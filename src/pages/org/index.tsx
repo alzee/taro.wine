@@ -45,20 +45,20 @@ export default class Org extends Component<PropsWithChildren> {
   componentDidMount () { 
     console.log(this.getDistance(32.62918, 110.79801,32.62918, 110.79801))
     const self = this;
-    Taro.getLocation({
-      // type: 'wgs84',
-      type: 'gcj02',
-      success: function (res) {
-        self.latitude = res.latitude
-        self.longitude = res.longitude
-        console.log(self)
-      }
-    })
+
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
         self.setState({data: res.data})
         this.role = res.data.role
+      }
+    })
+
+    Taro.getStorage({
+      key: 'coord',
+      success: res => {
+        this.latitude = res.data.latitude
+        this.longitude = res.data.longitude
       }
     })
 
@@ -118,20 +118,6 @@ export default class Org extends Component<PropsWithChildren> {
         )
       }
     })
-
-    Taro.getStorage({
-      key: Env.storageKey,
-      success: res => {
-        if (res.data.uid == 0) {
-          console.log('need to login');
-          //this.navTo('chooseLogin');
-        } else {
-        }
-      },
-      fail: res => {
-        console.log('fuck')
-      },
-    });
   }
 
   componentWillUnmount () { }
