@@ -10,6 +10,7 @@ export default class Orderdetail extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   id: int
   entity = {}
+  itemList = []
 
   componentWillMount () { }
 
@@ -21,7 +22,15 @@ export default class Orderdetail extends Component<PropsWithChildren> {
       success: function (res) { self.setState({data: res.data}) }
     }).then((res) =>{
       this.entity = res.data
+      let items = this.entity.orderItems
       console.log(this.entity)
+      for (let i in items) {
+        this.itemList.push(
+          <View className='order-item'>
+          <Text>{items[i].product.name} x {items[i].quantity}</Text>
+          </View>
+        )
+      }
     })
   }
 
@@ -39,15 +48,7 @@ export default class Orderdetail extends Component<PropsWithChildren> {
       <AtListItem title='发货方' extraText={this.entity.seller.name} />
       <AtListItem title='进货方' extraText={this.entity.buyer.name} />
       <AtListItem title='订单商品' />
-      <View className='store'>
-        <Text>Hello world!</Text>
-      </View>
-      <View className='store'>
-        <Text>Hello world!</Text>
-      </View>
-      <View className='store'>
-        <Text>Hello world!</Text>
-      </View>
+      {this.itemList}
       <AtListItem title='金额' extraText={this.entity.amount / 100} />
       <AtListItem title='代金券' extraText={this.entity.voucher / 100} />
       <AtListItem title='日期' extraText={this.entity.date} />
