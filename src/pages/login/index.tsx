@@ -65,7 +65,7 @@ export default class Login extends Component<PropsWithChildren> {
           type='password' 
           placeholder='密码' 
         />
-        <Button type='default' formType='submit'>登录</Button>
+        <Button type='primary' formType='submit'>登录</Button>
       </Form>
       </View>
     )
