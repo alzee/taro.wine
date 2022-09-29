@@ -3,24 +3,27 @@ import { View, Text } from '@tarojs/components'
 import './index.scss'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
-import { AtList, AtListItem, AtCard } from "taro-ui"
+import { AtList, AtListItem, AtCard, AtButton } from "taro-ui"
 
 export default class Product extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
   list = []
+  role: int
+  orgid: int
 
   navToDetail(id){
     Taro.navigateTo({url: '/pages/productDetail/index?id=' + id})
   }
 
-  componentWillMount () {
+  componentDidMount () {
     const self = this;
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
         self.setState({data: res.data})
-        let orgId = res.data.org.id
-        let query = '?page=1&itemsPerPage=20&org=' + orgId
+        this.orgid = res.data.org.id
+        this.role = res.data.role
+        let query = '?page=1&itemsPerPage=20&org=' + this.orgid
         Taro.request({
           url: Env.apiUrl + 'products' + query,
           success: function (res) { self.setState({data: res.data}) }
@@ -42,8 +45,6 @@ export default class Product extends Component<PropsWithChildren> {
     })
   }
 
-  componentDidMount () { }
-
   componentWillUnmount () { }
 
   componentDidShow () {
@@ -54,6 +55,9 @@ export default class Product extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='product'>
+      { this.role == 0 &&
+      <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.create(1)}>添加产品</AtButton>
+      }
       <AtList>
       { this.list }
       </AtList>

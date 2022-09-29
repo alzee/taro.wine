@@ -2,7 +2,6 @@ index:
   - user
 new:
   - product
-  - restaurant/store/agency
   - order
   - return
   - retail
