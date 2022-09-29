@@ -16,8 +16,7 @@ new:
 edit:
   - product
   - restaurant/store/agency
-  - order
-  - return
+  - withdraw
   - user
 
 # vim:ft=yaml
