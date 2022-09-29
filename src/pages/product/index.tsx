@@ -4,7 +4,6 @@ import './index.scss'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 import { AtList, AtListItem, AtCard, AtButton } from "taro-ui"
-import jiannan from '../../img/jiannan.jpg'
 
 export default class Product extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
@@ -38,7 +37,7 @@ export default class Product extends Component<PropsWithChildren> {
               note={'规格: ' + res.data[i].spec + ' 库存: ' + res.data[i].stock}
               // extraText={'库存: ' + res.data[i].stock}
               arrow='right'
-              thumb={jiannan}
+              thumb={Env.imgUrl + 'jiannan.jpg'}
           />
             )
           }

@@ -6,7 +6,6 @@ import { AtList, AtListItem, AtCard } from "taro-ui"
 import { AtTabs, AtTabsPane } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
-import storefront from '../../img/storefront.png'
 
 export default class Org extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
@@ -90,7 +89,7 @@ export default class Org extends Component<PropsWithChildren> {
           note={this.stores[i].address}
           // extraText={self.getDistance(self.latitude, self.longitude, self.stores[i].latitude, self.stores[i].longitude)}
           extraText={this.getDistance(self.latitude, self.longitude,self.stores[i].latitude, self.stores[i].longitude)}
-          thumb={storefront}
+          thumb={Env.imgUrl + 'storefront.png'}
           arrow='right'
           />
         )
@@ -103,7 +102,7 @@ export default class Org extends Component<PropsWithChildren> {
           title={this.restaurants[i].name}
           note={this.restaurants[i].address}
           extraText={this.getDistance(self.latitude, self.longitude,self.restaurants[i].latitude, self.restaurants[i].longitude)}
-          thumb={storefront}
+          thumb={Env.imgUrl + 'storefront.png'}
           arrow='right'
           />
         )
@@ -115,7 +114,7 @@ export default class Org extends Component<PropsWithChildren> {
           title={this.agencies[i].name}
           note={this.agencies[i].address}
           // extraText='详细信息'
-          thumb={storefront}
+          thumb={Env.imgUrl + 'storefront.png'}
           arrow='right'
           />
         )

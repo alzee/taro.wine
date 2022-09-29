@@ -5,7 +5,6 @@ import { Env } from '../../env/env'
 import { Taxon } from '../../Taxon'
 import Taro from '@tarojs/taro'
 import { AtButton, AtList, AtListItem} from "taro-ui"
-import jiannan from '../../img/jiannan.jpg'
 
 export default class Productdetail extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
@@ -35,7 +34,7 @@ export default class Productdetail extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='productDetail'>
-      <Image className='pic' src={jiannan} />
+      <Image className='pic' src={Env.imgUrl + 'jiannan.jpg'} />
       <AtList>
       <AtListItem title='产品名称' extraText={this.product.name} />
       <AtListItem title='产品编号' extraText={this.product.sn} />
