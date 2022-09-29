@@ -134,15 +134,15 @@ export default class Index extends Component<PropsWithChildren> {
       }
 
       <View className='at-row highlight1'>
-      <View className="at-col">
+      <View className="at-col"  onClick={() => Taro.navigateTo({url: '/pages/node/index?id=5'})}>
       <AtAvatar className="avatar" circle image={wine}></AtAvatar>
       <Text>剑南老窖</Text>
       </View>
-      <View className="at-col">
+      <View className="at-col" onClick={() => Taro.switchTab({url: '/pages/org/index'})}>
       <AtAvatar className="avatar" circle image={shop}></AtAvatar>
       <Text>门店导航</Text>
       </View>
-      <View className="at-col">
+      <View className="at-col" onClick={() => Taro.switchTab({url: '/pages/org/index'})}>
       <AtAvatar className="avatar" circle image={dine}></AtAvatar>
       <Text>合作餐厅</Text>
       </View>

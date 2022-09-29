@@ -1,10 +1,11 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Image } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
 import { AtButton, AtList, AtListItem} from "taro-ui"
 import { Taxon } from '../../Taxon'
+import storefront from '../../img/storefront.png'
 
 export default class Orgdetail extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
@@ -33,6 +34,7 @@ export default class Orgdetail extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='orgDetail'>
+      <Image mode='widthFix' className='storefront' src={storefront} />
       <AtList>
       <AtListItem title='名称' extraText={this.entity.name} />
       <AtListItem title='类型' extraText={Taxon.orgType[this.entity.type]} />
