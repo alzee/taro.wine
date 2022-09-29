@@ -11,7 +11,7 @@ export default class Returnnew extends Component<PropsWithChildren> {
   role: int
   orgid: int
   productid: int
-  buyerid: int
+  senderid: int
   products = []
   downstreams = []
   label = {
@@ -38,14 +38,14 @@ export default class Returnnew extends Component<PropsWithChildren> {
     this.setState({
       downstreamSelected: this.state.downstreams[e.detail.value]
     })
-    this.buyerid = this.downstreams[e.detail.value].id
+    this.senderid = this.downstreams[e.detail.value].id
   }
 
   formSubmit = e => {
     let data = e.detail.value
-    if (!this.buyerid) {
+    if (!this.senderid) {
       Taro.showToast({
-        title: '请选择收货方' ,
+        title: '请选择退货方' ,
         icon: 'error',
         duration: 2000
       })
@@ -67,14 +67,14 @@ export default class Returnnew extends Component<PropsWithChildren> {
       })
       return
     }
-    data.sellerid = this.orgid
-    data.buyerid = this.buyerid
+    data.recipientid= this.orgid
+    data.senderid = this.senderid
     data.product = this.productid
     console.log(data)
     Taro.request({
       method: 'POST',
       data: data,
-      url: Env.apiUrl + 'order/new',
+      url: Env.apiUrl + 'return/new',
       success: function (res) { }
     }).then((res) =>{
       Taro.showToast({
@@ -149,7 +149,7 @@ export default class Returnnew extends Component<PropsWithChildren> {
       <Picker className='buyer' mode='selector' range={this.state.downstreams} onChange={this.downstreamChange}>
       <AtList>
       <AtListItem
-      title='收货方'
+      title='退货方'
       extraText={this.state.downstreamSelected}
       />
       </AtList>
