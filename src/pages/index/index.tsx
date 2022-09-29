@@ -8,8 +8,6 @@ import { AtActionSheet, AtActionSheetItem } from "taro-ui"
 import Taro from '@tarojs/taro'
 import { HttpService } from '../../services/http.service'
 import { Env } from '../../env/env'
-import shop from '../../icon/shop.png'
-import dine from '../../icon/dine.png'
 
 export default class Index extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
@@ -138,11 +136,11 @@ export default class Index extends Component<PropsWithChildren> {
       <Text>剑南老窖</Text>
       </View>
       <View className="at-col" onClick={() => Taro.switchTab({url: '/pages/org/index'})}>
-      <AtAvatar className="avatar" circle image={shop}></AtAvatar>
+      <AtAvatar className="avatar" circle image={Env.imgUrl + 'store.png'}></AtAvatar>
       <Text>门店导航</Text>
       </View>
       <View className="at-col" onClick={() => Taro.switchTab({url: '/pages/org/index'})}>
-      <AtAvatar className="avatar" circle image={dine}></AtAvatar>
+      <AtAvatar className="avatar" circle image={Env.imgUrl + 'dine.png'}></AtAvatar>
       <Text>合作餐厅</Text>
       </View>
       </View>
