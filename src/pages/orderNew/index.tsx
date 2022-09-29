@@ -125,7 +125,7 @@ export default class Ordernew extends Component<PropsWithChildren> {
         success: () => {
           setTimeout(
             () => {
-              Taro.redirectTo({url: '/pages/orders/index'})
+              Taro.switchTab({url: '/pages/orders/index'})
             }, 500
           )
         }
