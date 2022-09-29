@@ -34,7 +34,7 @@ export default class Orders extends Component<PropsWithChildren> {
         page = 'orderNew'
         break
       case 10:
-        page = 'orderReturnNew'
+        page = 'returnNew'
         break
       case 2:
         page = 'retailNew'
