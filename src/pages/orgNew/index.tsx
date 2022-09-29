@@ -148,7 +148,7 @@ export default class Orgnew extends Component<PropsWithChildren> {
           type='text' 
           placeholder='区域' 
         />
-        <Button type='default' formType='submit'>提交</Button>
+        <Button type='primary' formType='submit'>提交</Button>
       </Form>
       </View>
     )
