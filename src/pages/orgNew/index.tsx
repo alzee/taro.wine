@@ -3,12 +3,14 @@ import { View, Text, Form, Input, Button, Picker } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
-import { AtButton, AtList, AtListItem, AtInput} from "taro-ui"
+import { AtButton, AtList, AtListItem, AtInput, AtForm} from "taro-ui"
 import { Taxon } from '../../Taxon'
 
 export default class Orgnew extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   type: int
+  role: int
+  orgid: int
   state = {
     selector: ['门店', '餐厅', '代理商'],
     selectorChecked: '',
@@ -18,28 +20,74 @@ export default class Orgnew extends Component<PropsWithChildren> {
 
   componentDidMount () {
     this.type = this.instance.router.params.type
-    console.log(this.type)
     this.setState({
       selectorChecked: this.state.selector[this.type]
     })
+
+    Taro.getStorage({
+      key: Env.storageKey,
+      success: res => {
+        this.setState({data: res.data})
+        this.role = res.data.role
+        this.orgid = res.data.org.id
+        if (this.role == 0) {
+          this.setState({
+            selector: ['代理商']
+          })
+        }
+        if (this.role == 1) {
+          this.setState({
+            selector: ['门店', '餐厅'],
+          })
+        }
+      }
+    })
   }
 
-  formSubmit(){
-    // post to http://localhost:8000/api/orgs
-    // curl -X 'POST' \
-    //   'http://localhost:8000/api/orgs' \
-    //   -H 'accept: application/json' \
-    //   -H 'Content-Type: application/json' \
-    //   -d '{
-    //   "name": "test",
-    //   "contact": "t1",
-    //   "phone": "t1",
-    //   "address": "t1",
-    //   "district": "t1",
-    //   "type": 1,
-    //   "voucher": 0,
-    //   "discount": 0.95
-    // }'
+  formSubmit = e => {
+    let data = e.detail.value
+    let label = {
+      name: '名称',
+      contact: '联系人',
+      phone: '电话',
+      address: '地址',
+      district: '区域',
+    }
+    for (let i in data) {
+      if (data[i] == "") {
+        Taro.showToast({
+          title: '请填写 ' + label[i],
+          icon: 'error',
+          duration: 2000
+        })
+        return
+      }
+    }
+    if (this.role == 0) {
+      data.type = 1
+    } else {
+      data.type = Number(this.type) + 2
+    }
+    data.upstream = '/api/orgs/' + this.orgid
+    Taro.request({
+      method: 'POST',
+      data: data,
+      url: Env.apiUrl + 'orgs',
+      success: function (res) { }
+    }).then((res) =>{
+      Taro.showToast({
+        title: '已完成',
+        icon: 'success',
+        duration: 2000,
+        success: () => {
+          setTimeout(
+            () => {
+              Taro.redirectTo({url: '/pages/org/index'})
+            }, 500
+          )
+        }
+      })
+    })
   }
 
   componentWillUnmount () { }
@@ -49,11 +97,10 @@ export default class Orgnew extends Component<PropsWithChildren> {
   componentDidHide () { }
 
   pickerChange = e => {
-    console.log(e)
-    console.log(this)
     this.setState({
       selectorChecked: this.state.selector[e.detail.value]
     })
+    this.type = e.detail.value
   }
 
   render () {
@@ -72,6 +119,7 @@ export default class Orgnew extends Component<PropsWithChildren> {
       </Picker>
         <Input 
         className="input"
+        required
           name='name' 
           type='text' 
           placeholder='名称' 

@@ -43,7 +43,6 @@ export default class Org extends Component<PropsWithChildren> {
   }
 
   componentDidMount () { 
-    console.log(this.getDistance(32.62918, 110.79801,32.62918, 110.79801))
     const self = this;
 
     Taro.getStorage({
