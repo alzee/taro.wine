@@ -1,7 +1,6 @@
 index:
   - user
 new:
-  - product
   - order
   - return
   - retail

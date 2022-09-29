@@ -16,6 +16,7 @@ export default defineAppConfig({
     'pages/product/index',
     'pages/store/index',
     'pages/dine/index',
+    'pages/productNew/index',
     'pages/orgNew/index',
     'pages/orderNew/index',
     'pages/returnNew/index',
