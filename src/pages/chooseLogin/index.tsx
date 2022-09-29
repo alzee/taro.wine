@@ -1,5 +1,5 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Button } from '@tarojs/components'
 import './index.scss'
 import { AtButton } from 'taro-ui'
 import Taro from '@tarojs/taro'
@@ -57,7 +57,7 @@ export default class Chooselogin extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='chooseLogin'>
-      <AtButton type='primary' className="btn" onClick={this.wxlogin}>微信登录</AtButton>
+      <Button type='primary' className="btn" onClick={this.wxlogin}>微信登录</Button>
       <Text className="text" onClick={this.toLoginPage}>机构登录</Text>
       </View>
     )
