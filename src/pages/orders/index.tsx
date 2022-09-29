@@ -46,7 +46,7 @@ export default class Orders extends Component<PropsWithChildren> {
         page = 'dineNew'
         break
     }
-    Taro.navigateTo({url: '/pages/' + page + '/index'})
+    Taro.redirectTo({url: '/pages/' + page + '/index'})
   }
 
   getData (type: string) {
