@@ -14,7 +14,7 @@ import coord from '../../icon/coord.png'
 export default class Me extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
   role: int;
-  avatar: string;
+  avatar: string = Env.imgUrl + 'avatar.png';
   username: string;
   orgName: string;
   orgid: int
