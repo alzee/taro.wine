@@ -84,6 +84,30 @@ export default class Ordernew extends Component<PropsWithChildren> {
 
   formSubmit = e => {
     let data = e.detail.value
+    if (!this.buyerid) {
+      Taro.showToast({
+        title: '请选择收货方' ,
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
+    if (!this.productid) {
+      Taro.showToast({
+        title: '请选择商品' ,
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
+    if (data['quantity'] == "") {
+      Taro.showToast({
+        title: '请填写数量' ,
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
     data.sellerid = this.orgid
     data.buyerid = this.buyerid
     data.product = this.productid
