@@ -1,5 +1,5 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text, Form, Input, Button } from '@tarojs/components'
+import { View, Text, Form, Input, Button, Picker } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
@@ -9,12 +9,19 @@ import { Taxon } from '../../Taxon'
 export default class Orgnew extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   type: int
+  state = {
+    selector: ['门店', '餐厅', '代理商'],
+    selectorChecked: '',
+  }
 
   componentWillMount () { }
 
   componentDidMount () {
     this.type = this.instance.router.params.type
-    const self = this;
+    console.log(this.type)
+    this.setState({
+      selectorChecked: this.state.selector[this.type]
+    })
   }
 
   formSubmit(){
@@ -41,13 +48,28 @@ export default class Orgnew extends Component<PropsWithChildren> {
 
   componentDidHide () { }
 
+  pickerChange = e => {
+    console.log(e)
+    console.log(this)
+    this.setState({
+      selectorChecked: this.state.selector[e.detail.value]
+    })
+  }
+
   render () {
-    console.log(this.type)
     return (
       <View className='orgNew'>
       <Form className='form'
       onSubmit={this.formSubmit}
       >
+      <Picker mode='selector' range={this.state.selector} onChange={this.pickerChange}>
+      <AtList>
+      <AtListItem
+      title='类型'
+      extraText={this.state.selectorChecked}
+      />
+      </AtList>
+      </Picker>
         <Input 
         className="input"
           name='name' 
