@@ -60,22 +60,22 @@ export default class Orders extends Component<PropsWithChildren> {
     switch (type) {
       case 'sales':
         api = 'orders'
-        filter = 'seller'
+        filter = 'exists%5BorderItems%5D=true&seller'
         extraText = 'voucher'
         break
       case 'returnsToMe':
         api = 'returns'
-        filter = 'recipient'
+        filter = 'exists%5BreturnItems%5D=true&recipient'
         extraText = 'voucher'
         break
       case 'buys':
         api = 'orders'
-        filter = 'buyer'
+        filter = 'exists%5BorderItems%5D=true&buyer'
         extraText = 'voucher'
         break
       case 'myReturns':
         api = 'returns'
-        filter = 'sender'
+        filter = 'exists%5BreturnItems%5D=true&sender'
         extraText = 'voucher'
         break
       case 'retails':
@@ -111,7 +111,6 @@ export default class Orders extends Component<PropsWithChildren> {
       success: function (res) { self.setState({data: res.data}) }
     }).then((res) =>{
       for (let i in res.data){
-        console.log(res.data[i])
         switch (type) {
           case 'dines':
             title = res.data[i].consumer.name
