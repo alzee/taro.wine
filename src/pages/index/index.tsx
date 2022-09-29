@@ -8,6 +8,9 @@ import { AtActionSheet, AtActionSheetItem } from "taro-ui"
 import Taro from '@tarojs/taro'
 import { HttpService } from '../../services/http.service'
 import { Env } from '../../env/env'
+import wine from '../../icon/wine-home.png'
+import shop from '../../icon/shop.png'
+import dine from '../../icon/dine-home.png'
 
 export default class Index extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
@@ -132,15 +135,15 @@ export default class Index extends Component<PropsWithChildren> {
 
       <View className='at-row highlight1'>
       <View className="at-col">
-      <AtAvatar className="avatar" circle image={ this.imgUrl + '80x80.png'}></AtAvatar>
+      <AtAvatar className="avatar" circle image={wine}></AtAvatar>
       <Text>剑南老窖</Text>
       </View>
       <View className="at-col">
-      <AtAvatar className="avatar" circle image={ this.imgUrl + '80x80.png'}></AtAvatar>
+      <AtAvatar className="avatar" circle image={shop}></AtAvatar>
       <Text>门店导航</Text>
       </View>
       <View className="at-col">
-      <AtAvatar className="avatar" circle image={ this.imgUrl + '80x80.png'}></AtAvatar>
+      <AtAvatar className="avatar" circle image={dine}></AtAvatar>
       <Text>合作餐厅</Text>
       </View>
       </View>
