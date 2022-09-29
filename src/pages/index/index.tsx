@@ -8,7 +8,7 @@ import { AtActionSheet, AtActionSheetItem } from "taro-ui"
 import Taro from '@tarojs/taro'
 import { HttpService } from '../../services/http.service'
 import { Env } from '../../env/env'
-import wine from '../../icon/wine-home.png'
+import jiannan from '../../img/jiannan.png'
 import shop from '../../icon/shop.png'
 import dine from '../../icon/dine-home.png'
 
@@ -135,7 +135,7 @@ export default class Index extends Component<PropsWithChildren> {
 
       <View className='at-row highlight1'>
       <View className="at-col"  onClick={() => Taro.navigateTo({url: '/pages/node/index?id=5'})}>
-      <AtAvatar className="avatar" circle image={wine}></AtAvatar>
+      <AtAvatar className="avatar" circle image={jiannan}></AtAvatar>
       <Text>剑南老窖</Text>
       </View>
       <View className="at-col" onClick={() => Taro.switchTab({url: '/pages/org/index'})}>
