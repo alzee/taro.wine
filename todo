@@ -8,7 +8,6 @@
 index:
   - user
 new:
-  - retail
   - retailreturn
   - dine
   - withdraw
