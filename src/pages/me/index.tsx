@@ -129,8 +129,8 @@ export default class Me extends Component<PropsWithChildren> {
         <View className="at-row top">
         <AtAvatar className="avatar" circle image={this.avatar}></AtAvatar>
         <View className="name">
-        <Text className='main'>{this.state && this.username}</Text>
-        <Text className='secondary'>{this.state && this.orgName}</Text>
+        <Text className='title'>{this.state && this.username}</Text>
+        <Text className='note'>{this.state && this.orgName}</Text>
         </View>
         { this.role == 4 &&
         <View className='qr' onClick={() => this.navTo('qr')}>
