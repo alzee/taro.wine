@@ -6,7 +6,8 @@ import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 
 export default class Qr extends Component<PropsWithChildren> {
-  cid: int;
+  cid: int
+  name: string
   timestamp = new Date().getTime()
 
   componentWillMount () { }
@@ -22,6 +23,7 @@ export default class Qr extends Component<PropsWithChildren> {
       success: res => {
         self.setState({data: res.data})
         this.cid = res.data.cid
+        this.name = res.data.name
       }
     })
   }
@@ -29,7 +31,7 @@ export default class Qr extends Component<PropsWithChildren> {
   componentDidHide () { }
 
   render () {
-    let text = `{"cid": ${this.cid}, "timestamp": ${this.timestamp}}`
+    let text = `{"cid": ${this.cid}, "timestamp": ${this.timestamp}, "name": ${this.name}}`
     return (
       <View className='qr'>
       { this.cid &&
