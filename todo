@@ -8,7 +8,6 @@
 index:
   - user
 new:
-  - withdraw
   - user
 edit:
   - product
