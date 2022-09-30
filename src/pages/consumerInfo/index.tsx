@@ -8,6 +8,7 @@ import { Taxon } from '../../Taxon'
 
 export default class Consumerinfo extends Component<PropsWithChildren> {
   cid: int
+  storageData = {}
 
   componentWillMount () { }
 
@@ -17,6 +18,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
       success: res => {
         this.setState({data: res.data})
         this.cid = res.data.cid
+        this.storageData = res.data
       }
     })
   }
@@ -49,6 +51,12 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
     console.log(data)
 
     // return
+    this.storageData.name = data.name
+    this.storageData.phone = data.phone
+    Taro.setStorage({
+      key: Env.storageKey,
+      data: this.storageData
+    });
     Taro.request({
       method: 'PATCH',
       data: data,
