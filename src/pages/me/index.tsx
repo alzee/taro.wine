@@ -155,7 +155,7 @@ export default class Me extends Component<PropsWithChildren> {
       }
 
       <AtListItem
-      title='代金券明细'
+      title='我的代金券'
       // note='描述信息'
       // extraText='详细信息'
       arrow='right'

@@ -128,7 +128,7 @@ export default class Orders extends Component<PropsWithChildren> {
             title = res.data[i].product.name + ' x ' + res.data[i].quantity
             break
           case 'sales':
-            title = res.data[i].orderItems[0].product.name + ' x ' + res.data[i].orderItems[0].quantity + ' ...'
+            title = res.data[i].buyer.name
             break
           case 'buys':
             title = res.data[i].orderItems[0].product.name + ' x ' + res.data[i].orderItems[0].quantity + ' ...'
@@ -137,7 +137,7 @@ export default class Orders extends Component<PropsWithChildren> {
             title = res.data[i].returnItems[0].product.name + ' x ' + res.data[i].returnItems[0].quantity + ' ...'
             break
           case 'returnsToMe':
-            title = res.data[i].returnItems[0].product.name + ' x ' + res.data[i].returnItems[0].quantity + ' ...'
+            title = res.data[i].sender.name
             break
           default:
           title = '编号: ' + res.data[i].id
