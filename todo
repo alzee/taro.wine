@@ -12,7 +12,6 @@ new:
 edit:
   - product
   - restaurant/store/agency
-  - withdraw
   - user
 
 # vim:ft=yaml

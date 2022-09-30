@@ -35,6 +35,7 @@ export default defineAppConfig({
     'pages/dineDetail/index',
     'pages/productDetail/index',
     'pages/qr/index',
+    'pages/consumerInfo/index',
   ],
   window: {
     backgroundTextStyle: 'light',

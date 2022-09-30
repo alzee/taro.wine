@@ -35,6 +35,9 @@ export default class Me extends Component<PropsWithChildren> {
         }
         switch (res.data.role) {
           case 4:
+            if (res.data.phone == null || res.data.name == null) {
+              Taro.redirectTo({url: '/pages/consumerInfo/index'})
+            } 
             this.orgName = '顾客'
             this.username = res.data.name
             break;
