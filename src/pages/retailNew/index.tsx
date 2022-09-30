@@ -12,16 +12,9 @@ export default class Retailnew extends Component<PropsWithChildren> {
   consumerName: string
   timestamp: string
   role: int
-  orgid: int
+  oid: int
   products = []
-  label = {
-    name: '名称',
-    spec: '规格',
-    price: '价格',
-    sn: '产品编号',
-    voucher: '随赠代金券',
-    stock: '库存',
-  }
+  pid: int
   state = {
     products: [],
     productSelected: '',
@@ -30,6 +23,59 @@ export default class Retailnew extends Component<PropsWithChildren> {
   componentWillMount () { }
 
   formSubmit = e => {
+    let data = e.detail.value
+    data.quantity = Number(data.quantity)
+    data.cid = this.cid
+    data.pid = this.pid
+    data.oid = this.oid
+    data.timestamp = this.timestamp
+    console.log(data)
+    if (!this.pid) {
+      Taro.showToast({
+        title: '请选择商品' ,
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
+    if (data.quantity == "") {
+      Taro.showToast({
+        title: '请填写数量' ,
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    } else {
+      if (!Number.isInteger(data.quantity) || data.quantity < 1) {
+        Taro.showToast({
+          title: '请填写正整数' ,
+          icon: 'error',
+          duration: 2000
+        })
+        return
+      }
+    }
+
+    // return
+    Taro.request({
+      method: 'POST',
+      data: data,
+      url: Env.apiUrl + 'retail/new',
+      success: function (res) { }
+    }).then((res) =>{
+      Taro.showToast({
+        title: '已完成',
+        icon: 'success',
+        duration: 2000,
+        success: () => {
+          setTimeout(
+            () => {
+              Taro.switchTab({url: '/pages/orders/index'})
+            }, 500
+          )
+        }
+      })
+    })
   }
 
   componentDidMount () {
@@ -43,10 +89,10 @@ export default class Retailnew extends Component<PropsWithChildren> {
       success: res => {
         this.setState({data: res.data})
         this.role = res.data.role
-        this.orgid = res.data.org.id
+        this.oid = res.data.org.id
 
         Taro.request({
-          url: Env.apiUrl + 'products?org=' + this.orgid
+          url: Env.apiUrl + 'products?org=' + this.oid
         }).then((res) =>{
           this.products = res.data
           console.log(this.products)
@@ -66,7 +112,7 @@ export default class Retailnew extends Component<PropsWithChildren> {
     this.setState({
       productSelected: this.state.products[e.detail.value]
     })
-    this.productid = this.products[e.detail.value].id
+    this.pid = this.products[e.detail.value].id
   }
 
   componentWillUnmount () { }
@@ -77,26 +123,25 @@ export default class Retailnew extends Component<PropsWithChildren> {
 
   render () {
     return (
-      <View className='retailNew'>
+      <View className='retailNew main'>
       <Form className='form'
       onSubmit={this.formSubmit}
       >
+      <AtList>
+      <AtListItem
+      title='顾客'
+      extraText={[this.consumerName]}
+      disabled
+      />
+      </AtList>
       <Picker mode='selector' range={this.state.products} onChange={this.productChange}>
       <AtList>
       <AtListItem
       title='商品'
-      extraText={this.state.selectorChecked}
+      extraText={this.state.productSelected}
       />
       </AtList>
       </Picker>
-      <Input 
-      className="input"
-      required
-      type='text' 
-      placeholder='顾客' 
-      value={this.consumerName}
-      disabled
-      />
       <Input 
       className="input"
       name='quantity' 
