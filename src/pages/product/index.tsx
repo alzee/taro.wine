@@ -23,7 +23,7 @@ export default class Product extends Component<PropsWithChildren> {
         self.setState({data: res.data})
         this.orgid = res.data.org.id
         this.role = res.data.role
-        let query = '?page=1&itemsPerPage=20&org=' + this.orgid
+        let query = '?page=1&org=' + this.orgid
         Taro.request({
           url: Env.apiUrl + 'products' + query,
           success: function (res) { self.setState({data: res.data}) }

@@ -9,7 +9,7 @@ import { Taxon } from '../../Taxon'
 import { fmtDate } from '../../fmtDate'
 
 export default class Voucher extends Component<PropsWithChildren> {
-  query: string = '?page=1&itemsPerPage=20'
+  query: string = '?page=1'
   list = []
   orgId: int
 
@@ -23,9 +23,9 @@ export default class Voucher extends Component<PropsWithChildren> {
         let data = res.data
         const self = this;
         if (data.role == 4) {
-          this.query = '?page=1&itemsPerPage=20&consumer=' + data.cid
+          this.query = '?page=1&consumer=' + data.cid
         } else {
-          this.query = '?page=1&itemsPerPage=20&org=' + data.org.id
+          this.query = '?page=1&org=' + data.org.id
         }
         Taro.request({
           url: Env.apiUrl + 'vouchers' + this.query,

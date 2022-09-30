@@ -10,7 +10,7 @@ import { fmtDate } from '../../fmtDate'
 
 export default class Withdraw extends Component<PropsWithChildren> {
   list = []
-  query: string = '?page=1&itemsPerPage=20'
+  query: string = '?page=1'
   tabList = []
   orgid: int
   myWithdraws = []
@@ -39,7 +39,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
         break
     }
     Taro.request({
-      url: Env.apiUrl + api + '?page=1&itemsPerPage=15&' + filter + '=' + this.orgid,
+      url: Env.apiUrl + api + '?page=1&' + filter + '=' + this.orgid,
       success: function (res) { self.setState({data: res.data}) }
     }).then((res) =>{
       for (let i in res.data){

@@ -12,7 +12,7 @@ export default class Org extends Component<PropsWithChildren> {
   agencies = []
   stores = []
   restaurants = []
-  query: string = '?page=1&itemsPerPage=100'
+  query: string = '?page=1'
   list = []
   list1 = []
   list2 = []
