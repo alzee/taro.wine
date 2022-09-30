@@ -9,6 +9,7 @@ import { AtButton, AtList, AtListItem} from "taro-ui"
 export default class Retailnew extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   cid: int
+  consumerName: string
   timestamp: string
   role: int
   orgid: int
@@ -34,6 +35,7 @@ export default class Retailnew extends Component<PropsWithChildren> {
   componentDidMount () {
     this.cid = this.instance.router.params.cid
     this.timestamp = this.instance.router.params.timestamp
+    this.consumerName = this.instance.router.params.name
     console.log(this.cid, this.timestamp)
 
     Taro.getStorage({
@@ -91,8 +93,9 @@ export default class Retailnew extends Component<PropsWithChildren> {
       className="input"
       required
       type='text' 
-      placeholder='名称' 
-      value=
+      placeholder='顾客' 
+      value={this.consumerName}
+      disabled
       />
       <Input 
       className="input"
