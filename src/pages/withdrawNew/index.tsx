@@ -10,34 +10,26 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   role: int
   oid: int
+  discount: float
+  withdrawable: int
 
   componentWillMount () { }
 
   componentDidMount () {
-    this.cid = this.instance.router.params.cid
-    this.timestamp = this.instance.router.params.timestamp
-    this.consumerName = this.instance.router.params.name
-    console.log(this.cid, this.timestamp)
-
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        this.setState({data: res.data})
+        // this.setState({data: res.data})
         this.role = res.data.role
         this.oid = res.data.org.id
 
         Taro.request({
-          url: Env.apiUrl + 'products?org=' + this.oid
+          url: Env.apiUrl + 'orgs/' + this.oid
         }).then((res) =>{
-          this.products = res.data
-          console.log(this.products)
-          let list = []
-          for (let i in this.products) {
-            list[i] = this.products[i].name
-          }
-          this.setState({
-            products: list
-          })
+          this.setState({withdrawable: res.data.withdrawable})
+          console.log(res.data)
+          this.withdrawable = res.data.withdrawable
+          this.discount = res.data.discount
         })
       }
     })
@@ -54,15 +46,30 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
         duration: 2000
       })
       return
-    } else {
-      if (data.amount < 1) {
-        Taro.showToast({
-          title: '请填写正数' ,
-          icon: 'error',
-          duration: 2000
-        })
-        return
-      }
+    } 
+    if (Number.isNaN(Number(data.amount))) {
+      Taro.showToast({
+        title: '请填写正数' ,
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
+    if (data.amount < 1) {
+      Taro.showToast({
+        title: '请填写正数' ,
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
+    if (data.amount > this.withdrawable) {
+      Taro.showToast({
+        title: '可提金额不足' ,
+        icon: 'error',
+        duration: 2000
+      })
+      return
     }
     // console.log(data)
     // return
@@ -105,6 +112,11 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
       type='number' 
       placeholder='提现金额' 
       />
+      { this.state &&
+        <View className='hint'>
+        <Text>可提金额: {this.withdrawable}，折扣: {this.discount * 100} %</Text>
+        </View>
+      }
         <Button type='primary' formType='submit'>提交</Button>
       </Form>
       </View>
