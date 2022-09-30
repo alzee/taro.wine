@@ -1,4 +1,4 @@
 export default definePageConfig({
-  navigationBarTitleText: '我的产品',
+  navigationBarTitleText: '我的仓库',
   "usingComponents": {}
 })

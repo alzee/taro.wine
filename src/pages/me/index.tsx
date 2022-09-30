@@ -145,7 +145,7 @@ export default class Me extends Component<PropsWithChildren> {
 
       { this.role != 4  &&
       <AtListItem
-      title='我的产品'
+      title='我的仓库'
       // note='描述信息'
       // extraText='详细信息'
       arrow='right'
