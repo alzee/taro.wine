@@ -91,7 +91,9 @@ export default class Withdraw extends Component<PropsWithChildren> {
 
   componentWillUnmount () { }
 
-  componentDidShow () { }
+  componentDidShow () {
+    console.log('u see me')
+  }
 
   componentDidHide () { }
 

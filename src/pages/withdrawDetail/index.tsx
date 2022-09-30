@@ -34,9 +34,6 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
       success: function (res) { self.setState({data: res.data}) }
     }).then((res) =>{
       this.entity = res.data
-      console.log(this.entity)
-      console.log(this.entity.applicant)
-      console.log(this.entity.approver)
     })
   }
 
@@ -47,17 +44,31 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
   componentDidHide () { }
 
   approve(action: int){
+    self = this
     console.log(action)
-    let a = ['通过', '拒绝']
+    let a = ['', '', '', '', '拒绝', '通过']
     Taro.showModal({
       title: '提示',
       content: '确认' + a[action] + '?',
       success: function (res) {
         if (res.confirm) {
-          console.log('用户点击确定')
-          // request
+          console.log('confirmed')
+          Taro.showToast({
+            title: '完成',
+            icon: 'success',
+            duration: 2000,
+            complete: () => Taro.navigateBack()
+          })
+          Taro.request({
+            method: 'PATCH',
+            url: Env.apiUrl + 'withdraws/' + self.id,
+            data: {status: action},
+            header: {
+              'content-type': 'application/merge-patch+json'
+            }
+          }).then((res) =>{})
         } else if (res.cancel) {
-          console.log('用户点击取消')
+          console.log('cancelled')
         }
       }
     })
@@ -84,8 +95,8 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
       }
       { this.entity.status == 0 &&  this.entity.approver.id == this.oid &&
       <View className='btn-wrapper'>
-      <Button className='btn' type='primary' onClick={() => this.approve(0)}>通过</Button>
-      <Button className='btn' type='warn' onClick={() => this.approve(1)}>拒绝</Button>
+      <Button className='btn' type='primary' onClick={() => this.approve(5)}>通过</Button>
+      <Button className='btn' type='warn' onClick={() => this.approve(4)}>拒绝</Button>
       </View>
       }
       </View>
