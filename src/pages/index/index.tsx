@@ -52,7 +52,7 @@ export default class Index extends Component<PropsWithChildren> {
 
     const self = this;
     Taro.request({
-      url: Env.apiUrl + 'nodes',
+      url: Env.apiUrl + 'nodes?order%5Bid%5D=asc',
       success: function (res) { self.setState({data: res.data}) }
     }).then((res) =>{
       this.nodes = res.data;
