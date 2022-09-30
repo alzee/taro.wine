@@ -27,7 +27,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
           url: Env.apiUrl + 'orgs/' + this.oid
         }).then((res) =>{
           console.log(res.data)
-          this.withdrawable = res.data.withdrawable / 100
+          this.withdrawable = res.data.withdrawable
           this.discount = res.data.discount
           this.setState({withdrawable: this.withdrawable})
         })
@@ -37,7 +37,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
 
   formSubmit = e => {
     let data = e.detail.value
-    data.amount = Number(data.amount) * 100
+    data.amount = Number(data.amount)
     data.applicant = '/api/orgs/' + this.oid
     if (data.amount == "") {
       Taro.showToast({
@@ -63,7 +63,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
       })
       return
     }
-    if (data.amount > this.withdrawable) {
+    if (data.amount * 100 > this.withdrawable) {
       Taro.showToast({
         title: '可提金额不足' ,
         icon: 'error',
@@ -71,6 +71,9 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
       })
       return
     }
+
+    data.amount = data.amount * 100
+
     // console.log(data)
     // return
     Taro.request({
@@ -114,7 +117,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
       />
       { this.state &&
         <View className='hint'>
-        <Text>可提金额: {this.withdrawable}，折扣: {this.discount * 100} %</Text>
+        <Text>可提金额: {this.withdrawable / 100}，折扣: {this.discount * 100} %</Text>
         </View>
       }
         <Button type='primary' formType='submit'>提交</Button>

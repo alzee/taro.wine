@@ -75,6 +75,7 @@ export default class Dinenew extends Component<PropsWithChildren> {
         return
       }
     }
+    data.voucher = data.voucher * 100
     console.log(data)
 
     Taro.request({
