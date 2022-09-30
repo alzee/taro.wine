@@ -7,7 +7,7 @@ import { Env } from '../../env/env'
 
 export default class Qr extends Component<PropsWithChildren> {
   cid: int;
-  rand = new Date().getTime()
+  timestamp = new Date().getTime()
 
   componentWillMount () { }
 
@@ -29,8 +29,7 @@ export default class Qr extends Component<PropsWithChildren> {
   componentDidHide () { }
 
   render () {
-    // let text = 'cid:rand';
-    let text = this.cid + ':' + this.rand
+    let text = `{"cid": ${this.cid}, "timestamp": ${this.timestamp}}`
     return (
       <View className='qr'>
       { this.cid &&

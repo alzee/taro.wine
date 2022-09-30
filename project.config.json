@@ -1,8 +1,8 @@
 {
   "miniprogramRoot": "dist/",
-  "projectname": "wine-frontend",
+  "projectname": "taro.wine",
   "description": "",
-  "appid": "wx3ac6cc7a99b55d20",
+  "appid": "wx791f926d4c3cb552",
   "setting": {
     "urlCheck": false,
     "es6": false,
