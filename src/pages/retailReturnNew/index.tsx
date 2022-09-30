@@ -58,7 +58,7 @@ export default class Retailreturnnew extends Component<PropsWithChildren> {
     Taro.request({
       method: 'POST',
       data: data,
-      url: Env.apiUrl + 'retailReturn/new',
+      url: Env.apiUrl + 'retail_return/new',
       success: function (res) { }
     }).then((res) =>{
       Taro.showToast({
