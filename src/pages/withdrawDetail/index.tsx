@@ -46,6 +46,23 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
 
   componentDidHide () { }
 
+  approve(action: int){
+    console.log(action)
+    let a = ['通过', '拒绝']
+    Taro.showModal({
+      title: '提示',
+      content: '确认' + a[action] + '?',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          // request
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  }
+
   render () {
     return (
       <View className='withdrawDetail'>
@@ -67,8 +84,8 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
       }
       { this.entity.status == 0 &&  this.entity.approver.id == this.oid &&
       <View className='btn-wrapper'>
-      <Button className='btn' type='primary' size=''>通过</Button>
-      <Button className='btn' type='warn' size=''>拒绝</Button>
+      <Button className='btn' type='primary' onClick={() => this.approve(0)}>通过</Button>
+      <Button className='btn' type='warn' onClick={() => this.approve(1)}>拒绝</Button>
       </View>
       }
       </View>
