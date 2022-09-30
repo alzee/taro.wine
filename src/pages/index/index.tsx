@@ -16,10 +16,8 @@ export default class Index extends Component<PropsWithChildren> {
   nodes = [];
   nodes0 = [];
   nodes1 = [];
-  nodes2 = [];
   list0 = [];
   list1 = [];
-  list2 = [];
   http: HttpService;
 
   navToNode(id: int) {
@@ -60,11 +58,8 @@ export default class Index extends Component<PropsWithChildren> {
         if (this.nodes[i].tag == 0) {
           this.nodes0.push(this.nodes[i]);
         }
-        // if (this.nodes[i].tag == 1) {
-        // this.nodes1.push(this.nodes[i]);
-        // }
-        if (this.nodes[i].tag == 2) {
-          this.nodes2.push(this.nodes[i]);
+        if (this.nodes[i].tag == 1) {
+          this.nodes1.push(this.nodes[i]);
         }
       }
       for (let i in this.nodes0) {
@@ -78,23 +73,13 @@ export default class Index extends Component<PropsWithChildren> {
           );
         }
       }
-      // for (let i in nodes1) {
-      //   if (i < 4) {
-      //     list1.push(
-      //         <View className="at-col">
-      //             <AtAvatar className="avatar" circle size="small" image={ this.state && this.state.data && this.imgUrl+ nodes1[i].img}></AtAvatar>
-      //             <Text>{nodes1[i].title}</Text>
-      //         </View>
-      //         );
-      //   }
-      // }
-      for (let i in this.nodes2) {
+      for (let i in this.nodes1) {
         if (i < 2) {
-          this.list2.push(
+          this.list1.push(
             <View className="highlight2" key={i}>
-            <Image className='img' mode='widthFix' src={this.imgUrl + this.nodes2[i].img} onClick={()=>this.navToNode(this.nodes2[i].id)} ></Image>
+            <Image className='img' mode='widthFix' src={this.imgUrl + this.nodes1[i].img} onClick={()=>this.navToNode(this.nodes1[i].id)} ></Image>
             <Text className="text">
-            {this.nodes2[i].title}
+            {this.nodes1[i].title}
             </Text>
             </View>
           );
@@ -145,7 +130,7 @@ export default class Index extends Component<PropsWithChildren> {
       </View>
       </View>
 
-      {this.state && this.state.data && this.list2}
+      {this.state && this.state.data && this.list1}
 
       </View>
     )
