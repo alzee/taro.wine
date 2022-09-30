@@ -89,7 +89,7 @@ export default class Index extends Component<PropsWithChildren> {
       //   }
       // }
       for (let i in this.nodes2) {
-        if (i < 3) {
+        if (i < 2) {
           this.list2.push(
             <View className="highlight2" key={i}>
             <Image className='img' mode='widthFix' src={this.imgUrl + this.nodes2[i].img} onClick={()=>this.navToNode(this.nodes2[i].id)} ></Image>
@@ -145,9 +145,6 @@ export default class Index extends Component<PropsWithChildren> {
       </View>
       </View>
 
-      <View>
-      <Image className='img' mode='widthFix' src={ this.imgUrl + 'banner.png' } onClick={()=>this.navToNode(5)}></Image>
-      </View>
       {this.state && this.state.data && this.list2}
 
       </View>
