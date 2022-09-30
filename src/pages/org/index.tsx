@@ -91,6 +91,7 @@ export default class Org extends Component<PropsWithChildren> {
           extraText={this.getDistance(self.latitude, self.longitude,self.stores[i].latitude, self.stores[i].longitude)}
           thumb={Env.imgUrl + 'storefront.png'}
           arrow='right'
+          className='list-item'
           />
         )
       }
@@ -104,6 +105,7 @@ export default class Org extends Component<PropsWithChildren> {
           extraText={this.getDistance(self.latitude, self.longitude,self.restaurants[i].latitude, self.restaurants[i].longitude)}
           thumb={Env.imgUrl + 'storefront.png'}
           arrow='right'
+          className='list-item'
           />
         )
       }
@@ -116,6 +118,7 @@ export default class Org extends Component<PropsWithChildren> {
           // extraText='详细信息'
           thumb={Env.imgUrl + 'storefront.png'}
           arrow='right'
+          className='list-item'
           />
         )
       }

@@ -1,4 +1,21 @@
 @import "~taro-ui/dist/style/components/tabs.scss";
+.list-item{
+  height: 6rem;
+  .at-list__item-container{
+    height: 5rem;
+    .item-thumb{
+      width: 150px;
+      height: 130px;
+    }
+    .item-content__info-title{
+      font-weight: bold;
+    }
+    .item-extra__info{
+      font-weight: bold;
+      color: red;
+    }
+  }
+}
 .new-btn{
   margin: .5rem auto;
 }
