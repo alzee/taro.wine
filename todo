@@ -8,8 +8,6 @@
 index:
   - user
 new:
-  - retailreturn
-  - dine
   - withdraw
   - user
 edit:
