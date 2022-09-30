@@ -68,7 +68,7 @@ export default class Retailreturnnew extends Component<PropsWithChildren> {
         success: () => {
           setTimeout(
             () => {
-              Taro.switchTab({url: '/pages/orders/index'})
+              Taro.reLaunch({url: '/pages/orders/index'})
             }, 500
           )
         }

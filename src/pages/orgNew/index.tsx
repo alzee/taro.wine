@@ -82,7 +82,7 @@ export default class Orgnew extends Component<PropsWithChildren> {
         success: () => {
           setTimeout(
             () => {
-              Taro.switchTab({url: '/pages/org/index'})
+              Taro.reLaunch({url: '/pages/org/index'})
             }, 500
           )
         }
