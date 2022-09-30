@@ -11,7 +11,10 @@ import { fmtDate } from '../../fmtDate'
 export default class Voucher extends Component<PropsWithChildren> {
   query: string = '?page=1'
   list = []
-  orgId: int
+  oid: int
+  role: int
+  voucher: int
+  witdrawable: int
 
   componentWillMount () { }
 
@@ -21,6 +24,7 @@ export default class Voucher extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         let data = res.data
+        this.role = res.data.role
         const self = this;
         if (data.role == 4) {
           this.query = '?page=1&consumer=' + data.cid
@@ -59,6 +63,25 @@ export default class Voucher extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='voucher'>
+
+      <View className='at-row card'>
+
+      { this.role != 0 &&
+      <View className='at-col'>
+      <View className='label'>代金券</View>
+      <View className='my'>5000</View>
+      </View>
+      }
+
+      { (this.role == 1 || this.role == 3) &&
+      <View className='at-col'>
+      <View className='label'>可提金额</View>
+      <View className='witdrawable'>500</View>
+      </View>
+      }
+
+      </View>
+
       <AtList className="list">
       {this.list}
       </AtList>
