@@ -106,6 +106,10 @@ export default class Withdraw extends Component<PropsWithChildren> {
     })
   }
 
+  create () {
+    Taro.navigateTo({url: '/pages/withdrawNew/index'})
+  }
+
   render () {
     return (
       <View className='withdraw'>
@@ -121,7 +125,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
       { this.role == 1 &&
       <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
-          <AtButton className='new-btn' type='secondary' size='small'>申请提现</AtButton>
+          <AtButton className='new-btn' type='secondary' size='small' onClick={this.create}>申请提现</AtButton>
           <AtList className="list">
           {this.myWithdraws}
           </AtList>
@@ -136,6 +140,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
       { this.role == 3 &&
       <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
+          <AtButton className='new-btn' type='secondary' size='small' onClick={this.create}>申请提现</AtButton>
           <AtList className="list">
           {this.myWithdraws}
           </AtList>
