@@ -32,6 +32,9 @@ export default class Qr extends Component<PropsWithChildren> {
 
   render () {
     let text = `{"cid": ${this.cid}, "timestamp": "${this.timestamp}", "name": "${this.name}"}`
+    // let text = '{"cid": ${this.cid}, "timestamp": "${this.timestamp}", "name": "${this.name}"}'
+    // let text = '{"cid":' + this.cid + ', "timestamp": "' + this.timestamp + '", "name": "' + this.name + '"}'
+    console.log(text)
     return (
       <View className='qr'>
       { this.cid &&

@@ -259,7 +259,13 @@ export default class Orders extends Component<PropsWithChildren> {
     Taro.scanCode({
       onlyFromCamera: true,
       success: (res) => {
-        let data = JSON.parse(res.result)
+        let text = res.result
+        console.log(text)
+        if (text.charCodeAt(0) === 0xFEFF) {
+          text = text.substr(1);
+        }
+        console.log(text)
+        let data = JSON.parse(text)
         console.log(data)
         Taro.navigateTo({url: '/pages/' + page + '/index?cid=' + data.cid + '&timestamp=' + data.timestamp + '&name=' + data.name})
       }
