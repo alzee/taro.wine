@@ -29,13 +29,30 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
 
   formSubmit = e => {
     let data = e.detail.value
+
+    if (data.name == '') {
+      Taro.showToast({
+        title: '请填写姓名',
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
+    if (data.phone == '') {
+      Taro.showToast({
+        title: '请填写电话',
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
     console.log(data)
 
-    return
+    // return
     Taro.request({
       method: 'PATCH',
       data: data,
-      url: Env.apiUrl + 'orgs',
+      url: Env.apiUrl + 'consumers/' + this.cid,
       header: {
         'content-type': 'application/merge-patch+json'
       }
@@ -47,7 +64,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
         success: () => {
           setTimeout(
             () => {
-              Taro.switchTab({url: '/pages/org/index'})
+              Taro.reLaunch({url: '/pages/me/index'})
             }, 500
           )
         }
@@ -57,7 +74,13 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
 
   render () {
     return (
-      <View className='consumerInfo'>
+      <View className='consumerInfo main'>
+      <View className='hint'>
+      <Text>请完善姓名及电话</Text>
+      </View>
+      <Form className='form'
+      onSubmit={this.formSubmit}
+      >
         <Input 
         className="input"
           name='name' 
@@ -71,6 +94,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
           placeholder='电话' 
         />
         <Button type='primary' formType='submit'>提交</Button>
+      </Form>
       </View>
     )
   }
