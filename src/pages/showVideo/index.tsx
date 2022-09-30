@@ -20,8 +20,8 @@ export default class Showvideo extends Component<PropsWithChildren> {
       <View className='showVideo'>
       <Video
       id='video'
-      src={this.imgUrl + 'laojiuku.mp4'}
-      poster='https://misc.aotu.io/booxood/mobile-video/cover_900x500.jpg'
+      src={Env.imgUrl + 'laojiuku.mp4'}
+      // poster={Env.imgUrl + 'jiannan.png'}
       initialTime={0}
       controls={true}
       autoplay={false}

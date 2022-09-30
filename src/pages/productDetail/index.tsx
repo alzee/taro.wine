@@ -39,7 +39,7 @@ export default class Productdetail extends Component<PropsWithChildren> {
       <AtListItem title='产品名称' extraText={this.product.name} />
       <AtListItem title='产品编号' extraText={this.product.sn} />
       <AtListItem title='产品规格' extraText={this.product.spec} />
-      <AtListItem title='产品价格' extraText={this.product.price} />
+      <AtListItem title='产品价格' extraText={this.product.price / 100} />
       <AtListItem title='产品库存' extraText={this.product.stock} />
       <AtListItem title='随赠代金券' extraText={this.product.voucher / 100} />
       </AtList>

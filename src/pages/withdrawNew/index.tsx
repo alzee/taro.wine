@@ -26,10 +26,10 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
         Taro.request({
           url: Env.apiUrl + 'orgs/' + this.oid
         }).then((res) =>{
-          this.setState({withdrawable: res.data.withdrawable})
           console.log(res.data)
-          this.withdrawable = res.data.withdrawable
+          this.withdrawable = res.data.withdrawable / 100
           this.discount = res.data.discount
+          this.setState({withdrawable: this.withdrawable})
         })
       }
     })
@@ -37,7 +37,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
 
   formSubmit = e => {
     let data = e.detail.value
-    data.amount = Number(data.amount)
+    data.amount = Number(data.amount) * 100
     data.applicant = '/api/orgs/' + this.oid
     if (data.amount == "") {
       Taro.showToast({
