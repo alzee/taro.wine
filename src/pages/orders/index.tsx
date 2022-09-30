@@ -250,7 +250,7 @@ export default class Orders extends Component<PropsWithChildren> {
         page = 'retailNew'
         break
       case 10:
-        page = 'retailReturn'
+        page = 'retailReturnNew'
         break
       case 1:
         page = 'dineNew'
