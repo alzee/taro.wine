@@ -36,6 +36,7 @@ export default defineAppConfig({
     'pages/productDetail/index',
     'pages/qr/index',
     'pages/consumerInfo/index',
+    'pages/showVideo/index',
   ],
   window: {
     backgroundTextStyle: 'light',
