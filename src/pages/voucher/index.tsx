@@ -11,7 +11,6 @@ import { fmtDate } from '../../fmtDate'
 export default class Voucher extends Component<PropsWithChildren> {
   query: string = '?page=1'
   list = []
-  oid: int
   role: int
   voucher: int
   witdrawable: int
@@ -28,8 +27,19 @@ export default class Voucher extends Component<PropsWithChildren> {
         const self = this;
         if (data.role == 4) {
           this.query = '?page=1&consumer=' + data.cid
+          Taro.request({
+            url: Env.apiUrl + 'consumers/' + data.cid
+          }).then((res) =>{
+            this.voucher = res.data.voucher
+          })
         } else {
           this.query = '?page=1&org=' + data.org.id
+          Taro.request({
+            url: Env.apiUrl + 'orgs/' + data.org.id
+          }).then((res) =>{
+            this.voucher = res.data.voucher
+            this.witdrawable = res.data.witdrawable
+          })
         }
         Taro.request({
           url: Env.apiUrl + 'vouchers' + this.query,
@@ -69,14 +79,14 @@ export default class Voucher extends Component<PropsWithChildren> {
       { this.role != 0 &&
       <View className='at-col'>
       <View className='label'>代金券</View>
-      <View className='my'>5000</View>
+      <View className='my'>{this.voucher}</View>
       </View>
       }
 
       { (this.role == 1 || this.role == 3) &&
       <View className='at-col'>
       <View className='label'>可提金额</View>
-      <View className='witdrawable'>500</View>
+      <View className='witdrawable'>{this.witdrawable}</View>
       </View>
       }
 
