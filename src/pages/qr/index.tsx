@@ -31,7 +31,7 @@ export default class Qr extends Component<PropsWithChildren> {
   componentDidHide () { }
 
   render () {
-    let text = `{"cid": ${this.cid}, "timestamp": ${this.timestamp}, "name": ${this.name}}`
+    let text = `{"cid": ${this.cid}, "timestamp": "${this.timestamp}", "name": "${this.name}"}`
     return (
       <View className='qr'>
       { this.cid &&
