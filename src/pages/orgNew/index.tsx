@@ -10,7 +10,7 @@ export default class Orgnew extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   type: int
   role: int
-  orgid: int
+  oid: int
   state = {
     selector: ['门店', '餐厅', '代理商'],
     selectorChecked: '',
@@ -29,7 +29,7 @@ export default class Orgnew extends Component<PropsWithChildren> {
       success: res => {
         this.setState({data: res.data})
         this.role = res.data.role
-        this.orgid = res.data.org.id
+        this.oid = res.data.org.id
         if (this.role == 0) {
           this.setState({
             selector: ['代理商']
@@ -68,7 +68,7 @@ export default class Orgnew extends Component<PropsWithChildren> {
     } else {
       data.type = Number(this.type) + 2
     }
-    data.upstream = '/api/orgs/' + this.orgid
+    data.upstream = '/api/orgs/' + this.oid
     Taro.request({
       method: 'POST',
       data: data,
@@ -146,7 +146,7 @@ export default class Orgnew extends Component<PropsWithChildren> {
         className="input"
           name='district' 
           type='text' 
-          placeholder='区域' 
+          placeholder='地区' 
         />
         <Button type='primary' formType='submit'>提交</Button>
       </Form>
