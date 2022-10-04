@@ -10,6 +10,8 @@ import wine from '../../icon/wine.png'
 import voucher from '../../icon/voucher.png'
 import cash from '../../icon/cash.png'
 import coord from '../../icon/coord.png'
+import gear from '../../icon/gear.png'
+import lock from '../../icon/lock.png'
 
 export default class Me extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
@@ -191,7 +193,7 @@ export default class Me extends Component<PropsWithChildren> {
       // note='描述信息'
       // extraText='详细信息'
       arrow='right'
-      thumb={coord}
+      thumb={gear}
       // onClick={() => Taro.navigateTo({url: '/pages/orgDetail/index?id=' + this.oid})}
       onClick={() => this.navTo('orgEdit')}
       />
@@ -203,7 +205,7 @@ export default class Me extends Component<PropsWithChildren> {
       // note='描述信息'
       // extraText='详细信息'
       arrow='right'
-      thumb={coord}
+      thumb={lock}
       onClick={() => this.navTo('chpwd')}
       />
       }
