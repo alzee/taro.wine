@@ -34,7 +34,7 @@ export default class Productdetail extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='productDetail'>
-      <Image className='pic' src={Env.imgUrl + 'jiannan.jpg'} />
+      <Image className='pic' src={Env.imgUrl + 'product/' + this.product.img} />
       <AtList>
       <AtListItem title='产品名称' extraText={this.product.name} />
       <AtListItem title='产品编号' extraText={this.product.sn} />

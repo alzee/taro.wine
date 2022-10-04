@@ -37,7 +37,7 @@ export default class Product extends Component<PropsWithChildren> {
               note={'规格: ' + res.data[i].spec + ' 库存: ' + res.data[i].stock}
               // extraText={'库存: ' + res.data[i].stock}
               arrow='right'
-              thumb={Env.imgUrl + 'jiannan.jpg'}
+              thumb={Env.imgUrl + 'product/' + res.data[i].img}
           />
             )
           }
