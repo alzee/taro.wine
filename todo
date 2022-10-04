@@ -1,6 +1,6 @@
 - multi orderItem/returnItem
 
-- img:
+- upload img:
   - org
   - product
 - user avatar fomr wechat
@@ -10,8 +10,6 @@ index:
 new:
   - user
 edit:
-  - product
-  - restaurant/store/agency
   - user
 
 # vim:ft=yaml
