@@ -30,10 +30,9 @@ class App extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        if (res.data.uid == 0) {
-          console.log(res.data);
-          console.log('need to login');
-          // Taro.redirectTo({ url: 'pages/chooseLogin/index' })
+        console.log(res.data);
+        if (res.data.role == 0) {
+          // Taro.showTabBarRedDot({index: 2})
         }
       },
       fail: res => {
