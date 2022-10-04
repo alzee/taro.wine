@@ -21,6 +21,7 @@ export default class Orgdetail extends Component<PropsWithChildren> {
       success: function (res) { self.setState({data: res.data}) }
     }).then((res) =>{
       this.entity = res.data
+      console.log(this.entity)
     })
   }
 
@@ -33,7 +34,7 @@ export default class Orgdetail extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='orgDetail'>
-      <Image mode='widthFix' className='storefront' src={Env.imgUrl + 'storefront.png'} />
+      <Image mode='widthFix' className='storefront' src={this.entity.img && Env.imgUrl + 'org/' + this.entity.img} />
       <AtList>
       <AtListItem title='名称' extraText={this.entity.name} />
       <AtListItem title='类型' extraText={Taxon.orgType[this.entity.type]} />

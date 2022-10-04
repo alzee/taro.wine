@@ -4,6 +4,6 @@ const baseUrl = 'https://wine.itove.com/';
 
 export const Env = {
   apiUrl: baseUrl + 'api/',
-  imgUrl: baseUrl + 'uploads/',
+  imgUrl: baseUrl + 'img/',
   storageKey: 'fuckWechat',
 }

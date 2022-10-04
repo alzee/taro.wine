@@ -67,7 +67,7 @@ export default class Index extends Component<PropsWithChildren> {
           this.list0.push(
             <SwiperItem key={i}>
             <View className='highlight0'>
-            <Image className='img' mode='scaleToFill' src={ this.imgUrl + this.nodes0[i].img } onClick={()=>this.navToNode(this.nodes0[i].id)}></Image>
+            <Image className='img' mode='scaleToFill' src={ this.imgUrl + 'node/' + this.nodes0[i].img } onClick={()=>this.navToNode(this.nodes0[i].id)}></Image>
             </View>
             </SwiperItem>
           );
@@ -77,7 +77,7 @@ export default class Index extends Component<PropsWithChildren> {
         if (i < 2) {
           this.list1.push(
             <View className="highlight2" key={i}>
-            <Image className='img' mode='widthFix' src={this.imgUrl + this.nodes1[i].img} onClick={()=>this.navToNode(this.nodes1[i].id)} ></Image>
+            <Image className='img' mode='widthFix' src={this.imgUrl + 'node/' + this.nodes1[i].img} onClick={()=>this.navToNode(this.nodes1[i].id)} ></Image>
             <Text className="text">
             {this.nodes1[i].title}
             </Text>

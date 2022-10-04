@@ -89,7 +89,7 @@ export default class Org extends Component<PropsWithChildren> {
           note={this.stores[i].address}
           // extraText={self.getDistance(self.latitude, self.longitude, self.stores[i].latitude, self.stores[i].longitude)}
           extraText={this.getDistance(self.latitude, self.longitude,self.stores[i].latitude, self.stores[i].longitude)}
-          thumb={Env.imgUrl + 'storefront.png'}
+          thumb={Env.imgUrl + 'org/' + this.stores[i].img}
           arrow='right'
           className='list-item'
           />
@@ -103,7 +103,7 @@ export default class Org extends Component<PropsWithChildren> {
           title={this.restaurants[i].name}
           note={this.restaurants[i].address}
           extraText={this.getDistance(self.latitude, self.longitude,self.restaurants[i].latitude, self.restaurants[i].longitude)}
-          thumb={Env.imgUrl + 'storefront.png'}
+          thumb={Env.imgUrl + 'org/' + this.restaurants[i].img}
           arrow='right'
           className='list-item'
           />
@@ -116,7 +116,7 @@ export default class Org extends Component<PropsWithChildren> {
           title={this.agencies[i].name}
           note={this.agencies[i].address}
           // extraText='详细信息'
-          thumb={Env.imgUrl + 'storefront.png'}
+          thumb={Env.imgUrl + 'org/' + this.agencies[i].img}
           arrow='right'
           className='list-item'
           />
