@@ -37,6 +37,8 @@ export default defineAppConfig({
     'pages/qr/index',
     'pages/consumerInfo/index',
     'pages/showVideo/index',
+    'pages/chpwd/index',
+    'pages/orgEdit/index',
   ],
   window: {
     backgroundTextStyle: 'light',

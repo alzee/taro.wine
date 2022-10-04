@@ -17,7 +17,7 @@ export default class Me extends Component<PropsWithChildren> {
   avatar: string = Env.imgUrl + 'avatar.png';
   username: string;
   orgName: string;
-  orgid: int
+  oid: int
 
   componentWillMount () { }
 
@@ -44,7 +44,7 @@ export default class Me extends Component<PropsWithChildren> {
           default:
             this.orgName = res.data.org.name
             this.username = res.data.username
-            this.orgid = res.data.org.id
+            this.oid = res.data.org.id
         }
       }
     })
@@ -64,7 +64,7 @@ export default class Me extends Component<PropsWithChildren> {
         console.log(res)
         Taro.request({
           method: 'PATCH',
-          url: Env.apiUrl + 'orgs/' + self.orgid,
+          url: Env.apiUrl + 'orgs/' + self.oid,
           data: {latitude: latitude, longitude: longitude},
           header: {
             'content-type': 'application/merge-patch+json'
@@ -182,6 +182,29 @@ export default class Me extends Component<PropsWithChildren> {
       arrow='right'
       thumb={coord}
       onClick={this.getLocation.bind(this)}
+      />
+      }
+
+      { this.role != 4 &&
+      <AtListItem
+      title='我的信息'
+      // note='描述信息'
+      // extraText='详细信息'
+      arrow='right'
+      thumb={coord}
+      // onClick={() => Taro.navigateTo({url: '/pages/orgDetail/index?id=' + this.oid})}
+      onClick={() => this.navTo('orgEdit')}
+      />
+      }
+
+      { this.role != 4 &&
+      <AtListItem
+      title='修改密码'
+      // note='描述信息'
+      // extraText='详细信息'
+      arrow='right'
+      thumb={coord}
+      onClick={() => this.navTo('chpwd')}
       />
       }
 

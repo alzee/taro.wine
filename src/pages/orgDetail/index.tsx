@@ -40,7 +40,8 @@ export default class Orgdetail extends Component<PropsWithChildren> {
       <AtListItem title='类型' extraText={Taxon.orgType[this.entity.type]} />
       <AtListItem title='联系人' extraText={this.entity.contact} />
       <AtListItem title='电话' extraText={this.entity.phone} />
-      <AtListItem title='区域' extraText={this.entity.district} />
+      <AtListItem title='地址' extraText={this.entity.address} />
+      <AtListItem title='地区' extraText={this.entity.district} />
       </AtList>
       </View>
     )
