@@ -34,20 +34,6 @@ export default class Index extends Component<PropsWithChildren> {
   }
 
   componentDidMount () {
-    Taro.getStorage({
-      key: Env.storageKey,
-      success: res => {
-        // if (res.data.uid == 0) {
-        //   console.log('need to login');
-        //   //this.navTo('chooseLogin');
-        // } else {
-        // }
-      },
-      fail: res => {
-        console.log('fuck')
-      },
-    });
-
     const self = this;
     Taro.request({
       url: Env.apiUrl + 'nodes?order%5Bid%5D=asc',
@@ -98,12 +84,8 @@ export default class Index extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='index'>
-      {/*
-          <AtSearchBar actionName='搜一下' />
-          */}
 
-      { this.state && this.state.data &&
-        <Swiper
+      <Swiper
       className='swiper'
       indicatorColor='#999'
       indicatorActiveColor='#333'
@@ -111,9 +93,8 @@ export default class Index extends Component<PropsWithChildren> {
       circular
       indicatorDots
       autoplay>
-      {this.list0}
+      {this.list0 && this.list0}
       </Swiper>
-      }
 
       <View className='at-row highlight1'>
       <View className="at-col"  onClick={() => Taro.navigateTo({url: '/pages/showVideo/index'})}>
