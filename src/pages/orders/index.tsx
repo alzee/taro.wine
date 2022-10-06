@@ -280,14 +280,12 @@ export default class Orders extends Component<PropsWithChildren> {
   }
 
   handleClick (value) {
-    console.log(value)
     this.setState({
       current: value
     })
   }
 
   render () {
-    console.log(this.sales)
     return (
       <View className='orders'>
 
