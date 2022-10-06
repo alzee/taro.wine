@@ -1,5 +1,5 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text, ScrollView } from '@tarojs/components'
+import { View, Text } from '@tarojs/components'
 import './index.scss'
 import { AtList, AtListItem, AtCard, AtButton } from "taro-ui"
 import { AtNavBar } from 'taro-ui'
@@ -287,6 +287,7 @@ export default class Orders extends Component<PropsWithChildren> {
   }
 
   render () {
+    console.log(this.sales)
     return (
       <View className='orders'>
 
