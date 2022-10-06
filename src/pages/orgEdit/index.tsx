@@ -9,6 +9,7 @@ import { Taxon } from '../../Taxon'
 export default class Orgedit extends Component<PropsWithChildren> {
   role: int
   oid: int
+  state = {}
 
   componentWillMount () { }
 
