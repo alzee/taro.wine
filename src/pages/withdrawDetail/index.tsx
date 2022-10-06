@@ -87,12 +87,12 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
       <AtListItem title='备注' extraText={this.state.entity.note} />
       </AtList>
       }
-      { this.state.entity.status > 0 &&
+      { this.state.entity && this.state.entity.status > 0 &&
       <View className='btn-wrapper'>
         <Button className='btn' type='default' disabled>{Taxon.status[this.state.entity.status]}</Button>
       </View>
       }
-      { this.state.entity.status == 0 &&  this.state.entity.approver.id == this.oid &&
+      { this.state.entity && this.state.entity.status == 0 &&  this.state.entity.approver.id == this.oid &&
       <View className='btn-wrapper'>
       <Button className='btn' type='primary' onClick={() => this.approve(5)}>通过</Button>
       <Button className='btn' type='warn' onClick={() => this.approve(4)}>拒绝</Button>
