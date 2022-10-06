@@ -21,7 +21,7 @@ export default class Returndetail extends Component<PropsWithChildren> {
       url: Env.apiUrl + 'returns/' + this.id,
       success: function (res) { self.setState({entity: res.data}) }
     }).then((res) =>{
-      let items = this.entity.returnItems
+      let items = res.data.returnItems
       let itemList = []
       for (let i in items) {
         itemList.push(
