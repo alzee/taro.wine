@@ -11,7 +11,6 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   id: int
   oid: int
-  entity = {}
 
   componentWillMount () { }
 
@@ -31,9 +30,8 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
 
     Taro.request({
       url: Env.apiUrl + 'withdraws/' + this.id,
-      success: function (res) { self.setState({data: res.data}) }
+      success: function (res) { self.setState({entity: res.data}) }
     }).then((res) =>{
-      this.entity = res.data
     })
   }
 
@@ -77,23 +75,23 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='withdrawDetail'>
-      { this.state &&
+      { this.state.entity &&
       <AtList>
-      <AtListItem title='申请方' extraText={this.entity.applicant.name} />
-      <AtListItem title='审核方' extraText={this.entity.approver.name} />
-      <AtListItem title='申请金额' extraText={this.entity.amount / 100} />
-      <AtListItem title='实际到账' extraText={this.entity.actualAmount / 100} />
-      <AtListItem title='日期' extraText={fmtDate(this.entity.date)} />
-      <AtListItem title='状态' extraText={Taxon.status[this.entity.status]} />
-      <AtListItem title='备注' extraText={this.entity.note} />
+      <AtListItem title='申请方' extraText={this.state.entity.applicant.name} />
+      <AtListItem title='审核方' extraText={this.state.entity.approver.name} />
+      <AtListItem title='申请金额' extraText={this.state.entity.amount / 100} />
+      <AtListItem title='实际到账' extraText={this.state.entity.actualAmount / 100} />
+      <AtListItem title='日期' extraText={fmtDate(this.state.entity.date)} />
+      <AtListItem title='状态' extraText={Taxon.status[this.state.entity.status]} />
+      <AtListItem title='备注' extraText={this.state.entity.note} />
       </AtList>
       }
-      { this.entity.status > 0 &&
+      { this.state.entity.status > 0 &&
       <View className='btn-wrapper'>
-        <Button className='btn' type='default' disabled>{Taxon.status[this.entity.status]}</Button>
+        <Button className='btn' type='default' disabled>{Taxon.status[this.state.entity.status]}</Button>
       </View>
       }
-      { this.entity.status == 0 &&  this.entity.approver.id == this.oid &&
+      { this.state.entity.status == 0 &&  this.state.entity.approver.id == this.oid &&
       <View className='btn-wrapper'>
       <Button className='btn' type='primary' onClick={() => this.approve(5)}>通过</Button>
       <Button className='btn' type='warn' onClick={() => this.approve(4)}>拒绝</Button>
