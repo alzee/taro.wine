@@ -10,7 +10,7 @@ import { fmtDate } from '../../fmtDate'
 export default class Retaildetail extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   id: int
-  entity = {}
+  state = {}
 
   componentWillMount () { }
 
@@ -19,9 +19,8 @@ export default class Retaildetail extends Component<PropsWithChildren> {
     const self = this;
     Taro.request({
       url: Env.apiUrl + 'retails/' + this.id,
-      success: function (res) { self.setState({data: res.data}) }
+      success: function (res) { self.setState({entity: res.data}) }
     }).then((res) =>{
-      this.entity = res.data
     })
   }
 
@@ -34,16 +33,16 @@ export default class Retaildetail extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='retailDetail'>
-      { this.state &&
+      { this.state.entity &&
       <AtList>
-      <AtListItem title='零售编号' extraText={this.entity.id} />
-      <AtListItem title='门店' extraText={this.entity.store.name} />
-      <AtListItem title='顾客' extraText={this.entity.consumer.name} />
-      <AtListItem title='商品' extraText={this.entity.product.name} />
-      <AtListItem title='数量' extraText={this.entity.quantity} />
-      <AtListItem title='金额' extraText={this.entity.amount / 100} />
-      <AtListItem title='随赠代金券' extraText={this.entity.voucher / 100} />
-      <AtListItem title='日期' extraText={fmtDate(this.entity.date)} />
+      <AtListItem title='零售编号' extraText={this.state.entity.id} />
+      <AtListItem title='门店' extraText={this.state.entity.store.name} />
+      <AtListItem title='顾客' extraText={this.state.entity.consumer.name} />
+      <AtListItem title='商品' extraText={this.state.entity.product.name} />
+      <AtListItem title='数量' extraText={this.state.entity.quantity} />
+      <AtListItem title='金额' extraText={this.state.entity.amount / 100} />
+      <AtListItem title='随赠代金券' extraText={this.state.entity.voucher / 100} />
+      <AtListItem title='日期' extraText={fmtDate(this.state.entity.date)} />
       </AtList>
       }
       </View>
