@@ -7,11 +7,12 @@ import { AtNavBar } from 'taro-ui'
 
 export default class Node extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
-  node = {};
   state = {};
 
   // constructor () {
   //   super(...arguments)
+  //   this.state = {
+  //   }
   // }
   
   componentDidMount () {
@@ -19,9 +20,8 @@ export default class Node extends Component<PropsWithChildren> {
     const self = this;
     Taro.request({
       url: Env.apiUrl + 'nodes/' + id,
-      success: function (res) { self.setState({data: res.data}) }
+      success: function (res) { self.setState({node: res.data}) }
     }).then((res) =>{
-      this.node = res.data
     })
   }
 
@@ -35,24 +35,24 @@ export default class Node extends Component<PropsWithChildren> {
     return (
       <View className='at-article'>
 
-      { this.state.data &&
+      { this.state.node &&
       <View>
       <View className='at-article__h1'>
-      {this.node.title}
+      {this.state.node.title}
       </View>
       <View className='at-article__info'>
-      {this.node.date}
+      {this.state.node.date}
       </View>
       <Image 
       className='at-article__img' 
-      src={ this.node.img && Env.imgUrl + 'node/' + this.node.img}
+      src={ this.state.node.img && Env.imgUrl + 'node/' + this.state.node.img}
       mode='widthFix' />
       <View className='at-article__content'>
-      <View dangerouslySetInnerHTML={{__html: this.node.body}} className='at-article__section'>
+      <View dangerouslySetInnerHTML={{__html: this.state.node.body}} className='at-article__section'>
       </View>
       </View>
       </View>
-      || <Text>fuck</Text>}
+      }
       </View>
     )
   }

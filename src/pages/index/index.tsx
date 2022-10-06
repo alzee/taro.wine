@@ -12,8 +12,6 @@ export default class Index extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
   apiUrl = Env.apiUrl;
   imgUrl = Env.imgUrl;
-  list0 = [];
-  list1 = [];
   state = {}
   //  constructor () {
   //    super(...arguments)
@@ -33,13 +31,15 @@ export default class Index extends Component<PropsWithChildren> {
       success: function (res) { self.setState({nodes0: res.data}) }
     }).then((res) =>{
       let nodes = res.data
+      let list = []
       for (let i in nodes) {
-        self.list0.push(
+        list.push(
           <SwiperItem key={i}>
           <Image className='img' mode='scaleToFill' src={ this.imgUrl + 'node/' + nodes[i].img } onClick={()=>this.navToNode(nodes[i].id)}></Image>
           </SwiperItem>
         );
       }
+      self.setState({list0: list})
     })
 
     Taro.request({
@@ -47,8 +47,9 @@ export default class Index extends Component<PropsWithChildren> {
       success: function (res) { self.setState({nodes1: res.data}) }
     }).then((res) =>{
       let nodes = res.data
+      let list = []
       for (let i in nodes) {
-        self.list1.push(
+        list.push(
           <View className="featured" key={i}>
           <Image className='img' mode='widthFix' src={this.imgUrl + 'node/' + nodes[i].img} onClick={()=>this.navToNode(nodes[i].id)} ></Image>
           <Text className="text">
@@ -57,6 +58,7 @@ export default class Index extends Component<PropsWithChildren> {
           </View>
         );
       }
+      self.setState({list1: list})
     })
   }
 
@@ -78,7 +80,7 @@ export default class Index extends Component<PropsWithChildren> {
       circular
       indicatorDots
       autoplay>
-      {this.list0}
+      {this.state.list0}
       </Swiper>
 
       <View className='at-row highlight'>
@@ -96,7 +98,7 @@ export default class Index extends Component<PropsWithChildren> {
       </View>
       </View>
 
-      {this.state.nodes1 && this.list1}
+      {this.state.list1}
 
       </View>
     )
