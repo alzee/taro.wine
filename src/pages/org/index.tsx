@@ -9,13 +9,7 @@ import { Env } from '../../env/env'
 
 export default class Org extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
-  agencies = []
-  stores = []
-  restaurants = []
   query: string = '?page=1'
-  list = []
-  list1 = []
-  list2 = []
   role: int;
   latitude: float
   longitude: float
@@ -66,62 +60,69 @@ export default class Org extends Component<PropsWithChildren> {
       success: function (res) { self.setState({data: res.data}) }
     }).then((res) =>{
       let orgs = res.data
-      console.log(orgs)
+      let agencies = []
+      let stores = []
+      let restaurants = []
+      let list = []
       for (let i in orgs) {
         switch (orgs[i].type) {
           case 1:
-            this.agencies = [...this.agencies, orgs[i]]
+            agencies = [...agencies, orgs[i]]
             break;
           case 2:
-            this.stores = [...this.stores, orgs[i]]
+            stores = [...stores, orgs[i]]
             break;
           case 3:
-            this.restaurants = [...this.restaurants, orgs[i]]
+            restaurants = [...restaurants, orgs[i]]
             break;
         }
       }
 
-      for (let i in this.stores) {
-        this.list.push(
+      list = []
+      for (let i in stores) {
+        list.push(
           <AtListItem
-          onClick={() => {if (this.role == 4 || this.role == -1) this.openMap(this.stores[i].latitude, this.stores[i].longitude); else this.navToDetail(this.stores[i].id)}}
-          title={this.stores[i].name}
-          note={this.stores[i].address}
-          // extraText={self.getDistance(self.latitude, self.longitude, self.stores[i].latitude, self.stores[i].longitude)}
-          extraText={this.getDistance(self.latitude, self.longitude,self.stores[i].latitude, self.stores[i].longitude)}
-          thumb={Env.imgUrl + 'org/' + this.stores[i].img}
+          onClick={() => {if (this.role == 4 || this.role == -1) this.openMap(stores[i].latitude, stores[i].longitude); else this.navToDetail(stores[i].id)}}
+          title={stores[i].name}
+          note={stores[i].address}
+          extraText={this.getDistance(self.latitude, self.longitude,stores[i].latitude, stores[i].longitude)}
+          thumb={Env.imgUrl + 'org/' + stores[i].img}
           arrow='right'
           className='list-item'
           />
         )
       }
-      for (let i in this.restaurants) {
-        this.list1.push(
+      this.setState({storeList: list})
+      list = []
+      for (let i in restaurants) {
+        list.push(
           <AtListItem
-          // onClick={() => this.navToDetail(this.restaurants[i].id)}
-          onClick={() => {if (this.role == 4 || this.role == -1) this.openMap(this.restaurants[i].latitude, this.restaurants[i].longitude); else this.navToDetail(this.restaurants[i].id)}}
-          title={this.restaurants[i].name}
-          note={this.restaurants[i].address}
-          extraText={this.getDistance(self.latitude, self.longitude,self.restaurants[i].latitude, self.restaurants[i].longitude)}
-          thumb={Env.imgUrl + 'org/' + this.restaurants[i].img}
+          onClick={() => {if (this.role == 4 || this.role == -1) this.openMap(restaurants[i].latitude, restaurants[i].longitude); else this.navToDetail(restaurants[i].id)}}
+          title={restaurants[i].name}
+          note={restaurants[i].address}
+          extraText={this.getDistance(self.latitude, self.longitude,restaurants[i].latitude, restaurants[i].longitude)}
+          thumb={Env.imgUrl + 'org/' + restaurants[i].img}
           arrow='right'
           className='list-item'
           />
         )
       }
-      for (let i in this.agencies) {
-        this.list2.push(
+      this.setState({restaurantList: list})
+      list = []
+      for (let i in agencies) {
+        list.push(
           <AtListItem
-          onClick={() => this.navToDetail(this.agencies[i].id)}
-          title={this.agencies[i].name}
-          note={this.agencies[i].address}
+          onClick={() => this.navToDetail(agencies[i].id)}
+          title={agencies[i].name}
+          note={agencies[i].address}
           // extraText='详细信息'
-          thumb={Env.imgUrl + 'org/' + this.agencies[i].img}
+          thumb={Env.imgUrl + 'org/' + agencies[i].img}
           arrow='right'
           className='list-item'
           />
         )
       }
+      this.setState({agencyList: list})
     })
   }
 
@@ -189,7 +190,7 @@ export default class Org extends Component<PropsWithChildren> {
         <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(0)}>新增门店</AtButton>
         }
           <AtList>
-          { this.list }
+          { this.state.storeList }
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={1}>
@@ -197,13 +198,13 @@ export default class Org extends Component<PropsWithChildren> {
         <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(1)}>新增餐厅</AtButton>
         }
           <AtList>
-          { this.list1 }
+          { this.state.restaurantList }
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={2} >
         <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(2)}>新增代理商</AtButton>
           <AtList>
-          { this.list2 }
+          { this.state.agencyList }
           </AtList>
         </AtTabsPane>
       </AtTabs>
