@@ -10,11 +10,11 @@ import { fmtDate } from '../../fmtDate'
 
 export default class Voucher extends Component<PropsWithChildren> {
   query: string = '?page=1'
-  list = []
   role: int
   voucher: int
   withdrawable: int
   withdrawing: int
+  state = []
 
   componentWillMount () { }
 
@@ -31,6 +31,7 @@ export default class Voucher extends Component<PropsWithChildren> {
           Taro.request({
             url: Env.apiUrl + 'consumers/' + data.cid
           }).then((res) =>{
+            // this.setState({voucher: res.data.voucher})
             this.voucher = res.data.voucher
           })
         } else {
@@ -38,6 +39,7 @@ export default class Voucher extends Component<PropsWithChildren> {
           Taro.request({
             url: Env.apiUrl + 'orgs/' + data.org.id
           }).then((res) =>{
+            // this.setState({voucher: res.data.voucher})
             this.voucher = res.data.voucher
             this.withdrawable = res.data.withdrawable
             this.withdrawing = res.data.withdrawing
@@ -48,8 +50,9 @@ export default class Voucher extends Component<PropsWithChildren> {
           success: function (res) { self.setState({data: res.data}) }
         }).then((res) =>{
           let records = res.data
+          let list = []
           for (let i in records) {
-            this.list.push(
+            list.push(
               <AtListItem
               title={Taxon.voucherType[records[i].type]}
               note={fmtDate(records[i].date)}
@@ -58,6 +61,7 @@ export default class Voucher extends Component<PropsWithChildren> {
               />
             )
           }
+          this.setState({list: list})
         })
       },
       fail: res => {
@@ -102,7 +106,7 @@ export default class Voucher extends Component<PropsWithChildren> {
       </View>
 
       <AtList className="list">
-      {this.list}
+      {this.state.list}
       </AtList>
       </View>
     )
