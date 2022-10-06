@@ -11,6 +11,7 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   id: int
   oid: int
+  state = {}
 
   componentWillMount () { }
 

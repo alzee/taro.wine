@@ -9,13 +9,11 @@ import { Taxon } from '../../Taxon'
 import { fmtDate } from '../../fmtDate'
 
 export default class Withdraw extends Component<PropsWithChildren> {
-  list = []
   query: string = '?page=1'
   tabList = []
   orgid: int
-  myWithdraws = []
-  downstreamWithdraws = []
   role: int
+  state = {}
 
   componentWillMount () { }
 
@@ -40,13 +38,13 @@ export default class Withdraw extends Component<PropsWithChildren> {
     }
     Taro.request({
       url: Env.apiUrl + api + '?page=1&' + filter + '=' + this.orgid,
-      success: function (res) { self.setState({data: res.data}) }
     }).then((res) =>{
+      let list = []
       for (let i in res.data){
         if (type == 'downstreamWithdraws') {
           titlePrefix = res.data[i].applicant.name + '-'
         }
-        this[type].push(
+        list.push(
           <AtListItem
           onClick={() => this.navToDetail(res.data[i].id)}
           title={titlePrefix + '申请提现 '+ res.data[i][title] / 100}
@@ -56,6 +54,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
           />
         )
       }
+      this.setState({[type]: list})
     })
   }
 
@@ -119,7 +118,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
       <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
           <AtList className="list">
-          {this.downstreamWithdraws}
+          {this.state.downstreamWithdraws}
           </AtList>
         </AtTabsPane>
       </AtTabs>
@@ -129,12 +128,12 @@ export default class Withdraw extends Component<PropsWithChildren> {
         <AtTabsPane current={this.state.current} index={0} >
           <AtButton className='new-btn' type='secondary' size='small' onClick={this.create}>申请提现</AtButton>
           <AtList className="list">
-          {this.myWithdraws}
+          {this.state.myWithdraws}
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={1} >
           <AtList className="list">
-          {this.downstreamWithdraws}
+          {this.state.downstreamWithdraws}
           </AtList>
         </AtTabsPane>
       </AtTabs>
@@ -144,7 +143,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
         <AtTabsPane current={this.state.current} index={0} >
           <AtButton className='new-btn' type='secondary' size='small' onClick={this.create}>申请提现</AtButton>
           <AtList className="list">
-          {this.myWithdraws}
+          {this.state.myWithdraws}
           </AtList>
         </AtTabsPane>
       </AtTabs>
