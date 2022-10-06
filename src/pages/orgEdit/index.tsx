@@ -9,7 +9,6 @@ import { Taxon } from '../../Taxon'
 export default class Orgedit extends Component<PropsWithChildren> {
   role: int
   oid: int
-  org = {}
 
   componentWillMount () { }
 
@@ -23,9 +22,8 @@ export default class Orgedit extends Component<PropsWithChildren> {
         this.oid = res.data.org.id
         Taro.request({
           url: Env.apiUrl + 'orgs/' + this.oid,
-          success: function (res) { self.setState({data: res.data}) }
+          success: function (res) { self.setState({org: res.data}) }
         }).then((res) =>{
-          this.org = res.data
         })
       }
     })
@@ -84,7 +82,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='orgEdit main'>
-      { this.state &&
+      { this.state.org &&
       <Form className='form'
       onSubmit={this.formSubmit}
       >
@@ -95,7 +93,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
           name='name' 
           type='text' 
           placeholder='名称' 
-          value={this.org.name}
+          value={this.state.org.name}
         />
       <Text className='label'>联系人</Text>
         <Input 
@@ -103,7 +101,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
           name='contact' 
           type='text' 
           placeholder='联系人' 
-          value={this.org.contact}
+          value={this.state.org.contact}
         />
       <Text className='label'>电话</Text>
         <Input 
@@ -111,7 +109,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
           name='phone' 
           type='number' 
           placeholder='电话' 
-          value={this.org.phone}
+          value={this.state.org.phone}
         />
       <Text className='label'>地址</Text>
         <Input 
@@ -119,7 +117,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
           name='address' 
           type='text' 
           placeholder='地址' 
-          value={this.org.address}
+          value={this.state.org.address}
         />
       <Text className='label'>地区</Text>
         <Input 
@@ -127,7 +125,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
           name='district' 
           type='text' 
           placeholder='地区' 
-          value={this.org.district}
+          value={this.state.org.district}
         />
         <Button type='primary' formType='submit'>保存</Button>
       </Form>
