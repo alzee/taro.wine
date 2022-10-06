@@ -32,8 +32,9 @@ export default class Productdetail extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='productDetail'>
-      <Image className='pic' src={Env.imgUrl + 'product/' + this.state.entity.img} />
+      { this.state.entity &&
       <AtList>
+      <Image className='pic' src={Env.imgUrl + 'product/' + this.state.entity.img} />
       <AtListItem title='产品名称' extraText={this.state.entity.name} />
       <AtListItem title='产品编号' extraText={this.state.entity.sn} />
       <AtListItem title='产品规格' extraText={this.state.entity.spec} />
@@ -41,6 +42,7 @@ export default class Productdetail extends Component<PropsWithChildren> {
       <AtListItem title='产品库存' extraText={this.state.entity.stock} />
       <AtListItem title='随赠代金券' extraText={this.state.entity.voucher / 100} />
       </AtList>
+      }
       </View>
     )
   }
