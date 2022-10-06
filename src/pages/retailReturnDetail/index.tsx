@@ -19,7 +19,7 @@ export default class Retailreturndetail extends Component<PropsWithChildren> {
     const self = this;
     Taro.request({
       url: Env.apiUrl + 'retail_returns/' + this.id,
-      success: function (res) { self.setState({data: res.data}) }
+      success: function (res) { self.setState({entity: res.data}) }
     }).then((res) =>{
     })
   }

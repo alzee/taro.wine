@@ -10,6 +10,7 @@ import { fmtDate } from '../../fmtDate'
 export default class Dinedetail extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   id: int
+  state = {}
 
   componentWillMount () { }
 
@@ -34,7 +35,7 @@ export default class Dinedetail extends Component<PropsWithChildren> {
       <View className='dineDetail'>
       { this.state.entity &&
       <AtList>
-      <AtListItem title='编号' extraText={this.entity.id} />
+      <AtListItem title='编号' extraText={this.state.entity.id} />
       <AtListItem title='餐厅' extraText={this.state.entity.restaurant.name} />
       <AtListItem title='顾客' extraText={this.state.entity.consumer.name} />
       <AtListItem title='代金券' extraText={this.state.entity.voucher / 100} />
