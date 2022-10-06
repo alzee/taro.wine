@@ -8,10 +8,12 @@ import { AtNavBar } from 'taro-ui'
 export default class Node extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   node = {};
+  state = {};
 
-  constructor () {
-    super(...arguments)
-  }
+  // constructor () {
+  //   super(...arguments)
+  // }
+  
   componentDidMount () {
     let id = this.instance.router.params.id
     const self = this;
@@ -33,6 +35,8 @@ export default class Node extends Component<PropsWithChildren> {
     return (
       <View className='at-article'>
 
+      { this.state.data &&
+      <View>
       <View className='at-article__h1'>
       {this.node.title}
       </View>
@@ -47,7 +51,8 @@ export default class Node extends Component<PropsWithChildren> {
       <View dangerouslySetInnerHTML={{__html: this.node.body}} className='at-article__section'>
       </View>
       </View>
-
+      </View>
+      || <Text>fuck</Text>}
       </View>
     )
   }

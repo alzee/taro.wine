@@ -33,7 +33,6 @@ export default class Index extends Component<PropsWithChildren> {
       success: function (res) { self.setState({nodes0: res.data}) }
     }).then((res) =>{
       let nodes = res.data
-      console.log(nodes)
       for (let i in nodes) {
         self.list0.push(
           <SwiperItem key={i}>
@@ -48,7 +47,6 @@ export default class Index extends Component<PropsWithChildren> {
       success: function (res) { self.setState({nodes1: res.data}) }
     }).then((res) =>{
       let nodes = res.data
-      console.log(nodes)
       for (let i in nodes) {
         self.list1.push(
           <View className="featured" key={i}>
@@ -84,7 +82,7 @@ export default class Index extends Component<PropsWithChildren> {
       </Swiper>
 
       <View className='at-row highlight'>
-      <View className="at-col"  onClick={() => Taro.navigateTo({url: '/pages/showVideo/index'})}>
+      <View className="at-col" onClick={() => Taro.navigateTo({url: '/pages/showVideo/index'})}>
       <AtAvatar className="avatar" circle image={Env.imgUrl + 'jiannan.png'}></AtAvatar>
       <Text>剑南老窖</Text>
       </View>
