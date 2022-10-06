@@ -10,7 +10,6 @@ import { fmtDate } from '../../fmtDate'
 export default class Dinedetail extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   id: int
-  entity = {}
 
   componentWillMount () { }
 
@@ -19,9 +18,8 @@ export default class Dinedetail extends Component<PropsWithChildren> {
     const self = this;
     Taro.request({
       url: Env.apiUrl + 'order_restaurants/' + this.id,
-      success: function (res) { self.setState({data: res.data}) }
+      success: function (res) { self.setState({entity: res.data}) }
     }).then((res) =>{
-      this.entity = res.data
     })
   }
 
@@ -34,13 +32,13 @@ export default class Dinedetail extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='dineDetail'>
-      { this.state &&
+      { this.state.entity &&
       <AtList>
       <AtListItem title='编号' extraText={this.entity.id} />
-      <AtListItem title='餐厅' extraText={this.entity.restaurant.name} />
-      <AtListItem title='顾客' extraText={this.entity.consumer.name} />
-      <AtListItem title='代金券' extraText={this.entity.voucher / 100} />
-      <AtListItem title='日期' extraText={fmtDate(this.entity.date)} />
+      <AtListItem title='餐厅' extraText={this.state.entity.restaurant.name} />
+      <AtListItem title='顾客' extraText={this.state.entity.consumer.name} />
+      <AtListItem title='代金券' extraText={this.state.entity.voucher / 100} />
+      <AtListItem title='日期' extraText={fmtDate(this.state.entity.date)} />
       </AtList>
       }
       </View>
