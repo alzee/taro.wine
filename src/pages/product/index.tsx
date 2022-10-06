@@ -7,9 +7,9 @@ import { AtList, AtListItem, AtCard, AtButton } from "taro-ui"
 
 export default class Product extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
-  list = []
   role: int
   orgid: int
+  state = {}
 
   navToDetail(id){
     Taro.navigateTo({url: '/pages/productDetail/index?id=' + id})
@@ -26,11 +26,10 @@ export default class Product extends Component<PropsWithChildren> {
         let query = '?page=1&org=' + this.orgid
         Taro.request({
           url: Env.apiUrl + 'products' + query,
-          success: function (res) { self.setState({data: res.data}) }
         }).then((res) =>{
-          console.log(res)
+          let list = []
           for (let i in res.data) {
-            this.list.push(
+            list.push(
               <AtListItem
               onClick={() => this.navToDetail(res.data[i].id)}
               title={res.data[i].name}
@@ -41,6 +40,7 @@ export default class Product extends Component<PropsWithChildren> {
           />
             )
           }
+          this.setState({list: list})
         })
       }
     })
@@ -60,7 +60,7 @@ export default class Product extends Component<PropsWithChildren> {
       <AtButton className='new-btn' type='secondary' size='small' onClick={() => Taro.redirectTo({url: '/pages/productNew/index'})}>添加产品</AtButton>
       }
       <AtList>
-      { this.list }
+      { this.state.list }
       </AtList>
       </View>
     )
