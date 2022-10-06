@@ -10,8 +10,7 @@ import { fmtDate } from '../../fmtDate'
 export default class Orderdetail extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   id: int
-  entity = {}
-  itemList = []
+  state = {}
 
   componentWillMount () { }
 
@@ -20,18 +19,19 @@ export default class Orderdetail extends Component<PropsWithChildren> {
     const self = this;
     Taro.request({
       url: Env.apiUrl + 'orders/' + this.id,
-      success: function (res) { self.setState({data: res.data}) }
+      success: function (res) { self.setState({entity: res.data}) }
     }).then((res) =>{
-      this.entity = res.data
-      let items = this.entity.orderItems
-      console.log(this.entity)
+      let data = res.data
+      let items = data.orderItems
+      let itemList = []
       for (let i in items) {
-        this.itemList.push(
+        itemList.push(
           <View className='order-item'>
           <Text>{items[i].product.name} x {items[i].quantity}</Text>
           </View>
         )
       }
+      this.setState({itemList: itemList})
     })
   }
 
@@ -44,17 +44,17 @@ export default class Orderdetail extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='orderDetail'>
-      { this.state &&
+      { this.state.entity &&
       <AtList>
-      <AtListItem title='订单编号' extraText={this.entity.id} />
-      <AtListItem title='发货方' extraText={this.entity.seller.name} />
-      <AtListItem title='进货方' extraText={this.entity.buyer.name} />
+      <AtListItem title='订单编号' extraText={this.state.entity.id} />
+      <AtListItem title='发货方' extraText={this.state.entity.seller.name} />
+      <AtListItem title='进货方' extraText={this.state.entity.buyer.name} />
       <AtListItem title='订单商品' />
-      {this.itemList}
-      <AtListItem title='金额' extraText={this.entity.amount / 100} />
-      <AtListItem title='代金券' extraText={this.entity.voucher / 100} />
-      <AtListItem title='日期' extraText={fmtDate(this.entity.date)} />
-      <AtListItem title='备注' extraText={this.entity.note} />
+      {this.state.itemList}
+      <AtListItem title='金额' extraText={this.state.entity.amount / 100} />
+      <AtListItem title='代金券' extraText={this.state.entity.voucher / 100} />
+      <AtListItem title='日期' extraText={fmtDate(this.state.entity.date)} />
+      <AtListItem title='备注' extraText={this.state.entity.note} />
       </AtList>
       }
       </View>
