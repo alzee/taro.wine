@@ -19,7 +19,6 @@ export default class Orgdetail extends Component<PropsWithChildren> {
     Taro.request({
       url: Env.apiUrl + 'orgs/' + this.id,
       success: function (res) { self.setState({entity: res.data}) }
-    }).then((res) =>{
     })
   }
 
@@ -32,6 +31,8 @@ export default class Orgdetail extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='orgDetail'>
+      { this.state.entity &&
+      <View>
       <Image mode='widthFix' className='storefront' src={this.state.entity.img && Env.imgUrl + 'org/' + this.state.entity.img} />
       <AtList>
       <AtListItem title='名称' extraText={this.state.entity.name} />
@@ -41,6 +42,8 @@ export default class Orgdetail extends Component<PropsWithChildren> {
       <AtListItem title='地址' extraText={this.state.entity.address} />
       <AtListItem title='地区' extraText={this.state.entity.district} />
       </AtList>
+      </View>
+      }
       </View>
     )
   }
