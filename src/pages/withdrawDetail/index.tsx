@@ -1,5 +1,5 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text, Button } from '@tarojs/components'
+import { View, Text, Button, Image } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
@@ -85,6 +85,9 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
       <AtListItem title='日期' extraText={fmtDate(this.state.entity.date)} />
       <AtListItem title='状态' extraText={Taxon.status[this.state.entity.status]} />
       <AtListItem title='备注' extraText={this.state.entity.note} />
+      <View className='img-wrapper'>
+      <Image src={Env.imgUrl + 'withdraw/' + this.state.entity.img} />
+      </View>
       </AtList>
       }
       { this.state.entity && this.state.entity.status > 0 &&
