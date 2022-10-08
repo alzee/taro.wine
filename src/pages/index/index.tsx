@@ -27,7 +27,7 @@ export default class Index extends Component<PropsWithChildren> {
     const self = this;
 
     Taro.request({
-      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=3&tag=0',
+      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=3&tag=0&order%5Bid%5D=asc',
       success: function (res) { self.setState({nodes0: res.data}) }
     }).then((res) =>{
       let nodes = res.data
@@ -43,7 +43,7 @@ export default class Index extends Component<PropsWithChildren> {
     })
 
     Taro.request({
-      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=2&tag=1',
+      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=2&tag=1&order%5Bid%5D=asc',
       success: function (res) { self.setState({nodes1: res.data}) }
     }).then((res) =>{
       let nodes = res.data
