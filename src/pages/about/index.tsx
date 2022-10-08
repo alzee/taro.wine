@@ -11,9 +11,9 @@ export default class About extends Component<PropsWithChildren> {
 
   componentDidMount () {
     Taro.request({
-      url: Env.apiUrl + 'nodes/13',
+      url: Env.apiUrl + 'nodes?itemsPerPage=1&tag=2',
     }).then((res) =>{
-      this.setState({node: res.data})
+      this.setState({node: res.data[0]})
     })
   }
 
