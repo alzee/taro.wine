@@ -39,7 +39,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
   formSubmit = e => {
     let data = e.detail.value
     let label = {
-      name: '名称',
+      // name: '名称',
       contact: '联系人',
       phone: '电话',
       address: '地址',
@@ -55,7 +55,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
         return
       }
     }
-    console.log(data)
+    // console.log(data)
     Taro.request({
       method: 'PATCH',
       data: data,
@@ -91,10 +91,10 @@ export default class Orgedit extends Component<PropsWithChildren> {
         <Input 
         className="input"
         required
-          name='name' 
+          // name='name' 
           type='text' 
-          placeholder='名称' 
-          value={this.state.org.name}
+          placeholder={this.state.org.name}
+          disabled
         />
       <Text className='label'>联系人</Text>
         <Input 
