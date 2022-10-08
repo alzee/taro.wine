@@ -29,8 +29,17 @@ export default class Orgdetail extends Component<PropsWithChildren> {
   componentDidHide () { }
 
   makeCall(){
-    console.log(this)
     Taro.makePhoneCall({phoneNumber: this.extraText})
+  }
+
+  openLocation(){
+    const latitude = this.state.entity.latitude
+    const longitude = this.state.entity.longitude
+    Taro.openLocation({
+      latitude,
+      longitude,
+      scale: 18
+    })
   }
 
   render () {
@@ -44,7 +53,7 @@ export default class Orgdetail extends Component<PropsWithChildren> {
       <AtListItem title='类型' extraText={Taxon.orgType[this.state.entity.type]} />
       <AtListItem title='联系人' extraText={this.state.entity.contact} />
       <AtListItem title='电话' extraText={this.state.entity.phone} onClick={this.makeCall} />
-      <AtListItem title='地址' extraText={this.state.entity.address} />
+      <AtListItem title='地址' extraText={this.state.entity.address} onClick={this.openLocation.bind(this)} />
       <AtListItem title='地区' extraText={this.state.entity.district} />
       </AtList>
       </View>
