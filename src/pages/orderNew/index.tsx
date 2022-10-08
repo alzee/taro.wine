@@ -118,18 +118,26 @@ export default class Ordernew extends Component<PropsWithChildren> {
       url: Env.apiUrl + 'order/new',
       success: function (res) { }
     }).then((res) =>{
-      Taro.showToast({
-        title: '已完成',
-        icon: 'success',
-        duration: 2000,
-        success: () => {
-          setTimeout(
-            () => {
-              Taro.reLaunch({url: '/pages/orders/index'})
-            }, 500
-          )
-        }
-      })
+      if (res.statusCode == 500) {
+        Taro.showToast({
+          title: '库存不足',
+          icon: 'error',
+          duration: 2000,
+        })
+      } else {
+        Taro.showToast({
+          title: '已完成',
+          icon: 'success',
+          duration: 2000,
+          success: () => {
+            setTimeout(
+              () => {
+                Taro.reLaunch({url: '/pages/orders/index'})
+              }, 500
+            )
+          }
+        })
+      }
     })
   }
 
