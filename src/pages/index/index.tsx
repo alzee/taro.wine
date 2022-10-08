@@ -53,7 +53,6 @@ export default class Index extends Component<PropsWithChildren> {
           <View className="featured" key={i}>
           <Image className='img' mode='widthFix' src={this.imgUrl + 'node/' + nodes[i].img} onClick={()=>this.navToNode(nodes[i].id)} ></Image>
           <Text className="text">
-          {nodes[i].title}
           </Text>
           </View>
         );
