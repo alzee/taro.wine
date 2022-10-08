@@ -5,12 +5,16 @@
   margin: 1rem;
 }
 .form{
-    padding: 8rem 1rem;
-.input{
-  margin: 1rem 0;
-  padding: .5rem;
-  border: #c5c5c5 solid 1px;
-  border-radius: .25rem;
+  padding: 8rem 1rem;
+  .input{
+    margin: 1rem 0;
+    padding: .5rem;
+    border: #c5c5c5 solid 1px;
+    border-radius: .25rem;
+  }
 }
+.at-article__section{
+  font-size: .8rem;
+  color: #666;
+  padding: 1rem;
 }
-
