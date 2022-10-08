@@ -83,7 +83,7 @@ export default class Index extends Component<PropsWithChildren> {
       </Swiper>
 
       <View className='at-row highlight'>
-      <View className="at-col" onClick={() => Taro.navigateTo({url: '/pages/showVideo/index'})}>
+      <View className="at-col" onClick={() => Taro.navigateTo({url: '/pages/about/index'})}>
       <AtAvatar className="avatar" circle image={Env.imgUrl + 'jiannan.png'}></AtAvatar>
       <Text>剑南老窖</Text>
       </View>

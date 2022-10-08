@@ -3,7 +3,7 @@ import { View, Text, Video } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 
-export default class Showvideo extends Component<PropsWithChildren> {
+export default class About extends Component<PropsWithChildren> {
 
   componentWillMount () { }
 
@@ -17,7 +17,7 @@ export default class Showvideo extends Component<PropsWithChildren> {
 
   render () {
     return (
-      <View className='showVideo'>
+      <View className='about'>
       <Video
       id='video'
       src={Env.imgUrl + 'laojiuku.mp4'}
