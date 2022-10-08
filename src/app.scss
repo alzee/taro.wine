@@ -18,3 +18,12 @@
   color: #666;
   padding: 1rem;
 }
+.at-list__item-content{
+}
+
+.orderDetail, .returnDetail, .retailDetail, .retailReturnDetail, .dineDetail, .withdrawDetail{
+  .at-list__item-container .at-list__item-extra{
+    width: 400px;
+    max-width: unset;
+  }
+}
