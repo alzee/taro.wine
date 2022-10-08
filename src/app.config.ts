@@ -8,8 +8,6 @@ export default defineAppConfig({
     'pages/voucher/index',
     'pages/withdraw/index',
     'pages/retail/index',
-    'pages/orderRestaurant/index',
-    'pages/myInfo/index',
     'pages/login/index',
     'pages/chooseLogin/index',
     'pages/node/index',
