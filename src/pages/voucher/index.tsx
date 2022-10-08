@@ -12,8 +12,6 @@ export default class Voucher extends Component<PropsWithChildren> {
   query: string = '?page=1'
   role: int
   voucher: int
-  withdrawable: int
-  withdrawing: int
   state = []
 
   componentWillMount () { }
@@ -41,8 +39,6 @@ export default class Voucher extends Component<PropsWithChildren> {
           }).then((res) =>{
             // this.setState({voucher: res.data.voucher})
             this.voucher = res.data.voucher
-            this.withdrawable = res.data.withdrawable
-            this.withdrawing = res.data.withdrawing
           })
         }
         Taro.request({
@@ -86,20 +82,6 @@ export default class Voucher extends Component<PropsWithChildren> {
       <View className='at-col'>
       <View className='label'>代金券</View>
       <View className='my'>{this.voucher / 100}</View>
-      </View>
-      }
-
-      { this.state && (this.role == 1 || this.role == 3) &&
-      <View className='at-col'>
-      <View className='label'>可提金额</View>
-      <View className='withdrawable'>{this.withdrawable / 100}</View>
-      </View>
-      }
-
-      { this.state && (this.role == 1 || this.role == 3) &&
-      <View className='at-col'>
-      <View className='label'>提现中</View>
-      <View className='withdrawable'>{this.withdrawing / 100}</View>
       </View>
       }
 
