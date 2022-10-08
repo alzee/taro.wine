@@ -11,9 +11,11 @@ import { fmtDate } from '../../fmtDate'
 export default class Withdraw extends Component<PropsWithChildren> {
   query: string = '?page=1'
   tabList = []
-  orgid: int
+  oid: int
   role: int
   state = {}
+  withdrawable: int
+  withdrawing: int
 
   componentWillMount () { }
 
@@ -37,7 +39,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
         break
     }
     Taro.request({
-      url: Env.apiUrl + api + '?page=1&' + filter + '=' + this.orgid,
+      url: Env.apiUrl + api + '?page=1&' + filter + '=' + this.oid,
     }).then((res) =>{
       let list = []
       for (let i in res.data){
@@ -63,7 +65,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         let data = res.data
-        this.orgid = res.data.org.id
+        this.oid = res.data.org.id
         this.role = res.data.role
         const self = this;
         switch (this.role) {
@@ -80,6 +82,16 @@ export default class Withdraw extends Component<PropsWithChildren> {
             this.tabList = [{title: '我的提现'}]
             this.getData('myWithdraws')
             break
+        }
+        if (this.role == 1 || this.role == 3) {
+          Taro.request({
+            url: Env.apiUrl + 'orgs/' + data.org.id
+          }).then((res) =>{
+            this.setState({
+              withdrawable: res.data.withdrawable,
+              withdrawing: res.data.withdrawing
+            })
+          })
         }
       },
       fail: res => {
@@ -114,6 +126,23 @@ export default class Withdraw extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='withdraw'>
+      <View className='at-row card'>
+
+      { this.state && (this.role == 1 || this.role == 3) &&
+      <View className='at-col'>
+      <View className='label'>可提金额</View>
+      <View className='withdrawable'>{this.state.withdrawable / 100}</View>
+      </View>
+      }
+
+      { this.state && (this.role == 1 || this.role == 3) &&
+      <View className='at-col'>
+      <View className='label'>提现中</View>
+      <View className='withdrawable'>{this.state.withdrawing / 100}</View>
+      </View>
+      }
+      </View>
+
       { this.role == 0 &&
       <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >

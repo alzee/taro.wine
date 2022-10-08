@@ -1,3 +1,20 @@
-.new-btn{
-  margin: .5rem auto;
+.withdraw{
+  .card{
+    padding: 1.5rem 0;
+    text-align: center;
+    .label{
+      color: #656565;
+    }
+    .my{
+      color: #de3434;
+      font-weight: bold;
+    }
+    .withdrawable{
+      color: #24b95f;
+      font-weight: bold;
+    }
+  }
+  .new-btn{
+    margin: .5rem auto;
+  }
 }
