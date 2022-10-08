@@ -28,6 +28,11 @@ export default class Orgdetail extends Component<PropsWithChildren> {
 
   componentDidHide () { }
 
+  makeCall(){
+    console.log(this)
+    Taro.makePhoneCall({phoneNumber: this.extraText})
+  }
+
   render () {
     return (
       <View className='orgDetail'>
@@ -38,7 +43,7 @@ export default class Orgdetail extends Component<PropsWithChildren> {
       <AtListItem title='名称' extraText={this.state.entity.name} />
       <AtListItem title='类型' extraText={Taxon.orgType[this.state.entity.type]} />
       <AtListItem title='联系人' extraText={this.state.entity.contact} />
-      <AtListItem title='电话' extraText={this.state.entity.phone} />
+      <AtListItem title='电话' extraText={this.state.entity.phone} onClick={this.makeCall} />
       <AtListItem title='地址' extraText={this.state.entity.address} />
       <AtListItem title='地区' extraText={this.state.entity.district} />
       </AtList>
