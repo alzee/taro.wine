@@ -5,6 +5,13 @@ import './index.scss'
 import { Env } from '../../env/env'
 import { AtNavBar } from 'taro-ui'
 
+Taro.options.html.transformElement = (el) => {
+  if (el.nodeName === 'image') {
+    el.setAttribute('mode', 'widthFix')
+  }
+  return el
+}
+
 export default class Node extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   state = {};
