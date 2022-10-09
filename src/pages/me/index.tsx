@@ -56,30 +56,38 @@ export default class Me extends Component<PropsWithChildren> {
 
   getLocation(){
     const self = this;
-    console.log(self)
-    Taro.getLocation({
-      // type: 'wgs84',
-      type: 'gcj02',
+    Taro.showModal({
+      title: '提示',
+      content: '确定要更新坐标？',
       success: function (res) {
-        const latitude = res.latitude
-        const longitude = res.longitude
-        console.log(res)
-        Taro.request({
-          method: 'PATCH',
-          url: Env.apiUrl + 'orgs/' + self.oid,
-          data: {latitude: latitude, longitude: longitude},
-          header: {
-            'content-type': 'application/merge-patch+json'
-          },
-          success: function (res) { self.setState({data: res.data}) }
-        }).then((res) =>{
-          console.log(res.data)
-          Taro.showToast({
-            title: '更新成功',
-            icon: 'success',
-            duration: 2000
+        if (res.confirm) {
+          Taro.getLocation({
+            // type: 'wgs84',
+            type: 'gcj02',
+            success: function (res) {
+              const latitude = res.latitude
+              const longitude = res.longitude
+              // console.log(res)
+              Taro.request({
+                method: 'PATCH',
+                url: Env.apiUrl + 'orgs/' + self.oid,
+                data: {latitude: latitude, longitude: longitude},
+                header: {
+                  'content-type': 'application/merge-patch+json'
+                },
+                success: function (res) { self.setState({data: res.data}) }
+              }).then((res) =>{
+                // console.log(res.data)
+                Taro.showToast({
+                  title: '更新成功',
+                  icon: 'success',
+                  duration: 2000
+                })
+              })
+            }
           })
-        })
+        } else if (res.cancel) {
+        }
       }
     })
   }
