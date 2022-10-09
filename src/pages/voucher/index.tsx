@@ -76,16 +76,14 @@ export default class Voucher extends Component<PropsWithChildren> {
     return (
       <View className='voucher'>
 
-      <View className='at-row card'>
-
       { this.state && this.role != 0 &&
+      <View className='at-row card'>
       <View className='at-col'>
       <View className='label'>代金券</View>
       <View className='my'>{this.voucher / 100}</View>
       </View>
-      }
-
       </View>
+      }
 
       <AtList className="list">
       {this.state.list}
