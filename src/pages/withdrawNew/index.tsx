@@ -117,7 +117,10 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
       />
       { this.state &&
         <View className='hint'>
-        <Text>可提金额: {this.withdrawable / 100}，折扣: {this.discount * 100} %</Text>
+        <Text>可提金额: {this.withdrawable / 100}</Text>
+        { this.role == 3 &&
+          <Text> ，折扣: {this.discount * 100} %</Text>
+        }
         </View>
       }
         <Button type='primary' formType='submit'>提交</Button>
