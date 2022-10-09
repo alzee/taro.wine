@@ -124,22 +124,20 @@ export default class Withdraw extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='withdraw'>
-      <View className='at-row card'>
 
       { this.state && (this.role == 1 || this.role == 3) &&
+      <View className='at-row card'>
       <View className='at-col'>
       <View className='label'>可提金额</View>
-      <View className='withdrawable'>{this.state.withdrawable / 100}</View>
+      <View className='number'>{this.state.withdrawable / 100}</View>
       </View>
-      }
 
-      { this.state && (this.role == 1 || this.role == 3) &&
       <View className='at-col'>
       <View className='label'>提现中</View>
-      <View className='withdrawable'>{this.state.withdrawing / 100}</View>
+      <View className='number'>{this.state.withdrawing / 100}</View>
+      </View>
       </View>
       }
-      </View>
 
       { this.role == 0 &&
       <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>

@@ -1,17 +1,19 @@
 .withdraw{
   .card{
     padding: 1.5rem 0;
+    background-color: #2aae67;
+    margin: auto;
+    width: 95%;
+    border-radius: .5rem;
     text-align: center;
     .label{
-      color: #656565;
+      color: #ffffff;
+      margin-bottom: .6rem;
     }
-    .my{
+    .number{
       color: #de3434;
       font-weight: bold;
-    }
-    .withdrawable{
-      color: #24b95f;
-      font-weight: bold;
+      font-size: 1.4rem;
     }
   }
   .new-btn{
