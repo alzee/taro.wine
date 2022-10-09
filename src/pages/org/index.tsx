@@ -82,7 +82,7 @@ export default class Org extends Component<PropsWithChildren> {
       for (let i in stores) {
         list.push(
           <AtListItem
-          onClick={() => {if (this.role == 4 || this.role == -1) this.openMap(stores[i].latitude, stores[i].longitude); else this.navToDetail(stores[i].id)}}
+          onClick={() => this.navToDetail(stores[i].id)}
           title={stores[i].name}
           note={stores[i].address}
           extraText={this.getDistance(self.latitude, self.longitude,stores[i].latitude, stores[i].longitude)}
@@ -97,7 +97,7 @@ export default class Org extends Component<PropsWithChildren> {
       for (let i in restaurants) {
         list.push(
           <AtListItem
-          onClick={() => {if (this.role == 4 || this.role == -1) this.openMap(restaurants[i].latitude, restaurants[i].longitude); else this.navToDetail(restaurants[i].id)}}
+          onClick={() => this.navToDetail(restaurants[i].id)}
           title={restaurants[i].name}
           note={restaurants[i].address}
           extraText={this.getDistance(self.latitude, self.longitude,restaurants[i].latitude, restaurants[i].longitude)}
