@@ -4,12 +4,18 @@
   .card{
     padding: 1.5rem 0;
     text-align: center;
+    background-color: #2aae67;
+    margin: auto;
+    width: 95%;
+    border-radius: .5rem;
     .label{
-      color: #656565;
+      color: #ffffff;
+      margin-bottom: .6rem;
     }
     .my{
       color: #de3434;
       font-weight: bold;
+      font-size: 1.4rem;
     }
   }
 }
