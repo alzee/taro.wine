@@ -11,7 +11,6 @@ import { fmtDate } from '../../fmtDate'
 export default class Voucher extends Component<PropsWithChildren> {
   query: string = '?page=1'
   role: int
-  voucher: int
   state = []
 
   componentWillMount () { }
@@ -29,16 +28,14 @@ export default class Voucher extends Component<PropsWithChildren> {
           Taro.request({
             url: Env.apiUrl + 'consumers/' + data.cid
           }).then((res) =>{
-            // this.setState({voucher: res.data.voucher})
-            this.voucher = res.data.voucher
+            this.setState({voucher: res.data.voucher})
           })
         } else {
           this.query = '?page=1&org=' + data.org.id
           Taro.request({
             url: Env.apiUrl + 'orgs/' + data.org.id
           }).then((res) =>{
-            // this.setState({voucher: res.data.voucher})
-            this.voucher = res.data.voucher
+            this.setState({voucher: res.data.voucher})
           })
         }
         Taro.request({
@@ -80,7 +77,7 @@ export default class Voucher extends Component<PropsWithChildren> {
       <View className='at-row card'>
       <View className='at-col'>
       <View className='label'>代金券</View>
-      <View className='my'>{this.voucher / 100}</View>
+      <View className='my'>{this.state.voucher / 100}</View>
       </View>
       </View>
       }

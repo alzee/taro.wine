@@ -14,8 +14,6 @@ export default class Withdraw extends Component<PropsWithChildren> {
   oid: int
   role: int
   state = {}
-  withdrawable: int
-  withdrawing: int
 
   componentWillMount () { }
 
