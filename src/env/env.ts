@@ -3,6 +3,7 @@
 const baseUrl = 'https://hbljk.cn/';
 
 export const Env = {
+  baseUrl: baseUrl,
   apiUrl: baseUrl + 'api/',
   imgUrl: baseUrl + 'img/',
   storageKey: 'fuckWechat',

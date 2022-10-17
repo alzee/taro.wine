@@ -8,6 +8,7 @@ import { AtNavBar } from 'taro-ui'
 Taro.options.html.transformElement = (el) => {
   if (el.nodeName === 'image') {
     el.setAttribute('mode', 'widthFix')
+    el.setAttribute('src', Env.baseUrl + el.getAttribute('src'))
   }
   return el
 }
