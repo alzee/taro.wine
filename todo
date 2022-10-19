@@ -1,15 +1,10 @@
 - customer qr page feedback
+- infinite scroll
+- skeleton screen
 
 - upload img:
   - org
   - product
 - user avatar fomr wechat
-
-index:
-  - user
-new:
-  - user
-edit:
-  - user
 
 # vim:ft=yaml
