@@ -9,7 +9,7 @@ import { Env } from '../../env/env'
 
 export default class Org extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
-  query: string = '?page=1&itemsPerPage=180'
+  query: string = ''
   role: int;
   latitude: float
   longitude: float
