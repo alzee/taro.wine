@@ -1,4 +1,11 @@
 @import "~taro-ui/dist/style/components/tabs.scss";
+.pickers{
+  display: flex;
+  padding: 0 1rem;
+  .picker{
+    margin-right: 1.5rem;
+  }
+}
 .list-item{
   height: 6rem;
   .at-list__item-container{

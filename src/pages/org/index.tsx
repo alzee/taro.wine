@@ -6,6 +6,7 @@ import { AtList, AtListItem, AtCard } from "taro-ui"
 import { AtTabs, AtTabsPane } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
+import { Picker } from '@tarojs/components'
 
 export default class Org extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
@@ -13,6 +14,12 @@ export default class Org extends Component<PropsWithChildren> {
   role: int;
   latitude: float
   longitude: float
+  state = {
+    citySelected: '十堰',
+    industrySelected: '餐饮',
+    current: 1,
+    seg: 0,
+  }
 
   Rad(d) { 
     //根据经纬度判断距离
@@ -32,7 +39,7 @@ export default class Org extends Component<PropsWithChildren> {
       s = s * 6378.137;
       s = Math.round(s * 10000) / 10000;
       s = s.toFixed(1) + 'km' //保留两位小数
-      console.log('经纬度计算的距离:' + s)
+      // console.log('经纬度计算的距离:' + s)
       return s
   }
 
@@ -53,6 +60,26 @@ export default class Org extends Component<PropsWithChildren> {
         this.latitude = res.data.latitude
         this.longitude = res.data.longitude
       }
+    })
+
+    Taro.request({
+      url: Env.apiUrl + 'cities',
+    }).then((res) =>{
+      let cities = []
+      for (let i of res.data) {
+        cities.push(i.name)
+      }
+      this.setState({cities})
+    })
+
+    Taro.request({
+      url: Env.apiUrl + 'industries',
+    }).then((res) =>{
+      let industries = []
+      for (let i of res.data) {
+        industries.push(i.name)
+      }
+      this.setState({industries})
     })
 
     Taro.request({
@@ -133,13 +160,13 @@ export default class Org extends Component<PropsWithChildren> {
 
   componentDidHide () { }
 
-  constructor () {
-    super(...arguments)
-    this.state = {
-      current: 1,
-      seg: 0,
-    }
-  }
+  // constructor () {
+  //   super(...arguments)
+  //   this.state = {
+  //     current: 1,
+  //     seg: 0,
+  //   }
+  // }
 
   handleClick (value) {
     this.setState({
@@ -167,6 +194,18 @@ export default class Org extends Component<PropsWithChildren> {
     Taro.navigateTo({url: '/pages/orgNew/index?type=' + orgType})
   }
 
+  cityChange = e => {
+    this.setState({
+      citySelected: this.state.cities[e.detail.value]
+    })
+  }
+
+  industryChange = e => {
+    this.setState({
+      industrySelected: this.state.industries[e.detail.value]
+    })
+  }
+
   render () {
     let tabList = []
     if (this.role == 0) {
@@ -183,6 +222,16 @@ export default class Org extends Component<PropsWithChildren> {
     }
     return (
       <View className='org'>
+
+      <View className='pickers'>
+      <Picker className='picker' mode='selector' range={this.state.cities} onChange={this.cityChange}>
+      {this.state.citySelected} <AtIcon value='chevron-down' size='12' color='#000'></AtIcon>
+      </Picker>
+      <Picker className='picker' mode='selector' range={this.state.industries} onChange={this.industryChange}>
+      {this.state.industrySelected} <AtIcon value='chevron-down' size='12' color='#000'></AtIcon>
+      </Picker>
+      </View>
+
 
       <AtTabs current={this.state.seg} tabList={tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.seg} index={0}>
