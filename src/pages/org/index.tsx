@@ -43,6 +43,79 @@ export default class Org extends Component<PropsWithChildren> {
       return s
   }
 
+  getOrgs() {
+    let that = this
+    Taro.request({
+      url: Env.apiUrl + 'orgs' + this.query,
+      success: function (res) { that.setState({data: res.data}) }
+    }).then((res) =>{
+      let orgs = res.data
+      let agencies = []
+      let stores = []
+      let restaurants = []
+      let list = []
+      for (let i in orgs) {
+        switch (orgs[i].type) {
+          case 1:
+            agencies = [...agencies, orgs[i]]
+            break;
+          case 2:
+            stores = [...stores, orgs[i]]
+            break;
+          case 3:
+            restaurants = [...restaurants, orgs[i]]
+            break;
+        }
+      }
+
+      list = []
+      for (let i in stores) {
+        list.push(
+          <AtListItem
+          onClick={() => this.navToDetail(stores[i].id)}
+          title={stores[i].name}
+          note={stores[i].address}
+          extraText={this.getDistance(that.latitude, that.longitude,stores[i].latitude, stores[i].longitude)}
+          thumb={Env.imgUrl + 'org/' + stores[i].img}
+          arrow='right'
+          className='list-item'
+          />
+        )
+      }
+      this.setState({storeList: list})
+      list = []
+      for (let i in restaurants) {
+        list.push(
+          <AtListItem
+          onClick={() => this.navToDetail(restaurants[i].id)}
+          title={restaurants[i].name}
+          note={restaurants[i].address}
+          extraText={this.getDistance(that.latitude, that.longitude,restaurants[i].latitude, restaurants[i].longitude)}
+          thumb={Env.imgUrl + 'org/' + restaurants[i].img}
+          arrow='right'
+          className='list-item'
+          />
+        )
+      }
+      this.setState({restaurantList: list})
+      list = []
+      for (let i in agencies) {
+        list.push(
+          <AtListItem
+          onClick={() => this.navToDetail(agencies[i].id)}
+          title={agencies[i].name}
+          note={agencies[i].address}
+          // extraText='详细信息'
+          thumb={Env.imgUrl + 'org/' + agencies[i].img}
+          arrow='right'
+          className='list-item'
+          />
+        )
+      }
+      this.setState({agencyList: list})
+    })
+  }
+
   componentDidMount () { 
     const self = this;
 
@@ -82,75 +155,7 @@ export default class Org extends Component<PropsWithChildren> {
       this.setState({industries})
     })
 
-    Taro.request({
-      url: Env.apiUrl + 'orgs' + this.query,
-      success: function (res) { self.setState({data: res.data}) }
-    }).then((res) =>{
-      let orgs = res.data
-      let agencies = []
-      let stores = []
-      let restaurants = []
-      let list = []
-      for (let i in orgs) {
-        switch (orgs[i].type) {
-          case 1:
-            agencies = [...agencies, orgs[i]]
-            break;
-          case 2:
-            stores = [...stores, orgs[i]]
-            break;
-          case 3:
-            restaurants = [...restaurants, orgs[i]]
-            break;
-        }
-      }
-
-      list = []
-      for (let i in stores) {
-        list.push(
-          <AtListItem
-          onClick={() => this.navToDetail(stores[i].id)}
-          title={stores[i].name}
-          note={stores[i].address}
-          extraText={this.getDistance(self.latitude, self.longitude,stores[i].latitude, stores[i].longitude)}
-          thumb={Env.imgUrl + 'org/' + stores[i].img}
-          arrow='right'
-          className='list-item'
-          />
-        )
-      }
-      this.setState({storeList: list})
-      list = []
-      for (let i in restaurants) {
-        list.push(
-          <AtListItem
-          onClick={() => this.navToDetail(restaurants[i].id)}
-          title={restaurants[i].name}
-          note={restaurants[i].address}
-          extraText={this.getDistance(self.latitude, self.longitude,restaurants[i].latitude, restaurants[i].longitude)}
-          thumb={Env.imgUrl + 'org/' + restaurants[i].img}
-          arrow='right'
-          className='list-item'
-          />
-        )
-      }
-      this.setState({restaurantList: list})
-      list = []
-      for (let i in agencies) {
-        list.push(
-          <AtListItem
-          onClick={() => this.navToDetail(agencies[i].id)}
-          title={agencies[i].name}
-          note={agencies[i].address}
-          // extraText='详细信息'
-          thumb={Env.imgUrl + 'org/' + agencies[i].img}
-          arrow='right'
-          className='list-item'
-          />
-        )
-      }
-      this.setState({agencyList: list})
-    })
+    this.getOrgs()
   }
 
   componentWillUnmount () { }
