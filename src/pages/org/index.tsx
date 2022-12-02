@@ -10,13 +10,14 @@ import { Picker } from '@tarojs/components'
 
 export default class Org extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
-  query: string = ''
   role: int;
   latitude: float
   longitude: float
   state = {
-    citySelected: '十堰',
-    industrySelected: '餐饮',
+    cities: ['十堰'],
+    industries: ['餐饮'],
+    citySelected: 0,
+    industrySelected: 0,
     current: 1,
     seg: 0,
   }
@@ -45,8 +46,12 @@ export default class Org extends Component<PropsWithChildren> {
 
   getOrgs() {
     let that = this
+    let query = '?isShown=1'
+    query += '&city=' + (Number(this.state.citySelected) + 1)
+    query += '&industry=' + (Number(this.state.industrySelected) + 1)
+    console.log(query)
     Taro.request({
-      url: Env.apiUrl + 'orgs' + this.query,
+      url: Env.apiUrl + 'orgs' + query,
       success: function (res) { that.setState({data: res.data}) }
     }).then((res) =>{
       let orgs = res.data
@@ -193,13 +198,17 @@ export default class Org extends Component<PropsWithChildren> {
 
   cityChange = e => {
     this.setState({
-      citySelected: this.state.cities[e.detail.value]
+      citySelected: e.detail.value
+    }, () => {
+      this.getOrgs()
     })
   }
 
   industryChange = e => {
     this.setState({
-      industrySelected: this.state.industries[e.detail.value]
+      industrySelected: e.detail.value
+    }, () => {
+      this.getOrgs()
     })
   }
 
@@ -222,10 +231,10 @@ export default class Org extends Component<PropsWithChildren> {
 
       <View className='pickers'>
       <Picker className='picker' mode='selector' range={this.state.cities} onChange={this.cityChange}>
-      {this.state.citySelected} <AtIcon value='chevron-down' size='12' color='#000'></AtIcon>
+      {this.state.cities[this.state.citySelected]} <AtIcon value='chevron-down' size='12' color='#000'></AtIcon>
       </Picker>
       <Picker className='picker' mode='selector' range={this.state.industries} onChange={this.industryChange}>
-      {this.state.industrySelected} <AtIcon value='chevron-down' size='12' color='#000'></AtIcon>
+      {this.state.industries[this.state.industrySelected]} <AtIcon value='chevron-down' size='12' color='#000'></AtIcon>
       </Picker>
       </View>
 
