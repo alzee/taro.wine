@@ -46,7 +46,7 @@ export default class Org extends Component<PropsWithChildren> {
 
   getOrgs() {
     let that = this
-    let query = '?show=1'
+    let query = '?upstream.display=true'
     query += '&city=' + (Number(this.state.citySelected) + 1)
     query += '&industry=' + (Number(this.state.industrySelected) + 1)
     console.log(query)
