@@ -165,14 +165,6 @@ export default class Org extends Component<PropsWithChildren> {
 
   componentDidHide () { }
 
-  // constructor () {
-  //   super(...arguments)
-  //   this.state = {
-  //     current: 1,
-  //     seg: 0,
-  //   }
-  // }
-
   handleClick (value) {
     this.setState({
       seg: value
