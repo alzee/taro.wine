@@ -34,6 +34,7 @@ export default defineAppConfig({
     'pages/about/index',
     'pages/chpwd/index',
     'pages/orgEdit/index',
+    'pages/referral/index',
   ],
   window: {
     backgroundTextStyle: 'light',
