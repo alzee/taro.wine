@@ -5,6 +5,7 @@ import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
 import { AtButton, AtList, AtListItem, AtInput, AtForm} from "taro-ui"
 import { Taxon } from '../../Taxon'
+import { AtCheckbox } from 'taro-ui'
 
 export default class Consumerinfo extends Component<PropsWithChildren> {
   cid: int
@@ -101,6 +102,10 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
           type='text' 
           placeholder='电话' 
         />
+      <AtCheckbox
+        // options={this.checkboxOption}
+        // onChange={this.handleChange.bind(this)}
+      />
         <Button type='primary' formType='submit'>提交</Button>
       </Form>
       </View>
