@@ -17,7 +17,17 @@ export default class Referralwithdraw extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='referralWithdraw'>
-        <Text>Hello world!</Text>
+      <View className='at-row card'>
+      <View className='at-col'>
+      <View className='label'>可提金额</View>
+      <View className='number'>0</View>
+      </View>
+
+      <View className='at-col'>
+      <View className='label'>提现中</View>
+      <View className='number'>0</View>
+      </View>
+      </View>
       </View>
     )
   }
