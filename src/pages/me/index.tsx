@@ -218,6 +218,17 @@ export default class Me extends Component<PropsWithChildren> {
       />
       }
 
+      { this.role == 4 &&
+      <AtListItem
+      title='我的分销'
+      // note='描述信息'
+      // extraText='详细信息'
+      arrow='right'
+      thumb={lock}
+      onClick={() => this.navTo('referral')}
+      />
+      }
+
       </AtList>
 
       <AtButton className='logout' size='small' onClick={this.logout}>退出登录</AtButton>
