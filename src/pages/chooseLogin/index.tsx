@@ -6,10 +6,18 @@ import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 
 export default class Chooselogin extends Component<PropsWithChildren> {
+  state = {}
 
   componentWillMount () { }
 
-  componentDidMount () { }
+  componentDidMount () {
+    Taro.getStorage({
+      key: 'referrerId',
+      success: res => {
+        this.setState({referrerId: res.data})
+      }
+    })
+  }
 
   componentWillUnmount () { }
 
@@ -26,16 +34,19 @@ export default class Chooselogin extends Component<PropsWithChildren> {
   }
 
   wxlogin() {
+    console.log(this)
+    let that = this
     Taro.login({
       success: function (res) {
-        console.log(res)
+        // console.log(res)
         if (res.code) {
           //发起网络请求
           Taro.request({
             method: 'POST',
             url: Env.apiUrl + 'consumer_login',
             data: {
-              code: res.code
+              code: res.code,
+              referrerId: that.state.referrerId
             }
           }).then((res) => {
             console.log(res)
@@ -57,7 +68,7 @@ export default class Chooselogin extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='chooseLogin main'>
-      <Button type='primary' className="btn" onClick={this.wxlogin}>微信登录</Button>
+      <Button type='primary' className="btn" onClick={this.wxlogin.bind(this)}>微信登录</Button>
       <Button className="btn" onClick={this.toLoginPage}>管理员登录</Button>
       </View>
     )
