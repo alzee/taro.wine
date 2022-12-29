@@ -26,7 +26,7 @@ export default class Referral extends Component<PropsWithChildren> {
         }).then((res) =>{
           list = []
           for (let i of res.data) {
-            console.log(i)
+            // console.log(i)
             list.push(
               <AtListItem
               // onClick={}
@@ -39,6 +39,26 @@ export default class Referral extends Component<PropsWithChildren> {
             )
           }
           this.setState({list1: list})
+        })
+
+        Taro.request({
+          // url: Env.apiUrl + 'refretail/' + cid,
+          url: Env.apiUrl + 'refretail/' + 55,
+        }).then((res) =>{
+          console.log(res.data)
+          list = []
+          for (let i of res.data) {
+            // console.log(i)
+            list.push(
+              <AtListItem
+              title={i.product.name}
+              note={i.quantity}
+              extraText={i.amount / 100}
+              className='list-item'
+              />
+            )
+          }
+          this.setState({list2: list})
         })
       }
     })
@@ -73,6 +93,9 @@ export default class Referral extends Component<PropsWithChildren> {
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={1}>
+          <AtList>
+          { this.state.list2}
+          </AtList>
         </AtTabsPane>
       </AtTabs>
       </View>
