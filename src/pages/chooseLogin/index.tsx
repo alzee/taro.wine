@@ -34,7 +34,6 @@ export default class Chooselogin extends Component<PropsWithChildren> {
   }
 
   wxlogin() {
-    console.log(this)
     let that = this
     Taro.login({
       success: function (res) {
@@ -62,7 +61,7 @@ export default class Chooselogin extends Component<PropsWithChildren> {
         }
       }
     })
-    console.log('fuck');
+    // console.log('fuck');
   }
 
   render () {
