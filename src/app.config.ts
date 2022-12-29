@@ -37,6 +37,7 @@ export default defineAppConfig({
     'pages/orgEdit/index',
     'pages/referral/index',
     'pages/referralWithdraw/index',
+    'pages/poster/index',
   ],
   window: {
     backgroundTextStyle: 'light',
