@@ -11,6 +11,7 @@ export default defineAppConfig({
     'pages/login/index',
     'pages/chooseLogin/index',
     'pages/node/index',
+    'pages/node/policy',
     'pages/product/index',
     'pages/productNew/index',
     'pages/orgNew/index',

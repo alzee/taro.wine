@@ -104,7 +104,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
         />
         <View className='d-flex'>
         <Checkbox value='checked' />
-        我已阅读并同意<Navigator url='/pages/node/index?id=16'>《用户协议》</Navigator>
+        我已阅读并同意<Navigator url='/pages/node/policy'>《用户协议》</Navigator>
         </View>
         <Button type='primary' formType='submit'>提交</Button>
       </Form>
