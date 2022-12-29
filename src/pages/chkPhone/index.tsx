@@ -17,7 +17,6 @@ export default class Chkphone extends Component<PropsWithChildren> {
   componentDidHide () { }
 
   formSubmit = e => {
-    console.log(e.detail.value)
     const phone = e.detail.value.phone
     
     Taro.request({
@@ -32,7 +31,7 @@ export default class Chkphone extends Component<PropsWithChildren> {
           url: Env.apiUrl + 'sms',
           data: {phone}
         }).then((res) => {
-          Taro.navigateTo({url: '/pages/chkOTP/index'})
+          Taro.navigateTo({url: '/pages/chkOTP/index?phone=' + phone})
         })
       } else {
         Taro.showToast({
@@ -42,33 +41,6 @@ export default class Chkphone extends Component<PropsWithChildren> {
         })
       }
     })
-
-    // let phone = e.detail.
-    // let password = e.detail.password
-    //Taro.request({
-    //  method: 'POST',
-    //  url: Env.apiUrl + 'login',
-    //  data: e.detail.value
-    //}).then((res) => {
-    //  console.log(res.data)
-    //  if (res.data.code == 0) {
-    //    // Taro.clearStorage()
-    //    Taro.setStorage({
-    //      key: Env.storageKey,
-    //      data: res.data.data
-    //    })
-    //    // Taro.switchTab({ url: '/pages/me/index' })
-    //    Taro.reLaunch({ url: '/pages/me/index' })
-    //  } else {
-    //    // toast: wrong password
-    //    console.log('wrong')
-    //    Taro.showToast({
-    //      title: '用户名或密码错误',
-    //      icon: 'none',
-    //      duration: 2000
-    //    })
-    //  }
-    //})
   }
 
   render () {
