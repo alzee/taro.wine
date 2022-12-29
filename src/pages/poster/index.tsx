@@ -1,28 +1,19 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Image } from '@tarojs/components'
 import './index.scss'
+import { Env } from '../../env/env'
+import Taro from '@tarojs/taro'
 
 export default class Poster extends Component<PropsWithChildren> {
 
   componentWillMount () { }
 
   componentDidMount () {
-    const self = this;
-
-    const data = {
-      "page": "pages/index/index",
-      "scene": "a=1",
-      // "check_path": true,
-      // "env_version": "release"
-    }
-    Taro.request({
-      method: 'POST',
-      data: data,
-      // url: Env.apiUrl + 'nodes?page=1&itemsPerPage=3&tag=0&order%5Bid%5D=asc',
-      url: 'https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token=ACCESS_TOKEN'
-      success: function (res) { }) }
-    }).then((res) =>{
-      console.log(res)
+    Taro.getStorage({
+      key: Env.storageKey,
+      success: res => {
+        this.setState({cid: res.data.cid})
+      }
     })
   }
 
@@ -35,7 +26,10 @@ export default class Poster extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='poster'>
-        <Text>Hello world!</Text>
+        <Image 
+        className='at-article__img' 
+        src={ this.state && Env.imgUrl + 'poster/' + this.state.cid + '.jpg'}
+        mode='widthFix' />
       </View>
     )
   }
