@@ -9,7 +9,6 @@ import { Taxon } from '../../Taxon'
 import { fmtDate } from '../../fmtDate'
 
 export default class Withdraw extends Component<PropsWithChildren> {
-  query: string = '?page=1'
   tabList = []
   oid: int
   role: int
@@ -20,25 +19,35 @@ export default class Withdraw extends Component<PropsWithChildren> {
   getData (type: string) {
     const self = this;
     let api: string = 'withdraws'
-    let filter: string
+    // let filter: string
     let title: string
     let extraText: string
     let titlePrefix: string = ''
+    let query: string
     switch (type) {
       case 'myWithdraws':
-        filter = 'applicant'
+        // filter = 'applicant'
         title = 'amount'
         extraText = 'status'
+        query = '?applicant=' + this.oid
         break
       case 'downstreamWithdraws':
-        filter = 'approver'
+        // filter = 'approver'
         title = 'amount'
         extraText = 'status'
+        query = '?approver=' + this.oid
+        break
+      case 'all':
+        // filter = 'approver'
+        title = 'amount'
+        extraText = 'status'
+        query = ''
         break
     }
     Taro.request({
-      url: Env.apiUrl + api + '?page=1&' + filter + '=' + this.oid,
+      url: Env.apiUrl + api + query
     }).then((res) =>{
+      console.log(res.data)
       let list = []
       for (let i in res.data){
         if (type == 'downstreamWithdraws') {
@@ -69,7 +78,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
         switch (this.role) {
           case 0:
             this.tabList = [{ title: '下级提现' }]
-            this.getData('downstreamWithdraws')
+            this.getData('all')
             break
           case 1:
             this.tabList = [{ title: '我的提现' }, { title: '下级提现' }]
@@ -143,7 +152,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
       <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
           <AtList className="list">
-          {this.state.downstreamWithdraws}
+          {this.state.all}
           </AtList>
         </AtTabsPane>
       </AtTabs>
