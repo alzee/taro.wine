@@ -1,5 +1,5 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text, Form, Input, Button, Picker } from '@tarojs/components'
+import { View, Text, Form, Input, Button, Picker, Checkbox, Navigator } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
@@ -102,10 +102,10 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
           type='text' 
           placeholder='电话' 
         />
-      <AtCheckbox
-        // options={this.checkboxOption}
-        // onChange={this.handleChange.bind(this)}
-      />
+        <View className='d-flex'>
+        <Checkbox value='checked' />
+        我已阅读并同意<Navigator url='/pages/node/index?id=16'>《用户协议》</Navigator>
+        </View>
         <Button type='primary' formType='submit'>提交</Button>
       </Form>
       </View>
