@@ -19,7 +19,7 @@ export default class Resetpwd extends Component<PropsWithChildren> {
 
   formSubmit = e => {
     let data = e.detail.value
-    console.log(data)
+    // console.log(data)
     let phone = this.instance.router.params.phone
 
     for (let i in data) {
@@ -47,9 +47,9 @@ export default class Resetpwd extends Component<PropsWithChildren> {
       url: Env.apiUrl + 'resetpwd',
       data: data
     }).then((res) => {
-      console.log(res.data)
+      // console.log(res.data)
       if (res.data.code == 0) {
-        Taro.navigateTo({url: '/pages/login/index'})
+        Taro.reLaunch({url: '/pages/login/index'})
       } else {
         Taro.showToast({
           title: '错误',
