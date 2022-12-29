@@ -23,7 +23,6 @@ export default class Node extends Component<PropsWithChildren> {
       url: Env.apiUrl + 'nodes?itemsPerPage=1&tag=3',
       success: function (res) { self.setState({node: res.data[0]}) }
     }).then((res) =>{
-      console.log(res.data)
     })
   }
 
