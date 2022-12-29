@@ -11,6 +11,7 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   id: int
   oid: int
+  rid: int
   state = {}
 
   componentWillMount () { }
@@ -23,6 +24,7 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.oid = res.data.org.id
+        this.rid = res.data.role
       },
       fail: res => {
         console.log('fuck')
@@ -45,7 +47,7 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
   approve(action: int){
     self = this
     console.log(action)
-    let a = ['', '', '', '', '拒绝', '通过']
+    let a = ['', '', '', '通过', '拒绝', '打款']
     Taro.showModal({
       title: '提示',
       content: '确认' + a[action] + '?',
@@ -90,14 +92,17 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
       </View>
       </AtList>
       }
+      <View className='btn-wrapper'>
       { this.state.entity && this.state.entity.status > 0 &&
-      <View className='btn-wrapper'>
         <Button className='btn' type='default' disabled>{Taxon.status[this.state.entity.status]}</Button>
-      </View>
       }
-      { this.state.entity && this.state.entity.status == 0 &&  this.state.entity.approver.id == this.oid &&
+      { this.state.entity && this.state.entity.status == 3 && this.rid == 0 &&
+        <Button className='btn' type='primary' onClick={() => this.approve(5)}>打款</Button>
+      }
+      </View>
+      { this.state.entity && this.state.entity.status == 0 && this.state.entity.approver.id == this.oid &&
       <View className='btn-wrapper'>
-      <Button className='btn' type='primary' onClick={() => this.approve(5)}>通过</Button>
+      <Button className='btn' type='primary' onClick={() => this.approve(3)}>通过</Button>
       <Button className='btn' type='warn' onClick={() => this.approve(4)}>拒绝</Button>
       </View>
       }

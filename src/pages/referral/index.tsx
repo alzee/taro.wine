@@ -20,8 +20,8 @@ export default class Referral extends Component<PropsWithChildren> {
         let cid = res.data.cid
         let list
         Taro.request({
-          // url: Env.apiUrl + 'consumers?referrer=' + cid,
-          url: Env.apiUrl + 'consumers?referrer=' + 55,
+          url: Env.apiUrl + 'consumers?referrer=' + cid,
+          // url: Env.apiUrl + 'consumers?referrer=' + 55,
           // success: function (res) { that.setState({data: res.data}) }
         }).then((res) =>{
           list = []
@@ -42,8 +42,8 @@ export default class Referral extends Component<PropsWithChildren> {
         })
 
         Taro.request({
-          // url: Env.apiUrl + 'refretail/' + cid,
-          url: Env.apiUrl + 'refretail/' + 55,
+          url: Env.apiUrl + 'refretail/' + cid,
+          // url: Env.apiUrl + 'refretail/' + 55,
         }).then((res) =>{
           console.log(res.data)
           list = []
