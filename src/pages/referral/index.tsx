@@ -13,7 +13,37 @@ export default class Referral extends Component<PropsWithChildren> {
     seg: 0,
   }
 
-  componentWillMount () { }
+  componentWillMount () {
+    Taro.getStorage({
+      key: Env.storageKey,
+      success: res => {
+        let cid = res.data.cid
+        let list
+        Taro.request({
+          // url: Env.apiUrl + 'consumers?referrer=' + cid,
+          url: Env.apiUrl + 'consumers?referrer=' + 55,
+          // success: function (res) { that.setState({data: res.data}) }
+        }).then((res) =>{
+          list = []
+          for (let i of res.data) {
+            console.log(i)
+            list.push(
+              <AtListItem
+              // onClick={}
+              title={i.name}
+              note={i.phone}
+              // extraText={}
+              // arrow='right'
+              className='list-item'
+              />
+            )
+          }
+          this.setState({list1: list})
+        })
+      }
+    })
+
+  }
 
   componentDidMount () { }
 
@@ -38,10 +68,11 @@ export default class Referral extends Component<PropsWithChildren> {
       <View className='referral'>
       <AtTabs current={this.state.seg} tabList={tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.seg} index={0}>
+          <AtList>
+          { this.state.list1}
+          </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={1}>
-        </AtTabsPane>
-        <AtTabsPane current={this.state.seg} index={2}>
         </AtTabsPane>
       </AtTabs>
       </View>
