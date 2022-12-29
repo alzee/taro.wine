@@ -25,7 +25,7 @@ export default class Chkphone extends Component<PropsWithChildren> {
       url: Env.apiUrl + 'chkphone',
       data: {phone}
     }).then((res) => {
-      console.log(res.data)
+      // console.log(res.data)
       if (res.data.code == 0) {
         Taro.request({
           method: 'POST',
