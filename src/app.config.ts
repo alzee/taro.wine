@@ -38,6 +38,7 @@ export default defineAppConfig({
     'pages/referral/index',
     'pages/referralWithdraw/index',
     'pages/poster/index',
+    'pages/chkPhone/index',
   ],
   window: {
     backgroundTextStyle: 'light',

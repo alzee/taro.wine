@@ -1,5 +1,5 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text, Form, Input, Button } from '@tarojs/components'
+import { View, Text, Form, Input, Button, Navigator } from '@tarojs/components'
 import './index.scss'
 import { AtForm, AtButton, AtInput, AtToast } from 'taro-ui'
 import Taro from '@tarojs/taro'
@@ -65,6 +65,7 @@ export default class Login extends Component<PropsWithChildren> {
           type='password' 
           placeholder='密码' 
         />
+        <Navigator className='nav' url='/pages/chkPhone/index'>忘记密码？</Navigator>
         <Button type='primary' formType='submit'>登录</Button>
       </Form>
       </View>
