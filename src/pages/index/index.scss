@@ -1,6 +1,9 @@
 @import "~taro-ui/dist/style/components/tab-bar.scss";
 .index{
   padding: 1rem;
+  .search-bar{
+    padding: 0;
+  }
   .img{
     width: 100%;
   }
