@@ -81,17 +81,10 @@ export default defineAppConfig({
   },
  requiredPrivateInfos: [
    "getLocation",
-   // "getFuzzylocation",
-   // "choosePoi",
-   // "chooseLocation",
-   // "chooseAddress",
-   // "onLocationChange",
-   // "startLocationUpdate",
-   // "startLocationUpdateBackground"
  ],
  permission: {
    'scope.userLocation': {
-     desc: "你的位置信息将用于定位门店" // 高速公路行驶持续后台定位
+     desc: "你的位置信息将用于定位门店"
    }
  }
 })
