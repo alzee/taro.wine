@@ -3,7 +3,7 @@ import { View, Text } from '@tarojs/components'
 import './index.scss'
 import { AtButton, AtAvatar, AtIcon } from 'taro-ui'
 import { AtList, AtListItem, AtCard } from "taro-ui"
-import { AtTabs, AtTabsPane } from 'taro-ui'
+import { AtTabs, AtTabsPane, AtSearchBar } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 import { Picker } from '@tarojs/components'
@@ -20,6 +20,7 @@ export default class Org extends Component<PropsWithChildren> {
     industrySelected: 0,
     current: 1,
     seg: 0,
+    value: ''
   }
 
   Rad(d) { 
@@ -212,6 +213,12 @@ export default class Org extends Component<PropsWithChildren> {
     })
   }
 
+  searchBarChange(value) {
+    this.setState({
+      value: value
+    })
+  }
+
   render () {
     let tabList = []
     if (this.role == 0) {
@@ -229,6 +236,7 @@ export default class Org extends Component<PropsWithChildren> {
     return (
       <View className='org'>
 
+      <View className='hightlight'>
       <View className='pickers'>
       <Picker className='picker' mode='selector' range={this.state.cities} onChange={this.cityChange}>
       {this.state.cities[this.state.citySelected]} <AtIcon value='chevron-down' size='12' color='#000'></AtIcon>
@@ -236,6 +244,11 @@ export default class Org extends Component<PropsWithChildren> {
       <Picker className='picker' mode='selector' range={this.state.industries} onChange={this.industryChange}>
       {this.state.industries[this.state.industrySelected]} <AtIcon value='chevron-down' size='12' color='#000'></AtIcon>
       </Picker>
+      </View>
+      <AtSearchBar className='search-bar'
+        value={this.state.value}
+        onChange={this.searchBarChange.bind(this)}
+      />
       </View>
 
 

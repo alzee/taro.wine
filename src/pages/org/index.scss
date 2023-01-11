@@ -1,9 +1,17 @@
 @import "~taro-ui/dist/style/components/tabs.scss";
-.pickers{
+.hightlight{
+  padding: 0 .4rem;
   display: flex;
-  padding: 0 1rem;
-  .picker{
-    margin-right: 1.5rem;
+  justify-content: space-around;
+  .pickers{
+    display: flex;
+    .picker{
+      margin-right: 1rem;
+    }
+  }
+  .search-bar{
+    padding: 0;
+    flex: 0 0 54%;
   }
 }
 .list-item{
