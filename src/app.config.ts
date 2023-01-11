@@ -41,6 +41,7 @@ export default defineAppConfig({
     'pages/chkPhone/index',
     'pages/chkOTP/index',
     'pages/resetPWD/index',
+    'pages/search/index',
   ],
   window: {
     backgroundTextStyle: 'light',
