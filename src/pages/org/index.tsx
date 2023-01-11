@@ -18,7 +18,6 @@ export default class Org extends Component<PropsWithChildren> {
     industries: ['餐饮'],
     citySelected: 0,
     industrySelected: 0,
-    current: 1,
     seg: 0,
     value: ''
   }
@@ -168,7 +167,8 @@ export default class Org extends Component<PropsWithChildren> {
     this.setState({
       citySelected: e.detail.value
     }, () => {
-      this.getOrgs()
+      this.getOrgs(2)
+      this.getOrgs(3)
     })
   }
 
@@ -176,7 +176,8 @@ export default class Org extends Component<PropsWithChildren> {
     this.setState({
       industrySelected: e.detail.value
     }, () => {
-      this.getOrgs()
+      this.getOrgs(2)
+      this.getOrgs(3)
     })
   }
 
