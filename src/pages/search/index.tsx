@@ -66,11 +66,17 @@ export default class Search extends Component<PropsWithChildren> {
   }
 
   getOrgs(type) {
-    let that = this
+    let key: string
+    if (type == 2) {
+      key = 'storeList'
+    }
+    if (type == 3) {
+      key = 'restaurantList'
+    }
     let query = '?upstream.display=true&type=' + type + '&name=' + this.keyword
     Taro.request({
       url: Env.apiUrl + 'orgs' + query,
-      success: function (res) { that.setState({data: res.data}) }
+      success: function (res) {}
     }).then((res) =>{
       let orgs = res.data
       let list = []
@@ -94,13 +100,6 @@ export default class Search extends Component<PropsWithChildren> {
         )
       }
 
-      let key: string
-      if (type == 2) {
-        key = 'storeList'
-      }
-      if (type == 3) {
-        key = 'restaurantList'
-      }
       this.setState({[key]: list})
     })
   }

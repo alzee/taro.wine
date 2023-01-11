@@ -9,7 +9,6 @@ import { Env } from '../../env/env'
 import { Picker } from '@tarojs/components'
 
 export default class Org extends Component<PropsWithChildren> {
-  pageCtx = Taro.getCurrentInstance().page
   role: int;
   latitude: float
   longitude: float
@@ -19,7 +18,8 @@ export default class Org extends Component<PropsWithChildren> {
     citySelected: 0,
     industrySelected: 0,
     seg: 0,
-    value: ''
+    value: '',
+    page: 1
   }
 
   Rad(d) { 
@@ -43,14 +43,23 @@ export default class Org extends Component<PropsWithChildren> {
       return Number(s)
   }
 
-  getOrgs(type) {
-    let that = this
+  getOrgs(type: int) {
+    let key: string
+    if (type == 1) {
+      key = 'agencyList'
+    }
+    if (type == 2) {
+      key = 'storeList'
+    }
+    if (type == 3) {
+      key = 'restaurantList'
+    }
     let query = '?upstream.display=true&type=' + type
     query += '&city=' + (Number(this.state.citySelected) + 1)
     query += '&industry=' + (Number(this.state.industrySelected) + 1)
     Taro.request({
       url: Env.apiUrl + 'orgs' + query,
-      success: function (res) { that.setState({data: res.data}) }
+      success: function (res) {}
     }).then((res) =>{
       let orgs = res.data
       let list = []
@@ -74,21 +83,20 @@ export default class Org extends Component<PropsWithChildren> {
         )
       }
 
-      let key: string
-      if (type == 1) {
-        key = 'agencyList'
-      }
-      if (type == 2) {
-        key = 'storeList'
-      }
-      if (type == 3) {
-        key = 'restaurantList'
-      }
       this.setState({[key]: list})
       Taro.setStorage({
         key,
         data: list
       });
+    })
+  }
+
+  makeList(page: int) {
+    Taro.getStorage({
+      key: '',
+      success: res => {
+        self.setState({data: res.data})
+      }
     })
   }
 
