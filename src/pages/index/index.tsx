@@ -12,7 +12,9 @@ export default class Index extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
   apiUrl = Env.apiUrl;
   imgUrl = Env.imgUrl;
-  state = {}
+  state = {
+    value: ''
+  }
   //  constructor () {
   //    super(...arguments)
   //    this.state = {
@@ -68,9 +70,21 @@ export default class Index extends Component<PropsWithChildren> {
 
   componentDidHide () { }
 
+  searchBarChange(value) {
+    this.setState({
+      value: value
+    })
+  }
+
   render () {
     return (
       <View className='index'>
+
+      <AtSearchBar className='search-bar'
+        value={this.state.value}
+        placeholder='搜索门店'
+        onChange={this.searchBarChange.bind(this)}
+      />
 
       <Swiper
       className='swiper'
