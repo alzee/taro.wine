@@ -57,9 +57,8 @@ export default class Search extends Component<PropsWithChildren> {
       var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
       s = s * 6378.137;
       s = Math.round(s * 10000) / 10000;
-      s = s.toFixed(1) + 'km' //保留两位小数
-      // console.log('经纬度计算的距离:' + s)
-      return s
+      s = s.toFixed(1)
+      return Number(s)
   }
 
   navToDetail(id){
@@ -76,14 +75,14 @@ export default class Search extends Component<PropsWithChildren> {
       console.log(res.data)
       let orgs = res.data
       let list = []
-      for (let i in orgs) {
+      for (let i of orgs) {
         list.push(
           <AtListItem
-          onClick={() => this.navToDetail(orgs[i].id)}
-          title={orgs[i].name}
-          note={orgs[i].address}
-          extraText={this.getDistance(that.latitude, that.longitude,orgs[i].latitude, orgs[i].longitude)}
-          thumb={Env.imgUrl + 'org/thumbnail/' + orgs[i].img}
+          onClick={() => this.navToDetail(i.id)}
+          title={i.name}
+          note={i.address}
+          extraText={this.getDistance(that.latitude, that.longitude,i.latitude, i.longitude) + 'km'}
+          thumb={Env.imgUrl + 'org/thumbnail/' + i.img}
           arrow='right'
           className='list-item'
           />

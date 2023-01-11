@@ -40,85 +40,48 @@ export default class Org extends Component<PropsWithChildren> {
       var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(b / 2), 2)));
       s = s * 6378.137;
       s = Math.round(s * 10000) / 10000;
-      s = s.toFixed(1) + 'km' //保留两位小数
-      // console.log('经纬度计算的距离:' + s)
-      return s
+      s = s.toFixed(1)
+      return Number(s)
   }
 
-  getOrgs() {
+  getOrgs(type) {
     let that = this
-    let query = '?upstream.display=true'
+    let query = '?upstream.display=true&type=' + type
     query += '&city=' + (Number(this.state.citySelected) + 1)
     query += '&industry=' + (Number(this.state.industrySelected) + 1)
-    console.log(query)
     Taro.request({
       url: Env.apiUrl + 'orgs' + query,
       success: function (res) { that.setState({data: res.data}) }
     }).then((res) =>{
       let orgs = res.data
-      let agencies = []
-      let stores = []
-      let restaurants = []
       let list = []
-      for (let i in orgs) {
-        switch (orgs[i].type) {
-          case 1:
-            agencies = [...agencies, orgs[i]]
-            break;
-          case 2:
-            stores = [...stores, orgs[i]]
-            break;
-          case 3:
-            restaurants = [...restaurants, orgs[i]]
-            break;
-        }
+      for (let i of orgs) {
+        i.distance = this.getDistance(this.latitude, this.longitude,i.latitude, i.longitude)
       }
 
-      list = []
-      for (let i in stores) {
+      for (let i of orgs) {
         list.push(
           <AtListItem
-          onClick={() => this.navToDetail(stores[i].id)}
-          title={stores[i].name}
-          note={stores[i].address}
-          extraText={this.getDistance(that.latitude, that.longitude,stores[i].latitude, stores[i].longitude)}
-          thumb={Env.imgUrl + 'org/thumbnail/' + stores[i].img}
+          onClick={() => this.navToDetail(i.id)}
+          title={i.name}
+          note={i.address}
+          extraText={i.distance + 'km'}
+          thumb={Env.imgUrl + 'org/thumbnail/' + i.img}
           arrow='right'
           className='list-item'
           />
         )
       }
-      this.setState({storeList: list})
-      list = []
-      for (let i in restaurants) {
-        list.push(
-          <AtListItem
-          onClick={() => this.navToDetail(restaurants[i].id)}
-          title={restaurants[i].name}
-          note={restaurants[i].address}
-          extraText={this.getDistance(that.latitude, that.longitude,restaurants[i].latitude, restaurants[i].longitude)}
-          thumb={Env.imgUrl + 'org/thumbnail/' + restaurants[i].img}
-          arrow='right'
-          className='list-item'
-          />
-        )
+
+      if (type == 1) {
+        this.setState({list3: list})
       }
-      this.setState({restaurantList: list})
-      list = []
-      for (let i in agencies) {
-        list.push(
-          <AtListItem
-          onClick={() => this.navToDetail(agencies[i].id)}
-          title={agencies[i].name}
-          note={agencies[i].address}
-          // extraText='详细信息'
-          thumb={Env.imgUrl + 'org/' + agencies[i].img}
-          arrow='right'
-          className='list-item'
-          />
-        )
+      if (type == 2) {
+        this.setState({list1: list})
       }
-      this.setState({agencyList: list})
+      if (type == 3) {
+        this.setState({list2: list})
+      }
     })
   }
 
@@ -130,6 +93,11 @@ export default class Org extends Component<PropsWithChildren> {
       success: res => {
         self.setState({data: res.data})
         this.role = res.data.role
+        this.getOrgs(2)
+        this.getOrgs(3)
+        if (this.role == 1) {
+          this.getOrgs(1)
+        }
       }
     })
 
@@ -161,7 +129,6 @@ export default class Org extends Component<PropsWithChildren> {
       this.setState({industries})
     })
 
-    this.getOrgs()
   }
 
   componentWillUnmount () { }
@@ -259,14 +226,13 @@ export default class Org extends Component<PropsWithChildren> {
       />
       </View>
 
-
       <AtTabs current={this.state.seg} tabList={tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.seg} index={0}>
         { this.role == 1 &&
         <Button className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(0)}>新增门店</Button>
         }
           <AtList>
-          { this.state.storeList }
+          { this.state.list1 }
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={1}>
@@ -274,13 +240,13 @@ export default class Org extends Component<PropsWithChildren> {
         <Button className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(1)}>新增餐厅</Button>
         }
           <AtList>
-          { this.state.restaurantList }
+          { this.state.list2 }
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={2} >
         <Button className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(2)}>新增代理商</Button>
           <AtList>
-          { this.state.agencyList }
+          { this.state.list3 }
           </AtList>
         </AtTabsPane>
       </AtTabs>
