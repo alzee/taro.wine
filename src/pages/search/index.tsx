@@ -113,14 +113,36 @@ export default class Search extends Component<PropsWithChildren> {
       <View className='search'>
       <AtTabs current={this.state.seg} tabList={tabList} onClick={this.switchSeg.bind(this)}>
         <AtTabsPane current={this.state.seg} index={0}>
+        { this.state.storeList && 
+          <>
+        { this.state.storeList.length > 0 &&
           <AtList>
           { this.state.storeList }
           </AtList>
+        }
+        { this.state.storeList.length == 0 &&
+          <View className='no-result'>
+          <Text>没有找到相应门店</Text>
+          </View>
+        }
+          </>
+        }
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={1}>
+        { this.state.restaurantList && 
+          <>
+        { this.state.restaurantList.length > 0 &&
           <AtList>
           { this.state.restaurantList }
           </AtList>
+        }
+        { this.state.restaurantList.length == 0 &&
+          <View className='no-result'>
+          <Text>没有找到相应餐厅</Text>
+          </View>
+        }
+          </>
+        }
         </AtTabsPane>
       </AtTabs>
 
