@@ -1,7 +1,7 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Button } from '@tarojs/components'
 import './index.scss'
-import { AtButton, AtAvatar, AtIcon } from 'taro-ui'
+import { AtAvatar, AtIcon } from 'taro-ui'
 import { AtList, AtListItem, AtCard } from "taro-ui"
 import { AtTabs, AtTabsPane, AtSearchBar } from 'taro-ui'
 import Taro from '@tarojs/taro'
@@ -255,7 +255,7 @@ export default class Org extends Component<PropsWithChildren> {
       <AtTabs current={this.state.seg} tabList={tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.seg} index={0}>
         { this.role == 1 &&
-        <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(0)}>新增门店</AtButton>
+        <Button className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(0)}>新增门店</Button>
         }
           <AtList>
           { this.state.storeList }
@@ -263,14 +263,14 @@ export default class Org extends Component<PropsWithChildren> {
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={1}>
         { this.role == 1 &&
-        <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(1)}>新增餐厅</AtButton>
+        <Button className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(1)}>新增餐厅</Button>
         }
           <AtList>
           { this.state.restaurantList }
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={2} >
-        <AtButton className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(2)}>新增代理商</AtButton>
+        <Button className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(2)}>新增代理商</Button>
           <AtList>
           { this.state.agencyList }
           </AtList>
