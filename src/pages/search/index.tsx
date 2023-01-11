@@ -72,16 +72,21 @@ export default class Search extends Component<PropsWithChildren> {
       url: Env.apiUrl + 'orgs' + query,
       success: function (res) { that.setState({data: res.data}) }
     }).then((res) =>{
-      console.log(res.data)
       let orgs = res.data
       let list = []
+      for (let i of orgs) {
+        i.distance = this.getDistance(this.latitude, this.longitude,i.latitude, i.longitude)
+      }
+
+      orgs.sort((a, b) => a.distance - b.distance)
+
       for (let i of orgs) {
         list.push(
           <AtListItem
           onClick={() => this.navToDetail(i.id)}
           title={i.name}
           note={i.address}
-          extraText={this.getDistance(that.latitude, that.longitude,i.latitude, i.longitude) + 'km'}
+          extraText={i.distance + 'km'}
           thumb={Env.imgUrl + 'org/thumbnail/' + i.img}
           arrow='right'
           className='list-item'

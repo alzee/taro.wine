@@ -58,6 +58,8 @@ export default class Org extends Component<PropsWithChildren> {
         i.distance = this.getDistance(this.latitude, this.longitude,i.latitude, i.longitude)
       }
 
+      orgs.sort((a, b) => a.distance - b.distance)
+
       for (let i of orgs) {
         list.push(
           <AtListItem
