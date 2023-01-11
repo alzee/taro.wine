@@ -1,7 +1,7 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text, Image } from '@tarojs/components'
+import { View, Text, Image, Button } from '@tarojs/components'
 import './index.scss'
-import { AtButton, AtList, AtListItem} from "taro-ui"
+import { AtList, AtListItem} from "taro-ui"
 import { AtAvatar } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
@@ -243,7 +243,7 @@ export default class Me extends Component<PropsWithChildren> {
 
       </AtList>
 
-      <AtButton className='logout' size='small' onClick={this.logout}>退出登录</AtButton>
+      <Button className='logout' size='small' onClick={this.logout}>退出登录</Button>
       </View>
       )
   }
