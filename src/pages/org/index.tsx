@@ -81,7 +81,7 @@ export default class Org extends Component<PropsWithChildren> {
           title={stores[i].name}
           note={stores[i].address}
           extraText={this.getDistance(that.latitude, that.longitude,stores[i].latitude, stores[i].longitude)}
-          thumb={Env.imgUrl + 'org/' + stores[i].img}
+          thumb={Env.imgUrl + 'org/thumbnail/' + stores[i].img}
           arrow='right'
           className='list-item'
           />
@@ -96,7 +96,7 @@ export default class Org extends Component<PropsWithChildren> {
           title={restaurants[i].name}
           note={restaurants[i].address}
           extraText={this.getDistance(that.latitude, that.longitude,restaurants[i].latitude, restaurants[i].longitude)}
-          thumb={Env.imgUrl + 'org/' + restaurants[i].img}
+          thumb={Env.imgUrl + 'org/thumbnail/' + restaurants[i].img}
           arrow='right'
           className='list-item'
           />
