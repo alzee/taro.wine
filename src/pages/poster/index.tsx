@@ -17,6 +17,27 @@ export default class Poster extends Component<PropsWithChildren> {
     })
   }
 
+  downloadImg () {
+    let url = Env.imgUrl + 'poster/' + this.state.cid + '.jpg'
+    Taro.downloadFile({
+      url,
+      success: function (res) {
+        console.log(res);
+        //图片保存到本地
+        Taro.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success: function (data) {
+            Taro.showToast({
+              title: '保存成功',
+              icon: 'success',
+              duration: 2000
+            })
+          },
+        })
+      }
+    })
+  }
+
   componentWillUnmount () { }
 
   componentDidShow () { }
@@ -30,7 +51,7 @@ export default class Poster extends Component<PropsWithChildren> {
         className='at-article__img' 
         src={ this.state && Env.imgUrl + 'poster/' + this.state.cid + '.jpg'}
         mode='widthFix' />
-        <Button className='btn'>保存海报</Button>
+        <Button className='btn' onClick={this.downloadImg.bind(this)}>保存海报</Button>
       </View>
     )
   }
