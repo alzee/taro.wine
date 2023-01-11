@@ -219,6 +219,13 @@ export default class Org extends Component<PropsWithChildren> {
     })
   }
 
+	search(){
+    // console.log(this.state.value)
+    if (this.state.value != '') {
+      Taro.navigateTo({ url: '/pages/search/index?q=' + this.state.value })
+    }
+  }
+
   render () {
     let tabList = []
     if (this.role == 0) {
@@ -248,6 +255,7 @@ export default class Org extends Component<PropsWithChildren> {
       <AtSearchBar className='search-bar'
         value={this.state.value}
         onChange={this.searchBarChange.bind(this)}
+        onActionClick={this.search.bind(this)}
       />
       </View>
 

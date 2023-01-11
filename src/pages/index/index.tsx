@@ -76,6 +76,13 @@ export default class Index extends Component<PropsWithChildren> {
     })
   }
 
+	search(){
+    // console.log(this.state.value)
+    if (this.state.value != '') {
+      Taro.navigateTo({ url: '/pages/search/index?q=' + this.state.value })
+    }
+  }
+
   render () {
     return (
       <View className='index'>
@@ -84,6 +91,7 @@ export default class Index extends Component<PropsWithChildren> {
         value={this.state.value}
         placeholder='搜索门店'
         onChange={this.searchBarChange.bind(this)}
+        onActionClick={this.search.bind(this)}
       />
 
       <Swiper
