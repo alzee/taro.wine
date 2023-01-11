@@ -137,7 +137,7 @@ export default class Org extends Component<PropsWithChildren> {
 
   componentDidHide () { }
 
-  handleClick (value) {
+  switchSeg (value) {
     this.setState({
       seg: value
     })
@@ -227,7 +227,7 @@ export default class Org extends Component<PropsWithChildren> {
       />
       </View>
 
-      <AtTabs current={this.state.seg} tabList={tabList} onClick={this.handleClick.bind(this)}>
+      <AtTabs current={this.state.seg} tabList={tabList} onClick={this.switchSeg.bind(this)}>
         <AtTabsPane current={this.state.seg} index={0}>
         { this.role == 1 &&
         <Button className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(0)}>新增门店</Button>
@@ -244,12 +244,14 @@ export default class Org extends Component<PropsWithChildren> {
           { this.state.list2 }
           </AtList>
         </AtTabsPane>
+        { this.role == 0 &&
         <AtTabsPane current={this.state.seg} index={2} >
         <Button className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(2)}>新增代理商</Button>
           <AtList>
           { this.state.list3 }
           </AtList>
         </AtTabsPane>
+        }
       </AtTabs>
 
       </View>
