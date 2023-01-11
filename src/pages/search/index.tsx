@@ -7,6 +7,7 @@ import { Env } from '../../env/env'
 
 export default class Search extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
+  keyword = this.instance.router.params.q
   latitude: float
   longitude: float
   state = {
@@ -66,11 +67,8 @@ export default class Search extends Component<PropsWithChildren> {
   }
 
   getOrgs(type) {
-    // let keyword = '烟酒'
-    // let keyword = '酒店'
-    let keyword = this.instance.router.params.q
     let that = this
-    let query = '?upstream.display=true&type=' + type + '&name=' + keyword
+    let query = '?upstream.display=true&type=' + type + '&name=' + this.keyword
     Taro.request({
       url: Env.apiUrl + 'orgs' + query,
       success: function (res) { that.setState({data: res.data}) }
