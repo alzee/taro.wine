@@ -93,16 +93,15 @@ export default class Search extends Component<PropsWithChildren> {
           />
         )
       }
+
+      let key: string
       if (type == 2) {
-        that.setState({
-          list1: list
-        })
+        key = 'storeList'
       }
       if (type == 3) {
-        that.setState({
-          list2: list
-        })
+        key = 'restaurantList'
       }
+      this.setState({[key]: list})
     })
   }
 
@@ -116,12 +115,12 @@ export default class Search extends Component<PropsWithChildren> {
       <AtTabs current={this.state.seg} tabList={tabList} onClick={this.switchSeg.bind(this)}>
         <AtTabsPane current={this.state.seg} index={0}>
           <AtList>
-          { this.state.list1 }
+          { this.state.storeList }
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={1}>
           <AtList>
-          { this.state.list2 }
+          { this.state.restaurantList }
           </AtList>
         </AtTabsPane>
       </AtTabs>

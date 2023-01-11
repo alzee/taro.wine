@@ -74,15 +74,21 @@ export default class Org extends Component<PropsWithChildren> {
         )
       }
 
+      let key: string
       if (type == 1) {
-        this.setState({list3: list})
+        key = 'agencyList'
       }
       if (type == 2) {
-        this.setState({list1: list})
+        key = 'storeList'
       }
       if (type == 3) {
-        this.setState({list2: list})
+        key = 'restaurantList'
       }
+      this.setState({[key]: list})
+      Taro.setStorage({
+        key,
+        data: list
+      });
     })
   }
 
@@ -235,7 +241,7 @@ export default class Org extends Component<PropsWithChildren> {
         <Button className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(0)}>新增门店</Button>
         }
           <AtList>
-          { this.state.list1 }
+          { this.state.storeList }
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={1}>
@@ -243,14 +249,14 @@ export default class Org extends Component<PropsWithChildren> {
         <Button className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(1)}>新增餐厅</Button>
         }
           <AtList>
-          { this.state.list2 }
+          { this.state.restaurantList }
           </AtList>
         </AtTabsPane>
         { this.role == 0 &&
         <AtTabsPane current={this.state.seg} index={2} >
         <Button className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(2)}>新增代理商</Button>
           <AtList>
-          { this.state.list3 }
+          { this.state.agencyList }
           </AtList>
         </AtTabsPane>
         }
