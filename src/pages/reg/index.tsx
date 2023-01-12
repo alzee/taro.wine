@@ -40,13 +40,20 @@ export default class Reg extends Component<PropsWithChildren> {
   formSubmit = e => {
     let data = e.detail.value
     data.type = Number(this.state.type)
+    if (isNaN(data.type)) {
+      Taro.showToast({
+        title: '请选择类型',
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
     let label = {
-      type: '类型',
       name: '姓名',
       phone: '电话',
     }
-    for (let i in label) {
-      if (data[i] === "" || isNaN(data[i])) {
+    for (let i in data) {
+      if (data[i] === "") {
         Taro.showToast({
           title: '请填写 ' + label[i],
           icon: 'error',
@@ -55,6 +62,7 @@ export default class Reg extends Component<PropsWithChildren> {
         return
       }
     }
+
     data.submitter = '/api/consumers/' + this.state.cid
     Taro.request({
       method: 'POST',
