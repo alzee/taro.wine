@@ -42,7 +42,7 @@ export default defineAppConfig({
     'pages/chkOTP/index',
     'pages/resetPWD/index',
     'pages/search/index',
-    'pages/org/index',
+    'pages/reg/index',
   ],
   window: {
     backgroundTextStyle: 'light',
