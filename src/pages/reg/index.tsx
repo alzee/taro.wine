@@ -39,14 +39,14 @@ export default class Reg extends Component<PropsWithChildren> {
 
   formSubmit = e => {
     let data = e.detail.value
-    data.type = this.state.type
+    data.type = Number(this.state.type)
     let label = {
+      type: '类型',
       name: '姓名',
       phone: '电话',
-      type: '类型',
     }
     for (let i in label) {
-      if (data[i] == "" || data[i] == undefined) {
+      if (data[i] === "" || isNaN(data[i])) {
         Taro.showToast({
           title: '请填写 ' + label[i],
           icon: 'error',
