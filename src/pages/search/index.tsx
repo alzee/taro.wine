@@ -73,7 +73,7 @@ export default class Search extends Component<PropsWithChildren> {
     if (type == 3) {
       key = 'restaurantList'
     }
-    let query = '?upstream.display=true&type=' + type + '&name=' + this.keyword
+    let query = '?display=true&type=' + type + '&name=' + this.keyword
     Taro.request({
       url: Env.apiUrl + 'orgs' + query,
       success: function (res) {}

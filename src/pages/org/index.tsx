@@ -54,7 +54,7 @@ export default class Org extends Component<PropsWithChildren> {
     if (type == 3) {
       key = 'restaurantList'
     }
-    let query = '?upstream.display=true&type=' + type
+    let query = '?display=true&type=' + type
     query += '&city=' + (Number(this.state.citySelected) + 1)
     query += '&industry=' + (Number(this.state.industrySelected) + 1)
     Taro.request({
