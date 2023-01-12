@@ -30,7 +30,6 @@ export default class Me extends Component<PropsWithChildren> {
       success: res => {
         self.setState({data: res.data})
         this.role = res.data.role
-        console.log(res.data)
         if (this.role == -1) {
           Taro.redirectTo({ url: '/pages/chooseLogin/index' })
           return
