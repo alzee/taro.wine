@@ -242,7 +242,13 @@ export default class Me extends Component<PropsWithChildren> {
       title='我的业绩'
       arrow='right'
       thumb={lock}
-      onClick={() => this.navTo('poster')}
+      // onClick={() => this.navTo('poster')}
+      />
+      <AtListItem
+      title='我要报备'
+      arrow='right'
+      thumb={lock}
+      onClick={() => this.navTo('reg')}
       />
       </>
       }
