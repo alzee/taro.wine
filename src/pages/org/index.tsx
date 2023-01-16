@@ -14,7 +14,8 @@ export default class Org extends Component<PropsWithChildren> {
   longitude: float
   state = {
     cities: ['十堰'],
-    industries: ['餐饮'],
+    industryRange: ['零售'],
+    industries: [],
     citySelected: 0,
     industrySelected: 0,
     seg: 0,
@@ -56,7 +57,7 @@ export default class Org extends Component<PropsWithChildren> {
     }
     let query = '?display=true&type=' + type
     query += '&city=' + (Number(this.state.citySelected) + 1)
-    query += '&industry=' + (Number(this.state.industrySelected) + 1)
+    query += '&industry=' + this.state.industries[Number(this.state.industrySelected)].id
     Taro.request({
       url: Env.apiUrl + 'orgs' + query,
       success: function (res) {}
@@ -104,19 +105,6 @@ export default class Org extends Component<PropsWithChildren> {
     const self = this;
 
     Taro.getStorage({
-      key: Env.storageKey,
-      success: res => {
-        self.setState({data: res.data})
-        this.role = res.data.role
-        this.getOrgs(2)
-        this.getOrgs(3)
-        if (this.role == 1) {
-          this.getOrgs(1)
-        }
-      }
-    })
-
-    Taro.getStorage({
       key: 'coord',
       success: res => {
         this.latitude = res.data.latitude
@@ -137,13 +125,26 @@ export default class Org extends Component<PropsWithChildren> {
     Taro.request({
       url: Env.apiUrl + 'industries',
     }).then((res) =>{
-      let industries = []
+      let industries = res.data
+      let industryRange = []
       for (let i of res.data) {
-        industries.push(i.name)
+        industryRange.push(i.name)
       }
+      this.setState({industryRange})
       this.setState({industries})
+      Taro.getStorage({
+        key: Env.storageKey,
+        success: res => {
+          self.setState({data: res.data})
+          this.role = res.data.role
+          this.getOrgs(2)
+          this.getOrgs(3)
+          if (this.role == 1) {
+            this.getOrgs(1)
+          }
+        }
+      })
     })
-
   }
 
   componentWillUnmount () { }
@@ -204,7 +205,6 @@ export default class Org extends Component<PropsWithChildren> {
   }
 
 	search(){
-    // console.log(this.state.value)
     if (this.state.value != '') {
       Taro.navigateTo({ url: '/pages/search/index?q=' + this.state.value })
     }
@@ -232,8 +232,8 @@ export default class Org extends Component<PropsWithChildren> {
       <Picker className='picker' mode='selector' range={this.state.cities} onChange={this.cityChange}>
       {this.state.cities[this.state.citySelected]} <AtIcon value='chevron-down' size='12' color='#000'></AtIcon>
       </Picker>
-      <Picker className='picker' mode='selector' range={this.state.industries} onChange={this.industryChange}>
-      {this.state.industries[this.state.industrySelected]} <AtIcon value='chevron-down' size='12' color='#000'></AtIcon>
+      <Picker className='picker' mode='selector' range={this.state.industryRange} onChange={this.industryChange}>
+      {this.state.industryRange[this.state.industrySelected]} <AtIcon value='chevron-down' size='12' color='#000'></AtIcon>
       </Picker>
       </View>
       <AtSearchBar className='search-bar'

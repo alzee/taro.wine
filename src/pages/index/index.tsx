@@ -69,7 +69,6 @@ export default class Index extends Component<PropsWithChildren> {
       success: function (res) {}
     }).then((res) =>{
       let featured = []
-      console.log(res.data)
       for (let i of res.data) {
         featured.push(
           <View className="item at-col at-col-6" key={i}>
