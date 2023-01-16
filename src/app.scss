@@ -1,6 +1,9 @@
 page{
   --color-1: #ff3333;
   --color-2: #fdd300;
+  --color-note: #676767;
+  --color-link: #0d6efd;
+  --color-black: #000;
 }
 .main{
   padding: 1rem;
@@ -24,7 +27,7 @@ page{
 }
 .at-article__section{
   font-size: .8rem;
-  color: #666;
+  color: var(--color-note);
   padding: 1rem;
 }
 .at-list__item .item-content__info-note, .at-tabs__item{
@@ -40,19 +43,19 @@ page{
   }
 }
 .at-list__item .item-extra .item-extra__info{
-  color: #676767;
+  color: var(--color-note);
 }
 .search-bar{
   .at-search-bar__action{
     background-color: var(--color-2);
-    color: #000;
+    color: var(--color-black);
   }
 }
 .h5-button{
   background-color: var(--color-2);
   border-radius: 2rem;
   border: none;
-  color: #000;
+  color: var(--color-black);
 }
 .at-article__img{
   border-radius: .5rem !important;
