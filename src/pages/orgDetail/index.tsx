@@ -57,7 +57,7 @@ export default class Orgdetail extends Component<PropsWithChildren> {
       <AtIcon className='icon' value='phone' size='18' color='#999'></AtIcon>
       </View>
       <View className='item-wrapper'>
-      <AtListItem title='地址' extraText={this.state.entity.address} onClick={this.openLocation.bind(this)} />
+      <AtListItem title='地址导航' extraText={this.state.entity.address} onClick={this.openLocation.bind(this)} />
       <AtIcon className='icon' value='map-pin' size='18' color='#999'></AtIcon>
       </View>
       <AtListItem title='地区' extraText={this.state.entity.district} />

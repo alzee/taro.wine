@@ -19,7 +19,7 @@
   padding: 1rem;
 }
 .at-list__item .item-content__info-note, .at-tabs__item{
-  font-size: 24px !important;
+  font-size: 36px !important;
 }
 .at-list__item-content{
 }
@@ -29,4 +29,7 @@
     width: 400px;
     max-width: unset;
   }
+}
+.at-list__item .item-extra .item-extra__info{
+  color: #676767;
 }
