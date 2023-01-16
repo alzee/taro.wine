@@ -34,8 +34,13 @@ export default class Orgdetail extends Component<PropsWithChildren> {
         let nodeList = []
         for (let i of res.data) {
           nodeList.push(
+            <View className='node'>
+            <View className='at-article__h3 title'>
+            {i.title}
+            </View>
             <View className='at-article__content'>
             <View dangerouslySetInnerHTML={{__html: i.body}} className='at-article__section'>
+            </View>
             </View>
             </View>
           )
