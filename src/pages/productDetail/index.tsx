@@ -34,7 +34,7 @@ export default class Productdetail extends Component<PropsWithChildren> {
       <View className='productDetail'>
       { this.state.entity &&
       <AtList>
-      <Image className='pic' src={Env.imgUrl + 'product/' + this.state.entity.img} />
+      <Image className='pic rounded' mode='aspectFill' src={Env.imgUrl + 'product/' + this.state.entity.img} />
       <AtListItem title='产品名称' extraText={this.state.entity.name} />
       <AtListItem title='产品编号' extraText={this.state.entity.sn} />
       <AtListItem title='产品规格' extraText={this.state.entity.spec} />

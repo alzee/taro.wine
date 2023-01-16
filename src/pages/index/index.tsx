@@ -39,7 +39,7 @@ export default class Index extends Component<PropsWithChildren> {
       for (let i of res.data) {
         carousel.push(
           <SwiperItem key={i}>
-          <Image className='img' mode='aspectFit' src={ this.imgUrl + 'node/' + i.img } onClick={()=>this.navToNode(i.id)}></Image>
+          <Image className='img rounded' mode='aspectFit' src={ this.imgUrl + 'node/' + i.img } onClick={()=>this.navToNode(i.id)}></Image>
           </SwiperItem>
         );
       }
@@ -54,7 +54,7 @@ export default class Index extends Component<PropsWithChildren> {
       for (let i of res.data) {
         promo.push(
           <View className="item at-col at-col-6" key={i}>
-          <Image className='img' mode='aspectFill' src={this.imgUrl + 'node/' + i.img} onClick={()=>this.navToNode(i.id)} ></Image>
+          <Image className='img rounded' mode='aspectFill' src={this.imgUrl + 'node/' + i.img} onClick={()=>this.navToNode(i.id)} ></Image>
           <View className="text">
           {i.title}
           </View>
@@ -73,7 +73,7 @@ export default class Index extends Component<PropsWithChildren> {
       for (let i of res.data) {
         featured.push(
           <View className="item at-col at-col-6" key={i}>
-          <Image className='img' mode='widthFix' src={this.imgUrl + 'node/' + i.img} onClick={()=>this.navToProduct(i.product.id)} ></Image>
+          <Image className='img rounded' mode='widthFix' src={this.imgUrl + 'node/' + i.img} onClick={()=>this.navToProduct(i.product.id)} ></Image>
           <View className="text">
           {i.title}
           </View>

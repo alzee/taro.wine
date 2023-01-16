@@ -75,7 +75,7 @@ export default class Orgdetail extends Component<PropsWithChildren> {
       <View className='orgDetail'>
       { this.state.entity &&
       <View>
-      <Image mode='widthFix' className='storefront' src={this.state.entity.img && Env.imgUrl + 'org/' + this.state.entity.img} />
+      <Image mode='widthFix' className='storefront rounded' src={this.state.entity.img && Env.imgUrl + 'org/' + this.state.entity.img} />
       <AtList>
       <AtListItem title='名称' extraText={this.state.entity.name} />
       <AtListItem title='类型' extraText={Taxon.orgType[this.state.entity.type]} />
