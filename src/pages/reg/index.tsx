@@ -7,7 +7,7 @@ import Taro from '@tarojs/taro'
 
 export default class Reg extends Component<PropsWithChildren> {
   state = {
-    selector: ['合伙人', '代理商'],
+    selector: ['门店', '代理商', '合伙人', '总代', '区代'],
     selectorChecked: '',
   }
 
