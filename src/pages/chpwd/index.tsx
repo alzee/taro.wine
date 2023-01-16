@@ -33,7 +33,7 @@ export default class Chpwd extends Component<PropsWithChildren> {
     let label = {
       oldPass: '原密码',
       plainPassword: '新密码',
-      confirmPass: '密码确认',
+      confirmPass: '新密码',
     }
     for (let i in data) {
       if (data[i] == "") {
