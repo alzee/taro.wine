@@ -31,16 +31,15 @@ export default class Index extends Component<PropsWithChildren> {
       url: Env.apiUrl + 'nodes?page=1&itemsPerPage=3&tag=0&order%5Bid%5D=asc',
       success: function (res) {}
     }).then((res) =>{
-      let nodes = res.data
-      let list = []
-      for (let i in nodes) {
-        list.push(
+      let carousel = []
+      for (let i of res.data) {
+        carousel.push(
           <SwiperItem key={i}>
-          <Image className='img' mode='aspectFit' src={ this.imgUrl + 'node/' + nodes[i].img } onClick={()=>this.navToNode(nodes[i].id)}></Image>
+          <Image className='img' mode='aspectFit' src={ this.imgUrl + 'node/' + i.img } onClick={()=>this.navToNode(i.id)}></Image>
           </SwiperItem>
         );
       }
-      self.setState({list0: list})
+      self.setState({carousel})
     })
 
     Taro.request({
@@ -133,7 +132,7 @@ export default class Index extends Component<PropsWithChildren> {
       circular
       indicatorDots
       autoplay>
-      {this.state.list0}
+      {this.state.carousel}
       </Swiper>
 
       <View className='at-row highlight'>
