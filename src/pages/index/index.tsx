@@ -24,6 +24,10 @@ export default class Index extends Component<PropsWithChildren> {
     Taro.navigateTo({ url: '/pages/node/index?id=' + id })
   }
 
+  navToProduct(id: int) {
+    Taro.navigateTo({ url: '/pages/productDetail/index?id=' + id })
+  }
+
   componentDidMount () {
     const self = this;
 
@@ -65,10 +69,11 @@ export default class Index extends Component<PropsWithChildren> {
       success: function (res) {}
     }).then((res) =>{
       let featured = []
+      console.log(res.data)
       for (let i of res.data) {
         featured.push(
           <View className="item at-col at-col-6" key={i}>
-          <Image className='img' mode='widthFix' src={this.imgUrl + 'node/' + i.img} onClick={()=>this.navToNode(i.id)} ></Image>
+          <Image className='img' mode='widthFix' src={this.imgUrl + 'node/' + i.img} onClick={()=>this.navToProduct(i.product.id)} ></Image>
           <View className="text">
           {i.title}
           </View>
