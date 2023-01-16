@@ -8,6 +8,7 @@ import { Env } from '../../env/env'
 export default class Search extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   keyword = this.instance.router.params.q
+  pid = this.instance.router.params.p
   latitude: float
   longitude: float
   state = {
@@ -17,6 +18,8 @@ export default class Search extends Component<PropsWithChildren> {
   componentWillMount () { }
 
   componentDidMount () {
+    console.log(this.keyword)
+    console.log(this.pid)
     Taro.getStorage({
       key: 'coord',
       success: res => {
@@ -24,8 +27,43 @@ export default class Search extends Component<PropsWithChildren> {
         this.longitude = res.data.longitude
       }
     })
-    this.getOrgs(2)
-    this.getOrgs(3)
+    if (this.pid == undefined) {
+      this.getOrgs(2)
+      this.getOrgs(3)
+    } else {
+      this.getOrgsHaveProduct(this.pid)
+    }
+  }
+
+  getOrgsHaveProduct(pid: int){
+    Taro.request({
+      url: Env.apiUrl + 'orgs-have-stock-of-product/' + pid,
+      success: function (res) {}
+    }).then((res) =>{
+      let orgs = res.data
+      let list = []
+      for (let i of orgs) {
+        i.distance = this.getDistance(this.latitude, this.longitude,i.latitude, i.longitude)
+      }
+
+      orgs.sort((a, b) => a.distance - b.distance)
+
+      for (let i of orgs) {
+        list.push(
+          <AtListItem
+          onClick={() => this.navToDetail(i.id)}
+          title={i.name}
+          note={i.address}
+          extraText={i.distance + 'km'}
+          thumb={Env.imgUrl + 'org/thumbnail/' + i.img}
+          arrow='right'
+          className='list-item'
+          />
+        )
+      }
+
+      this.setState({'orgsHaveStock': list})
+    })
   }
 
   componentWillUnmount () { }
@@ -111,6 +149,12 @@ export default class Search extends Component<PropsWithChildren> {
     ]
     return (
       <View className='search'>
+      { this.state.orgsHaveStock &&
+        <AtList>
+        { this.state.orgsHaveStock}
+        </AtList>
+      }
+      { ! this.state.orgsHaveStock &&
       <AtTabs current={this.state.seg} tabList={tabList} onClick={this.switchSeg.bind(this)}>
         <AtTabsPane current={this.state.seg} index={0}>
         { this.state.storeList && 
@@ -145,6 +189,7 @@ export default class Search extends Component<PropsWithChildren> {
         }
         </AtTabsPane>
       </AtTabs>
+      }
 
       </View>
     )

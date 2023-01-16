@@ -31,6 +31,10 @@ export default class Productdetail extends Component<PropsWithChildren> {
 
   componentDidHide () { }
 
+	search(pid: int){
+    Taro.navigateTo({ url: '/pages/search/index?p=' + pid })
+  }
+
   render () {
     console.log(checkIcon)
     return (
@@ -107,7 +111,7 @@ export default class Productdetail extends Component<PropsWithChildren> {
           </View>
           <View className='text'> 店铺 </View>
         </View>
-        <Button className='right' size='mini'>立即购买</Button>
+        <Button className='right' size='mini' onClick={this.search(this.id)}>立即购买</Button>
       </View>
         </>
       

@@ -30,8 +30,11 @@ page{
   color: var(--color-note);
   padding: 1rem;
 }
-.at-list__item .item-content__info-note, .at-tabs__item{
+.at-tabs__item{
   font-size: 36px !important;
+}
+.at-list__item .item-content__info-note{
+  font-size: 24px !important;
 }
 .at-list__item-content{
 }
