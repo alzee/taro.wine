@@ -29,13 +29,23 @@ export default class Orgsignup extends Component<PropsWithChildren> {
 
   pickerChange = e => {
     this.setState({
-      selectorChecked: this.state.selector[e.detail.value]
+      selectorChecked: this.state.selector[e.detail.value],
+      type: e.detail.value
     })
-    this.type = e.detail.value
   }
 
   formSubmit = e => {
     let data = e.detail.value
+    data.type = Number(this.state.type)
+    console.log(data)
+    if (isNaN(data.type)) {
+      Taro.showToast({
+        title: '请选择类型',
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
     let label = {
       username: '用户名',
       name: '名称',
@@ -45,6 +55,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       oldPass: '原密码',
       plainPassword: '新密码',
       confirmPass: '密码确认',
+      district: '区域',
     }
     for (let i in data) {
       if (data[i] == "") {
@@ -56,10 +67,13 @@ export default class Orgsignup extends Component<PropsWithChildren> {
         return
       }
     }
-    if (this.role == 0) {
-      data.type = 1
-    } else {
-      data.type = Number(this.type) + 2
+    if (data['confirmPass'] !== data['plainPassword']) {
+      Taro.showToast({
+        title: '密码不一致',
+        icon: 'error',
+        duration: 2000
+      })
+      return
     }
     Taro.request({
       method: 'POST',
@@ -96,46 +110,66 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       />
       </AtList>
       </Picker>
-        <Input 
+        <AtInput 
+        title='用户名'
         className="input"
         required
           name='username' 
           type='text' 
           placeholder='用户名' 
         />
-        <Input 
+        <AtInput 
+        title='新密码'
         className="input"
+        required
           name='plainPassword' 
           type='password' 
           placeholder='新密码' 
         />
-        <Input 
+        <AtInput 
+        title='密码确认'
         className="input"
+        required
           name='confirmPass' 
           type='password' 
           placeholder='密码确认' 
         />
-        <Input 
+        <AtInput 
+        title='店面名称'
         className="input"
         required
           name='name' 
           type='text' 
           placeholder='名称' 
         />
-        <Input 
+        <AtInput 
+        title='联系人'
         className="input"
+        required
           name='contact' 
           type='text' 
           placeholder='联系人' 
         />
-        <Input 
+        <AtInput 
+        title='电话'
         className="input"
+        required
           name='phone' 
           type='number' 
           placeholder='电话' 
         />
-        <Input 
+        <AtInput 
+        title='区域'
         className="input"
+        required
+          name='district' 
+          type='text' 
+          placeholder='区域' 
+        />
+        <AtInput 
+        title='地址'
+        className="input"
+        required
           name='address' 
           type='text' 
           placeholder='地址' 
