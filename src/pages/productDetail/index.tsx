@@ -57,6 +57,8 @@ export default class Productdetail extends Component<PropsWithChildren> {
       <View className='title'>
         {this.state.entity.name}
       </View>
+
+      <View className='space'></View>
       
       <View className='spec'>
         <View className='item'>
@@ -89,6 +91,8 @@ export default class Productdetail extends Component<PropsWithChildren> {
         7天无理由退货
         </View>
       </View>
+
+      <View className='space'></View>
 
       <View className='review'>
         <View className='section'> 商品评价 (88)</View>
