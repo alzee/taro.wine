@@ -57,7 +57,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "taro-code": "^3.5.2",
-    "taro-ui": "^3.1.0-beta.3"
+    "taro-ui": "^3.1.0-beta.4"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
