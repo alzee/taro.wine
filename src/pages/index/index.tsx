@@ -3,8 +3,7 @@ import { View, Text, Swiper, SwiperItem, Image } from '@tarojs/components'
 import './index.scss'
 import { AtButton, AtAvatar, AtIcon } from 'taro-ui'
 import { AtSearchBar } from 'taro-ui'
-import { AtNoticebar } from 'taro-ui'
-import { AtActionSheet, AtActionSheetItem } from "taro-ui"
+import { AtActionSheet, AtActionSheetItem, AtNoticebar } from "taro-ui"
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 
@@ -119,6 +118,14 @@ export default class Index extends Component<PropsWithChildren> {
       <Text>合作餐厅</Text>
       </View>
       </View>
+
+      <AtNoticebar
+      className='notice-bar'
+      marquee
+      speed='50'
+      >
+      这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏
+      </AtNoticebar>
 
       {this.state.list1}
 
