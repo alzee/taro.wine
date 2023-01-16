@@ -3,8 +3,16 @@ import { View, Text, Image } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
-import { AtButton, AtList, AtListItem, AtIcon} from "taro-ui"
+import { AtButton, AtList, AtListItem, AtIcon } from "taro-ui"
 import { Taxon } from '../../Taxon'
+
+Taro.options.html.transformElement = (el) => {
+  if (el.nodeName === 'image') {
+    el.setAttribute('mode', 'widthFix')
+    el.setAttribute('src', Env.baseUrl + el.getAttribute('src'))
+  }
+  return el
+}
 
 export default class Orgdetail extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
@@ -19,6 +27,21 @@ export default class Orgdetail extends Component<PropsWithChildren> {
     Taro.request({
       url: Env.apiUrl + 'orgs/' + this.id,
       success: function (res) { self.setState({entity: res.data}) }
+    })
+    Taro.request({
+      url: Env.apiUrl + 'nodes?org=/api/orgs/' + this.id,
+      success: function (res) {
+        let nodeList = []
+        for (let i of res.data) {
+          nodeList.push(
+            <View className='at-article__content'>
+            <View dangerouslySetInnerHTML={{__html: i.body}} className='at-article__section'>
+            </View>
+            </View>
+          )
+        }
+        self.setState({nodeList})
+      }
     })
   }
 
@@ -64,6 +87,11 @@ export default class Orgdetail extends Component<PropsWithChildren> {
       </AtList>
       </View>
       }
+
+      { this.state.nodeList &&
+        this.state.nodeList
+      }
+
       </View>
     )
   }
