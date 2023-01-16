@@ -3,7 +3,7 @@ import { View, Text } from '@tarojs/components'
 import './index.scss'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
-import { AtList, AtListItem, AtCard, AtButton } from "taro-ui"
+import { AtList, AtListItem, AtCard } from "taro-ui"
 
 export default class Product extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
@@ -57,7 +57,7 @@ export default class Product extends Component<PropsWithChildren> {
     return (
       <View className='product'>
       { this.role == 0 &&
-      <AtButton className='new-btn' type='secondary' size='small' onClick={() => Taro.redirectTo({url: '/pages/productNew/index'})}>添加产品</AtButton>
+      <Button className='new-btn' type='secondary' size='small' onClick={() => Taro.redirectTo({url: '/pages/productNew/index'})}>添加产品</Button>
       }
       <AtList>
       { this.state.list }
