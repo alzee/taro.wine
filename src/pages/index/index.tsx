@@ -29,7 +29,7 @@ export default class Index extends Component<PropsWithChildren> {
 
     Taro.request({
       url: Env.apiUrl + 'nodes?page=1&itemsPerPage=3&tag=0&order%5Bid%5D=asc',
-      success: function (res) { self.setState({nodes0: res.data}) }
+      success: function (res) {}
     }).then((res) =>{
       let nodes = res.data
       let list = []
@@ -45,7 +45,7 @@ export default class Index extends Component<PropsWithChildren> {
 
     Taro.request({
       url: Env.apiUrl + 'nodes?page=1&itemsPerPage=2&tag=1&order%5Bid%5D=asc',
-      success: function (res) { self.setState({nodes1: res.data}) }
+      success: function (res) {}
     }).then((res) =>{
       let nodes = res.data
       let list = []
@@ -59,6 +59,20 @@ export default class Index extends Component<PropsWithChildren> {
         );
       }
       self.setState({list1: list})
+    })
+
+    Taro.request({
+      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=3&tag=5&order%5Bid%5D=asc',
+      success: function (res) {}
+    }).then((res) =>{
+      let scrollInfo = []
+      for (let i of res.data) {
+        // scrollInfo += i.body
+        scrollInfo.push(
+          <View dangerouslySetInnerHTML={{__html: i.body}} className=''></View>
+        );
+      }
+      self.setState({scrollInfo})
     })
   }
 
@@ -124,7 +138,9 @@ export default class Index extends Component<PropsWithChildren> {
       marquee
       speed='50'
       >
-      这是 NoticeBar 通告栏，这是 NoticeBar 通告栏，这是 NoticeBar 通告栏
+      <View className='scroll-info'>
+      {this.state.scrollInfo}
+      </View>
       </AtNoticebar>
 
       {this.state.list1}
