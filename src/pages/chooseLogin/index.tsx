@@ -32,6 +32,10 @@ export default class Chooselogin extends Component<PropsWithChildren> {
     Taro.navigateTo({ url: '/pages/login/index' })
     // Taro.redirectTo({ url: '/pages/wxlogin/index' })
   }
+  toOrgSignUp() {
+    Taro.navigateTo({ url: '/pages/orgSignUp/index' })
+    // Taro.redirectTo({ url: '/pages/wxlogin/index' })
+  }
 
   wxlogin() {
     let that = this
@@ -68,7 +72,8 @@ export default class Chooselogin extends Component<PropsWithChildren> {
     return (
       <View className='chooseLogin main'>
       <Button className="btn" onClick={this.wxlogin.bind(this)}>微信登录</Button>
-      <Button className="btn btn-primary" onClick={this.toLoginPage}>管理员登录</Button>
+      <Button className="btn" onClick={this.toLoginPage}>管理员登录</Button>
+      <Button className="btn btn-primary" onClick={this.toOrgSignUp}>商家注册</Button>
       </View>
     )
   }

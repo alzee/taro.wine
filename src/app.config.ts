@@ -43,6 +43,7 @@ export default defineAppConfig({
     'pages/resetPWD/index',
     'pages/search/index',
     'pages/reg/index',
+    'pages/orgSignUp/index',
   ],
   window: {
     backgroundTextStyle: 'light',
