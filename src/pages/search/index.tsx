@@ -18,8 +18,6 @@ export default class Search extends Component<PropsWithChildren> {
   componentWillMount () { }
 
   componentDidMount () {
-    console.log(this.keyword)
-    console.log(this.pid)
     Taro.getStorage({
       key: 'coord',
       success: res => {

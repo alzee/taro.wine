@@ -31,12 +31,12 @@ export default class Productdetail extends Component<PropsWithChildren> {
 
   componentDidHide () { }
 
-	search(pid: int){
-    Taro.navigateTo({ url: '/pages/search/index?p=' + pid })
+	search(){
+    // console.log(this.id)
+    Taro.navigateTo({ url: '/pages/search/index?p=' + this.id })
   }
 
   render () {
-    console.log(checkIcon)
     return (
       <View className='productDetail'>
       { this.state.entity &&
@@ -106,12 +106,12 @@ export default class Productdetail extends Component<PropsWithChildren> {
 
       <View className='bottom'>
         <View className='left'>
-          <View className=''>
+          <View className='' onClick={this.search.bind(this)}>
             <Image className='img' src={shopIcon} />
           </View>
           <View className='text'> 店铺 </View>
         </View>
-        <Button className='right' size='mini' onClick={this.search(this.id)}>立即购买</Button>
+        <Button className='right' size='mini' onClick={this.search.bind(this)}>立即购买</Button>
       </View>
         </>
       
