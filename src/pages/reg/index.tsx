@@ -37,7 +37,7 @@ export default class Reg extends Component<PropsWithChildren> {
     })
   }
 
-  formSubmit = e => {
+  formSubmit (e) {
     let data = e.detail.value
     data.type = Number(this.state.type)
     if (isNaN(data.type)) {
@@ -89,7 +89,7 @@ export default class Reg extends Component<PropsWithChildren> {
     return (
       <View className='reg'>
       <Form className='form'
-      onSubmit={this.formSubmit}
+      onSubmit={this.formSubmit.bind(this)}
       >
       <Picker mode='selector' range={this.state.selector} onChange={this.pickerChange}>
       <AtList>
@@ -100,18 +100,20 @@ export default class Reg extends Component<PropsWithChildren> {
       </AtList>
       </Picker>
         <Input 
-        className="input"
+          className="input"
+          // title='姓名'
           name='name' 
           type='text' 
           placeholder='姓名' 
         />
         <Input 
-        className="input"
+          className="input"
+          // title='电话'
           name='phone' 
           type='number' 
           placeholder='电话' 
         />
-        <Button type='primary' formType='submit'>提交</Button>
+        <AtButton type='primary' formType='submit'>提交</AtButton>
       </Form>
       </View>
     )
