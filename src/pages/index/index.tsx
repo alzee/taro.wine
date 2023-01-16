@@ -37,7 +37,7 @@ export default class Index extends Component<PropsWithChildren> {
       for (let i in nodes) {
         list.push(
           <SwiperItem key={i}>
-          <Image className='img' mode='scaleToFill' src={ this.imgUrl + 'node/' + nodes[i].img } onClick={()=>this.navToNode(nodes[i].id)}></Image>
+          <Image className='img' mode='aspectFit' src={ this.imgUrl + 'node/' + nodes[i].img } onClick={()=>this.navToNode(nodes[i].id)}></Image>
           </SwiperItem>
         );
       }
