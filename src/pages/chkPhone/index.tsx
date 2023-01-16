@@ -56,7 +56,7 @@ export default class Chkphone extends Component<PropsWithChildren> {
           type='text' 
           placeholder='手机号' 
         />
-        <Button type='primary' formType='submit'>确认</Button>
+        <Button className='btn' formType='submit'>确认</Button>
       </Form>
       </View>
     )

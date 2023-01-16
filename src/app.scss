@@ -4,6 +4,7 @@ page{
   --color-note: #676767;
   --color-link: #0d6efd;
   --color-black: #000;
+  --color-light: #fff;
 }
 .main{
   padding: 1rem;
@@ -59,6 +60,10 @@ page{
   border-radius: 2rem;
   border: none;
   color: var(--color-black);
+}
+.btn-primary{
+  background-color: var(--color-1);
+  color: var(--color-light);
 }
 .at-article__img{
   border-radius: .5rem !important;

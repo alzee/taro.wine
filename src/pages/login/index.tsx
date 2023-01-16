@@ -66,7 +66,7 @@ export default class Login extends Component<PropsWithChildren> {
           placeholder='密码' 
         />
         <Navigator className='nav' url='/pages/chkPhone/index'>忘记密码？</Navigator>
-        <Button type='primary' formType='submit'>登录</Button>
+        <Button className='btn' formType='submit'>登录</Button>
       </Form>
       </View>
     )

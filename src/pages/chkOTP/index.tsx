@@ -57,7 +57,7 @@ export default class Chkotp extends Component<PropsWithChildren> {
           type='text' 
           placeholder='验证码' 
         />
-        <Button type='primary' formType='submit'>确认</Button>
+        <Button className='btn' formType='submit'>确认</Button>
       </Form>
       </View>
     )
