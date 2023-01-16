@@ -51,9 +51,10 @@ export default class Index extends Component<PropsWithChildren> {
       for (let i of res.data) {
         promo.push(
           <View className="item at-col at-col-6" key={i}>
-          <Image className='img' mode='widthFix' src={this.imgUrl + 'node/' + i.img} onClick={()=>this.navToNode(i.id)} ></Image>
-          <Text className="text">
-          </Text>
+          <Image className='img' mode='aspectFill' src={this.imgUrl + 'node/' + i.img} onClick={()=>this.navToNode(i.id)} ></Image>
+          <View className="text">
+          {i.title}
+          </View>
           </View>
         );
       }
@@ -167,7 +168,9 @@ export default class Index extends Component<PropsWithChildren> {
       <AtIcon value='chevron-right' size='15'></AtIcon>
       </View>
       </View>
+      <View className='promo at-row at-row--wrap'>
       {this.state.promo}
+      </View>
 
       <View className='label'>
       <View>产品推荐</View>
