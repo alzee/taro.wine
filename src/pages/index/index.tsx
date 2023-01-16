@@ -88,6 +88,7 @@ export default class Index extends Component<PropsWithChildren> {
       <View className='index'>
 
       <AtSearchBar className='search-bar'
+        showActionButton
         value={this.state.value}
         placeholder='搜索门店'
         onChange={this.searchBarChange.bind(this)}
