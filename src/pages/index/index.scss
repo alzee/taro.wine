@@ -31,15 +31,20 @@
 .scroll-info{
   display: flex;
 }
-.featured{
+.featured .item{
+  padding: .5rem;
   font-size: .7rem;
   position: relative;
   .img{
     width: 100%;
   }
-  .text{
-    position: absolute;
-    left: .5rem;
-    bottom: .5rem;
+}
+.label{
+  display: flex;
+  justify-content: space-between;
+  margin: .5rem 0;
+  .read-more{
+    font-size: 24px;
+    color: #999;
   }
 }

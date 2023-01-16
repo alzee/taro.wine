@@ -44,21 +44,38 @@ export default class Index extends Component<PropsWithChildren> {
     })
 
     Taro.request({
-      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=2&tag=1&order%5Bid%5D=asc',
+      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=4&tag=4&order%5Bid%5D=asc',
       success: function (res) {}
     }).then((res) =>{
-      let nodes = res.data
-      let list = []
-      for (let i in nodes) {
-        list.push(
-          <View className="featured" key={i}>
-          <Image className='img' mode='widthFix' src={this.imgUrl + 'node/' + nodes[i].img} onClick={()=>this.navToNode(nodes[i].id)} ></Image>
+      let promo = []
+      for (let i of res.data) {
+        promo.push(
+          <View className="item at-col at-col-6" key={i}>
+          <Image className='img' mode='widthFix' src={this.imgUrl + 'node/' + i.img} onClick={()=>this.navToNode(i.id)} ></Image>
           <Text className="text">
           </Text>
           </View>
         );
       }
-      self.setState({list1: list})
+      self.setState({promo})
+    })
+
+    Taro.request({
+      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=6&tag=1&order%5Bid%5D=asc',
+      success: function (res) {}
+    }).then((res) =>{
+      let featured = []
+      for (let i of res.data) {
+        featured.push(
+          <View className="item at-col at-col-6" key={i}>
+          <Image className='img' mode='widthFix' src={this.imgUrl + 'node/' + i.img} onClick={()=>this.navToNode(i.id)} ></Image>
+          <Text className="text">
+          {i.title}
+          </Text>
+          </View>
+        );
+      }
+      self.setState({featured})
     })
 
     Taro.request({
@@ -143,7 +160,25 @@ export default class Index extends Component<PropsWithChildren> {
       </View>
       </AtNoticebar>
 
-      {this.state.list1}
+      <View className='label'>
+      <View>活动公告</View>
+      <View className='read-more'>
+      查看更多
+      <AtIcon value='chevron-right' size='15'></AtIcon>
+      </View>
+      </View>
+      {this.state.promo}
+
+      <View className='label'>
+      <View>产品推荐</View>
+      <View className='read-more'>
+      查看更多
+      <AtIcon value='chevron-right' size='15'></AtIcon>
+      </View>
+      </View>
+      <View className='featured at-row at-row--wrap'>
+      {this.state.featured}
+      </View>
 
       </View>
     )
