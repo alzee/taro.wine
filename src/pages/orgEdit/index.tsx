@@ -128,7 +128,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
           placeholder='地区' 
           value={this.state.org.district}
         />
-        <Button type='primary' formType='submit'>保存</Button>
+        <Button className='btn' formType='submit'>保存</Button>
       </Form>
       }
       </View>

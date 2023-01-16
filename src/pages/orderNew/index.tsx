@@ -188,7 +188,7 @@ export default class Ordernew extends Component<PropsWithChildren> {
           type='text' 
           placeholder={this.label['note']}
         />
-        <Button type='primary' formType='submit'>提交</Button>
+        <Button className='btn' formType='submit'>提交</Button>
       </Form>
       </View>
     )

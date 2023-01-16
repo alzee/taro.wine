@@ -123,7 +123,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
         </CheckboxGroup>
         我已阅读并同意<Navigator url='/pages/node/policy'>《用户协议》</Navigator>
         </View>
-        <Button type='primary' formType='submit' disabled={this.state.btnDisabled}>提交</Button>
+        <Button className='btn' formType='submit' disabled={this.state.btnDisabled}>提交</Button>
       </Form>
       </View>
     )

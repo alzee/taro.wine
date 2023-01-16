@@ -114,7 +114,7 @@ export default class Chpwd extends Component<PropsWithChildren> {
           type='password' 
           placeholder='密码确认' 
         />
-        <Button type='primary' formType='submit'>提交</Button>
+        <Button className='btn' formType='submit'>提交</Button>
       </Form>
       </View>
     )

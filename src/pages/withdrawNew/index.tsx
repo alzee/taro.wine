@@ -123,7 +123,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
         }
         </View>
       }
-        <Button type='primary' formType='submit'>提交</Button>
+        <Button className='btn' formType='submit'>提交</Button>
       </Form>
       </View>
     )

@@ -254,7 +254,7 @@ export default class Me extends Component<PropsWithChildren> {
 
       </AtList>
 
-      <Button className='logout' size='small' onClick={this.logout}>退出登录</Button>
+      <Button className='btn logout' size='small' onClick={this.logout}>退出登录</Button>
       </View>
       )
   }

@@ -113,7 +113,7 @@ export default class Reg extends Component<PropsWithChildren> {
           type='number' 
           placeholder='电话' 
         />
-        <Button formType='submit'>提交</Button>
+        <Button className='btn' formType='submit'>提交</Button>
       </Form>
       </View>
     )

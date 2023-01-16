@@ -156,7 +156,7 @@ export default class Retailreturnnew extends Component<PropsWithChildren> {
       type='number' 
       placeholder='数量' 
       />
-        <Button type='primary' formType='submit'>提交</Button>
+        <Button className='btn' formType='submit'>提交</Button>
       </Form>
       </View>
     )

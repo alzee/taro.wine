@@ -111,7 +111,7 @@ export default class Productdetail extends Component<PropsWithChildren> {
           </View>
           <View className='text'> 店铺 </View>
         </View>
-        <Button className='right' size='mini' onClick={this.search.bind(this)}>立即购买</Button>
+        <Button className='right btn' size='mini' onClick={this.search.bind(this)}>立即购买</Button>
       </View>
         </>
       

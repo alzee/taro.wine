@@ -117,7 +117,7 @@ export default class Productnew extends Component<PropsWithChildren> {
           type='number' 
           placeholder={this.label['voucher']}
         />
-        <Button type='primary' formType='submit'>提交</Button>
+        <Button className='btn' formType='submit'>提交</Button>
       </Form>
       </View>
     )
