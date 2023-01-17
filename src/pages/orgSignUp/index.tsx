@@ -9,22 +9,21 @@ import { AtButton, AtList, AtListItem, AtInput, AtForm} from "taro-ui"
 export default class Orgsignup extends Component<PropsWithChildren> {
   state = {
     types: ['门店', '餐厅', '区域代理商(异业)', '门店(异业)'],
-    typeSelected: '',
   }
 
   getAgencies(typeId: int){
     Taro.request({
       url: Env.apiUrl + 'orgs?type=' + typeId,
     }).then((res) =>{
-      console.log(res.data)
-      let agencies = []
+      let agencyList = []
       for (let i of res.data) {
-        agencies.push(i.name)
+        agencyList.push(i.name)
       }
       this.setState(
         {
-          agencies,
-          agencySelected: agencies[0]
+          agencies: res.data,
+          agencyList,
+          agencySelected: 0
         }
       )
     })
@@ -34,12 +33,10 @@ export default class Orgsignup extends Component<PropsWithChildren> {
   }
 
   typeChanged = e => {
-    this.setState({
-      typeSelected: this.state.types[e.detail.value],
-    })
+    let typeSelected  = Number(e.detail.value)
     let typeId: int
     let agencyType: int
-    switch (Number(e.detail.value)) {
+    switch (typeSelected) {
       case 0:
         typeId = 2
         agencyType = 1
@@ -57,20 +54,20 @@ export default class Orgsignup extends Component<PropsWithChildren> {
         agencyType = 11
       break
     }
-    this.setState({ typeId, agencyType })
+    this.setState({ typeSelected, typeId, agencyType })
     this.getAgencies(agencyType)
   }
 
   agencyChanged = e => {
     this.setState({
-      agencySelected: this.state.agencies[e.detail.value],
+      agencySelected: Number(e.detail.value),
     })
   }
 
   formSubmit = e => {
     let data = e.detail.value
     data.type = Number(this.state.typeId)
-    data.upstream = Number(this.state.agencyType)
+    data.upstreamId = this.state.agencies[this.state.agencySelected].id
     if (isNaN(data.type)) {
       Taro.showToast({
         title: '请选择类型',
@@ -178,12 +175,12 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       />
       </AtList>
       </Picker>
-      <Picker mode='selector' range={this.state.agencies} onChange={this.agencyChanged}>
+      <Picker mode='selector' range={this.state.agencyList} onChange={this.agencyChanged}>
       <AtList>
       <AtListItem
       title='代理商'
       className='picker'
-      extraText={this.state.agencySelected}
+      extraText={this.state.agencyList[this.state.agencySelected]}
       />
       </AtList>
       </Picker>
