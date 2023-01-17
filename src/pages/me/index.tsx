@@ -5,7 +5,7 @@ import { AtList, AtListItem} from "taro-ui"
 import { AtAvatar } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
-import qr from './img/qr.png'
+import qr from '../../icon/qr.svg'
 import wine from '../../icon/wine.png'
 import voucher from '../../icon/voucher.png'
 import cash from '../../icon/cash.png'
