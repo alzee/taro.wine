@@ -98,18 +98,30 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       url: Env.apiUrl + 'create-user-org',
       success: function (res) { }
     }).then((res) =>{
-      Taro.showToast({
-        title: '已完成',
-        icon: 'success',
-        duration: 2000,
-        success: () => {
-          setTimeout(
-            () => {
-              // Taro.reLaunch({url: '/pages/org/index'})
-            }, 500
-          )
-        }
-      })
+      console.log(res.data)
+      if (res.data.code === 1) {
+        Taro.showToast({
+          title: '用户名已存在',
+          icon: 'error',
+          duration: 2000,
+          success: () => { }
+        })
+        return
+      }
+      if (res.data.code === 0) {
+        Taro.showToast({
+          title: '已完成',
+          icon: 'success',
+          duration: 2000,
+          success: () => {
+            setTimeout(
+              () => {
+                Taro.reLaunch({url: '/pages/org/index'})
+              }, 500
+            )
+          }
+        })
+      }
     })
   }
 
