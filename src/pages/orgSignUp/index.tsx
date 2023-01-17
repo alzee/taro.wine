@@ -7,10 +7,6 @@ import { View, Text, Form, Input, Button, Picker } from '@tarojs/components'
 import { AtButton, AtList, AtListItem, AtInput, AtForm} from "taro-ui"
 
 export default class Orgsignup extends Component<PropsWithChildren> {
-  instance = Taro.getCurrentInstance();
-  type: int
-  role: int
-  oid: int
   state = {
     selector: ['门店', '餐厅'],
     selectorChecked: '',
@@ -30,14 +26,22 @@ export default class Orgsignup extends Component<PropsWithChildren> {
   pickerChange = e => {
     this.setState({
       selectorChecked: this.state.selector[e.detail.value],
-      type: e.detail.value
     })
+    let type: int
+    switch (Number(e.detail.value)) {
+      case 0:
+        type = 2
+      break
+      case 1:
+        type = 3
+      break
+    }
+    this.setState({ type })
   }
 
   formSubmit = e => {
     let data = e.detail.value
     data.type = Number(this.state.type)
-    console.log(data)
     if (isNaN(data.type)) {
       Taro.showToast({
         title: '请选择类型',
@@ -58,8 +62,6 @@ export default class Orgsignup extends Component<PropsWithChildren> {
     }
     for (let i in data) {
       if (data[i] === "") {
-        console.log(i)
-        console.log(data[i])
         Taro.showToast({
           title: '请填写 ' + label[i],
           icon: 'error',
@@ -98,7 +100,6 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       url: Env.apiUrl + 'create-user-org',
       success: function (res) { }
     }).then((res) =>{
-      console.log(res.data)
       if (res.data.code === 1) {
         Taro.showToast({
           title: '用户名已存在',
