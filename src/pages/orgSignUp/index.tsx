@@ -142,6 +142,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       <AtList>
       <AtListItem
       title='类型'
+      className='picker'
       extraText={this.state.selectorChecked}
       />
       </AtList>
