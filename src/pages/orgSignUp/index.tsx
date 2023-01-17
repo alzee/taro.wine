@@ -9,6 +9,7 @@ import { AtButton, AtList, AtListItem, AtInput, AtForm} from "taro-ui"
 export default class Orgsignup extends Component<PropsWithChildren> {
   state = {
     types: ['门店', '餐厅', '区域代理商(异业)', '门店(异业)'],
+    agencyList: []
   }
 
   getAgencies(typeId: int){
@@ -166,15 +167,18 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       <Form className='form'
       onSubmit={this.formSubmit}
       >
+      { this.state.types &&
       <Picker mode='selector' range={this.state.types} onChange={this.typeChanged}>
       <AtList>
       <AtListItem
       title='类型'
-      className='picker'
-      extraText={this.state.typeSelected}
+      className='picker first'
+      extraText={this.state.types[this.state.typeSelected]}
       />
       </AtList>
       </Picker>
+      }
+      { this.state.agencyList &&
       <Picker mode='selector' range={this.state.agencyList} onChange={this.agencyChanged}>
       <AtList>
       <AtListItem
@@ -184,6 +188,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       />
       </AtList>
       </Picker>
+      }
         <AtInput 
         title='用户名'
         className="input"
