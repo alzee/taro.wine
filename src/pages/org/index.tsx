@@ -131,19 +131,23 @@ export default class Org extends Component<PropsWithChildren> {
         industryRange.push(i.name)
       }
       this.setState({industryRange})
-      this.setState({industries})
-      Taro.getStorage({
-        key: Env.storageKey,
-        success: res => {
-          self.setState({data: res.data})
-          this.role = res.data.role
-          this.getOrgs(2)
-          this.getOrgs(3)
-          if (this.role == 1) {
-            this.getOrgs(1)
-          }
+      this.setState(
+        {industries}, 
+        () => {
+          Taro.getStorage({
+            key: Env.storageKey,
+            success: res => {
+              self.setState({data: res.data})
+              this.role = res.data.role
+              this.getOrgs(2)
+              this.getOrgs(3)
+              if (this.role == 1) {
+                this.getOrgs(1)
+              }
+            }
+          })
         }
-      })
+      )
     })
   }
 
