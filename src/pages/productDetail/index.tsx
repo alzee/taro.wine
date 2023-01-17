@@ -2,7 +2,6 @@ import { Component, PropsWithChildren } from 'react'
 import { View, Text, Image, Button } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
-import { Taxon } from '../../Taxon'
 import Taro from '@tarojs/taro'
 import { AtButton, AtList, AtListItem, AtIcon } from "taro-ui"
 import checkIcon from '../../icon/check-circle-fill.svg'
@@ -25,14 +24,7 @@ export default class Productdetail extends Component<PropsWithChildren> {
     })
   }
 
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
 	search(){
-    // console.log(this.id)
     Taro.navigateTo({ url: '/pages/search/index?p=' + this.id })
   }
 
