@@ -8,7 +8,7 @@ import { AtButton, AtList, AtListItem, AtInput, AtForm} from "taro-ui"
 
 export default class Orgsignup extends Component<PropsWithChildren> {
   state = {
-    selector: ['门店', '餐厅'],
+    selector: ['门店', '餐厅', '区域代理商(异业)', '门店(异业)'],
     selectorChecked: '',
   }
 
@@ -34,6 +34,12 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       break
       case 1:
         type = 3
+      break
+      case 2:
+        type = 11
+      break
+      case 3:
+        type = 12
       break
     }
     this.setState({ type })
