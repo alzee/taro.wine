@@ -19,31 +19,21 @@ export default class Chooselogin extends Component<PropsWithChildren> {
     })
   }
 
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
   navTo(page: string) {
     Taro.navigateTo({ url: '/pages/' + page + '/index' })
   }
   toLoginPage() {
     Taro.navigateTo({ url: '/pages/login/index' })
-    // Taro.redirectTo({ url: '/pages/wxlogin/index' })
   }
   toOrgSignUp() {
     Taro.navigateTo({ url: '/pages/orgSignUp/index' })
-    // Taro.redirectTo({ url: '/pages/wxlogin/index' })
   }
 
   wxlogin() {
     let that = this
     Taro.login({
       success: function (res) {
-        // console.log(res)
         if (res.code) {
-          //发起网络请求
           Taro.request({
             method: 'POST',
             url: Env.apiUrl + 'consumer_login',
@@ -57,7 +47,6 @@ export default class Chooselogin extends Component<PropsWithChildren> {
               key: Env.storageKey,
               data: res.data
             });
-            // Taro.switchTab({ url: '/pages/me/index' })
             Taro.reLaunch({ url: '/pages/me/index' })
           })
         } else {
@@ -65,14 +54,13 @@ export default class Chooselogin extends Component<PropsWithChildren> {
         }
       }
     })
-    // console.log('fuck');
   }
 
   render () {
     return (
       <View className='chooseLogin main'>
-      <Button className="btn" onClick={this.wxlogin.bind(this)}>微信登录</Button>
-      <Button className="btn" onClick={this.toLoginPage}>管理员登录</Button>
+      <Button className="btn" onClick={this.wxlogin.bind(this)}>用户登录</Button>
+      <Button className="btn" onClick={this.toLoginPage}>商家登录</Button>
       <Button className="btn btn-primary" onClick={this.toOrgSignUp}>商家注册</Button>
       </View>
     )
