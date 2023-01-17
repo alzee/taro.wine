@@ -52,13 +52,14 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       contact: '联系人',
       phone: '电话',
       address: '地址',
-      oldPass: '原密码',
       plainPassword: '新密码',
       confirmPass: '密码确认',
       district: '区域',
     }
     for (let i in data) {
-      if (data[i] == "") {
+      if (data[i] === "") {
+        console.log(i)
+        console.log(data[i])
         Taro.showToast({
           title: '请填写 ' + label[i],
           icon: 'error',
@@ -66,6 +67,14 @@ export default class Orgsignup extends Component<PropsWithChildren> {
         })
         return
       }
+    }
+    if (data['username'].length < 6) {
+      Taro.showToast({
+        title: '用户名6位以上',
+        icon: 'error',
+        duration: 2000
+      })
+      return
     }
     if (data['confirmPass'] !== data['plainPassword']) {
       Taro.showToast({
@@ -75,10 +84,18 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       })
       return
     }
+    if (data['plainPassword'].length < 6) {
+      Taro.showToast({
+        title: '密码须6位以上',
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
     Taro.request({
       method: 'POST',
       data: data,
-      url: Env.apiUrl + 'orgs',
+      url: Env.apiUrl + 'create-user-org',
       success: function (res) { }
     }).then((res) =>{
       Taro.showToast({
@@ -88,7 +105,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
         success: () => {
           setTimeout(
             () => {
-              Taro.reLaunch({url: '/pages/org/index'})
+              // Taro.reLaunch({url: '/pages/org/index'})
             }, 500
           )
         }
