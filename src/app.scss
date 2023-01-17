@@ -67,6 +67,11 @@ page{
   background-color: var(--color-1);
   color: var(--color-light);
 }
+.btn-outline-primary{
+  background-color: var(--bg-light);
+  color: var(--color-1);
+  border: 1px solid var(--color-1);
+}
 .at-article__img{
   border-radius: .5rem !important;
 }
