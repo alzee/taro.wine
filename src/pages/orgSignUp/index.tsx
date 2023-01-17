@@ -8,49 +8,80 @@ import { AtButton, AtList, AtListItem, AtInput, AtForm} from "taro-ui"
 
 export default class Orgsignup extends Component<PropsWithChildren> {
   state = {
-    selector: ['门店', '餐厅', '区域代理商(异业)', '门店(异业)'],
-    selectorChecked: '',
+    types: ['门店', '餐厅', '区域代理商(异业)', '门店(异业)'],
+    typeSelected: '',
   }
 
-  componentWillMount () {
-  }
-
-  componentDidMount () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  pickerChange = e => {
-    this.setState({
-      selectorChecked: this.state.selector[e.detail.value],
+  getAgencies(typeId: int){
+    Taro.request({
+      url: Env.apiUrl + 'orgs?type=' + typeId,
+    }).then((res) =>{
+      console.log(res.data)
+      let agencies = []
+      for (let i of res.data) {
+        agencies.push(i.name)
+      }
+      this.setState(
+        {
+          agencies,
+          agencySelected: agencies[0]
+        }
+      )
     })
-    let type: int
+  }
+
+  componentDidMount () {
+  }
+
+  typeChanged = e => {
+    this.setState({
+      typeSelected: this.state.types[e.detail.value],
+    })
+    let typeId: int
+    let agencyType: int
     switch (Number(e.detail.value)) {
       case 0:
-        type = 2
+        typeId = 2
+        agencyType = 1
       break
       case 1:
-        type = 3
+        typeId = 3
+        agencyType = 1
       break
       case 2:
-        type = 11
+        typeId = 11
+        agencyType = 10
       break
       case 3:
-        type = 12
+        typeId = 12
+        agencyType = 11
       break
     }
-    this.setState({ type })
+    this.setState({ typeId, agencyType })
+    this.getAgencies(agencyType)
+  }
+
+  agencyChanged = e => {
+    this.setState({
+      agencySelected: this.state.agencies[e.detail.value],
+    })
   }
 
   formSubmit = e => {
     let data = e.detail.value
-    data.type = Number(this.state.type)
+    data.type = Number(this.state.typeId)
+    data.upstream = Number(this.state.agencyType)
     if (isNaN(data.type)) {
       Taro.showToast({
         title: '请选择类型',
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
+    if (isNaN(data.type)) {
+      Taro.showToast({
+        title: '请选择代理商',
         icon: 'error',
         duration: 2000
       })
@@ -138,12 +169,21 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       <Form className='form'
       onSubmit={this.formSubmit}
       >
-      <Picker mode='selector' range={this.state.selector} onChange={this.pickerChange}>
+      <Picker mode='selector' range={this.state.types} onChange={this.typeChanged}>
       <AtList>
       <AtListItem
       title='类型'
       className='picker'
-      extraText={this.state.selectorChecked}
+      extraText={this.state.typeSelected}
+      />
+      </AtList>
+      </Picker>
+      <Picker mode='selector' range={this.state.agencies} onChange={this.agencyChanged}>
+      <AtList>
+      <AtListItem
+      title='代理商'
+      className='picker'
+      extraText={this.state.agencySelected}
       />
       </AtList>
       </Picker>
