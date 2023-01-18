@@ -21,9 +21,15 @@ export default class Orgedit extends Component<PropsWithChildren> {
         this.oid = res.data.org.id
         Taro.request({
           url: Env.apiUrl + 'orgs/' + this.oid,
-          success: function (res) { self.setState({org: res.data}) }
+          success: function (res) { }
         }).then((res) =>{
-          console.log(res.data);
+          console.log(res.data)
+          self.setState({
+            org: res.data,
+            image: [
+              { url:Env.imgUrl + 'org/' + res.data.img }
+            ]
+          })
         })
       }
     })
