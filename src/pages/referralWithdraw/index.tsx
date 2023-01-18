@@ -86,10 +86,13 @@ export default class Referralwithdraw extends Component<PropsWithChildren> {
       { this.state.consumer &&
       <View className='at-row card'>
       <View className='at-col'>
+      <View className='label'>我的佣金</View>
+      <View className='number'>{this.state.consumer.reward / 100}</View>
+      </View>
+      <View className='at-col'>
       <View className='label'>可提金额</View>
       <View className='number'>{this.state.consumer.withdrawable / 100}</View>
       </View>
-
       <View className='at-col'>
       <View className='label'>提现中</View>
       <View className='number'>{this.state.consumer.withdrawing / 100}</View>
