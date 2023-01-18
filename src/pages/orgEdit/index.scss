@@ -17,6 +17,10 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      .note{
+        font-size: 24px;
+        color: var(--color-note);
+      }
     }
     .image-picker{
       width: 6rem;

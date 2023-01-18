@@ -183,7 +183,12 @@ export default class Orgedit extends Component<PropsWithChildren> {
           value={this.state.org.bankAddr}
         />
         <View className='label phony-input'>
-        <View> 图片 </View>
+        <View>
+        图片
+        <View className='note'>
+        上传后将裁剪为2:1比例，请选择合适的图片
+        </View>
+        </View>
         <AtImagePicker
         className='image-picker'
         mode='aspectFit'
