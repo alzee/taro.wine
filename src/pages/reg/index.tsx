@@ -95,23 +95,26 @@ export default class Reg extends Component<PropsWithChildren> {
       <AtList>
       <AtListItem
       title='类型'
+      className='picker'
       extraText={this.state.selectorChecked}
       />
       </AtList>
       </Picker>
-        <Input 
+        <AtInput 
           className="input"
-          // title='姓名'
+          title='姓名'
           name='name' 
           type='text' 
           placeholder='姓名' 
+          required
         />
-        <Input 
+        <AtInput 
           className="input"
-          // title='电话'
+          title='电话'
           name='phone' 
           type='number' 
           placeholder='电话' 
+          required
         />
         <Button className='btn' formType='submit'>提交</Button>
       </Form>
