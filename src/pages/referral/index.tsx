@@ -6,6 +6,7 @@ import { AtList, AtListItem, AtCard } from "taro-ui"
 import { AtTabs, AtTabsPane } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
+import { fmtDate } from '../../fmtDate'
 
 export default class Referral extends Component<PropsWithChildren> {
   state = {
@@ -41,17 +42,23 @@ export default class Referral extends Component<PropsWithChildren> {
         })
 
         Taro.request({
-          url: Env.apiUrl + 'refretail/' + cid,
+          url: Env.apiUrl + 'rewards?&referrer=' + cid,
           // url: Env.apiUrl + 'refretail/' + 55,
         }).then((res) =>{
           console.log(res.data)
           list = []
+          let record
           for (let i of res.data) {
-            // console.log(i)
+            if (i.type == 0 || i.type == 1) {
+              record = i.ord.orderItems[0]
+            }
+            if (i.type == 2 || i.type == 3) {
+              record = i.retail
+            }
             list.push(
               <AtListItem
-              title={i.product.name}
-              note={i.quantity}
+              title={record.product.name + ' x ' + record.quantity}
+              note={fmtDate(i.createdAt)}
               extraText={i.amount / 100}
               className='list-item'
               />
@@ -78,7 +85,7 @@ export default class Referral extends Component<PropsWithChildren> {
   render () {
     let tabList = [
         { title: '我推荐的' },
-        { title: '分销订单' },
+        { title: '分销明细' },
     ]
     return (
       <View className='referral'>
