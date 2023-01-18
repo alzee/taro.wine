@@ -7,7 +7,7 @@ import Taro from '@tarojs/taro'
 
 export default class Reg extends Component<PropsWithChildren> {
   state = {
-    selector: ['门店', '代理商', '合伙人', '总代', '区代'],
+    selector: ['门店', '代理商', '代理商(异业)', '区域代理商(异业)', '门店(异业)'],
     selectorChecked: '',
   }
 
@@ -114,6 +114,22 @@ export default class Reg extends Component<PropsWithChildren> {
           name='phone' 
           type='number' 
           placeholder='电话' 
+          required
+        />
+        <AtInput 
+          className="input"
+          title='单位名称'
+          name='orgName' 
+          type='text' 
+          placeholder='' 
+          required
+        />
+        <AtInput 
+          className="input"
+          title='地址'
+          name='address' 
+          type='text' 
+          placeholder='' 
           required
         />
         <Button className='btn' formType='submit'>提交</Button>
