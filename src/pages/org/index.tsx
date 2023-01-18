@@ -250,7 +250,7 @@ export default class Org extends Component<PropsWithChildren> {
       <AtTabs current={this.state.seg} tabList={tabList} onClick={this.switchSeg.bind(this)}>
         <AtTabsPane current={this.state.seg} index={0}>
         { this.role == 1 &&
-        <Button className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(0)}>新增门店</Button>
+        <Button className='btn btn-outline-primary' size='mini' onClick={() => this.orgNew(0)}>新增门店</Button>
         }
           <AtList>
           { this.state.storeList }
@@ -258,7 +258,7 @@ export default class Org extends Component<PropsWithChildren> {
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={1}>
         { this.role == 1 &&
-        <Button className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(1)}>新增餐厅</Button>
+        <Button className='btn btn-outline-primary' size='mini' onClick={() => this.orgNew(1)}>新增餐厅</Button>
         }
           <AtList>
           { this.state.restaurantList }
@@ -266,7 +266,7 @@ export default class Org extends Component<PropsWithChildren> {
         </AtTabsPane>
         { this.role == 0 &&
         <AtTabsPane current={this.state.seg} index={2} >
-        <Button className='new-btn' type='secondary' size='small' onClick={() => this.orgNew(2)}>新增代理商</Button>
+        <Button className='btn btn-outline-primary' size='mini' onClick={() => this.orgNew(2)}>新增代理商</Button>
           <AtList>
           { this.state.agencyList }
           </AtList>
