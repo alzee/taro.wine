@@ -78,6 +78,19 @@ export default class Orgedit extends Component<PropsWithChildren> {
         }
       })
     })
+
+    Taro.uploadFile({
+      url: Env.apiUrl + 'media_objects',
+      filePath: this.state.image[0].file.path,
+      name: 'upload',
+      formData: {
+        'type': 0
+      },
+      success (res){
+        console.log(res);
+        const data = res.data
+      }
+    })
   }
 
   render () {
