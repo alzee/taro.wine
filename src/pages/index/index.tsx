@@ -39,7 +39,7 @@ export default class Index extends Component<PropsWithChildren> {
       for (let i of res.data) {
         carousel.push(
           <SwiperItem key={i}>
-          <Image className='img rounded' mode='aspectFit' src={ this.imgUrl + 'node/' + i.img } onClick={()=>this.navToNode(i.id)}></Image>
+          <Image className='img rounded' mode='aspectFill' src={ this.imgUrl + 'node/' + i.img } onClick={()=>this.navToNode(i.id)}></Image>
           </SwiperItem>
         );
       }
