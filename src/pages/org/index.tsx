@@ -249,30 +249,35 @@ export default class Org extends Component<PropsWithChildren> {
 
       <AtTabs current={this.state.seg} tabList={tabList} onClick={this.switchSeg.bind(this)}>
         <AtTabsPane current={this.state.seg} index={0}>
-        { this.role == 1 &&
-        <Button className='btn btn-outline-primary' size='mini' onClick={() => this.orgNew(0)}>新增门店</Button>
-        }
           <AtList>
           { this.state.storeList }
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={1}>
-        { this.role == 1 &&
-        <Button className='btn btn-outline-primary' size='mini' onClick={() => this.orgNew(1)}>新增餐厅</Button>
-        }
           <AtList>
           { this.state.restaurantList }
           </AtList>
         </AtTabsPane>
         { this.role == 0 &&
         <AtTabsPane current={this.state.seg} index={2} >
-        <Button className='btn btn-outline-primary' size='mini' onClick={() => this.orgNew(2)}>新增代理商</Button>
           <AtList>
           { this.state.agencyList }
           </AtList>
         </AtTabsPane>
         }
       </AtTabs>
+
+      <View className='fixed'>
+        { this.role == 1 && this.state.seg == 0 &&
+        <Button className='btn btn-primary' onClick={() => this.orgNew(0)}>新增门店</Button>
+        }
+        { this.role == 1 && this.state.seg == 1 &&
+        <Button className='btn btn-primary' onClick={() => this.orgNew(1)}>新增餐厅</Button>
+        }
+        { this.role == 0 && this.state.seg == 2 &&
+        <Button className='btn btn-primary' onClick={() => this.orgNew(2)}>新增代理商</Button>
+        }
+      </View>
 
       </View>
     )

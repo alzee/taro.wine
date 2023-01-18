@@ -51,7 +51,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
       address: '地址',
       district: '区域',
     }
-    for (let i in data) {
+    for (let i in label) {
       if (data[i] == "") {
         Taro.showToast({
           title: '请填写 ' + label[i],
@@ -155,7 +155,6 @@ export default class Orgedit extends Component<PropsWithChildren> {
           className="input"
           name='payee' 
           type='text' 
-          required
           value={this.state.org.payee}
         />
         <AtInput 
@@ -163,7 +162,6 @@ export default class Orgedit extends Component<PropsWithChildren> {
           className="input"
           name='bank' 
           type='text' 
-          required
           value={this.state.org.bank}
         />
         <AtInput 
@@ -171,7 +169,6 @@ export default class Orgedit extends Component<PropsWithChildren> {
           className="input"
           name='bankAccount' 
           type='text' 
-          required
           value={this.state.org.bankAccount}
         />
         <AtInput 
@@ -179,7 +176,6 @@ export default class Orgedit extends Component<PropsWithChildren> {
           className="input"
           name='bankAddr' 
           type='text' 
-          required
           value={this.state.org.bankAddr}
         />
         <View className='label phony-input'>
