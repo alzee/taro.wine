@@ -154,16 +154,6 @@ export default class Index extends Component<PropsWithChildren> {
       </View>
       </View>
 
-      <AtNoticebar
-      className='notice-bar'
-      marquee
-      speed='50'
-      >
-      <View className='scroll-info'>
-      {this.state.scrollInfo}
-      </View>
-      </AtNoticebar>
-
       <View className='label'>
       <View>活动公告</View>
       <View className='read-more'>
