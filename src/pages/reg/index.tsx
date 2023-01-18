@@ -102,7 +102,15 @@ export default class Reg extends Component<PropsWithChildren> {
       </Picker>
         <AtInput 
           className="input"
-          title='姓名'
+          title='单位名称'
+          name='orgName' 
+          type='text' 
+          placeholder='' 
+          required
+        />
+        <AtInput 
+          className="input"
+          title='联系人'
           name='name' 
           type='text' 
           placeholder='姓名' 
@@ -114,14 +122,6 @@ export default class Reg extends Component<PropsWithChildren> {
           name='phone' 
           type='number' 
           placeholder='电话' 
-          required
-        />
-        <AtInput 
-          className="input"
-          title='单位名称'
-          name='orgName' 
-          type='text' 
-          placeholder='' 
           required
         />
         <AtInput 
