@@ -27,15 +27,15 @@ export default class Stock extends Component<PropsWithChildren> {
         }).then((res) =>{
           console.log(res.data);
           let list = []
-          for (let i in res.data) {
+          for (let i of res.data) {
             list.push(
               <AtListItem
-              onClick={() => this.navToDetail(res.data[i].id)}
-              title={res.data[i].name}
-              note={'规格: ' + res.data[i].spec + ' 库存: ' + res.data[i].stock}
-              // extraText={'库存: ' + res.data[i].stock}
+              onClick={() => this.navToDetail(i.product.id)}
+              title={i.product.name}
+              note={'规格: ' + i.product.spec + ' 库存: ' + i.stock}
+              extraText={'库存: ' + i.stock}
               arrow='right'
-              thumb={Env.imgUrl + 'product/' + res.data[i].img}
+              thumb={Env.imgUrl + 'product/' + i.product.img}
           />
             )
           }
