@@ -11,8 +11,6 @@ export default class Orgedit extends Component<PropsWithChildren> {
   oid: int
   state = {}
 
-  componentWillMount () { }
-
   componentDidMount () {
     self = this
     Taro.getStorage({
@@ -25,16 +23,11 @@ export default class Orgedit extends Component<PropsWithChildren> {
           url: Env.apiUrl + 'orgs/' + this.oid,
           success: function (res) { self.setState({org: res.data}) }
         }).then((res) =>{
+          console.log(res.data);
         })
       }
     })
   }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
 
   formSubmit = e => {
     let data = e.detail.value
@@ -87,46 +80,82 @@ export default class Orgedit extends Component<PropsWithChildren> {
       <Form className='form'
       onSubmit={this.formSubmit}
       >
-      <Text className='label'>名称</Text>
-        <Input 
-        className="input"
-        required
+        <AtInput 
+          title='名称'
+          className="input"
+          required
           // name='name' 
           type='text' 
-          placeholder={this.state.org.name}
+          value={this.state.org.name}
           disabled
         />
-      <Text className='label'>联系人</Text>
-        <Input 
-        className="input"
+        <AtInput 
+          title='联系人'
+          className="input"
           name='contact' 
           type='text' 
           placeholder='联系人' 
+          required
           value={this.state.org.contact}
         />
-      <Text className='label'>电话</Text>
-        <Input 
-        className="input"
+        <AtInput 
+          title='电话'
+          className="input"
           name='phone' 
           type='number' 
           placeholder='电话' 
+          required
           value={this.state.org.phone}
         />
-      <Text className='label'>地址</Text>
-        <Input 
-        className="input"
+        <AtInput 
+          title='地址'
+          className="input"
           name='address' 
           type='text' 
           placeholder='地址' 
+          required
           value={this.state.org.address}
         />
-      <Text className='label'>地区</Text>
-        <Input 
-        className="input"
+        <AtInput 
+          title='地区'
+          className="input"
           name='district' 
           type='text' 
           placeholder='地区' 
+          required
           value={this.state.org.district}
+        />
+        <AtInput 
+          title='收款人'
+          className="input"
+          name='payee' 
+          type='text' 
+          required
+          value={this.state.org.payee}
+        />
+        <AtInput 
+          title='开户行'
+          className="input"
+          name='bank' 
+          type='text' 
+          required
+          value={this.state.org.bank}
+        />
+        <AtInput 
+          title='收款账号'
+          className="input"
+          name='bankAccount' 
+          type='text' 
+          required
+          value={this.state.org.bankAccount}
+        />
+        <AtInput 
+          title='开户行地址'
+          className="input"
+          name='bankAddr' 
+          type='text' 
+          required
+          value={this.state.org.bankAddr}
         />
         <Button className='btn' formType='submit'>保存</Button>
       </Form>
