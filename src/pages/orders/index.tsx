@@ -285,13 +285,11 @@ export default class Orders extends Component<PropsWithChildren> {
       { this.role == 0 &&
       <AtTabs className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
-          <Button className='new-btn' type='secondary' size='small' onClick={() => this.create(1)}>新增销售</Button>
           <AtList className="list">
           {this.state.sales}
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={1} >
-          <Button className='new-btn' type='secondary' size='small' onClick={() => this.create(10)}>新增售后退货</Button>
           <AtList className="list">
           {this.state.returnsToMe}
           </AtList>
@@ -307,7 +305,6 @@ export default class Orders extends Component<PropsWithChildren> {
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={1} >
-          <Button className='new-btn' type='secondary' size='small' onClick={() => this.create(1)}>新增销售</Button>
           <AtList className="list">
           {this.state.sales}
           </AtList>
@@ -318,7 +315,6 @@ export default class Orders extends Component<PropsWithChildren> {
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={3} >
-          <Button className='new-btn' type='secondary' size='small' onClick={() => this.create(10)}>新增售后退货</Button>
           <AtList className="list">
           {this.state.returnsToMe}
           </AtList>
@@ -339,13 +335,11 @@ export default class Orders extends Component<PropsWithChildren> {
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={2} >
-          <Button className='new-btn' type='secondary' size='small' onClick={() => this.scan(0)}>新增零售</Button>
           <AtList className="list">
           {this.state.retails}
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={3} >
-          <Button className='new-btn' type='secondary' size='small' onClick={() => this.scan(10)}>新增零售退货</Button>
           <AtList className="list">
           {this.state.retailReturns}
           </AtList>
@@ -366,19 +360,16 @@ export default class Orders extends Component<PropsWithChildren> {
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={2} >
-          <Button className='new-btn' type='secondary' size='small' onClick={() => this.scan(0)}>新增零售</Button>
           <AtList className="list">
           {this.state.retails}
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={3} >
-          <Button className='new-btn' type='secondary' size='small' onClick={() => this.scan(10)}>新增零售退货</Button>
           <AtList className="list">
           {this.state.retailReturns}
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={4} >
-          <Button className='new-btn' type='secondary' size='small' onClick={() => this.scan(1)}>新增餐饮消费</Button>
           <AtList className="list">
           {this.state.dines}
           </AtList>
@@ -400,6 +391,36 @@ export default class Orders extends Component<PropsWithChildren> {
         </AtTabsPane>
       </AtTabs>
       }
+
+      <View className='fixed'>
+        { this.role == 0 && this.state.current == 0 &&
+          <Button className='btn btn-primary' onClick={() => this.create(1)}>新增销售</Button>
+        }
+        { this.role == 0 && this.state.current == 1 &&
+          <Button className='btn btn-primary' onClick={() => this.create(10)}>新增售后退货</Button>
+        }
+        { this.role == 1 && this.state.current == 1 &&
+          <Button className='btn btn-primary' onClick={() => this.create(1)}>新增销售</Button>
+        }
+        { this.role == 1 && this.state.current == 3 &&
+          <Button className='btn btn-primary' onClick={() => this.create(10)}>新增售后退货</Button>
+        }
+        { this.role == 2 && this.state.current == 2 &&
+          <Button className='btn btn-primary' onClick={() => this.scan(0)}>新增零售</Button>
+        }
+        { this.role == 2 && this.state.current == 3 &&
+          <Button className='btn btn-primary' onClick={() => this.scan(10)}>新增零售退货</Button>
+        }
+        { this.role == 3 && this.state.current == 2 &&
+          <Button className='btn btn-primary' onClick={() => this.scan(0)}>新增零售</Button>
+        }
+        { this.role == 3 && this.state.current == 3 &&
+          <Button className='btn btn-primary' onClick={() => this.scan(10)}>新增零售退货</Button>
+        }
+        { this.role == 3 && this.state.current == 4 &&
+          <Button className='btn btn-primary' onClick={() => this.scan(1)}>新增餐饮消费</Button>
+        }
+      </View>
 
       </View>
     )
