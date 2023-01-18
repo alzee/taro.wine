@@ -1,3 +1,3 @@
 export default definePageConfig({
-  navigationBarTitleText: '分销提现'
+  navigationBarTitleText: '提现管理'
 })

@@ -1,5 +1,5 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Button } from '@tarojs/components'
 import './index.scss'
 import { AtButton, AtAvatar, AtIcon } from 'taro-ui'
 import { AtList, AtListItem, AtCard } from "taro-ui"
@@ -9,7 +9,6 @@ import { Env } from '../../env/env'
 
 export default class Referral extends Component<PropsWithChildren> {
   state = {
-    current: 1,
     seg: 0,
   }
 
@@ -62,16 +61,13 @@ export default class Referral extends Component<PropsWithChildren> {
         })
       }
     })
+  }
 
+  navTo(page: string) {
+    Taro.navigateTo({ url: '/pages/' + page + '/index' })
   }
 
   componentDidMount () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
 
   handleClick (value) {
     this.setState({
@@ -98,6 +94,13 @@ export default class Referral extends Component<PropsWithChildren> {
           </AtList>
         </AtTabsPane>
       </AtTabs>
+
+      <View className='fixed'>
+      { this.state.seg == 0 &&
+        <Button className='btn btn-primary' onClick={() => this.navTo('poster')}>我的海报</Button>
+      }
+      </View>
+
       </View>
     )
   }

@@ -21,8 +21,6 @@ export default class Me extends Component<PropsWithChildren> {
   orgName: string;
   oid: int
 
-  componentWillMount () { }
-
   componentDidMount () {
     const self = this;
     Taro.getStorage({
@@ -50,8 +48,6 @@ export default class Me extends Component<PropsWithChildren> {
       }
     })
   }
-
-  componentWillUnmount () { }
 
   getLocation(){
     const self = this;
@@ -226,22 +222,16 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.navTo('referral')}
       />
       <AtListItem
-      title='分销提现'
+      title='我的介绍'
+      arrow='right'
+      thumb={lock}
+      onClick={() => this.navTo('orgReferral')}
+      />
+      <AtListItem
+      title='我要提现'
       arrow='right'
       thumb={lock}
       onClick={() => this.navTo('referralWithdraw')}
-      />
-      <AtListItem
-      title='我的海报'
-      arrow='right'
-      thumb={lock}
-      onClick={() => this.navTo('poster')}
-      />
-      <AtListItem
-      title='我的业绩'
-      arrow='right'
-      thumb={lock}
-      // onClick={() => this.navTo('poster')}
       />
       <AtListItem
       title='我要报备'
