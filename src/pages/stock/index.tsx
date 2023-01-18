@@ -5,7 +5,7 @@ import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 import { AtList, AtListItem, AtCard } from "taro-ui"
 
-export default class Product extends Component<PropsWithChildren> {
+export default class Stock extends Component<PropsWithChildren> {
   role: int
   orgid: int
   state = {}
@@ -22,10 +22,10 @@ export default class Product extends Component<PropsWithChildren> {
         self.setState({data: res.data})
         this.orgid = res.data.org.id
         this.role = res.data.role
-        let query = '?page=1&org=' + this.orgid
         Taro.request({
-          url: Env.apiUrl + 'products' + query,
+          url: Env.apiUrl + 'stocks?org=' + this.orgid,
         }).then((res) =>{
+          console.log(res.data);
           let list = []
           for (let i in res.data) {
             list.push(

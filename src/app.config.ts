@@ -44,6 +44,7 @@ export default defineAppConfig({
     'pages/search/index',
     'pages/reg/index',
     'pages/orgSignUp/index',
+    'pages/stock/index',
   ],
   window: {
     backgroundTextStyle: 'light',
