@@ -41,7 +41,7 @@ export default class Productdetail extends Component<PropsWithChildren> {
       <View className='productDetail'>
       { this.state.entity &&
         <>
-      <Image className='pic rounded' mode='aspectFill' src={Env.imgUrl + 'product/' + this.state.entity.img} />
+      <Image className='pic' mode='aspectFill' src={Env.imgUrl + 'product/' + this.state.entity.img} />
       <View className='price'>
         <View className='amount'>
         {this.state.entity.price / 100} 元
