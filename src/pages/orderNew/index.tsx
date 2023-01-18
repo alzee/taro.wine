@@ -158,6 +158,7 @@ export default class Ordernew extends Component<PropsWithChildren> {
       <AtList>
       <AtListItem
       title='收货方'
+      className='phony-input'
       extraText={this.state.downstreamSelected}
       />
       </AtList>

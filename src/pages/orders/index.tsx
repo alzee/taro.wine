@@ -1,5 +1,5 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Button } from '@tarojs/components'
 import './index.scss'
 import { AtList, AtListItem, AtCard } from "taro-ui"
 import { AtNavBar } from 'taro-ui'

@@ -95,7 +95,7 @@ export default class Reg extends Component<PropsWithChildren> {
       <AtList>
       <AtListItem
       title='类型'
-      className='picker'
+      className='phony-input'
       extraText={this.state.selectorChecked}
       />
       </AtList>

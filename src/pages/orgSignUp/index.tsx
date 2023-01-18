@@ -172,7 +172,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       <AtList>
       <AtListItem
       title='类型'
-      className='picker first'
+      className='phony-input first'
       extraText={this.state.types[this.state.typeSelected]}
       />
       </AtList>
@@ -183,7 +183,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       <AtList>
       <AtListItem
       title='代理商'
-      className='picker'
+      className='phony-input'
       extraText={this.state.agencyList[this.state.agencySelected]}
       />
       </AtList>

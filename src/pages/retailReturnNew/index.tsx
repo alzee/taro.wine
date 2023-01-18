@@ -146,6 +146,7 @@ export default class Retailreturnnew extends Component<PropsWithChildren> {
       <AtList>
       <AtListItem
       title='商品'
+      className='phony-input'
       extraText={this.state.productSelected}
       />
       </AtList>
