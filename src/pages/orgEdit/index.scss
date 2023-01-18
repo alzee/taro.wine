@@ -4,5 +4,22 @@
     .input{
       margin: .3rem 0;
     }
+    .at-image-picker{
+      .at-image-picker__flex-box{
+        display: none;
+      }
+      :first-child{
+        display: flex;
+      }
+    }
+    .label{
+      margin: .4rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .image-picker{
+      width: 6rem;
+    }
   }
 }

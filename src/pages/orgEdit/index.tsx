@@ -3,7 +3,7 @@ import { View, Text, Form, Input, Button } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
-import { AtButton, AtList, AtListItem, AtInput, AtForm} from "taro-ui"
+import { AtButton, AtList, AtListItem, AtInput, AtImagePicker } from "taro-ui"
 import { Taxon } from '../../Taxon'
 
 export default class Orgedit extends Component<PropsWithChildren> {
@@ -26,6 +26,13 @@ export default class Orgedit extends Component<PropsWithChildren> {
           console.log(res.data);
         })
       }
+    })
+  }
+
+  imageSelected(image){
+    console.log(image);
+    this.setState({
+      image 
     })
   }
 
@@ -150,13 +157,24 @@ export default class Orgedit extends Component<PropsWithChildren> {
           value={this.state.org.bankAccount}
         />
         <AtInput 
-          title='开户行地址'
+          title='开户地址'
           className="input"
           name='bankAddr' 
           type='text' 
           required
           value={this.state.org.bankAddr}
         />
+        <View className='label phony-input'>
+        <View> 图片 </View>
+        <AtImagePicker
+        className='image-picker'
+        mode='aspectFit'
+        count={1}
+        length={1}
+        files={this.state.image}
+        onChange={this.imageSelected.bind(this)}
+        />
+        </View>
         <Button className='btn' formType='submit'>保存</Button>
       </Form>
       }
