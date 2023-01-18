@@ -32,7 +32,7 @@ export default class Index extends Component<PropsWithChildren> {
     const self = this;
 
     Taro.request({
-      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=3&tag=0&order%5Bid%5D=asc',
+      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=3&tag=0&order%5Bid%5D=desc',
       success: function (res) {}
     }).then((res) =>{
       let carousel = []
@@ -47,7 +47,7 @@ export default class Index extends Component<PropsWithChildren> {
     })
 
     Taro.request({
-      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=4&tag=4&order%5Bid%5D=asc',
+      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=4&tag=4&order%5Bid%5D=desc',
       success: function (res) {}
     }).then((res) =>{
       let promo = []
@@ -65,7 +65,7 @@ export default class Index extends Component<PropsWithChildren> {
     })
 
     Taro.request({
-      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=6&tag=1&order%5Bid%5D=asc',
+      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=6&tag=1&order%5Bid%5D=desc',
       success: function (res) {}
     }).then((res) =>{
       let featured = []
@@ -83,7 +83,7 @@ export default class Index extends Component<PropsWithChildren> {
     })
 
     Taro.request({
-      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=3&tag=5&order%5Bid%5D=asc',
+      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=3&tag=5&order%5Bid%5D=desc',
       success: function (res) {}
     }).then((res) =>{
       let scrollInfo = []

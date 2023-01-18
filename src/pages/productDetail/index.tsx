@@ -7,6 +7,14 @@ import { AtButton, AtList, AtListItem, AtIcon } from "taro-ui"
 import checkIcon from '../../icon/check-circle-fill.svg'
 import shopIcon from '../../icon/shop.svg'
 
+Taro.options.html.transformElement = (el) => {
+  if (el.nodeName === 'image') {
+    el.setAttribute('mode', 'widthFix')
+    el.setAttribute('src', Env.baseUrl + el.getAttribute('src'))
+  }
+  return el
+}
+
 export default class Productdetail extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   id: int
@@ -86,18 +94,11 @@ export default class Productdetail extends Component<PropsWithChildren> {
 
       <View className='space'></View>
 
-      <View className='review'>
-        <View className='section'> 商品评价 (88)</View>
-        <View className='content'> 云想衣裳花想容，春风拂槛露华浓。</View>
-        <View className='note'> 用户user1 发布于12月30日</View>
-        <View className='star'>
-          <AtIcon value='star-2' size='15' color='#ff3333'></AtIcon>
-          <AtIcon value='star-2' size='15' color='#ff3333'></AtIcon>
-          <AtIcon value='star-2' size='15' color='#ff3333'></AtIcon>
-          <AtIcon value='star-2' size='15' color='#ff3333'></AtIcon>
-          <AtIcon value='star-2' size='15' color='#ff3333'></AtIcon>
-          <Text> 5.0分</Text>
-        </View>
+      <View className='node'>
+      <View className='at-article__content'>
+      <View dangerouslySetInnerHTML={{__html: this.state.entity.intro}} className='at-article__section'>
+      </View>
+      </View>
       </View>
 
       <View className='bottom'>
