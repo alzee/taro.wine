@@ -84,11 +84,10 @@ export default class Orgedit extends Component<PropsWithChildren> {
       filePath: this.state.image[0].file.path,
       name: 'upload',
       formData: {
-        'type': 0
+        'type': 0,
+        'entityId': this.oid
       },
       success (res){
-        console.log(res);
-        const data = res.data
       }
     })
   }
