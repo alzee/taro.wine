@@ -7,7 +7,6 @@ import Taro from '@tarojs/taro'
 import { AtButton, AtList, AtListItem} from "taro-ui"
 
 export default class Withdrawnew extends Component<PropsWithChildren> {
-  instance = Taro.getCurrentInstance();
   role: int
   oid: int
   discount: float
