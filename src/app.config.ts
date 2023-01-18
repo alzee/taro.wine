@@ -45,7 +45,8 @@ export default defineAppConfig({
     'pages/reg/index',
     'pages/orgSignUp/index',
     'pages/stock/index',
-    'pages/referralWithdrawNew/index'
+    'pages/referralWithdrawNew/index',
+    'pages/orgReferral/index'
   ],
   window: {
     backgroundTextStyle: 'light',
