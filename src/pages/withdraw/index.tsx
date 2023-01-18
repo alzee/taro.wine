@@ -12,9 +12,9 @@ export default class Withdraw extends Component<PropsWithChildren> {
   tabList = []
   oid: int
   role: int
-  state = {}
-
-  componentWillMount () { }
+  state = {
+    current: 0,
+  }
 
   getData (type: string) {
     const self = this;
@@ -107,13 +107,9 @@ export default class Withdraw extends Component<PropsWithChildren> {
     });
   }
 
-  componentWillUnmount () { }
-
   componentDidShow () {
     console.log('u see me')
   }
-
-  componentDidHide () { }
 
   navToDetail(id){
     Taro.navigateTo({url: '/pages/withdrawDetail/index?id=' + id})
@@ -160,7 +156,6 @@ export default class Withdraw extends Component<PropsWithChildren> {
       { this.role == 1 &&
       <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
-          <Button className='new-btn' type='secondary' size='small' onClick={this.create}>申请提现</Button>
           <AtList className="list">
           {this.state.myWithdraws}
           </AtList>
@@ -175,13 +170,22 @@ export default class Withdraw extends Component<PropsWithChildren> {
       { this.role == 3 &&
       <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
-          <Button className='new-btn' type='secondary' size='small' onClick={this.create}>申请提现</Button>
           <AtList className="list">
           {this.state.myWithdraws}
           </AtList>
         </AtTabsPane>
       </AtTabs>
       }
+
+      <View className='fixed'>
+      { this.role == 1 && this.state.current == 0 &&
+          <Button className='btn btn-primary' onClick={this.create}>申请提现</Button>
+      }
+      { this.role == 3 && this.state.current == 0 &&
+          <Button className='btn btn-primary' onClick={this.create}>申请提现</Button>
+      }
+      </View>
+
       </View>
     )
   }

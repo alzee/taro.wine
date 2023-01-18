@@ -16,8 +16,6 @@ export default class Orders extends Component<PropsWithChildren> {
   orgid: int
   cid: int
 
-  componentWillMount () { }
-
   create(type: int){
     let page: string
     switch (type) {
@@ -226,15 +224,11 @@ export default class Orders extends Component<PropsWithChildren> {
     })
   }
 
-  componentWillUnmount () { }
-
   componentDidShow () {
     if (this.role == -1) {
       Taro.redirectTo({ url: '/pages/chooseLogin/index' })
     }
   }
-
-  componentDidHide () { }
 
   scan(type: int){
     let page: string
