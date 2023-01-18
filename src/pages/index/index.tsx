@@ -81,20 +81,6 @@ export default class Index extends Component<PropsWithChildren> {
       }
       self.setState({featured})
     })
-
-    Taro.request({
-      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=3&tag=5&order%5Bid%5D=desc',
-      success: function (res) {}
-    }).then((res) =>{
-      let scrollInfo = []
-      for (let i of res.data) {
-        // scrollInfo += i.body
-        scrollInfo.push(
-          <View dangerouslySetInnerHTML={{__html: i.body}} className=''></View>
-        );
-      }
-      self.setState({scrollInfo})
-    })
   }
 
   componentWillUnmount () { }
