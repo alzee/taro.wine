@@ -76,7 +76,7 @@ export default class Referralwithdraw extends Component<PropsWithChildren> {
   }
 
   create () {
-    Taro.navigateTo({url: '/pages/withdrawNew/index'})
+    Taro.navigateTo({url: '/pages/referralWithdrawNew/index'})
   }
 
   render () {
