@@ -36,7 +36,6 @@ export default defineAppConfig({
     'pages/chpwd/index',
     'pages/orgEdit/index',
     'pages/referral/index',
-    'pages/referralWithdraw/index',
     'pages/poster/index',
     'pages/chkPhone/index',
     'pages/chkOTP/index',
@@ -45,7 +44,6 @@ export default defineAppConfig({
     'pages/reg/index',
     'pages/orgSignUp/index',
     'pages/stock/index',
-    'pages/referralWithdrawNew/index',
     'pages/orgReferral/index',
     'pages/share/index'
   ],
