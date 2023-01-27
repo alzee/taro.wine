@@ -95,9 +95,12 @@ page{
 }
 .fixed{
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
+  right: 0;
+  left: 0;
   width: 100%;
   padding: 10px;
+  margin: auto;
   background-color: #fff;
   .btn{
     width: 80%;

@@ -14,6 +14,9 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
 
   componentWillMount () { }
 
+  componentDidShow () {
+  }
+
   componentDidMount () {
     Taro.getStorage({
       key: Env.storageKey,
@@ -97,8 +100,6 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
   }
 
   componentWillUnmount () { }
-
-  componentDidShow () { }
 
   componentDidHide () { }
 
