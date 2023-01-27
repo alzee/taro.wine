@@ -26,7 +26,7 @@ export default class Index extends Component<PropsWithChildren> {
   }
 
   navToProduct(pid: int, nid: int) {
-    Taro.navigateTo({ url: '/pages/productDetail/index?pid=' + pid '&nid=' + nid })
+    Taro.navigateTo({ url: '/pages/productDetail/index?pid=' + pid + '&nid=' + nid })
   }
 
   componentDidMount () {
