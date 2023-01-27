@@ -84,20 +84,20 @@ export default class Referral extends Component<PropsWithChildren> {
 
   render () {
     let tabList = [
-        { title: '我的介绍' },
         { title: '佣金明细' },
+        { title: '我的介绍' },
     ]
     return (
       <View className='referral'>
       <AtTabs current={this.state.seg} tabList={tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.seg} index={0}>
           <AtList>
-          { this.state.list1}
+          { this.state.list2}
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={1}>
           <AtList>
-          { this.state.list2}
+          { this.state.list1}
           </AtList>
         </AtTabsPane>
       </AtTabs>
