@@ -141,7 +141,7 @@ export default class Org extends Component<PropsWithChildren> {
               this.role = res.data.role
               this.getOrgs(2)
               this.getOrgs(3)
-              if (this.role == 0) {
+              if (this.role == 0 || this.role == 10) {
                 this.getOrgs(1)
               }
             }
@@ -218,7 +218,7 @@ export default class Org extends Component<PropsWithChildren> {
 
   render () {
     let tabList = []
-    if (this.role == 0) {
+    if (this.role == 0 || this.role == 10) {
       tabList = [
         { title: '门店' },
         { title: '餐厅' },
@@ -260,7 +260,7 @@ export default class Org extends Component<PropsWithChildren> {
           { this.state.restaurantList }
           </AtList>
         </AtTabsPane>
-        { this.role == 0 &&
+        { (this.role == 0 || this.role == 10) &&
         <AtTabsPane current={this.state.seg} index={2} >
           <AtList>
           { this.state.agencyList }
@@ -278,6 +278,12 @@ export default class Org extends Component<PropsWithChildren> {
         }
         { this.role == 0 && this.state.seg == 2 &&
         <Button className='btn btn-primary' onClick={() => this.orgNew(2)}>新增代理商</Button>
+        }
+        { this.role == 11 && this.state.seg == 0 &&
+        <Button className='btn btn-primary' onClick={() => this.orgNew(3)}>新增门店</Button>
+        }
+        { this.role == 10 && this.state.seg == 2 &&
+        <Button className='btn btn-primary' onClick={() => this.orgNew(4)}>新增代理商</Button>
         }
       </View>
 

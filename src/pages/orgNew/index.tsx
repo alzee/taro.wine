@@ -12,11 +12,9 @@ export default class Orgnew extends Component<PropsWithChildren> {
   role: int
   oid: int
   state = {
-    selector: ['门店', '餐厅', '代理商'],
+    selector: ['门店', '餐厅', '代理商', '门店(异业)', '区域代理商(异业)'],
     selectorChecked: '',
   }
-
-  componentWillMount () { }
 
   componentDidMount () {
     this.type = this.instance.router.params.type
@@ -38,6 +36,16 @@ export default class Orgnew extends Component<PropsWithChildren> {
         if (this.role == 1) {
           this.setState({
             selector: ['门店', '餐厅'],
+          })
+        }
+        if (this.role == 10) {
+          this.setState({
+            selector: ['区域代理商(异业)'],
+          })
+        }
+        if (this.role == 11) {
+          this.setState({
+            selector: ['门店(异业)'],
           })
         }
       }
@@ -65,8 +73,15 @@ export default class Orgnew extends Component<PropsWithChildren> {
     }
     if (this.role == 0) {
       data.type = 1
-    } else {
+    }
+    if (this.role == 1) {
       data.type = Number(this.type) + 2
+    }
+    if (this.role == 10) {
+      data.type = 11
+    }
+    if (this.role == 11) {
+      data.type = 12
     }
     data.upstream = '/api/orgs/' + this.oid
     Taro.request({
@@ -89,12 +104,6 @@ export default class Orgnew extends Component<PropsWithChildren> {
       })
     })
   }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
 
   pickerChange = e => {
     this.setState({
