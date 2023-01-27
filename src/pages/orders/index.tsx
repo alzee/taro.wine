@@ -207,7 +207,7 @@ export default class Orders extends Component<PropsWithChildren> {
             this.getData('retailReturns')
             break
           case 3:
-            this.tabList = [{title: '我的进货'}, {title: '我的退货'}, {title: '我的零售'}, {title: '零售退货'}, {title: '餐饮消费'}]
+            this.tabList = [{title: '进货'}, {title: '退货'}, {title: '零售'}, {title: '零售退货'}, {title: '餐饮'}]
             this.getData('buys')
             this.getData('myReturns')
             this.getData('retails')
