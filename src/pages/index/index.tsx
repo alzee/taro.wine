@@ -8,6 +8,7 @@ import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 
 export default class Index extends Component<PropsWithChildren> {
+  role: int
   pageCtx = Taro.getCurrentInstance().page
   apiUrl = Env.apiUrl;
   imgUrl = Env.imgUrl;
@@ -30,6 +31,12 @@ export default class Index extends Component<PropsWithChildren> {
 
   componentDidMount () {
     const self = this;
+    Taro.getStorage({
+      key: Env.storageKey,
+      success: res => {
+        this.role = res.data.role
+      }
+    })
 
     Taro.request({
       url: Env.apiUrl + 'nodes?page=1&itemsPerPage=3&tag=0&order%5Bid%5D=desc',
@@ -83,13 +90,6 @@ export default class Index extends Component<PropsWithChildren> {
     })
   }
 
-  componentWillUnmount () { }
-
-  componentDidShow () {
-  }
-
-  componentDidHide () { }
-
   searchBarChange(value) {
     this.setState({
       value: value
@@ -97,36 +97,49 @@ export default class Index extends Component<PropsWithChildren> {
   }
 
 	search(){
-    // console.log(this.state.value)
     if (this.state.value != '') {
       Taro.navigateTo({ url: '/pages/search/index?q=' + this.state.value })
     }
   }
 
   chooseGrid(e){
-    console.log(e);
     let page 
+    let requireLogin = false
+    let requireConsumer = false
     switch (e.value) {
       case '推荐赚钱':
         page = 'referral'
+        requireLogin = true
+        requireConsumer = true
         break
       case '我要提现':
         page = 'withdraw'
+        requireLogin = true
         break
       case '我的代金券':
         page = 'voucher'
+        requireLogin = true
         break
       case '餐厅抵现':
         page = 'qr'
+        requireLogin = true
+        requireConsumer = true
         break
       case '合作报备':
         page = 'reg'
+        requireLogin = true
+        requireConsumer = true
         break
       case '商家入驻':
         page = 'orgSignUp'
         break
     }
-    Taro.navigateTo({url:  '/pages/' + page + '/index' });
+    if (this.role == -1 && requireLogin) {
+      Taro.navigateTo({url:  '/pages/chooseLogin/index' });
+    } else if (this.role != 4 && requireConsumer) {
+    } else {
+      Taro.navigateTo({url:  '/pages/' + page + '/index' });
+    }
   }
 
   render () {
@@ -151,7 +164,7 @@ export default class Index extends Component<PropsWithChildren> {
       {this.state.carousel}
       </Swiper>
 
-      <AtGrid onClick={this.chooseGrid} data={
+      <AtGrid onClick={this.chooseGrid.bind(this)} data={
         [
           {
             image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
