@@ -24,28 +24,25 @@ export default class Productdetail extends Component<PropsWithChildren> {
   state = {}
 
   componentDidMount () {
-    this.pid = this.instance.router.params.pid
     this.nid = this.instance.router.params.nid
     const self = this;
     Taro.request({
       url: Env.apiUrl + 'nodes/' + this.nid,
-      success: function (res) { self.setState({node: res.data}) }
+      success: function (res) {}
     }).then((res) =>{
+      self.setState({
+        node: res.data,
+        entity: res.data.product
+      }) 
       this.node = res.data
+      this.product = res.data.product
+      this.pid = this.product.id
+      if (this.node.body === undefined) {
+        self.setState({body: this.product.intro})
+      } else {
+        self.setState({body: this.node.body})
+      }
     })
-
-    Taro.request({
-      url: Env.apiUrl + 'products/' + this.pid,
-      success: function (res) { self.setState({entity: res.data}) }
-    }).then((res) =>{
-      this.product = res.data
-    })
-
-    if (this.node.body === null) {
-      self.setState({body: this.entity.intro})
-    } else {
-      self.setState({body: this.node.body})
-    }
   }
 
 	search(){
@@ -112,8 +109,10 @@ export default class Productdetail extends Component<PropsWithChildren> {
 
       <View className='node'>
       <View className='at-article__content'>
+      { this.state.body &&
       <View dangerouslySetInnerHTML={{__html: this.state.body}} className='at-article__section'>
       </View>
+      }
       </View>
       </View>
 
