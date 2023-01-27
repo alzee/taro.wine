@@ -103,6 +103,32 @@ export default class Index extends Component<PropsWithChildren> {
     }
   }
 
+  chooseGrid(e){
+    console.log(e);
+    let page 
+    switch (e.value) {
+      case '推荐赚钱':
+        page = 'referral'
+        break
+      case '我要提现':
+        page = 'withdraw'
+        break
+      case '我的代金券':
+        page = 'voucher'
+        break
+      case '餐厅抵现':
+        page = 'qr'
+        break
+      case '合作报备':
+        page = 'reg'
+        break
+      case '商家入驻':
+        page = 'orgSignUp'
+        break
+    }
+    Taro.navigateTo({url:  '/pages/' + page + '/index' });
+  }
+
   render () {
     return (
       <View className='index'>
@@ -125,7 +151,7 @@ export default class Index extends Component<PropsWithChildren> {
       {this.state.carousel}
       </Swiper>
 
-      <AtGrid data={
+      <AtGrid onClick={this.chooseGrid} data={
         [
           {
             image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
