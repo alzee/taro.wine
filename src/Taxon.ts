@@ -15,6 +15,10 @@ export const Taxon = {
     '顾客',
   ],
   voucherType: [
+  ],
+  REWARD_SHARE_STATUSES: [
+    '锁定',
+    '可提现'
   ]
 }
 
