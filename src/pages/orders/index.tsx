@@ -219,6 +219,27 @@ export default class Orders extends Component<PropsWithChildren> {
             this.getData('myRetails')
             this.getData('myDines')
             break
+          case 10:
+            this.tabList = [{ title: '我的进货' }, { title: '我的销售' }, {title: '我的退货'}, {title: '售后退货'}]
+            this.getData('buys')
+            this.getData('sales')
+            this.getData('myReturns')
+            this.getData('returnsToMe')
+            break
+          case 11:
+            this.tabList = [{ title: '我的进货' }, { title: '我的销售' }, {title: '我的退货'}, {title: '售后退货'}]
+            this.getData('buys')
+            this.getData('sales')
+            this.getData('myReturns')
+            this.getData('returnsToMe')
+            break
+          case 12:
+            this.tabList = [{title: '我的进货'}, {title: '我的退货'}, {title: '我的零售'}, {title: '零售退货'}]
+            this.getData('buys')
+            this.getData('myReturns')
+            this.getData('retails')
+            this.getData('retailReturns')
+            break
         }
       }
     })
@@ -291,7 +312,7 @@ export default class Orders extends Component<PropsWithChildren> {
       </AtTabs>
       }
 
-      { this.role == 1 &&
+      { (this.role == 1 || this.role == 10 || this.role == 11) &&
       <AtTabs className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
           <AtList className="list">
@@ -316,7 +337,7 @@ export default class Orders extends Component<PropsWithChildren> {
       </AtTabs>
       }
 
-      { this.role == 2 &&
+      { (this.role == 2 || this.role == 12) &&
       <AtTabs className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
           <AtList className="list">
@@ -413,6 +434,24 @@ export default class Orders extends Component<PropsWithChildren> {
         }
         { this.role == 3 && this.state.current == 4 &&
           <Button className='btn btn-primary' onClick={() => this.scan(1)}>新增餐饮消费</Button>
+        }
+        { this.role == 10 && this.state.current == 1 &&
+          <Button className='btn btn-primary' onClick={() => this.create(1)}>新增销售</Button>
+        }
+        { this.role == 10 && this.state.current == 3 &&
+          <Button className='btn btn-primary' onClick={() => this.create(10)}>新增售后退货</Button>
+        }
+        { this.role == 11 && this.state.current == 1 &&
+          <Button className='btn btn-primary' onClick={() => this.create(1)}>新增销售</Button>
+        }
+        { this.role == 11 && this.state.current == 3 &&
+          <Button className='btn btn-primary' onClick={() => this.create(10)}>新增售后退货</Button>
+        }
+        { this.role == 12 && this.state.current == 2 &&
+          <Button className='btn btn-primary' onClick={() => this.scan(0)}>新增零售</Button>
+        }
+        { this.role == 12 && this.state.current == 3 &&
+          <Button className='btn btn-primary' onClick={() => this.scan(10)}>新增零售退货</Button>
         }
       </View>
 
