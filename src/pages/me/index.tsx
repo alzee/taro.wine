@@ -227,12 +227,6 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.navTo('referral')}
       />
       <AtListItem
-      title='我要提现'
-      arrow='right'
-      thumb={lock}
-      onClick={() => this.navTo('referralWithdraw')}
-      />
-      <AtListItem
       title='我要报备'
       arrow='right'
       thumb={lock}
