@@ -3,7 +3,7 @@ import { View, Text, Swiper, SwiperItem, Image } from '@tarojs/components'
 import './index.scss'
 import { AtButton, AtAvatar, AtIcon } from 'taro-ui'
 import { AtSearchBar } from 'taro-ui'
-import { AtActionSheet, AtActionSheetItem, AtNoticebar } from "taro-ui"
+import { AtActionSheet, AtActionSheetItem, AtNoticebar, AtGrid } from "taro-ui"
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 
@@ -125,20 +125,34 @@ export default class Index extends Component<PropsWithChildren> {
       {this.state.carousel}
       </Swiper>
 
-      <View className='at-row highlight'>
-      <View className="at-col" onClick={() => Taro.navigateTo({url: '/pages/about/index'})}>
-      <AtAvatar className="avatar" circle image={Env.imgUrl + 'jiannan.png'}></AtAvatar>
-      <Text>剑南老窖</Text>
-      </View>
-      <View className="at-col" onClick={() => Taro.switchTab({url: '/pages/org/index'})}>
-      <AtAvatar className="avatar" circle image={Env.imgUrl + 'store.png'}></AtAvatar>
-      <Text>门店导航</Text>
-      </View>
-      <View className="at-col" onClick={() => Taro.switchTab({url: '/pages/org/index'})}>
-      <AtAvatar className="avatar" circle image={Env.imgUrl + 'dine.png'}></AtAvatar>
-      <Text>合作餐厅</Text>
-      </View>
-      </View>
+      <AtGrid data={
+        [
+          {
+            image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t6160/14/2008729947/2754/7d512a86/595c3aeeNa89ddf71.png',
+            value: '推荐赚钱',
+          },
+          {
+            image: 'https://img20.360buyimg.com/jdphoto/s72x72_jfs/t15151/308/1012305375/2300/536ee6ef/5a411466N040a074b.png',
+            value: '我要提现'
+          },
+          {
+            image: 'https://img10.360buyimg.com/jdphoto/s72x72_jfs/t5872/209/5240187906/2872/8fa98cd/595c3b2aN4155b931.png',
+            value: '我的代金券'
+          },
+          {
+            image: 'https://img12.360buyimg.com/jdphoto/s72x72_jfs/t10660/330/203667368/1672/801735d7/59c85643N31e68303.png',
+            value: '餐厅抵现'
+          },
+          {
+            image: 'https://img14.360buyimg.com/jdphoto/s72x72_jfs/t17251/336/1311038817/3177/72595a07/5ac44618Na1db7b09.png',
+            value: '合作报备'
+          },
+          {
+            image: 'https://img30.360buyimg.com/jdphoto/s72x72_jfs/t5770/97/5184449507/2423/294d5f95/595c3b4dNbc6bc95d.png',
+            value: '商家入驻'
+          }
+        ]
+      } />
 
       <View className='label'>
       <View>活动公告</View>
