@@ -141,7 +141,7 @@ export default class Org extends Component<PropsWithChildren> {
               this.role = res.data.role
               this.getOrgs(2)
               this.getOrgs(3)
-              if (this.role == 1) {
+              if (this.role == 0) {
                 this.getOrgs(1)
               }
             }
@@ -190,6 +190,7 @@ export default class Org extends Component<PropsWithChildren> {
     }, () => {
       this.getOrgs(2)
       this.getOrgs(3)
+      this.getOrgs(1)
     })
   }
 
@@ -199,6 +200,7 @@ export default class Org extends Component<PropsWithChildren> {
     }, () => {
       this.getOrgs(2)
       this.getOrgs(3)
+      this.getOrgs(1)
     })
   }
 
