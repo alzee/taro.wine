@@ -11,6 +11,7 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   id: int
   oid: int
+  cid: int
   rid: int
   state = {}
 
@@ -23,8 +24,12 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        this.oid = res.data.org.id
         this.rid = res.data.role
+        if (this.rid == 4) {
+          this.cid = res.data.cid
+        } else {
+          this.oid = res.data.org.id
+        }
       },
       fail: res => {
         console.log('fuck')
@@ -80,7 +85,12 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
       <View className='withdrawDetail'>
       { this.state.entity &&
       <AtList>
+      { this.rid == 4 &&
+      <AtListItem title='顾客' extraText={this.state.entity.consumer.name} />
+      }
+      { this.rid != 4 &&
       <AtListItem title='申请方' extraText={this.state.entity.applicant.name} />
+      }
       <AtListItem title='审核方' extraText={this.state.entity.approver.name} />
       <AtListItem title='申请金额' extraText={this.state.entity.amount / 100} />
       <AtListItem title='实际到账' extraText={this.state.entity.actualAmount / 100} />

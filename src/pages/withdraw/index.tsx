@@ -30,7 +30,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
         // filter = 'applicant'
         title = 'amount'
         extraText = 'status'
-        query = '?consumers=' + this.cid
+        query = '?consumer=' + this.cid
         break
       case 'orgWithdraws':
         // filter = 'applicant'
@@ -175,7 +175,11 @@ export default class Withdraw extends Component<PropsWithChildren> {
       {this.state.orgWithdraws}
       </AtList>
       }
-
+      { this.role == 4 &&
+        <AtList className="list">
+        {this.state.consumerWithdraws}
+        </AtList>
+      }
       <View className='fixed'>
       { this.role != 0 && this.state.current == 0 &&
         <Button className='btn btn-primary' onClick={this.create}>申请提现</Button>
