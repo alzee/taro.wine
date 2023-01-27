@@ -161,14 +161,20 @@ export default class Me extends Component<PropsWithChildren> {
 
       <AtListItem
       title='我的代金券'
-      // note='描述信息'
-      // extraText='详细信息'
       arrow='right'
       thumb={voucher}
       onClick={() => this.navTo('voucher')}
       />
 
-      { (this.role == 0 || this.role == 1 || this.role == 3 ) &&
+      { this.role >= 10  &&
+      <AtListItem
+      title='分润明细'
+      arrow='right'
+      thumb={wine}
+      onClick={() => this.navTo('share')}
+      />
+      }
+
       <AtListItem
       title='提现管理'
       // note='描述信息'
@@ -177,7 +183,6 @@ export default class Me extends Component<PropsWithChildren> {
       thumb={cash}
       onClick={() => this.navTo('withdraw')}
       />
-      }
 
       { (this.role == 2 || this.role == 3) &&
       <AtListItem
@@ -216,16 +221,10 @@ export default class Me extends Component<PropsWithChildren> {
       { this.role == 4 &&
       <>
       <AtListItem
-      title='分销详情'
+      title='佣金明细'
       arrow='right'
       thumb={lock}
       onClick={() => this.navTo('referral')}
-      />
-      <AtListItem
-      title='我的介绍'
-      arrow='right'
-      thumb={lock}
-      onClick={() => this.navTo('orgReferral')}
       />
       <AtListItem
       title='我要提现'
