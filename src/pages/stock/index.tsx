@@ -48,9 +48,6 @@ export default class Stock extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='product'>
-      { this.role == 0 &&
-      <Button className='new-btn' type='secondary' size='small' onClick={() => Taro.redirectTo({url: '/pages/productNew/index'})}>添加产品</Button>
-      }
       <AtList>
       { this.state.list }
       </AtList>
