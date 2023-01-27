@@ -11,6 +11,7 @@ import { fmtDate } from '../../fmtDate'
 export default class Withdraw extends Component<PropsWithChildren> {
   tabList = []
   oid: int
+  cid: int
   role: int
   state = {
     current: 0,
@@ -25,7 +26,13 @@ export default class Withdraw extends Component<PropsWithChildren> {
     let titlePrefix: string = ''
     let query: string
     switch (type) {
-      case 'myWithdraws':
+      case 'consumerWithdraws':
+        // filter = 'applicant'
+        title = 'amount'
+        extraText = 'status'
+        query = '?consumers=' + this.cid
+        break
+      case 'orgWithdraws':
         // filter = 'applicant'
         title = 'amount'
         extraText = 'status'
@@ -71,46 +78,37 @@ export default class Withdraw extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         let data = res.data
-        this.oid = res.data.org.id
+        let query
         this.role = res.data.role
         const self = this;
-        switch (this.role) {
-          case 0:
-            this.tabList = [{ title: '下级提现' }]
+        if (this.role == 4) {
+          this.cid = res.data.cid
+          this.getData('consumerWithdraws')
+          query = 'consumers/' + this.cid
+        } else {
+          this.oid = res.data.org.id
+          query = 'orgs/' + this.oid
+          if (this.role == 0 ) {
             this.getData('all')
-            break
-          case 1:
+          }
+          if (this.role == 1 ) {
             this.tabList = [{ title: '我的提现' }, { title: '下级提现' }]
-            this.getData('myWithdraws')
+            this.getData('orgWithdraws')
             this.getData('downstreamWithdraws')
-            break
-          case 3:
-            this.tabList = [{title: '我的提现'}]
-            this.getData('myWithdraws')
-            break
-          case 10:
-            this.tabList = [{title: '我的提现'}]
-            this.getData('myWithdraws')
-            break
-          case 11:
-            this.tabList = [{title: '我的提现'}]
-            this.getData('myWithdraws')
-            break
-          case 12:
-            this.tabList = [{title: '我的提现'}]
-            this.getData('myWithdraws')
-            break
+          }
+          if (this.role == 3 || this.role == 10 || this.role == 11 || this.role == 12) {
+            this.getData('orgWithdraws')
+          }
         }
-        if (this.role != 0) {
-          Taro.request({
-            url: Env.apiUrl + 'orgs/' + data.org.id
-          }).then((res) =>{
-            this.setState({
-              withdrawable: res.data.withdrawable,
-              withdrawing: res.data.withdrawing
-            })
+
+        Taro.request({
+          url: Env.apiUrl + query
+        }).then((res) =>{
+          this.setState({
+            withdrawable: res.data.withdrawable,
+            withdrawing: res.data.withdrawing
           })
-        }
+        })
       },
       fail: res => {
       },
@@ -140,7 +138,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
       <View className='withdraw'>
 
       { this.state && this.role != 0 &&
-      <View className='at-row card'>
+        <View className='at-row card'>
       <View className='at-col'>
       <View className='label'>可提金额</View>
       <View className='number'>{this.state.withdrawable / 100}</View>
@@ -154,33 +152,33 @@ export default class Withdraw extends Component<PropsWithChildren> {
       }
 
       { this.role == 0 &&
-          <AtList className="list">
-          {this.state.all}
-          </AtList>
+        <AtList className="list">
+      {this.state.all}
+      </AtList>
       }
       { this.role == 1 &&
-      <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
-        <AtTabsPane current={this.state.current} index={0} >
-          <AtList className="list">
-          {this.state.myWithdraws}
-          </AtList>
-        </AtTabsPane>
-        <AtTabsPane current={this.state.current} index={1} >
-          <AtList className="list">
-          {this.state.downstreamWithdraws}
-          </AtList>
-        </AtTabsPane>
+        <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
+      <AtTabsPane current={this.state.current} index={0} >
+      <AtList className="list">
+      {this.state.orgWithdraws}
+      </AtList>
+      </AtTabsPane>
+      <AtTabsPane current={this.state.current} index={1} >
+      <AtList className="list">
+      {this.state.downstreamWithdraws}
+      </AtList>
+      </AtTabsPane>
       </AtTabs>
       }
       { (this.role == 3 || this.role == 10 || this.role == 11 || this.role == 12) &&
-          <AtList className="list">
-          {this.state.myWithdraws}
-          </AtList>
+        <AtList className="list">
+      {this.state.orgWithdraws}
+      </AtList>
       }
 
       <View className='fixed'>
       { this.role != 0 && this.state.current == 0 &&
-          <Button className='btn btn-primary' onClick={this.create}>申请提现</Button>
+        <Button className='btn btn-primary' onClick={this.create}>申请提现</Button>
       }
       </View>
 

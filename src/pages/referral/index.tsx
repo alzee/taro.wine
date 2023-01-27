@@ -12,21 +12,27 @@ export default class Referral extends Component<PropsWithChildren> {
   state = {
     seg: 0,
   }
+  role: int
 
-  componentWillMount () {
+  componentDidMount () {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
         let cid = res.data.cid
-        let list
+        Taro.request({
+          url: Env.apiUrl + 'consumers/' + cid,
+        }).then((res) =>{
+          this.setState({
+            reward: res.data.reward,
+            withdrawable: res.data.withdrawable
+          })
+        })
+
+        let list = []
         Taro.request({
           url: Env.apiUrl + 'consumers?referrer=' + cid,
-          // url: Env.apiUrl + 'consumers?referrer=' + 55,
-          // success: function (res) { that.setState({data: res.data}) }
         }).then((res) =>{
-          list = []
           for (let i of res.data) {
-            // console.log(i)
             list.push(
               <AtListItem
               // onClick={}
@@ -38,7 +44,25 @@ export default class Referral extends Component<PropsWithChildren> {
               />
             )
           }
-          this.setState({list1: list})
+          // this.setState({refList: list})
+        })
+
+        Taro.request({
+          url: Env.apiUrl + 'orgs?referrer=' + cid,
+        }).then((res) =>{
+          for (let i of res.data) {
+            list.push(
+              <AtListItem
+              // onClick={}
+              title={i.name}
+              note={i.phone}
+              // extraText={}
+              // arrow='right'
+              className='list-item'
+              />
+            )
+          }
+          this.setState({refList: list})
         })
 
         Taro.request({
@@ -64,7 +88,7 @@ export default class Referral extends Component<PropsWithChildren> {
               />
             )
           }
-          this.setState({list2: list})
+          this.setState({rewardList: list})
         })
       }
     })
@@ -73,8 +97,6 @@ export default class Referral extends Component<PropsWithChildren> {
   navTo(page: string) {
     Taro.navigateTo({ url: '/pages/' + page + '/index' })
   }
-
-  componentDidMount () { }
 
   handleClick (value) {
     this.setState({
@@ -89,21 +111,34 @@ export default class Referral extends Component<PropsWithChildren> {
     ]
     return (
       <View className='referral'>
+      <View className='p-3'>
+      <View className='at-row card'>
+      <View className='at-col'>
+      <View className='label'>我的佣金</View>
+      <View className='number'>{this.state.reward / 100}</View>
+      </View>
+      <View className='at-col'>
+      <View className='label'>可提金额</View>
+      <View className='number'>{this.state.withdrawable / 100}</View>
+      </View>
+      </View>
+      </View>
+
       <AtTabs current={this.state.seg} tabList={tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.seg} index={0}>
           <AtList>
-          { this.state.list2}
+          { this.state.rewardList}
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.seg} index={1}>
           <AtList>
-          { this.state.list1}
+          { this.state.refList}
           </AtList>
         </AtTabsPane>
       </AtTabs>
 
       <View className='fixed'>
-      { this.state.seg == 0 &&
+      { this.state.seg == 1 &&
         <Button className='btn btn-primary' onClick={() => this.navTo('poster')}>我的海报</Button>
       }
       </View>
