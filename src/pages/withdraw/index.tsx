@@ -122,7 +122,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
   }
 
   navToDetail(id){
-    Taro.navigateTo({url: '/pages/withdrawDetail/index?id=' + id})
+    Taro.redirectTo({url: '/pages/withdrawDetail/index?id=' + id})
   }
 
   handleClick (value) {

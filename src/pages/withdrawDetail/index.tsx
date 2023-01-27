@@ -58,7 +58,7 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
             title: '完成',
             icon: 'success',
             duration: 2000,
-            complete: () => Taro.navigateBack()
+            complete: () => Taro.redirectTo({url: '/pages/withdraw/index'})
           })
           Taro.request({
             method: 'PATCH',
