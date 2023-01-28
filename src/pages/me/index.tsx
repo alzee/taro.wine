@@ -196,8 +196,9 @@ export default class Me extends Component<PropsWithChildren> {
       }
 
       { this.role != 4 &&
+        <>
       <AtListItem
-      title='我的信息'
+      title='机构信息'
       // note='描述信息'
       // extraText='详细信息'
       arrow='right'
@@ -205,6 +206,16 @@ export default class Me extends Component<PropsWithChildren> {
       // onClick={() => Taro.navigateTo({url: '/pages/orgDetail/index?id=' + this.oid})}
       onClick={() => this.navTo('orgEdit')}
       />
+      <AtListItem
+      title='我的信息'
+      // note='描述信息'
+      // extraText='详细信息'
+      arrow='right'
+      thumb={gear}
+      // onClick={() => Taro.navigateTo({url: '/pages/orgDetail/index?id=' + this.oid})}
+      onClick={() => this.navTo('user')}
+      />
+        </>
       }
 
       { this.role != 4 &&
