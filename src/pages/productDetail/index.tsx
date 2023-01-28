@@ -17,23 +17,36 @@ Taro.options.html.transformElement = (el) => {
 
 export default class Productdetail extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
-  id: int
+  pid: int
+  nid: int
+  node = {}
+  product = {}
   state = {}
 
-  componentWillMount () { }
-
   componentDidMount () {
-    this.id = this.instance.router.params.id
+    this.nid = this.instance.router.params.nid
     const self = this;
     Taro.request({
-      url: Env.apiUrl + 'products/' + this.id,
-      success: function (res) { self.setState({entity: res.data}) }
+      url: Env.apiUrl + 'nodes/' + this.nid,
+      success: function (res) {}
     }).then((res) =>{
+      self.setState({
+        node: res.data,
+        entity: res.data.product
+      }) 
+      this.node = res.data
+      this.product = res.data.product
+      this.pid = this.product.id
+      if (this.node.body === undefined) {
+        self.setState({body: this.product.intro})
+      } else {
+        self.setState({body: this.node.body})
+      }
     })
   }
 
 	search(){
-    Taro.navigateTo({ url: '/pages/search/index?p=' + this.id })
+    Taro.navigateTo({ url: '/pages/search/index?p=' + this.pid })
   }
 
   render () {
@@ -96,8 +109,10 @@ export default class Productdetail extends Component<PropsWithChildren> {
 
       <View className='node'>
       <View className='at-article__content'>
-      <View dangerouslySetInnerHTML={{__html: this.state.entity.intro}} className='at-article__section'>
+      { this.state.body &&
+      <View dangerouslySetInnerHTML={{__html: this.state.body}} className='at-article__section'>
       </View>
+      }
       </View>
       </View>
 
@@ -111,17 +126,6 @@ export default class Productdetail extends Component<PropsWithChildren> {
         <Button className='right btn' size='mini' onClick={this.search.bind(this)}>立即购买</Button>
       </View>
         </>
-      
-      /*
-      <AtList>
-      <AtListItem title='产品名称' extraText={this.state.entity.name} />
-      <AtListItem title='产品编号' extraText={this.state.entity.sn} />
-      <AtListItem title='产品规格' extraText={this.state.entity.spec} />
-      <AtListItem title='产品价格' extraText={this.state.entity.price / 100} />
-      <AtListItem title='产品库存' extraText={this.state.entity.stock} />
-      <AtListItem title='随赠代金券' extraText={this.state.entity.voucher / 100} />
-      </AtList>
-     */
       }
       </View>
     )
