@@ -207,7 +207,7 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.navTo('orgEdit')}
       />
       <AtListItem
-      title='我的信息'
+      title='用户信息'
       // note='描述信息'
       // extraText='详细信息'
       arrow='right'
