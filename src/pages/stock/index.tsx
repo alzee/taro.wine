@@ -10,8 +10,8 @@ export default class Stock extends Component<PropsWithChildren> {
   orgid: int
   state = {}
 
-  navToDetail(id){
-    Taro.navigateTo({url: '/pages/productDetail/index?id=' + id})
+  navToDetail(pid){
+    Taro.navigateTo({url: '/pages/productDetail/index?pid=' + pid})
   }
 
   componentDidMount () {
