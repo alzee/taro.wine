@@ -8,7 +8,10 @@ import { fmtDate } from '../../fmtDate'
 import { Taxon } from '../../Taxon'
 
 export default class Share extends Component<PropsWithChildren> {
-  state = {}
+  state = {
+    share: 0,
+    withdrawable: 0
+  }
 
   componentDidMount () {
     Taro.getStorage({

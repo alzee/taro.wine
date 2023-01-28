@@ -11,6 +11,8 @@ import { fmtDate } from '../../fmtDate'
 export default class Referral extends Component<PropsWithChildren> {
   state = {
     seg: 0,
+    reward: 0,
+    withdrawable: 0
   }
   role: int
 

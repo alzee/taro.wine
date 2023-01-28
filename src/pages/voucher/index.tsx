@@ -11,9 +11,9 @@ import { fmtDate } from '../../fmtDate'
 export default class Voucher extends Component<PropsWithChildren> {
   query: string = '?page=1'
   role: int
-  state = []
-
-  componentWillMount () { }
+  state = {
+    voucher: 0
+  }
 
   componentDidMount () {
     console.log(Taxon.voucherType)
@@ -62,12 +62,6 @@ export default class Voucher extends Component<PropsWithChildren> {
       },
     });
   }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
 
   render () {
     return (

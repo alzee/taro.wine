@@ -15,6 +15,8 @@ export default class Withdraw extends Component<PropsWithChildren> {
   role: int
   state = {
     current: 0,
+    withdrawable: 0,
+    withdrawing: 0
   }
 
   getData (type: string) {
