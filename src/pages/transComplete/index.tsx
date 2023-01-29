@@ -3,7 +3,7 @@ import { View, Text, Button } from '@tarojs/components'
 import './index.scss'
 import Taro from '@tarojs/taro'
 
-export default class Paid extends Component<PropsWithChildren> {
+export default class TransComplete extends Component<PropsWithChildren> {
 
   componentDidMount () { }
 

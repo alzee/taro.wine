@@ -47,7 +47,7 @@ export default defineAppConfig({
     'pages/stock/index',
     'pages/orgReferral/index',
     'pages/share/index',
-    'pages/paid/index',
+    'pages/transComplete/index',
   ],
   window: {
     backgroundTextStyle: 'light',

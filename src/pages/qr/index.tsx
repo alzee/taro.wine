@@ -28,8 +28,8 @@ export default class Qr extends Component<PropsWithChildren> {
     })
   }
 
-  chkPaid = () => {
-    console.log('check if paid');
+  chkTransComplete = () => {
+    console.log('check if transaction complete');
     Taro.request({
       // url: Env.apiUrl + 'scans?consumer=' + this.cid + '&rand=' + this.state.timestamp
       url: Env.apiUrl + 'scans?consumer=35&rand=1668853055743'
@@ -40,7 +40,7 @@ export default class Qr extends Component<PropsWithChildren> {
         clearInterval(this.chkIntvId)
         // Taro.vibrateShort({type: 'heavy'})
         Taro.vibrateLong()
-        Taro.redirectTo({ url: '/pages/paid/index' })
+        Taro.redirectTo({ url: '/pages/transComplete/index' })
       }
     })
   }
@@ -58,9 +58,9 @@ export default class Qr extends Component<PropsWithChildren> {
 
     // Refresh QR every 30 sec
     this.qrIntvId = setInterval(this.newTimestamp , this.qrIntv)
-    // Check if paid every 1 sec after 5 sec
+    // Check if trans complete every 1 sec after 5 sec
     setTimeout(() => {
-      this.chkIntvId = setInterval(this.chkPaid, this.chkIntv)
+      this.chkIntvId = setInterval(this.chkTransComplete, this.chkIntv)
       console.log('start checking');
     }, 7000)
 
@@ -101,7 +101,7 @@ export default class Qr extends Component<PropsWithChildren> {
       购买酒品时出示可获赠代金券
       </View>
       <View>
-      餐厅消费时出示可用代金券抵现
+      餐厅消费时出示用代金券抵现
       </View>
       </View>
       { this.cid &&
