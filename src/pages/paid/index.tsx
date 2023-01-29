@@ -17,7 +17,7 @@ export default class Paid extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='paid p-3'>
-        <View className='text'>支付成功</View>
+        <View className='text'>交易完成</View>
         <Button className='btn' onClick={this.naviBack}>确认</Button>
       </View>
     )
