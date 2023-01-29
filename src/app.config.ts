@@ -48,6 +48,7 @@ export default defineAppConfig({
     'pages/orgReferral/index',
     'pages/share/index',
     'pages/transComplete/index',
+    'pages/myReg/index',
   ],
   window: {
     backgroundTextStyle: 'light',

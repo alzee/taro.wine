@@ -39,7 +39,7 @@ export default class Stock extends Component<PropsWithChildren> {
           />
             )
           }
-          this.setState({list: list})
+          this.setState({list})
         })
       }
     })

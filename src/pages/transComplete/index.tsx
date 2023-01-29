@@ -16,7 +16,7 @@ export default class TransComplete extends Component<PropsWithChildren> {
 
   render () {
     return (
-      <View className='paid p-3'>
+      <View className='transComplete p-3'>
         <View className='text'>交易完成</View>
         <Button className='btn' onClick={this.naviBack}>确认</Button>
       </View>

@@ -238,10 +238,10 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.navTo('referral')}
       />
       <AtListItem
-      title='我要报备'
+      title='我的报备'
       arrow='right'
       thumb={lock}
-      onClick={() => this.navTo('reg')}
+      onClick={() => this.navTo('myReg')}
       />
       </>
       }
