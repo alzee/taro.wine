@@ -14,7 +14,10 @@ export default class Qr extends Component<PropsWithChildren> {
 
   componentDidMount () { }
 
-  componentWillUnmount () { }
+  componentWillUnmount () {
+    console.log('bye');
+    Taro.setScreenBrightness({value: -1})
+  }
 
   componentDidShow () {
     const self = this;
@@ -26,9 +29,12 @@ export default class Qr extends Component<PropsWithChildren> {
         this.name = res.data.name
       }
     })
+    Taro.setScreenBrightness({value: 1})
   }
 
-  componentDidHide () { }
+  componentDidHide () {
+    console.log('bye');
+  }
 
   render () {
     let text = `{"cid": ${this.cid}, "timestamp": "${this.timestamp}", "name": "${this.name}"}`
