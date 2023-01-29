@@ -36,7 +36,8 @@ export default class Qr extends Component<PropsWithChildren> {
     }).then((res) => {
       // console.log(res.data.length);
       if (res.data.length > 0) {
-        Taro.vibrateShort({type: 'heavy'})
+        // Taro.vibrateShort({type: 'heavy'})
+        Taro.vibrateLong()
         Taro.redirectTo({ url: '/pages/paid/index' })
       }
     })
