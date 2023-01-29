@@ -8,6 +8,7 @@ import { fmtDate } from '../../fmtDate'
 
 export default class Myreg extends Component<PropsWithChildren> {
   cid: int
+  statuses = ['待处理', '达成']
   state = {
   }
 
@@ -24,9 +25,9 @@ export default class Myreg extends Component<PropsWithChildren> {
           for (let i of res.data) {
             list.push(
               <AtListItem
-              title={i.orgName}
+              title={i.orgName + ' - ' + i.name}
               note={fmtDate(i.createdAt)}
-              extraText={i.name}
+              extraText={this.statuses[i.status]}
           />
             )
           }
