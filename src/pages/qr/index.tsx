@@ -36,6 +36,8 @@ export default class Qr extends Component<PropsWithChildren> {
     }).then((res) => {
       // console.log(res.data.length);
       if (res.data.length > 0) {
+        // clear immediately to avoid accidentally another check
+        clearInterval(this.chkIntvId)
         // Taro.vibrateShort({type: 'heavy'})
         Taro.vibrateLong()
         Taro.redirectTo({ url: '/pages/paid/index' })
@@ -94,7 +96,14 @@ export default class Qr extends Component<PropsWithChildren> {
     }
     return (
       <View className='qr'>
-      <View className='text'> 代金券消费 </View>
+      <View className='text'>
+      <View>
+      购买酒品时出示可获赠代金券
+      </View>
+      <View>
+      餐厅消费时出示可用代金券抵现
+      </View>
+      </View>
       { this.cid &&
         <QRCode
           onClick={this.qrclicked}
