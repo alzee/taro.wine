@@ -1,9 +1,10 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text } from '@tarojs/components'
+import { View, Text, Button } from '@tarojs/components'
 import './index.scss'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 import { AtList, AtListItem} from "taro-ui"
+import { fmtDate } from '../../fmtDate'
 
 export default class Myreg extends Component<PropsWithChildren> {
   cid: int
@@ -14,7 +15,7 @@ export default class Myreg extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        self.setState({data: res.data})
+        this.setState({data: res.data})
         this.cid = res.data.cid
         Taro.request({
           url: Env.apiUrl + 'regs?submitter=' + this.cid
@@ -24,8 +25,8 @@ export default class Myreg extends Component<PropsWithChildren> {
             list.push(
               <AtListItem
               title={i.orgName}
-              note={i.name}
-              // extraText={i.stock}
+              note={fmtDate(i.createdAt)}
+              extraText={i.name}
           />
             )
           }
@@ -35,12 +36,19 @@ export default class Myreg extends Component<PropsWithChildren> {
     })
   }
 
+  navi() {
+    Taro.navigateTo({ url: '/pages/reg/index' })
+  }
+
   render () {
     return (
       <View className='myReg'>
       <AtList>
       { this.state.list }
       </AtList>
+      <View className='fixed'>
+        <Button className='btn btn-primary' onClick={this.navi}>我要报备</Button>
+      </View>
       </View>
     )
   }
