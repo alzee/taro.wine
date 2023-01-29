@@ -46,7 +46,8 @@ export default defineAppConfig({
     'pages/orgSignUp/index',
     'pages/stock/index',
     'pages/orgReferral/index',
-    'pages/share/index'
+    'pages/share/index',
+    'pages/paid/index',
   ],
   window: {
     backgroundTextStyle: 'light',

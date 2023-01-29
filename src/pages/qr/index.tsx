@@ -31,8 +31,8 @@ export default class Qr extends Component<PropsWithChildren> {
   chkPaid = () => {
     console.log('check if paid');
     Taro.request({
-      url: Env.apiUrl + 'scans?consumer=' + this.cid + '&rand=' + this.state.timestamp
-      // url: Env.apiUrl + 'scans?consumer=35&rand=1668853055743'
+      // url: Env.apiUrl + 'scans?consumer=' + this.cid + '&rand=' + this.state.timestamp
+      url: Env.apiUrl + 'scans?consumer=35&rand=1668853055743'
     }).then((res) => {
       // console.log(res.data.length);
       if (res.data.length > 0) {
@@ -58,7 +58,7 @@ export default class Qr extends Component<PropsWithChildren> {
     setTimeout(() => {
       this.chkIntvId = setInterval(this.chkPaid, this.chkIntv)
       console.log('start checking');
-    }, 5000)
+    }, 7000)
 
     Taro.setScreenBrightness({value: 1})
   }
@@ -74,7 +74,6 @@ export default class Qr extends Component<PropsWithChildren> {
     // not working
     console.log('bye');
   }
-
 
   qrclicked = () => {
     console.log('clicked qr');
