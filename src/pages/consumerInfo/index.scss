@@ -1,7 +1,18 @@
-.hint{
-  text-align: center;
-}
-.d-flex{
-  display: flex;
-  padding: .6rem 0;
-}
+.consumerInfo{
+  .hint{
+    text-align: center;
+  }
+  .d-flex{
+    display: flex;
+    padding: .6rem 0;
+  }
+  .avatar-wrapper{
+      width: 100px;
+      height: 100px;
+      padding: 0;
+      .avatar{
+        width: 100px;
+        height: 100px;
+      }
+    }
+  }

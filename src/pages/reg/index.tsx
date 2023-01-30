@@ -24,12 +24,6 @@ export default class Reg extends Component<PropsWithChildren> {
     })
   }
 
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
   pickerChange = e => {
     this.setState({
       selectorChecked: this.state.selector[e.detail.value],

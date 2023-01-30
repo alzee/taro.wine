@@ -7,18 +7,7 @@ import { Env } from '../../env/env'
 
 export default class Login extends Component<PropsWithChildren> {
 
-  componentWillMount () { }
-
-  componentDidMount () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
   formSubmit = e => {
-    console.log(e.detail.value)
     let username = e.detail.value
     let password = e.detail.password
     Taro.request({
@@ -26,7 +15,6 @@ export default class Login extends Component<PropsWithChildren> {
       url: Env.apiUrl + 'login',
       data: e.detail.value
     }).then((res) => {
-      console.log(res.data)
       if (res.data.code == 0) {
         // Taro.clearStorage()
         Taro.setStorage({

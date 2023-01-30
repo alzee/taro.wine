@@ -20,6 +20,7 @@ export default class Me extends Component<PropsWithChildren> {
   username: string;
   orgName: string;
   oid: int
+  state = {}
 
   componentDidMount () {
     const self = this;
@@ -85,18 +86,6 @@ export default class Me extends Component<PropsWithChildren> {
         }
       }
     })
-  }
-
-  componentDidShow () { 
-  }
-
-  componentDidHide () { }
-
-  constructor () {
-    super(...arguments)
-    this.state = {
-      current: 2,
-    }
   }
 
   logout(){

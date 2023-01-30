@@ -1,9 +1,9 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text, Form, Input, Button, Picker, Checkbox, CheckboxGroup, Navigator } from '@tarojs/components'
+import { View, Text, Form, Input, Button, Picker, Checkbox, CheckboxGroup, Navigator, Image } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
-import { AtButton, AtList, AtListItem, AtInput, AtForm} from "taro-ui"
+import { AtButton, AtList, AtListItem, AtInput } from "taro-ui"
 import { Taxon } from '../../Taxon'
 import { AtCheckbox } from 'taro-ui'
 
@@ -11,17 +11,30 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
   cid: int
   storageData = {}
   state = {
-    btnDisabled: true
+    btnDisabled: true,
+    isNew: true
   }
+  avatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 
   componentDidMount () { 
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        console.log(res.data);
-        this.setState({data: res.data})
         this.cid = res.data.cid
         this.storageData = res.data
+        Taro.request({
+          url: Env.apiUrl + 'consumers/' + this.cid,
+        }).then((res) => {
+          if (res.data.phone !== undefined && res.data.name !== undefined) {
+            this.setState({
+              btnDisabled: false,
+              isNew: false
+            })
+          }
+          this.setState({
+            consumer: res.data
+          })
+        })
       }
     })
   }
@@ -88,28 +101,52 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
     })
   }
 
+  onChooseAvatar(e){
+    console.log(e);
+  }
+
   render () {
     return (
       <View className='consumerInfo main'>
       <View className='hint'>
-      <Text>请完善姓名及电话</Text>
+        { this.state.isNew &&
+        <Text>请完善姓名及电话</Text>
+        }
       </View>
+
+      { this.state.consumer &&
       <Form className='form'
       onSubmit={this.formSubmit}
       >
-        <Input 
+      <Button class='avatar-wrapper' openType='chooseAvatar' onChooseAvatar={this.onChooseAvatar}>
+        <Image class='avatar' src={this.avatarUrl}></Image>
+      </Button>
+        <AtInput 
         className="input"
           name='name' 
           type='text' 
           placeholder='姓名' 
+          title='姓名'
+          value={this.state.consumer.name}
         />
-        <Input 
+        <AtInput 
+        className="input"
+          name='nick' 
+          type='nickname' 
+          placeholder='' 
+          title='昵称'
+          value={this.state.consumer.nick}
+        />
+        <AtInput 
         className="input"
           name='phone' 
           type='text' 
           placeholder='电话' 
+          title='电话'
+          value={this.state.consumer.phone}
         />
-        { this.state.consumer &&
+
+        { this.state.isNew &&
         <View className='d-flex'>
         <CheckboxGroup onChange={this.checkboxChange.bind(this)}>
         <Checkbox value='checked'></Checkbox>
@@ -119,6 +156,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
         }
         <Button className='btn' formType='submit' disabled={this.state.btnDisabled}>提交</Button>
       </Form>
+      }
       </View>
     )
   }
