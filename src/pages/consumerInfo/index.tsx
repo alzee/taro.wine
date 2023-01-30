@@ -40,9 +40,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
   }
 
   formSubmit = e => {
-    console.log(e);
     let data = e.detail.value
-    data.avatar = this.state.avatarUploaded
 
     if (data.name == '') {
       Taro.showToast({
@@ -68,6 +66,11 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
       key: Env.storageKey,
       data: this.storageData
     });
+    
+    // upload and get url
+    let avatarUploaded = 'default.jpg'
+    data.avatar = avatarUploaded
+
     Taro.request({
       method: 'PATCH',
       data: data,
@@ -104,12 +107,8 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
   }
 
   onChooseAvatar = (e) =>{
-    console.log(e);
-    // upload and get url
-    let avatarUploaded = 'default.jpg'
     this.setState({
       avatarUrl: e.detail.avatarUrl,
-      avatarUploaded
     })
   }
 
