@@ -14,24 +14,17 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
     btnDisabled: true
   }
 
-  componentWillMount () { }
-
   componentDidMount () { 
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
+        console.log(res.data);
         this.setState({data: res.data})
         this.cid = res.data.cid
         this.storageData = res.data
       }
     })
   }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
 
   formSubmit = e => {
     let data = e.detail.value
@@ -52,7 +45,6 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
       })
       return
     }
-    console.log(data)
 
     // return
     this.storageData.name = data.name
@@ -117,12 +109,14 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
           type='text' 
           placeholder='电话' 
         />
+        { this.state.consumer &&
         <View className='d-flex'>
         <CheckboxGroup onChange={this.checkboxChange.bind(this)}>
         <Checkbox value='checked'></Checkbox>
         </CheckboxGroup>
         我已阅读并同意<Navigator url='/pages/node/policy'>《用户协议》</Navigator>
         </View>
+        }
         <Button className='btn' formType='submit' disabled={this.state.btnDisabled}>提交</Button>
       </Form>
       </View>

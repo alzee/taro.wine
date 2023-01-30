@@ -42,7 +42,6 @@ export default class Chooselogin extends Component<PropsWithChildren> {
               referrerId: that.state.referrerId
             }
           }).then((res) => {
-            console.log(res)
             Taro.setStorage({
               key: Env.storageKey,
               data: res.data
