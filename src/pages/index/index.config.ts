@@ -1,4 +1,4 @@
 export default definePageConfig({
-  navigationBarTitleText: '剑南老窖',
+  navigationBarTitleText: '老酒库商城',
   "usingComponents": {}
 })

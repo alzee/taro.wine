@@ -16,7 +16,6 @@ export default class Voucher extends Component<PropsWithChildren> {
   }
 
   componentDidMount () {
-    console.log(Taxon.voucherType)
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
