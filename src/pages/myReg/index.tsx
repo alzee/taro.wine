@@ -21,7 +21,6 @@ export default class Myreg extends Component<PropsWithChildren> {
         Taro.request({
           url: Env.apiUrl + 'regs?submitter=' + this.cid
         }).then((res) => {
-          console.log(res.data);
           let list = []
           for (let i of res.data) {
             list.push(
