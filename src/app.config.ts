@@ -93,5 +93,6 @@ export default defineAppConfig({
    'scope.userLocation': {
      desc: "你的位置信息将用于定位门店"
    }
- }
+ },
+ lazyCodeLoading: 'requiredComponents',
 })
