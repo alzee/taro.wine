@@ -12,9 +12,8 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
   storageData = {}
   state = {
     btnDisabled: true,
-    isNew: true
+    isNew: true,
   }
-  avatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 
   componentDidMount () { 
     Taro.getStorage({
@@ -40,7 +39,9 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
   }
 
   formSubmit = e => {
+    console.log(e);
     let data = e.detail.value
+    data.avatar = this.state.avatarUploaded
 
     if (data.name == '') {
       Taro.showToast({
@@ -59,9 +60,9 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
       return
     }
 
-    // return
     this.storageData.name = data.name
     this.storageData.phone = data.phone
+    this.storageData.avatar = data.avatar
     Taro.setStorage({
       key: Env.storageKey,
       data: this.storageData
@@ -101,8 +102,13 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
     })
   }
 
-  onChooseAvatar(e){
-    console.log(e);
+  onChooseAvatar = (e) =>{
+    // upload and get url
+    let avatarUploaded = 'avatar.jpg'
+    this.setState({
+      avatarUrl: e.detail.avatarUrl,
+      avatarUploaded
+    })
   }
 
   render () {
@@ -119,7 +125,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
       onSubmit={this.formSubmit}
       >
       <Button class='avatar-wrapper' openType='chooseAvatar' onChooseAvatar={this.onChooseAvatar}>
-        <Image class='avatar' src={this.avatarUrl}></Image>
+        <Image class='avatar' src={Env.imgUrl + 'avatar/' + this.state.consumer.avatar}></Image>
       </Button>
         <AtInput 
         className="input"
