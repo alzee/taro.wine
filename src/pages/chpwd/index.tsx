@@ -9,8 +9,6 @@ import { Taxon } from '../../Taxon'
 export default class Chpwd extends Component<PropsWithChildren> {
   uid: int
 
-  componentWillMount () { }
-
   componentDidMount () {
     self = this
     Taro.getStorage({
@@ -21,12 +19,6 @@ export default class Chpwd extends Component<PropsWithChildren> {
       }
     })
   }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
 
   formSubmit = e => {
     let data = e.detail.value

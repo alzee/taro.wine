@@ -49,7 +49,18 @@ export default class Resetpwd extends Component<PropsWithChildren> {
     }).then((res) => {
       // console.log(res.data)
       if (res.data.code == 0) {
-        Taro.reLaunch({url: '/pages/login/index'})
+        Taro.showToast({
+          title: '已完成',
+          icon: 'success',
+          duration: 2000,
+          success: () => {
+            setTimeout(
+              () => {
+                Taro.reLaunch({url: '/pages/login/index'})
+              }, 500
+            )
+          }
+        })
       } else {
         Taro.showToast({
           title: '错误',
