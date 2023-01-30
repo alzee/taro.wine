@@ -31,7 +31,8 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
             })
           }
           this.setState({
-            consumer: res.data
+            consumer: res.data,
+            avatarUrl: Env.imgUrl + 'avatar/' + res.data.avatar
           })
         })
       }
@@ -103,8 +104,9 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
   }
 
   onChooseAvatar = (e) =>{
+    console.log(e);
     // upload and get url
-    let avatarUploaded = 'avatar.jpg'
+    let avatarUploaded = 'default.jpg'
     this.setState({
       avatarUrl: e.detail.avatarUrl,
       avatarUploaded
@@ -125,7 +127,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
       onSubmit={this.formSubmit}
       >
       <Button class='avatar-wrapper' openType='chooseAvatar' onChooseAvatar={this.onChooseAvatar}>
-        <Image class='avatar' src={Env.imgUrl + 'avatar/' + this.state.consumer.avatar}></Image>
+        <Image class='avatar' src={this.state.avatarUrl}></Image>
       </Button>
         <AtInput 
         className="input"
