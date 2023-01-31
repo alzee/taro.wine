@@ -122,7 +122,7 @@ export default class Orgnew extends Component<PropsWithChildren> {
       <AtList>
       <AtListItem
       title='类型'
-      className='phony-input'
+      className=''
       extraText={this.state.selectorChecked}
       />
       </AtList>

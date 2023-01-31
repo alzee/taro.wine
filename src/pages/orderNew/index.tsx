@@ -141,12 +141,6 @@ export default class Ordernew extends Component<PropsWithChildren> {
     })
   }
 
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
   render () {
     return (
       <View className='orderNew'>
@@ -158,7 +152,7 @@ export default class Ordernew extends Component<PropsWithChildren> {
       <AtList>
       <AtListItem
       title='收货方'
-      className='phony-input'
+      className=''
       extraText={this.state.downstreamSelected}
       />
       </AtList>

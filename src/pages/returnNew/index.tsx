@@ -158,7 +158,7 @@ export default class Returnnew extends Component<PropsWithChildren> {
       <AtList>
       <AtListItem
       title='退货方'
-      className='phony-input'
+      className=''
       extraText={this.state.downstreamSelected}
       />
       </AtList>
