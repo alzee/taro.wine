@@ -3,8 +3,8 @@ import { View, Text, Form, Button } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
-import { AtButton, AtList, AtListItem, AtInput, AtImagePicker } from "taro-ui"
 import { Taxon } from '../../Taxon'
+import { Input } from '@nutui/nutui-react-taro';
 
 export default class User extends Component<PropsWithChildren> {
   role: int
@@ -78,31 +78,28 @@ export default class User extends Component<PropsWithChildren> {
       <Form className='form'
       onSubmit={this.formSubmit}
       >
-        <AtInput 
-          title='机构'
-          className="input"
-          // name='name' 
+        <Input 
+          label='机构'
           type='text' 
-          value={this.state.user.org.name}
+          defaultValue={this.state.user.org.name}
           disabled
         />
-        <AtInput 
-          title='用户名'
-          className="input"
+        <Input 
+          label='用户名'
           name='contact' 
           type='text' 
-          placeholder='联系人' 
-          value={this.state.user.username}
+          placeholder='' 
+          defaultValue={this.state.user.username}
           disabled
         />
-        <AtInput 
-          title='电话'
-          className="input"
+        <Input 
+          label='电话'
           name='phone' 
           type='number' 
-          placeholder='电话' 
+          placeholder='' 
           required
-          value={this.state.user.phone}
+          defaultValue={this.state.user.phone}
+          border={false}
         />
         <Button className='btn' formType='submit'>保存</Button>
       </Form>
