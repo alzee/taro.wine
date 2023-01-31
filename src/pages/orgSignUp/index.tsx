@@ -4,7 +4,7 @@ import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 import { Taxon } from '../../Taxon'
 import { View, Text, Form, Input, Button, Picker } from '@tarojs/components'
-import { AtButton, AtList, AtListItem, AtInput, AtForm} from "taro-ui"
+import {  AtList, AtListItem } from "taro-ui"
 
 export default class Orgsignup extends Component<PropsWithChildren> {
   state = {
@@ -171,8 +171,8 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       <Picker mode='selector' range={this.state.types} onChange={this.typeChanged}>
       <AtList>
       <AtListItem
-      title='类型'
-      className='phony-input first'
+      title='请选择类型'
+      className='first'
       extraText={this.state.types[this.state.typeSelected]}
       />
       </AtList>
@@ -182,14 +182,14 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       <Picker mode='selector' range={this.state.agencyList} onChange={this.agencyChanged}>
       <AtList>
       <AtListItem
-      title='代理商'
-      className='phony-input'
+      title='请选择代理商'
+      className=''
       extraText={this.state.agencyList[this.state.agencySelected]}
       />
       </AtList>
       </Picker>
       }
-        <AtInput 
+        <Input 
         title='用户名'
         className="input"
         required
@@ -197,7 +197,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
           type='text' 
           placeholder='用户名' 
         />
-        <AtInput 
+        <Input 
         title='新密码'
         className="input"
         required
@@ -205,7 +205,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
           type='password' 
           placeholder='新密码' 
         />
-        <AtInput 
+        <Input 
         title='密码确认'
         className="input"
         required
@@ -213,7 +213,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
           type='password' 
           placeholder='密码确认' 
         />
-        <AtInput 
+        <Input 
         title='店面名称'
         className="input"
         required
@@ -221,7 +221,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
           type='text' 
           placeholder='名称' 
         />
-        <AtInput 
+        <Input 
         title='联系人'
         className="input"
         required
@@ -229,7 +229,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
           type='text' 
           placeholder='联系人' 
         />
-        <AtInput 
+        <Input 
         title='电话'
         className="input"
         required
@@ -237,7 +237,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
           type='number' 
           placeholder='电话' 
         />
-        <AtInput 
+        <Input 
         title='区域'
         className="input"
         required
@@ -245,7 +245,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
           type='text' 
           placeholder='区域' 
         />
-        <AtInput 
+        <Input 
         title='地址'
         className="input"
         required
