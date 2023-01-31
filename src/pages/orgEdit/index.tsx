@@ -1,6 +1,5 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text, Form, Button } from '@tarojs/components'
-import { Input } from '@nutui/nutui-react-taro';
+import { View, Text, Form, Input, Button } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
@@ -108,66 +107,79 @@ export default class Orgedit extends Component<PropsWithChildren> {
       <Form className='form'
       onSubmit={this.formSubmit}
       >
+        <View className='input'>
+        <Text className='label'>名称</Text>
         <Input 
-          label='名称'
-          required
-          // name='name' 
           type='text' 
-          defaultValue={this.state.org.name}
+          value={this.state.org.name}
           disabled
         />
+        </View>
+        <View className='input'>
+        <Text className='label'>联系人</Text>
         <Input 
-          label='联系人'
           name='contact' 
           type='text' 
-          required
-          defaultValue={this.state.org.contact}
+          value={this.state.org.contact}
         />
+        </View>
+        <View className='input'>
+        <Text className='label'>电话</Text>
         <Input 
-          label='电话'
           name='phone' 
           type='number' 
-          required
-          defaultValue={this.state.org.phone}
+          value={this.state.org.phone}
         />
+        </View>
+        <View className='input'>
+        <Text className='label'>地址</Text>
         <Input 
-          label='地址'
           name='address' 
           type='text' 
-          required
-          defaultValue={this.state.org.address}
+          value={this.state.org.address}
         />
+        </View>
+        <View className='input'>
+        <Text className='label'>地区</Text>
         <Input 
-          label='地区'
           name='district' 
           type='text' 
-          required
-          defaultValue={this.state.org.district}
+          value={this.state.org.district}
         />
+        </View>
+        <View className='input'>
+        <Text className='label'>收款人</Text>
         <Input 
-          label='收款人'
           name='payee' 
           type='text' 
-          defaultValue={this.state.org.payee}
+          value={this.state.org.payee}
         />
+        </View>
+        <View className='input'>
+        <Text className='label'>开户行</Text>
         <Input 
-          label='开户行'
           name='bank' 
           type='text' 
-          defaultValue={this.state.org.bank}
+          value={this.state.org.bank}
         />
+        </View>
+        <View className='input'>
+        <Text className='label'>收款账号</Text>
         <Input 
-          label='收款账号'
           name='bankAccount' 
           type='text' 
-          defaultValue={this.state.org.bankAccount}
+          value={this.state.org.bankAccount}
         />
+        </View>
+        <View className='input'>
+        <Text className='label'>开户地址</Text>
         <Input 
-          label='开户地址'
           name='bankAddr' 
           type='text' 
-          defaultValue={this.state.org.bankAddr}
+          value={this.state.org.bankAddr}
         />
+        </View>
+
         <View className='label'>
         <View>
         图片
