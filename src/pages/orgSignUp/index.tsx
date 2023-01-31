@@ -4,7 +4,7 @@ import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 import { Taxon } from '../../Taxon'
 import { View, Text, Form, Input, Button, Picker } from '@tarojs/components'
-import {  AtList, AtListItem } from "taro-ui"
+import { AtList, AtListItem } from "taro-ui"
 
 export default class Orgsignup extends Component<PropsWithChildren> {
   state = {
@@ -190,70 +190,62 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       </AtList>
       </Picker>
       }
+      <View className='input'>
+      <Text className='label'>用户名</Text>
         <Input 
-        title='用户名'
-        className="input"
-        required
           name='username' 
           type='text' 
-          placeholder='用户名' 
         />
+      </View>
+      <View className='input'>
+      <Text className='label'>新密码</Text>
         <Input 
-        title='新密码'
-        className="input"
-        required
           name='plainPassword' 
           type='password' 
-          placeholder='新密码' 
         />
+      </View>
+      <View className='input'>
+      <Text className='label'>密码确认</Text>
         <Input 
-        title='密码确认'
-        className="input"
-        required
           name='confirmPass' 
           type='password' 
-          placeholder='密码确认' 
         />
+      </View>
+      <View className='input'>
+      <Text className='label'>店面名称</Text>
         <Input 
-        title='店面名称'
-        className="input"
-        required
           name='name' 
           type='text' 
-          placeholder='名称' 
         />
+      </View>
+      <View className='input'>
+      <Text className='label'>联系人</Text>
         <Input 
-        title='联系人'
-        className="input"
-        required
           name='contact' 
           type='text' 
-          placeholder='联系人' 
         />
+      </View>
+      <View className='input'>
+      <Text className='label'>电话</Text>
         <Input 
-        title='电话'
-        className="input"
-        required
           name='phone' 
           type='number' 
-          placeholder='电话' 
         />
+      </View>
+      <View className='input'>
+      <Text className='label'>区域</Text>
         <Input 
-        title='区域'
-        className="input"
-        required
           name='district' 
           type='text' 
-          placeholder='区域' 
         />
+      </View>
+      <View className='input'>
+      <Text className='label'>地址</Text>
         <Input 
-        title='地址'
-        className="input"
-        required
           name='address' 
           type='text' 
-          placeholder='地址' 
         />
+      </View>
         <Button className='btn' formType='submit'>提交</Button>
       </Form>
       </View>
