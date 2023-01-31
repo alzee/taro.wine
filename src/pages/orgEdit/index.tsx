@@ -1,9 +1,10 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text, Form, Input, Button } from '@tarojs/components'
+import { View, Text, Form, Button } from '@tarojs/components'
+import { Input } from '@nutui/nutui-react-taro';
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
-import { AtButton, AtList, AtListItem, AtInput, AtImagePicker } from "taro-ui"
+import { AtButton, AtList, AtListItem, AtImagePicker } from "taro-ui"
 import { Taxon } from '../../Taxon'
 
 export default class Orgedit extends Component<PropsWithChildren> {
@@ -23,7 +24,6 @@ export default class Orgedit extends Component<PropsWithChildren> {
           url: Env.apiUrl + 'orgs/' + this.oid,
           success: function (res) { }
         }).then((res) =>{
-          console.log(res.data)
           self.setState({
             org: res.data,
             image: [
@@ -43,6 +43,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
   }
 
   formSubmit = e => {
+    console.log(e);
     let data = e.detail.value
     let label = {
       // name: '名称',
@@ -85,17 +86,19 @@ export default class Orgedit extends Component<PropsWithChildren> {
       })
     })
 
-    Taro.uploadFile({
-      url: Env.apiUrl + 'media_objects',
-      filePath: this.state.image[0].file.path,
-      name: 'upload',
-      formData: {
-        'type': 0,
-        'entityId': this.oid
-      },
-      success (res){
-      }
-    })
+    if (this.state.image[0].file) {
+      Taro.uploadFile({
+        url: Env.apiUrl + 'media_objects',
+        filePath: this.state.image[0].file.path,
+        name: 'upload',
+        formData: {
+          'type': 0,
+          'entityId': this.oid
+        },
+        success (res){
+        }
+      })
+    }
   }
 
   render () {
@@ -105,80 +108,67 @@ export default class Orgedit extends Component<PropsWithChildren> {
       <Form className='form'
       onSubmit={this.formSubmit}
       >
-        <AtInput 
-          title='名称'
-          className="input"
+        <Input 
+          label='名称'
           required
           // name='name' 
           type='text' 
-          value={this.state.org.name}
+          defaultValue={this.state.org.name}
           disabled
         />
-        <AtInput 
-          title='联系人'
-          className="input"
+        <Input 
+          label='联系人'
           name='contact' 
           type='text' 
-          placeholder='联系人' 
           required
-          value={this.state.org.contact}
+          defaultValue={this.state.org.contact}
         />
-        <AtInput 
-          title='电话'
-          className="input"
+        <Input 
+          label='电话'
           name='phone' 
           type='number' 
-          placeholder='电话' 
           required
-          value={this.state.org.phone}
+          defaultValue={this.state.org.phone}
         />
-        <AtInput 
-          title='地址'
-          className="input"
+        <Input 
+          label='地址'
           name='address' 
           type='text' 
-          placeholder='地址' 
           required
-          value={this.state.org.address}
+          defaultValue={this.state.org.address}
         />
-        <AtInput 
-          title='地区'
-          className="input"
+        <Input 
+          label='地区'
           name='district' 
           type='text' 
-          placeholder='地区' 
           required
-          value={this.state.org.district}
+          defaultValue={this.state.org.district}
         />
-        <AtInput 
-          title='收款人'
-          className="input"
+        <Input 
+          label='收款人'
           name='payee' 
           type='text' 
-          value={this.state.org.payee}
+          defaultValue={this.state.org.payee}
         />
-        <AtInput 
-          title='开户行'
-          className="input"
+        <Input 
+          label='开户行'
           name='bank' 
           type='text' 
-          value={this.state.org.bank}
+          defaultValue={this.state.org.bank}
         />
-        <AtInput 
-          title='收款账号'
-          className="input"
+        <Input 
+          label='收款账号'
           name='bankAccount' 
           type='text' 
-          value={this.state.org.bankAccount}
+          defaultValue={this.state.org.bankAccount}
         />
-        <AtInput 
-          title='开户地址'
-          className="input"
+        <Input 
+          label='开户地址'
           name='bankAddr' 
           type='text' 
-          value={this.state.org.bankAddr}
+          defaultValue={this.state.org.bankAddr}
         />
-        <View className='label phony-input'>
+        <View className='label'>
         <View>
         图片
         <View className='note'>
