@@ -1,10 +1,9 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text, Form, Button, Picker } from '@tarojs/components'
+import { View, Text, Form, Button, Input, Picker } from '@tarojs/components'
 import './index.scss'
 import { AtList, AtListItem } from "taro-ui"
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
-import { Input } from '@nutui/nutui-react-taro';
 
 export default class Reg extends Component<PropsWithChildren> {
   state = {
@@ -94,35 +93,34 @@ export default class Reg extends Component<PropsWithChildren> {
       />
       </AtList>
       </Picker>
+      <View className='input'>
+      <Text className='label'>单位名称</Text>
       <Input 
         name='orgName' 
-        label='单位名称'
         type='text' 
-        placeholder='' 
-        required
       />
+      </View>
+      <View className='input'>
+      <Text className='label'>联系人</Text>
       <Input 
         name='name' 
-        label='联系人'
         type='text' 
-        placeholder='' 
-        required
       />
+      </View>
+      <View className='input'>
+      <Text className='label'>电话</Text>
       <Input 
         name='phone' 
-        label='电话'
         type='number' 
-        placeholder='' 
-        required
       />
+      </View>
+      <View className='input'>
+      <Text className='label'>地址</Text>
       <Input 
         name='address' 
-        label='地址'
         type='text' 
-        placeholder='' 
-        required
-        border={false}
       />
+      </View>
         <Button className='btn' formType='submit'>提交</Button>
       </Form>
       </View>
