@@ -94,38 +94,46 @@ export default class Reg extends Component<PropsWithChildren> {
       />
       </AtList>
       </Picker>
-        <AtInput 
-          className="input"
-          title='单位名称'
+      <View className='input'>
+        <Text className='label'>
+          单位名称
+        </Text>
+        <Input 
           name='orgName' 
           type='text' 
           placeholder='' 
-          required
         />
-        <AtInput 
-          className="input"
-          title='联系人'
+      </View>
+      <View className='input'>
+        <Text className='label'>
+          联系人
+        </Text>
+        <Input 
           name='name' 
           type='text' 
           placeholder='姓名' 
-          required
         />
-        <AtInput 
-          className="input"
-          title='电话'
+      </View>
+      <View className='input'>
+        <Text className='label'>
+          电话
+        </Text>
+        <Input 
           name='phone' 
           type='number' 
           placeholder='电话' 
-          required
         />
-        <AtInput 
-          className="input"
-          title='地址'
+      </View>
+      <View className='input'>
+        <Text className='label'>
+          地址
+        </Text>
+        <Input 
           name='address' 
           type='text' 
           placeholder='' 
-          required
         />
+      </View>
         <Button className='btn' formType='submit'>提交</Button>
       </Form>
       </View>

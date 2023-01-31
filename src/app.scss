@@ -21,6 +21,12 @@ page{
     padding: .5rem;
     border: #c5c5c5 solid 1px;
     border-radius: .25rem;
+    display: flex;
+    align-items: center;
+    .label{
+      width: 150px;
+      color: var(--color-note);
+    }
   }
 }
 .at-article__content{
@@ -84,14 +90,11 @@ page{
   padding: 20px 16px !important;
   border: 1px solid #c5c5c5;
   border-radius: .25rem;
-  .item-content__info-title::before{
-    content: '*';
-    margin-right: 12px;
-    color: #FF4949;
-  }
-}
-.input{
-  //text-align: right;
+  //.item-content__info-title::before{
+  //  content: '*';
+  //  margin-right: 12px;
+  //  color: #FF4949;
+  //}
 }
 .fixed{
   position: fixed;
