@@ -1,9 +1,10 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text, Form, Input, Button, Picker } from '@tarojs/components'
+import { View, Text, Form, Button, Picker } from '@tarojs/components'
 import './index.scss'
-import { AtButton, AtList, AtListItem, AtInput, AtForm} from "taro-ui"
+import { AtList, AtListItem } from "taro-ui"
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
+import { Input } from '@nutui/nutui-react-taro';
 
 export default class Reg extends Component<PropsWithChildren> {
   state = {
@@ -88,52 +89,40 @@ export default class Reg extends Component<PropsWithChildren> {
       <Picker mode='selector' range={this.state.selector} onChange={this.pickerChange}>
       <AtList>
       <AtListItem
-      title='类型'
-      className='phony-input'
+      title='请选择类型'
       extraText={this.state.selectorChecked}
       />
       </AtList>
       </Picker>
-      <View className='input'>
-        <Text className='label'>
-          单位名称
-        </Text>
-        <Input 
-          name='orgName' 
-          type='text' 
-          placeholder='' 
-        />
-      </View>
-      <View className='input'>
-        <Text className='label'>
-          联系人
-        </Text>
-        <Input 
-          name='name' 
-          type='text' 
-          placeholder='姓名' 
-        />
-      </View>
-      <View className='input'>
-        <Text className='label'>
-          电话
-        </Text>
-        <Input 
-          name='phone' 
-          type='number' 
-          placeholder='电话' 
-        />
-      </View>
-      <View className='input'>
-        <Text className='label'>
-          地址
-        </Text>
-        <Input 
-          name='address' 
-          type='text' 
-          placeholder='' 
-        />
-      </View>
+      <Input 
+        name='orgName' 
+        label='单位名称'
+        type='text' 
+        placeholder='' 
+        required
+      />
+      <Input 
+        name='name' 
+        label='联系人'
+        type='text' 
+        placeholder='' 
+        required
+      />
+      <Input 
+        name='phone' 
+        label='电话'
+        type='number' 
+        placeholder='' 
+        required
+      />
+      <Input 
+        name='address' 
+        label='地址'
+        type='text' 
+        placeholder='' 
+        required
+        border={false}
+      />
         <Button className='btn' formType='submit'>提交</Button>
       </Form>
       </View>
