@@ -1,10 +1,9 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text, Form, Button } from '@tarojs/components'
+import { View, Text, Form, Button, Input } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
 import { Taxon } from '../../Taxon'
-import { Input } from '@nutui/nutui-react-taro';
 
 export default class User extends Component<PropsWithChildren> {
   role: int
@@ -78,29 +77,30 @@ export default class User extends Component<PropsWithChildren> {
       <Form className='form'
       onSubmit={this.formSubmit}
       >
+        <View className='input'>
+        <Text className='label'>机构</Text>
         <Input 
-          label='机构'
           type='text' 
-          defaultValue={this.state.user.org.name}
+          value={this.state.user.org.name}
           disabled
         />
+        </View>
+        <View className='input'>
+        <Text className='label'>用户名</Text>
         <Input 
-          label='用户名'
           name='contact' 
           type='text' 
-          placeholder='' 
-          defaultValue={this.state.user.username}
-          disabled
+          value={this.state.user.username}
         />
+        </View>
+        <View className='input'>
+        <Text className='label'>电话</Text>
         <Input 
-          label='电话'
           name='phone' 
           type='number' 
-          placeholder='' 
-          required
-          defaultValue={this.state.user.phone}
-          border={false}
+          value={this.state.user.phone}
         />
+        </View>
         <Button className='btn' formType='submit'>保存</Button>
       </Form>
       }

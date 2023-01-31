@@ -1,11 +1,10 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text, Form, Button, Checkbox, CheckboxGroup, Navigator, Image } from '@tarojs/components'
+import { View, Text, Form, Button, Input, Checkbox, CheckboxGroup, Navigator, Image } from '@tarojs/components'
 import { Input as input } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
 import { Taxon } from '../../Taxon'
-import { Input } from '@nutui/nutui-react-taro';
 
 export default class Consumerinfo extends Component<PropsWithChildren> {
   cid: int
@@ -128,28 +127,30 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
       <Button class='avatar-wrapper' openType='chooseAvatar' onChooseAvatar={this.onChooseAvatar}>
         <Image class='avatar' src={this.state.avatarUrl}></Image>
       </Button>
+        <View className='input'>
+        <Text className='label'>姓名</Text>
         <Input 
           name='name' 
           type='text' 
-          label='姓名'
-          defaultValue={this.state.consumer.name}
+          value={this.state.consumer.name}
         />
+        </View>
         <View className='input'>
         <Text className='label'>昵称</Text>
         <input 
           name='nick' 
           type='nickname' 
-          label='昵称'
           value={this.state.consumer.nick}
         />
         </View>
+        <View className='input'>
+        <Text className='label'>电话</Text>
         <Input 
           name='phone' 
           type='text' 
-          label='电话'
-          defaultValue={this.state.consumer.phone}
-          border={false}
+          value={this.state.consumer.phone}
         />
+        </View>
 
         { this.state.isNew &&
         <View className='d-flex'>
