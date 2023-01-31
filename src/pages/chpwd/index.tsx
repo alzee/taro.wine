@@ -84,7 +84,6 @@ export default class Chpwd extends Component<PropsWithChildren> {
       <Form className='form'
       onSubmit={this.formSubmit}
       >
-      <Text className='label'>原密码</Text>
         <Input 
         className="input"
         required
@@ -92,14 +91,12 @@ export default class Chpwd extends Component<PropsWithChildren> {
           type='password' 
           placeholder='原密码' 
         />
-      <Text className='label'>新密码</Text>
         <Input 
         className="input"
           name='plainPassword' 
           type='password' 
           placeholder='新密码' 
         />
-      <Text className='label'>密码确认</Text>
         <Input 
         className="input"
           name='confirmPass' 
