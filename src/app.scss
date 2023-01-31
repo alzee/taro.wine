@@ -7,6 +7,7 @@ page{
   --color-link: #0d6efd;
   --color-black: #000;
   --color-light: #fff;
+  --color-border: #eaf0fb;
 }
 .main{
   padding: 1rem;
@@ -18,14 +19,13 @@ page{
   padding: 8rem 1rem;
   .input{
     margin: 1rem 0;
-    padding: .5rem;
-    border: #c5c5c5 solid 1px;
-    border-radius: .25rem;
+    padding: 20px 50px;
+    border-bottom: var(--color-border) solid 1px;
     display: flex;
     align-items: center;
+    font-size: 28px;
     .label{
-      width: 150px;
-      color: var(--color-note);
+      width: 160px;
     }
   }
 }
