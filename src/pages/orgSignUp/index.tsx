@@ -24,7 +24,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
         {
           agencies: res.data,
           agencyList,
-          agencySelected: 0
+          agencySelected: undefined
         }
       )
     })
@@ -66,9 +66,9 @@ export default class Orgsignup extends Component<PropsWithChildren> {
   }
 
   formSubmit = e => {
+    console.log(e);
     let data = e.detail.value
     data.type = Number(this.state.typeId)
-    data.upstreamId = this.state.agencies[this.state.agencySelected].id
     if (isNaN(data.type)) {
       Taro.showToast({
         title: '请选择类型',
@@ -77,7 +77,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       })
       return
     }
-    if (isNaN(data.type)) {
+    if (this.state.agencySelected === undefined) {
       Taro.showToast({
         title: '请选择代理商',
         icon: 'error',
@@ -85,6 +85,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       })
       return
     }
+    data.upstreamId = this.state.agencies[this.state.agencySelected].id
     let label = {
       username: '用户名',
       name: '名称',
