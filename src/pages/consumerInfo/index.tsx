@@ -1,11 +1,11 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text, Form, Input, Button, Picker, Checkbox, CheckboxGroup, Navigator, Image } from '@tarojs/components'
+import { View, Text, Form, Button, Checkbox, CheckboxGroup, Navigator, Image } from '@tarojs/components'
+import { Input as input } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
-import { AtButton, AtList, AtListItem, AtInput } from "taro-ui"
 import { Taxon } from '../../Taxon'
-import { AtCheckbox } from 'taro-ui'
+import { Input } from '@nutui/nutui-react-taro';
 
 export default class Consumerinfo extends Component<PropsWithChildren> {
   cid: int
@@ -128,29 +128,27 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
       <Button class='avatar-wrapper' openType='chooseAvatar' onChooseAvatar={this.onChooseAvatar}>
         <Image class='avatar' src={this.state.avatarUrl}></Image>
       </Button>
-        <AtInput 
-        className="input"
+        <Input 
           name='name' 
           type='text' 
-          placeholder='姓名' 
-          title='姓名'
-          value={this.state.consumer.name}
+          label='姓名'
+          defaultValue={this.state.consumer.name}
         />
-        <AtInput 
-        className="input"
+        <View className='input'>
+        <Text className='label'>昵称</Text>
+        <input 
           name='nick' 
           type='nickname' 
-          placeholder='' 
-          title='昵称'
+          label='昵称'
           value={this.state.consumer.nick}
         />
-        <AtInput 
-        className="input"
+        </View>
+        <Input 
           name='phone' 
           type='text' 
-          placeholder='电话' 
-          title='电话'
-          value={this.state.consumer.phone}
+          label='电话'
+          defaultValue={this.state.consumer.phone}
+          border={false}
         />
 
         { this.state.isNew &&
