@@ -188,19 +188,19 @@ export default class Orders extends Component<PropsWithChildren> {
         }
         switch (this.role) {
           case 0:
-            this.tabList = [{ title: '我的销售' }, {title: '售后退货'}]
+            this.tabList = [{ title: '销售' }, {title: '退货'}]
             this.getData('sales')
             this.getData('returnsToMe')
             break
           case 1:
-            this.tabList = [{ title: '我的进货' }, { title: '我的销售' }, {title: '我的退货'}, {title: '售后退货'}]
+            this.tabList = [{ title: '进货' }, { title: '销售' }, {title: '退货'}, {title: '售后退货'}]
             this.getData('buys')
             this.getData('sales')
             this.getData('myReturns')
             this.getData('returnsToMe')
             break
           case 2:
-            this.tabList = [{title: '我的进货'}, {title: '我的退货'}, {title: '我的零售'}, {title: '零售退货'}]
+            this.tabList = [{title: '进货'}, {title: '退货'}, {title: '零售'}, {title: '零售退货'}]
             this.getData('buys')
             this.getData('myReturns')
             this.getData('retails')
@@ -220,21 +220,21 @@ export default class Orders extends Component<PropsWithChildren> {
             this.getData('myDines')
             break
           case 10:
-            this.tabList = [{ title: '我的进货' }, { title: '我的销售' }, {title: '我的退货'}, {title: '售后退货'}]
+            this.tabList = [{ title: '进货' }, { title: '销售' }, {title: '退货'}, {title: '售后退货'}]
             this.getData('buys')
             this.getData('sales')
             this.getData('myReturns')
             this.getData('returnsToMe')
             break
           case 11:
-            this.tabList = [{ title: '我的进货' }, { title: '我的销售' }, {title: '我的退货'}, {title: '售后退货'}]
+            this.tabList = [{ title: '进货' }, { title: '销售' }, {title: '退货'}, {title: '售后退货'}]
             this.getData('buys')
             this.getData('sales')
             this.getData('myReturns')
             this.getData('returnsToMe')
             break
           case 12:
-            this.tabList = [{title: '我的进货'}, {title: '我的退货'}, {title: '我的零售'}, {title: '零售退货'}]
+            this.tabList = [{title: '进货'}, {title: '退货'}, {title: '零售'}, {title: '零售退货'}]
             this.getData('buys')
             this.getData('myReturns')
             this.getData('retails')
