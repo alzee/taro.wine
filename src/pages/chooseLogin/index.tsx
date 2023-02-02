@@ -8,16 +8,13 @@ import { Env } from '../../env/env'
 export default class Chooselogin extends Component<PropsWithChildren> {
   state = {}
 
-  componentWillMount () { }
-
-  componentDidMount () {
-    Taro.getStorage({
-      key: 'referrerId',
-      success: res => {
-        this.setState({referrerId: res.data})
-      }
-    })
+  onLoad(query) {
+    let cid = query.scene
+    console.log('onLoad cid: ' + cid)
+    this.setState({referrerId: cid})
   }
+
+  componentDidMount () {}
 
   navTo(page: string) {
     Taro.navigateTo({ url: '/pages/' + page + '/index' })
@@ -34,13 +31,17 @@ export default class Chooselogin extends Component<PropsWithChildren> {
     Taro.login({
       success: function (res) {
         if (res.code) {
+          let data = {
+            code: res.code
+          }
+          console.log('state.referrerId: ' + that.state.referrerId)
+          if (that.state.referrerId !== undefined) {
+            data.referrerId = that.state.referrerId
+          }
           Taro.request({
             method: 'POST',
             url: Env.apiUrl + 'consumer_login',
-            data: {
-              code: res.code,
-              referrerId: that.state.referrerId
-            }
+            data
           }).then((res) => {
             Taro.setStorage({
               key: Env.storageKey,

@@ -5,17 +5,17 @@ import Taro from '@tarojs/taro'
 import { Env } from './env/env'
 
 class App extends Component<PropsWithChildren> {
-  onLaunch(options) {
-    let cid = options.query.scene
-    if (cid === undefined) {
-      cid = 0
-    }
-    console.log(cid)
-    Taro.setStorage({
-      key: 'referrerId',
-      data: cid
-    });
-  }
+  // onLaunch(options) {
+  //   let cid = options.query.scene
+  //   if (cid === undefined) {
+  //     cid = 0
+  //   }
+  //   console.log('onLaunch cid: ' + cid)
+  //   Taro.setStorage({
+  //     key: 'referrerId',
+  //     data: cid
+  //   });
+  // }
 
   componentDidMount () {
     // Taro.clearStorage()
