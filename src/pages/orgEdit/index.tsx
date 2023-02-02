@@ -116,6 +116,14 @@ export default class Orgedit extends Component<PropsWithChildren> {
         />
         </View>
         <View className='input'>
+        <Text className='label'>提现折扣</Text>
+        <Input 
+          type='number' 
+          value={this.state.org.discount * 100 + '%'}
+          disabled
+        />
+        </View>
+        <View className='input'>
         <Text className='label'>联系人</Text>
         <Input 
           name='contact' 
