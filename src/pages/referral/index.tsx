@@ -70,11 +70,9 @@ export default class Referral extends Component<PropsWithChildren> {
         Taro.request({
           url: Env.apiUrl + 'rewards?&referrer=' + cid,
         }).then((res) =>{
-          console.log(res.data)
           list = []
           let record
           for (let i of res.data) {
-            console.log(i);
             if (i.type == 0 || i.type == 1 || i.type == 2) {
               record = i.ord.orderItems[0]
             }
