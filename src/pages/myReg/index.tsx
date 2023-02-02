@@ -48,7 +48,7 @@ export default class Myreg extends Component<PropsWithChildren> {
       { this.state.list }
       </AtList>
       <View className='fixed'>
-        <Button className='btn btn-primary' onClick={this.navi}>我要推荐</Button>
+        <Button className='btn btn-primary' onClick={this.navi}>我要报备</Button>
       </View>
       </View>
     )

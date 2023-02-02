@@ -108,8 +108,8 @@ export default class Referral extends Component<PropsWithChildren> {
 
   render () {
     let tabList = [
-        { title: '佣金明细' },
-        { title: '我的介绍' },
+        { title: '分销明细' },
+        { title: '我的团队' },
     ]
     return (
       <View className='referral'>

@@ -165,7 +165,7 @@ export default class Me extends Component<PropsWithChildren> {
       }
 
       <AtListItem
-      title='提现管理'
+      title='我的钱包'
       // note='描述信息'
       // extraText='详细信息'
       arrow='right'
@@ -221,13 +221,13 @@ export default class Me extends Component<PropsWithChildren> {
       { this.role == 4 &&
       <>
       <AtListItem
-      title='佣金明细'
+      title='分销中心'
       arrow='right'
       thumb={lock}
       onClick={() => this.navTo('referral')}
       />
       <AtListItem
-      title='我的推荐'
+      title='业务报备'
       arrow='right'
       thumb={lock}
       onClick={() => this.navTo('myReg')}

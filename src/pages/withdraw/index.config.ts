@@ -1,4 +1,4 @@
 export default definePageConfig({
-  navigationBarTitleText: '提现管理',
+  navigationBarTitleText: '我的钱包',
   "usingComponents": {}
 })
