@@ -39,7 +39,7 @@ export default class Index extends Component<PropsWithChildren> {
     })
 
     Taro.request({
-      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=3&tag=0&order%5Bid%5D=desc',
+      url: Env.apiUrl + 'nodes?page=1&itemsPerPage=6&tag=0&order%5Bid%5D=desc',
       success: function (res) {}
     }).then((res) =>{
       let carousel = []
