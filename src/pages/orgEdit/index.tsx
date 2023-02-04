@@ -145,6 +145,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
           name='area' 
           type='text' 
           value={this.state.org.area}
+          disabled
         />
         </View>
         <View className='input'>
