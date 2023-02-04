@@ -1,7 +1,6 @@
 import { Component, PropsWithChildren } from 'react'
 import { View, Text, Form, Button, Input, Picker } from '@tarojs/components'
 import './index.scss'
-import { AtList, AtListItem } from "taro-ui"
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
 
@@ -86,12 +85,10 @@ export default class Reg extends Component<PropsWithChildren> {
       onSubmit={this.formSubmit.bind(this)}
       >
       <Picker mode='selector' range={this.state.selector} onChange={this.pickerChange}>
-      <AtList>
-      <AtListItem
-      title='请选择类型'
-      extraText={this.state.selectorChecked}
-      />
-      </AtList>
+      <View className='input'>
+      <Text className='label'>请选择类型</Text>
+      {this.state.selectorChecked}
+      </View>
       </Picker>
       <View className='input'>
       <Text className='label'>单位名称</Text>

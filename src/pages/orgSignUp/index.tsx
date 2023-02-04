@@ -4,7 +4,6 @@ import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 import { Taxon } from '../../Taxon'
 import { View, Text, Form, Input, Button, Picker } from '@tarojs/components'
-import { AtList, AtListItem } from "taro-ui"
 
 export default class Orgsignup extends Component<PropsWithChildren> {
   state = {
@@ -170,24 +169,18 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       >
       { this.state.types &&
       <Picker mode='selector' range={this.state.types} onChange={this.typeChanged}>
-      <AtList>
-      <AtListItem
-      title='请选择类型'
-      className='first'
-      extraText={this.state.types[this.state.typeSelected]}
-      />
-      </AtList>
+      <View className='input'>
+      <Text className='label'>类型</Text>
+      {this.state.types[this.state.typeSelected]}
+      </View>
       </Picker>
       }
       { this.state.agencyList &&
       <Picker mode='selector' range={this.state.agencyList} onChange={this.agencyChanged}>
-      <AtList>
-      <AtListItem
-      title='请选择代理商'
-      className=''
-      extraText={this.state.agencyList[this.state.agencySelected]}
-      />
-      </AtList>
+      <View className='input'>
+      <Text className='label'>代理商</Text>
+      {this.state.agencyList[this.state.agencySelected]}
+      </View>
       </Picker>
       }
       <View className='input'>

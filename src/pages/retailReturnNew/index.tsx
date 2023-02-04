@@ -4,7 +4,6 @@ import './index.scss'
 import { Env } from '../../env/env'
 import { Taxon } from '../../Taxon'
 import Taro from '@tarojs/taro'
-import { AtButton, AtList, AtListItem} from "taro-ui"
 
 export default class Retailreturnnew extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
@@ -135,21 +134,19 @@ export default class Retailreturnnew extends Component<PropsWithChildren> {
       <Form className='form'
       onSubmit={this.formSubmit}
       >
-      <AtList>
-      <AtListItem
-      title='顾客'
-      extraText={[this.consumerName]}
+      <View className='input'>
+      <Text className='label'>顾客</Text>
+      <Input 
+      type='text' 
+      value={[this.consumerName]}
       disabled
       />
-      </AtList>
+      </View>
       <Picker mode='selector' range={this.state.products} onChange={this.productChange}>
-      <AtList>
-      <AtListItem
-      title='商品'
-      className=''
-      extraText={this.state.productSelected}
-      />
-      </AtList>
+      <View className='input'>
+      <Text className='label'>商品</Text>
+      {this.state.productSelected}
+      </View>
       </Picker>
       <Input 
       className="input"

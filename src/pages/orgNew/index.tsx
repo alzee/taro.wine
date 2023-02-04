@@ -3,7 +3,6 @@ import { View, Text, Form, Input, Button, Picker } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
-import { AtButton, AtList, AtListItem, AtInput, AtForm} from "taro-ui"
 import { Taxon } from '../../Taxon'
 
 export default class Orgnew extends Component<PropsWithChildren> {
@@ -119,13 +118,10 @@ export default class Orgnew extends Component<PropsWithChildren> {
       onSubmit={this.formSubmit}
       >
       <Picker mode='selector' range={this.state.selector} onChange={this.pickerChange}>
-      <AtList>
-      <AtListItem
-      title='类型'
-      className=''
-      extraText={this.state.selectorChecked}
-      />
-      </AtList>
+      <View className='input'>
+      <Text className='label'>请选择类型</Text>
+        {this.state.selectorChecked}
+      </View>
       </Picker>
         <Input 
         className="input"

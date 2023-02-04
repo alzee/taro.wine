@@ -3,7 +3,6 @@ import { View, Text, Form, Input, Button, Picker } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
-import { AtButton, AtList, AtListItem} from "taro-ui"
 import { Taxon } from '../../Taxon'
 
 export default class Returnnew extends Component<PropsWithChildren> {
@@ -155,25 +154,17 @@ export default class Returnnew extends Component<PropsWithChildren> {
       >
 
       <Picker className='buyer' mode='selector' range={this.state.downstreams} onChange={this.downstreamChange}>
-      <AtList>
-      <AtListItem
-      title='退货方'
-      className=''
-      extraText={this.state.downstreamSelected}
-      />
-      </AtList>
+      <View className='input'>
+      <Text className='label'>退货发</Text>
+      {this.state.downstreamSelected}
+      </View>
       </Picker>
 
-      <View>
-      </View>
-
       <Picker mode='selector' range={this.state.products} onChange={this.productChange}>
-      <AtList>
-      <AtListItem
-      title='产品'
-      extraText={this.state.productSelected}
-      />
-      </AtList>
+      <View className='input'>
+      <Text className='label'>产品</Text>
+      {this.state.productSelected}
+      </View>
       </Picker>
 
         <Input 

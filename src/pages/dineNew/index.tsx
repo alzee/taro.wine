@@ -1,5 +1,5 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text, Form, Input, Button, Picker } from '@tarojs/components'
+import { View, Text, Form, Input, Button } from '@tarojs/components'
 import './index.scss'
 import { Env } from '../../env/env'
 import { Taxon } from '../../Taxon'
@@ -13,8 +13,6 @@ export default class Dinenew extends Component<PropsWithChildren> {
   timestamp: string
   role: int
   oid: int
-
-  componentWillMount () { }
 
   componentDidMount () {
     this.cid = this.instance.router.params.cid
@@ -45,12 +43,6 @@ export default class Dinenew extends Component<PropsWithChildren> {
       }
     })
   }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
 
   formSubmit = e => {
     let data = e.detail.value
