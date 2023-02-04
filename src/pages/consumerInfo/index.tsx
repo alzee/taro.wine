@@ -66,10 +66,6 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
       data: this.storageData
     });
     
-    // upload and get url
-    let avatarUploaded = 'default.jpg'
-    data.avatar = avatarUploaded
-
     Taro.request({
       method: 'PATCH',
       data: data,
@@ -91,6 +87,20 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
         }
       })
     })
+
+    if (this.state.avatarChanged) {
+      Taro.uploadFile({
+        url: Env.apiUrl + 'media_objects',
+        filePath: this.state.avatarUrl,
+        name: 'upload',
+        formData: {
+          'type': 6,
+          'entityId': this.cid
+        },
+        success (res){
+        }
+      })
+    }
   }
 
   checkboxChange(e){
@@ -108,6 +118,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
   onChooseAvatar = (e) =>{
     this.setState({
       avatarUrl: e.detail.avatarUrl,
+      avatarChanged: true
     })
   }
 
