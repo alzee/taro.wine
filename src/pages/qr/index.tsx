@@ -13,6 +13,8 @@ export default class Qr extends Component<PropsWithChildren> {
   qrIntvId: int
   chkIntv: int = 1000
   chkIntvId: int
+  chkTimeout: int = 7000
+  chkTimeoutId: int
   state = {
     timestamp: new Date().getTime()
   }
@@ -36,8 +38,6 @@ export default class Qr extends Component<PropsWithChildren> {
     }).then((res) => {
       // console.log(res.data.length);
       if (res.data.length > 0) {
-        // clear immediately to avoid accidentally another check
-        clearInterval(this.chkIntvId)
         // Taro.vibrateShort({type: 'heavy'})
         Taro.vibrateLong()
         Taro.redirectTo({ url: '/pages/transComplete/index' })
@@ -59,10 +59,10 @@ export default class Qr extends Component<PropsWithChildren> {
     // Refresh QR every 30 sec
     this.qrIntvId = setInterval(this.newTimestamp , this.qrIntv)
     // Check if trans complete every 1 sec after 5 sec
-    setTimeout(() => {
+    this.chkTimeoutId = setTimeout(() => {
       this.chkIntvId = setInterval(this.chkTransComplete, this.chkIntv)
       console.log('start checking');
-    }, 7000)
+    }, this.chkTimeout)
 
     Taro.setScreenBrightness({value: 1})
   }
@@ -72,6 +72,7 @@ export default class Qr extends Component<PropsWithChildren> {
     Taro.setScreenBrightness({value: -1})
     clearInterval(this.qrIntvId)
     clearInterval(this.chkIntvId)
+    clearTimeout(this.chkTimeoutId)
   }
 
   componentDidHide () {
@@ -92,7 +93,7 @@ export default class Qr extends Component<PropsWithChildren> {
     let text
     if (this.cid !== undefined) {
       text = `{"cid": ${this.cid}, "timestamp": "${this.state.timestamp}", "name": "${this.name}"}`
-      console.log(text)
+      // console.log(text)
     }
     return (
       <View className='qr'>
