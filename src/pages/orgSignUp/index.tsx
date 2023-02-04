@@ -93,7 +93,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       address: '地址',
       plainPassword: '新密码',
       confirmPass: '密码确认',
-      district: '区域',
+      area: '地区',
     }
     for (let i in data) {
       if (data[i] === "") {
@@ -226,14 +226,14 @@ export default class Orgsignup extends Component<PropsWithChildren> {
         />
       </View>
       <View className='input'>
-      <Text className='label'>区域</Text>
+      <Text className='label'>地区</Text>
         <Input 
-          name='district' 
+          name='area' 
           type='text' 
         />
       </View>
       <View className='input'>
-      <Text className='label'>地址</Text>
+      <Text className='label'>详细地址</Text>
         <Input 
           name='address' 
           type='text' 

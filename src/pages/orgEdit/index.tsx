@@ -49,7 +49,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
       contact: '联系人',
       phone: '电话',
       address: '地址',
-      district: '区域',
+      area: '地区',
     }
     for (let i in label) {
       if (data[i] == "") {
@@ -140,19 +140,19 @@ export default class Orgedit extends Component<PropsWithChildren> {
         />
         </View>
         <View className='input'>
-        <Text className='label'>地址</Text>
+        <Text className='label'>地区</Text>
+        <Input 
+          name='area' 
+          type='text' 
+          value={this.state.org.area}
+        />
+        </View>
+        <View className='input'>
+        <Text className='label'>详细地址</Text>
         <Input 
           name='address' 
           type='text' 
           value={this.state.org.address}
-        />
-        </View>
-        <View className='input'>
-        <Text className='label'>地区</Text>
-        <Input 
-          name='district' 
-          type='text' 
-          value={this.state.org.district}
         />
         </View>
         <View className='input'>
