@@ -22,8 +22,10 @@ export default class Reg extends Component<PropsWithChildren> {
     })
   }
 
-  pcaChange(e) {
-    console.log(e.detail);
+  pcaChange = (e) => {
+    this.setState({
+      pca: e.detail.value,
+    })
   }
 
   pickerChange = e => {
@@ -60,6 +62,7 @@ export default class Reg extends Component<PropsWithChildren> {
     }
 
     data.submitter = '/api/consumers/' + this.state.cid
+    data.area = this.state.pca[0] + this.state.pca[1] + this.state.pca[2]
     Taro.request({
       method: 'POST',
       data: data,
@@ -114,23 +117,23 @@ export default class Reg extends Component<PropsWithChildren> {
         type='number' 
       />
       </View>
+      <Picker mode='region' onChange={this.pcaChange} value={this.state.pca}>
       <View className='input'>
-      <Text className='label'>地址</Text>
+      <Text className='label'>地区</Text>
+      {
+        this.state.pca[0]
+        + ' - ' +  this.state.pca[1]
+        + ' - ' +  this.state.pca[2]
+      }
+      </View>
+      </Picker>
+      <View className='input'>
+      <Text className='label'>详细地址</Text>
       <Input 
         name='address' 
         type='text' 
       />
       </View>
-      <Picker mode='region' onChange={this.pcaChange} value={this.state.pca}>
-      <View className='input'>
-      <Text className='label'>address</Text>
-      {
-        this.state.pca[0]
-        + ' ' +  this.state.pca[1]
-        + ' ' +  this.state.pca[2]
-      }
-      </View>
-      </Picker>
         <Button className='btn' formType='submit'>提交</Button>
       </Form>
       </View>
