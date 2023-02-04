@@ -8,7 +8,8 @@ import { View, Text, Form, Input, Button, Picker } from '@tarojs/components'
 export default class Orgsignup extends Component<PropsWithChildren> {
   state = {
     types: ['门店', '餐厅', '区域代理商(异业)', '门店(异业)'],
-    agencyList: []
+    agencyList: [],
+    pca: ['湖北省', '十堰市', '茅箭区']
   }
 
   getAgencies(typeId: int){
@@ -30,6 +31,12 @@ export default class Orgsignup extends Component<PropsWithChildren> {
   }
 
   componentDidMount () {
+  }
+
+  pcaChange = (e) => {
+    this.setState({
+      pca: e.detail.value,
+    })
   }
 
   typeChanged = e => {
@@ -93,7 +100,6 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       address: '地址',
       plainPassword: '新密码',
       confirmPass: '密码确认',
-      area: '地区',
     }
     for (let i in data) {
       if (data[i] === "") {
@@ -129,6 +135,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       })
       return
     }
+    data.area = this.state.pca[0] + this.state.pca[1] + this.state.pca[2]
     Taro.request({
       method: 'POST',
       data: data,
@@ -225,13 +232,16 @@ export default class Orgsignup extends Component<PropsWithChildren> {
           type='number' 
         />
       </View>
+      <Picker mode='region' onChange={this.pcaChange} value={this.state.pca}>
       <View className='input'>
       <Text className='label'>地区</Text>
-        <Input 
-          name='area' 
-          type='text' 
-        />
+      {
+        this.state.pca[0]
+        + ' - ' +  this.state.pca[1]
+        + ' - ' +  this.state.pca[2]
+      }
       </View>
+      </Picker>
       <View className='input'>
       <Text className='label'>详细地址</Text>
         <Input 
