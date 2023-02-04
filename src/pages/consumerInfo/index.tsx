@@ -8,7 +8,6 @@ import { Taxon } from '../../Taxon'
 
 export default class Consumerinfo extends Component<PropsWithChildren> {
   cid: int
-  storageData = {}
   state = {
     btnDisabled: true,
     isNew: true,
@@ -19,7 +18,6 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.cid = res.data.cid
-        this.storageData = res.data
         Taro.request({
           url: Env.apiUrl + 'consumers/' + this.cid,
         }).then((res) => {
@@ -57,14 +55,6 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
       })
       return
     }
-
-    this.storageData.name = data.name
-    this.storageData.phone = data.phone
-    this.storageData.avatar = data.avatar
-    Taro.setStorage({
-      key: Env.storageKey,
-      data: this.storageData
-    });
     
     Taro.request({
       method: 'PATCH',
@@ -89,6 +79,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
     })
 
     if (this.state.avatarChanged) {
+      let that = this
       Taro.uploadFile({
         url: Env.apiUrl + 'media_objects',
         filePath: this.state.avatarUrl,
@@ -98,6 +89,9 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
           'entityId': this.cid
         },
         success (res){
+          that.setState({
+            avatarUrl: res.data.url
+          })
         }
       })
     }

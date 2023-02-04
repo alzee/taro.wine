@@ -15,37 +15,49 @@ import lock from '../../icon/lock.png'
 
 export default class Me extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
-  role: int;
-  avatar: string = Env.imgUrl + 'avatar.png';
-  username: string;
-  orgName: string;
+  role: int
   oid: int
-  state = {}
+  state = {
+    avatar: Env.imgUrl + 'avatar/default.jpg'
+  }
 
   componentDidMount () {
     const self = this;
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        self.setState({data: res.data})
+        console.log(res.data);
         this.role = res.data.role
         if (this.role == -1) {
           Taro.redirectTo({ url: '/pages/chooseLogin/index' })
           return
         }
+        let orgName
+        let name
         switch (res.data.role) {
           case 4:
             if (res.data.phone == null || res.data.name == null) {
               Taro.redirectTo({url: '/pages/consumerInfo/index'})
             } 
-            this.orgName = '顾客'
-            this.username = res.data.name
+            orgName = '顾客'
+            name = res.data.name
+            Taro.request({
+              url: Env.apiUrl + 'consumers/' + res.data.cid
+            }).then(res => {
+              self.setState({
+                avatar: Env.imgUrl + 'avatar/' + res.data.avatar
+              })
+            })
             break;
           default:
-            this.orgName = res.data.org.name
-            this.username = res.data.username
+            orgName = res.data.org.name
+            name = res.data.username
             this.oid = res.data.org.id
         }
+        this.setState({
+          orgName,
+          name
+        })
       }
     })
   }
@@ -63,17 +75,14 @@ export default class Me extends Component<PropsWithChildren> {
             success: function (res) {
               const latitude = res.latitude
               const longitude = res.longitude
-              // console.log(res)
               Taro.request({
                 method: 'PATCH',
                 url: Env.apiUrl + 'orgs/' + self.oid,
                 data: {latitude: latitude, longitude: longitude},
                 header: {
                   'content-type': 'application/merge-patch+json'
-                },
-                success: function (res) { self.setState({data: res.data}) }
+                }
               }).then((res) =>{
-                // console.log(res.data)
                 Taro.showToast({
                   title: '更新成功',
                   icon: 'success',
@@ -121,10 +130,10 @@ export default class Me extends Component<PropsWithChildren> {
     return (
       <View className='me'>
         <View className="at-row top">
-        <AtAvatar className="avatar" circle image={this.avatar}></AtAvatar>
+        <AtAvatar className="avatar" circle image={this.state.avatar}></AtAvatar>
         <View className="name">
-        <Text className='title'>{this.state && this.username}</Text>
-        <Text className='note'>{this.state && this.orgName}</Text>
+        <Text className='title'>{this.state.name}</Text>
+        <Text className='note'>{this.state.orgName}</Text>
         </View>
         { this.role == 4 &&
         <View className='qr' onClick={() => this.navTo('qr')}>

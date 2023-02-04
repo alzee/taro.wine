@@ -88,9 +88,9 @@ export default class User extends Component<PropsWithChildren> {
         <View className='input'>
         <Text className='label'>用户名</Text>
         <Input 
-          name='contact' 
           type='text' 
           value={this.state.user.username}
+          disabled
         />
         </View>
         <View className='input'>
