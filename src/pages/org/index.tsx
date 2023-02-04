@@ -56,7 +56,7 @@ export default class Org extends Component<PropsWithChildren> {
       key = 'restaurantList'
     }
     let query = '?display=true&type=' + type
-    query += '&city=' + (Number(this.state.citySelected) + 1)
+    query += '&area=' + this.state.cities[this.state.citySelected]
     query += '&industry=' + this.state.industries[Number(this.state.industrySelected)].id
     Taro.request({
       url: Env.apiUrl + 'orgs' + query,
