@@ -8,9 +8,8 @@ export default class Reg extends Component<PropsWithChildren> {
   state = {
     selector: ['门店', '代理商', '代理商(异业)', '区域代理商(异业)', '门店(异业)'],
     selectorChecked: '',
+    pca: ['湖北省', '十堰市', '茅箭区']
   }
-
-  componentWillMount () { }
 
   componentDidMount () {
     Taro.getStorage({
@@ -21,6 +20,10 @@ export default class Reg extends Component<PropsWithChildren> {
         })
       }
     })
+  }
+
+  pcaChange(e) {
+    console.log(e.detail);
   }
 
   pickerChange = e => {
@@ -118,6 +121,16 @@ export default class Reg extends Component<PropsWithChildren> {
         type='text' 
       />
       </View>
+      <Picker mode='region' onChange={this.pcaChange} value={this.state.pca}>
+      <View className='input'>
+      <Text className='label'>address</Text>
+      {
+        this.state.pca[0]
+        + ' ' +  this.state.pca[1]
+        + ' ' +  this.state.pca[2]
+      }
+      </View>
+      </Picker>
         <Button className='btn' formType='submit'>提交</Button>
       </Form>
       </View>
