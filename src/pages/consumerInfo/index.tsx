@@ -28,9 +28,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
             })
           }
           this.setState({
-            name: res.data.name,
-            nick: res.data.nick,
-            phone: res.data.phone,
+            consumer: res.data,
             avatarUrl: Env.imgUrl + 'avatar/' + res.data.avatar
           })
         })
@@ -118,20 +116,17 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
     })
   }
 
-  updateName = (e) => {
-    this.setState({
-        name: e.detail.value
-    })
-  }
-  updateNick = (e) => {
-    this.setState({
-        nick: e.detail.value
-    })
-  }
-  updatePhone = (e) => {
-    this.setState({
-        phone: e.detail.value
-    })
+  // how-to-set-state-of-multiple-properties-in-one-event-handler-react
+  // https://codereview.stackexchange.com/a/211189
+  handleChange = (k, e) => {
+    // Updating an object with setState in React
+    // https://stackoverflow.com/q/43638938/7714132
+    this.setState(prevState => ({
+      consumer: {
+        ...prevState.consumer,
+        [k]: e.detail.value
+      }
+    }))
   }
 
   render () {
@@ -143,7 +138,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
         }
       </View>
 
-      { this.state &&
+      { this.state.consumer &&
       <Form className='form'
       onSubmit={this.formSubmit}
       >
@@ -155,8 +150,8 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
         <Input 
           name='name' 
           type='text' 
-          value={this.state.name}
-          onBlur={this.updateName}
+          value={this.state.consumer.name}
+          onBlur={(e) => this.handleChange('name', e)}
         />
         </View>
         <View className='input'>
@@ -164,8 +159,8 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
         <input 
           name='nick' 
           type='nickname' 
-          value={this.state.nick}
-          onBlur={this.updateNick}
+          value={this.state.consumer.nick}
+          onBlur={(e) => this.handleChange('nick', e)}
         />
         </View>
         <View className='input'>
@@ -173,8 +168,8 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
         <Input 
           name='phone' 
           type='text' 
-          value={this.state.phone}
-          onBlur={this.updatePhone}
+          value={this.state.consumer.phone}
+          onBlur={(e) => this.handleChange('phone', e)}
         />
         </View>
 
