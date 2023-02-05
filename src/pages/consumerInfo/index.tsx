@@ -28,7 +28,9 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
             })
           }
           this.setState({
-            consumer: res.data,
+            name: res.data.name,
+            nick: res.data.nick,
+            phone: res.data.phone,
             avatarUrl: Env.imgUrl + 'avatar/' + res.data.avatar
           })
         })
@@ -116,6 +118,22 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
     })
   }
 
+  updateName = (e) => {
+    this.setState({
+        name: e.detail.value
+    })
+  }
+  updateNick = (e) => {
+    this.setState({
+        nick: e.detail.value
+    })
+  }
+  updatePhone = (e) => {
+    this.setState({
+        phone: e.detail.value
+    })
+  }
+
   render () {
     return (
       <View className='consumerInfo main'>
@@ -125,7 +143,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
         }
       </View>
 
-      { this.state.consumer &&
+      { this.state &&
       <Form className='form'
       onSubmit={this.formSubmit}
       >
@@ -137,7 +155,8 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
         <Input 
           name='name' 
           type='text' 
-          value={this.state.consumer.name}
+          value={this.state.name}
+          onBlur={this.updateName}
         />
         </View>
         <View className='input'>
@@ -145,7 +164,8 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
         <input 
           name='nick' 
           type='nickname' 
-          value={this.state.consumer.nick}
+          value={this.state.nick}
+          onBlur={this.updateNick}
         />
         </View>
         <View className='input'>
@@ -153,7 +173,8 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
         <Input 
           name='phone' 
           type='text' 
-          value={this.state.consumer.phone}
+          value={this.state.phone}
+          onBlur={this.updatePhone}
         />
         </View>
 
