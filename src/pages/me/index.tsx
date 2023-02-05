@@ -26,7 +26,6 @@ export default class Me extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        console.log(res.data);
         this.role = res.data.role
         if (this.role == -1) {
           Taro.redirectTo({ url: '/pages/chooseLogin/index' })
@@ -36,14 +35,14 @@ export default class Me extends Component<PropsWithChildren> {
         let name
         switch (res.data.role) {
           case 4:
-            if (res.data.phone == null || res.data.name == null) {
-              Taro.redirectTo({url: '/pages/consumerInfo/index'})
-            } 
             orgName = '顾客'
             name = res.data.name
             Taro.request({
               url: Env.apiUrl + 'consumers/' + res.data.cid
             }).then(res => {
+              if (res.data.phone === undefined || res.data.name === undefined) {
+                Taro.redirectTo({url: '/pages/consumerInfo/index'})
+              } 
               self.setState({
                 avatar: Env.imgUrl + 'avatar/' + res.data.avatar
               })
@@ -104,7 +103,6 @@ export default class Me extends Component<PropsWithChildren> {
       content: '确定要退出当前账号？',
       success: function (res) {
         if (res.confirm) {
-          console.log('用户点击确定')
           // clear
           // Taro.clearStorage()
           Taro.setStorage({
@@ -116,7 +114,6 @@ export default class Me extends Component<PropsWithChildren> {
           // Taro.reLaunch({ url: '/pages/index/index' })
           Taro.redirectTo({ url: '/pages/chooseLogin/index'})
         } else if (res.cancel) {
-          console.log('用户点击取消')
         }
       }
     })
