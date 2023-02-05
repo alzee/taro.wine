@@ -20,7 +20,7 @@ export default class Node extends Component<PropsWithChildren> {
   componentDidMount () {
     const self = this;
     Taro.request({
-      url: Env.apiUrl + 'nodes?itemsPerPage=1&tag=3',
+      url: Env.apiUrl + 'nodes?itemsPerPage=1&tags=3',
       success: function (res) { self.setState({node: res.data[0]}) }
     }).then((res) =>{
     })
