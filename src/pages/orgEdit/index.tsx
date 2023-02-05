@@ -35,14 +35,14 @@ export default class Orgedit extends Component<PropsWithChildren> {
   }
 
   imageSelected(image){
-    console.log(image);
+    // console.log(image);
     this.setState({
       image 
     })
   }
 
   formSubmit = e => {
-    console.log(e);
+    // console.log(e);
     let data = e.detail.value
     let label = {
       // name: '名称',
@@ -100,6 +100,19 @@ export default class Orgedit extends Component<PropsWithChildren> {
     }
   }
 
+  // how-to-set-state-of-multiple-properties-in-one-event-handler-react
+  // https://codereview.stackexchange.com/a/211189
+  handleChange = (k, e) => {
+    // Updating an object with setState in React
+    // https://stackoverflow.com/q/43638938/7714132
+    this.setState(prevState => ({
+      org: {
+        ...prevState.org,
+        [k]: e.detail.value
+      }
+    }))
+  }
+
   render () {
     return (
       <View className='orgEdit main'>
@@ -129,6 +142,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
           name='contact' 
           type='text' 
           value={this.state.org.contact}
+          onBlur={(e) => this.handleChange('contact', e)}
         />
         </View>
         <View className='input'>
@@ -137,14 +151,16 @@ export default class Orgedit extends Component<PropsWithChildren> {
           name='phone' 
           type='number' 
           value={this.state.org.phone}
+          onBlur={(e) => this.handleChange('phone', e)}
         />
         </View>
         <View className='input'>
         <Text className='label'>地区</Text>
         <Input 
-          name='area' 
+          // name='area' 
           type='text' 
           value={this.state.org.area}
+          // onBlur={(e) => this.handleChange('area', e)}
           disabled
         />
         </View>
@@ -154,6 +170,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
           name='address' 
           type='text' 
           value={this.state.org.address}
+          onBlur={(e) => this.handleChange('address', e)}
         />
         </View>
         <View className='input'>
@@ -162,6 +179,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
           name='payee' 
           type='text' 
           value={this.state.org.payee}
+          onBlur={(e) => this.handleChange('payee', e)}
         />
         </View>
         <View className='input'>
@@ -170,6 +188,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
           name='bank' 
           type='text' 
           value={this.state.org.bank}
+          onBlur={(e) => this.handleChange('bank', e)}
         />
         </View>
         <View className='input'>
@@ -178,6 +197,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
           name='bankAccount' 
           type='text' 
           value={this.state.org.bankAccount}
+          onBlur={(e) => this.handleChange('bankAccount', e)}
         />
         </View>
         <View className='input'>
@@ -186,6 +206,7 @@ export default class Orgedit extends Component<PropsWithChildren> {
           name='bankAddr' 
           type='text' 
           value={this.state.org.bankAddr}
+          onBlur={(e) => this.handleChange('bankAddr', e)}
         />
         </View>
 
