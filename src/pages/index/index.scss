@@ -7,7 +7,7 @@
   }
   .img{
     width: 100%;
-    height: 260px;
+    //height: 380px;
   }
   .swiper{
     margin-bottom: 1rem;
@@ -58,6 +58,41 @@
     height: 5rem;
     .content-inner__text{
       font-size: 24px;
+    }
+  }
+  .featured{
+    .img-wrapper{
+      height: 420px;
+      overflow: hidden;
+      position: relative;
+      .banner{
+        position: absolute;
+        bottom: 6px;
+        font-size: 28px;
+        font-weight: bold;
+      }
+    }
+    .price{
+      display: flex;
+      justify-content: space-between;
+      .left{
+      }
+      .right{
+      }
+    }
+    .unitPrice{
+      color: var(--color-1);
+      font-size: 36px;
+      font-weight: bold;
+      margin-right: 6px;
+    }
+    .unitPricePromo{
+      color: var(--color-note);
+      font-size: 24px;
+      text-decoration: line-through;
+    }
+    .bg-1{
+      background-color: var(--color-1);
     }
   }
 }
