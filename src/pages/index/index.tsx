@@ -195,10 +195,6 @@ export default class Index extends Component<PropsWithChildren> {
 
       <View className='label'>
       <View>活动公告</View>
-      <View className='read-more'>
-      查看更多
-      <AtIcon value='chevron-right' size='15'></AtIcon>
-      </View>
       </View>
       <View className='promo at-row at-row--wrap'>
       {this.state.promo}
@@ -206,10 +202,6 @@ export default class Index extends Component<PropsWithChildren> {
 
       <View className='label'>
       <View>产品推荐</View>
-      <View className='read-more'>
-      查看更多
-      <AtIcon value='chevron-right' size='15'></AtIcon>
-      </View>
       </View>
       <View className='featured at-row at-row--wrap'>
       {this.state.featured}
