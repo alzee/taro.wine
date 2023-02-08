@@ -33,8 +33,7 @@ export default class Qr extends Component<PropsWithChildren> {
   chkTransComplete = () => {
     console.log('check if transaction complete');
     Taro.request({
-      // url: Env.apiUrl + 'scans?consumer=' + this.cid + '&rand=' + this.state.timestamp
-      url: Env.apiUrl + 'scans?consumer=35&rand=1668853055743'
+      url: Env.apiUrl + 'scans?consumer=' + this.cid + '&rand=' + this.state.timestamp
     }).then((res) => {
       // console.log(res.data.length);
       if (res.data.length > 0) {
@@ -99,10 +98,7 @@ export default class Qr extends Component<PropsWithChildren> {
       <View className='qr'>
       <View className='text'>
       <View>
-      购买酒品时出示可获赠代金券
-      </View>
-      <View>
-      餐厅消费时出示用代金券抵现
+      消费时出示用代金券抵现
       </View>
       </View>
       { this.cid &&
