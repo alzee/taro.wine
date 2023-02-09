@@ -83,7 +83,7 @@ export default class Index extends Component<PropsWithChildren> {
           <Image className='img' mode='aspectFill' src={this.imgUrl + 'node/' + i.img} onClick={()=>this.navToProduct(i.id)} ></Image>
           <View className="banner">
           <Text className="badge">
-          抽餐券再来一瓶
+          扫码中大奖
           </Text>
           </View>
           </View>
