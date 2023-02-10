@@ -9,13 +9,12 @@ export default class Search extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   keyword = this.instance.router.params.q
   pid = this.instance.router.params.p
+  type = this.instance.router.params.t
   latitude: float
   longitude: float
   state = {
     seg: 0,
   }
-
-  componentWillMount () { }
 
   componentDidMount () {
     Taro.getStorage({
@@ -25,7 +24,7 @@ export default class Search extends Component<PropsWithChildren> {
         this.longitude = res.data.longitude
       }
     })
-    if (this.pid == undefined) {
+    if (this.pid === undefined) {
       this.getOrgs(2)
       this.getOrgs(3)
     } else {
@@ -63,12 +62,6 @@ export default class Search extends Component<PropsWithChildren> {
       this.setState({'orgsHaveStock': list})
     })
   }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
 
   switchSeg (value) {
     this.setState({
@@ -109,6 +102,7 @@ export default class Search extends Component<PropsWithChildren> {
     if (type == 3) {
       key = 'restaurantList'
     }
+    if (this.keyword === undefined) this.keyword = ''
     let query = '?display=true&type=' + type + '&name=' + this.keyword
     Taro.request({
       url: Env.apiUrl + 'orgs' + query,
