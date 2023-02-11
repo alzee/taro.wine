@@ -84,13 +84,13 @@ export default class Orders extends Component<PropsWithChildren> {
         break
       case 'myDines':
         api = 'order_restaurants'
-        filter = 'consumer'
+        filter = 'customer'
         extraText = 'voucher'
         me = this.cid
         break
       case 'myRetails':
         api = 'retails'
-        filter = 'consumer'
+        filter = 'customer'
         extraText = 'voucher'
         me = this.cid
         break
