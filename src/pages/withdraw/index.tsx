@@ -86,7 +86,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
         if (this.role == 4) {
           this.uid = res.data.uid
           this.getData('customerWithdraws')
-          query = 'customers/' + this.uid
+          query = 'users/' + this.uid
         } else {
           this.oid = res.data.org.id
           query = 'orgs/' + this.oid

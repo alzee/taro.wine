@@ -27,7 +27,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
         let query
         if (this.role == 4) {
           this.uid = res.data.uid
-          query = 'customers/' + this.uid
+          query = 'users/' + this.uid
         } else {
           this.oid = res.data.org.id
           query = 'orgs/' + this.oid
@@ -50,7 +50,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
     let data = e.detail.value
     data.amount = Number(data.amount)
     if (this.role == 4) {
-      data.customer = '/api/customers/' + this.uid
+      data.customer = '/api/users/' + this.uid
     } else {
       data.applicant = '/api/orgs/' + this.oid
     }

@@ -25,7 +25,7 @@ export default class Voucher extends Component<PropsWithChildren> {
         if (data.role == 4) {
           this.query = '?page=1&customer=' + data.uid
           Taro.request({
-            url: Env.apiUrl + 'customers/' + data.uid
+            url: Env.apiUrl + 'users/' + data.uid
           }).then((res) =>{
             this.setState({voucher: res.data.voucher})
           })

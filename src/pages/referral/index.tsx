@@ -22,7 +22,7 @@ export default class Referral extends Component<PropsWithChildren> {
       success: res => {
         let uid = res.data.uid
         Taro.request({
-          url: Env.apiUrl + 'customers/' + uid,
+          url: Env.apiUrl + 'users/' + uid,
         }).then((res) =>{
           this.setState({
             reward: res.data.reward,
@@ -32,7 +32,7 @@ export default class Referral extends Component<PropsWithChildren> {
 
         let list = []
         Taro.request({
-          url: Env.apiUrl + 'customers?referrer=' + uid,
+          url: Env.apiUrl + 'users?referrer=' + uid,
         }).then((res) =>{
           for (let i of res.data) {
             list.push(
