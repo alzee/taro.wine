@@ -40,7 +40,7 @@ export default class Chooselogin extends Component<PropsWithChildren> {
           }
           Taro.request({
             method: 'POST',
-            url: Env.apiUrl + 'consumer_login',
+            url: Env.apiUrl + 'wxlogin',
             data
           }).then((res) => {
             Taro.setStorage({
