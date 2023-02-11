@@ -6,7 +6,7 @@ import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 
 export default class Qr extends Component<PropsWithChildren> {
-  cid: int
+  uid: int
   name: string
   // timestamp = new Date().getTime()
   qrIntv: int = 30000
@@ -33,7 +33,7 @@ export default class Qr extends Component<PropsWithChildren> {
   chkTransComplete = () => {
     console.log('check if transaction complete');
     Taro.request({
-      url: Env.apiUrl + 'scans?consumer=' + this.cid + '&rand=' + this.state.timestamp
+      url: Env.apiUrl + 'scans?customer=' + this.uid + '&rand=' + this.state.timestamp
     }).then((res) => {
       // console.log(res.data.length);
       if (res.data.length > 0) {
@@ -50,7 +50,7 @@ export default class Qr extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         self.setState({data: res.data})
-        this.cid = res.data.cid
+        this.uid = res.data.uid
         this.name = res.data.name
       }
     })
@@ -87,11 +87,11 @@ export default class Qr extends Component<PropsWithChildren> {
   }
 
   render () {
-    // let text = '{"cid": ${this.cid}, "timestamp": "${this.timestamp}", "name": "${this.name}"}'
-    // let text = '{"cid":' + this.cid + ', "timestamp": "' + this.timestamp + '", "name": "' + this.name + '"}'
+    // let text = '{"uid": ${this.uid}, "timestamp": "${this.timestamp}", "name": "${this.name}"}'
+    // let text = '{"uid":' + this.uid + ', "timestamp": "' + this.timestamp + '", "name": "' + this.name + '"}'
     let text
-    if (this.cid !== undefined) {
-      text = `{"cid": ${this.cid}, "timestamp": "${this.state.timestamp}", "name": "${this.name}"}`
+    if (this.uid !== undefined) {
+      text = `{"uid": ${this.uid}, "timestamp": "${this.state.timestamp}", "name": "${this.name}"}`
       // console.log(text)
     }
     return (
@@ -101,7 +101,7 @@ export default class Qr extends Component<PropsWithChildren> {
       消费时出示用代金券抵现
       </View>
       </View>
-      { this.cid &&
+      { this.uid &&
         <QRCode
           onClick={this.qrclicked}
           text={text}

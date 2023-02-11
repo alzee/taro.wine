@@ -20,9 +20,9 @@ export default class Referral extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        let cid = res.data.cid
+        let uid = res.data.uid
         Taro.request({
-          url: Env.apiUrl + 'consumers/' + cid,
+          url: Env.apiUrl + 'customers/' + uid,
         }).then((res) =>{
           this.setState({
             reward: res.data.reward,
@@ -32,7 +32,7 @@ export default class Referral extends Component<PropsWithChildren> {
 
         let list = []
         Taro.request({
-          url: Env.apiUrl + 'consumers?referrer=' + cid,
+          url: Env.apiUrl + 'customers?referrer=' + uid,
         }).then((res) =>{
           for (let i of res.data) {
             list.push(
@@ -50,7 +50,7 @@ export default class Referral extends Component<PropsWithChildren> {
         })
 
         Taro.request({
-          url: Env.apiUrl + 'orgs?referrer=' + cid,
+          url: Env.apiUrl + 'orgs?referrer=' + uid,
         }).then((res) =>{
           for (let i of res.data) {
             list.push(
@@ -68,7 +68,7 @@ export default class Referral extends Component<PropsWithChildren> {
         })
 
         Taro.request({
-          url: Env.apiUrl + 'rewards?&referrer=' + cid,
+          url: Env.apiUrl + 'rewards?&referrer=' + uid,
         }).then((res) =>{
           list = []
           let record

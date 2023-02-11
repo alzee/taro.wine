@@ -11,7 +11,7 @@ import { fmtDate } from '../../fmtDate'
 export default class Withdraw extends Component<PropsWithChildren> {
   tabList = []
   oid: int
-  cid: int
+  uid: int
   role: int
   state = {
     current: 0,
@@ -28,11 +28,11 @@ export default class Withdraw extends Component<PropsWithChildren> {
     let titlePrefix: string = ''
     let query: string
     switch (type) {
-      case 'consumerWithdraws':
+      case 'customerWithdraws':
         // filter = 'applicant'
         title = 'amount'
         extraText = 'status'
-        query = '?consumer=' + this.cid
+        query = '?customer=' + this.uid
         break
       case 'orgWithdraws':
         // filter = 'applicant'
@@ -84,9 +84,9 @@ export default class Withdraw extends Component<PropsWithChildren> {
         this.role = res.data.role
         const self = this;
         if (this.role == 4) {
-          this.cid = res.data.cid
-          this.getData('consumerWithdraws')
-          query = 'consumers/' + this.cid
+          this.uid = res.data.uid
+          this.getData('customerWithdraws')
+          query = 'customers/' + this.uid
         } else {
           this.oid = res.data.org.id
           query = 'orgs/' + this.oid
@@ -175,7 +175,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
       }
       { this.role == 4 &&
         <AtList className="list">
-        {this.state.consumerWithdraws}
+        {this.state.customerWithdraws}
         </AtList>
       }
       <View className='fixed'>

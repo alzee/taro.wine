@@ -14,7 +14,7 @@ export default class Orders extends Component<PropsWithChildren> {
   role: int;
   tabList = []
   orgid: int
-  cid: int
+  uid: int
 
   create(type: int){
     let page: string
@@ -86,13 +86,13 @@ export default class Orders extends Component<PropsWithChildren> {
         api = 'order_restaurants'
         filter = 'customer'
         extraText = 'voucher'
-        me = this.cid
+        me = this.uid
         break
       case 'myRetails':
         api = 'retails'
         filter = 'customer'
         extraText = 'voucher'
-        me = this.cid
+        me = this.uid
         break
     }
     Taro.request({
@@ -100,44 +100,44 @@ export default class Orders extends Component<PropsWithChildren> {
       success: function (res) { self.setState({data: res.data}) }
     }).then((res) =>{
       let list = []
-      for (let i in res.data){
+      for (let i of res.data){
         switch (type) {
           case 'dines':
-            title = res.data[i].consumer.name
+            title = i.customer.name
             break
           case 'myDines':
-            title = res.data[i].restaurant.name
+            title = i.restaurant.name
             break
           case 'myRetails':
-            title = res.data[i].store.name
+            title = i.store.name
             break
           case 'retails':
-            title = res.data[i].product.name + ' x ' + res.data[i].quantity
+            title = i.product.name + ' x ' + i.quantity
             break
           case 'retailReturns':
-            title = res.data[i].product.name + ' x ' + res.data[i].quantity
+            title = i.product.name + ' x ' + i.quantity
             break
           case 'sales':
-            title = res.data[i].buyer.name
+            title = i.buyer.name
             break
           case 'buys':
-            title = res.data[i].orderItems[0].product.name + ' x ' + res.data[i].orderItems[0].quantity + ' ...'
+            title = i.orderItems[0].product.name + ' x ' + i.orderItems[0].quantity + ' ...'
             break
           case 'myReturns':
-            title = res.data[i].returnItems[0].product.name + ' x ' + res.data[i].returnItems[0].quantity + ' ...'
+            title = i.returnItems[0].product.name + ' x ' + i.returnItems[0].quantity + ' ...'
             break
           case 'returnsToMe':
-            title = res.data[i].sender.name
+            title = i.sender.name
             break
           default:
-          title = '编号: ' + res.data[i].id
+          title = '编号: ' + i.id
         }
         list.push(
           <AtListItem
-          onClick={() => this.navToDetail(res.data[i].id, type)}
+          onClick={() => this.navToDetail(i.id, type)}
           title={title}
-          note={fmtDate(res.data[i].date)}
-          extraText={res.data[i][extraText] / 100}
+          note={fmtDate(i.date)}
+          extraText={i[extraText] / 100}
           arrow='right'
           />
         )
@@ -184,7 +184,7 @@ export default class Orders extends Component<PropsWithChildren> {
         } else if (this.role != 4){
           this.orgid = res.data.org.id
         } else {
-          this.cid = res.data.cid
+          this.uid = res.data.uid
         }
         switch (this.role) {
           case 0:
@@ -275,7 +275,7 @@ export default class Orders extends Component<PropsWithChildren> {
         console.log(text)
         let data = JSON.parse(text)
         console.log(data)
-        Taro.navigateTo({url: '/pages/' + page + '/index?cid=' + data.cid + '&timestamp=' + data.timestamp + '&name=' + data.name})
+        Taro.navigateTo({url: '/pages/' + page + '/index?uid=' + data.uid + '&timestamp=' + data.timestamp + '&name=' + data.name})
       }
     })
   }

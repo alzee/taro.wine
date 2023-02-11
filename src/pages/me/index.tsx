@@ -38,10 +38,11 @@ export default class Me extends Component<PropsWithChildren> {
             orgName = '顾客'
             name = res.data.name
             Taro.request({
-              url: Env.apiUrl + 'consumers/' + res.data.cid
+              url: Env.apiUrl + 'users/' + res.data.uid
             }).then(res => {
+              console.log(res.data);
               if (res.data.phone === undefined || res.data.name === undefined) {
-                Taro.redirectTo({url: '/pages/consumerInfo/index'})
+                Taro.redirectTo({url: '/pages/customerInfo/index'})
               } 
               self.setState({
                 avatar: Env.imgUrl + 'avatar/' + res.data.avatar
@@ -242,7 +243,7 @@ export default class Me extends Component<PropsWithChildren> {
       title='我的信息'
       arrow='right'
       thumb={lock}
-      onClick={() => this.navTo('consumerInfo')}
+      onClick={() => this.navTo('customerInfo')}
       />
       </>
       }

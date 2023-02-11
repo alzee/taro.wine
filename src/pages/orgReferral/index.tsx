@@ -16,10 +16,10 @@ export default class Orgreferral extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        let cid = res.data.cid
+        let uid = res.data.uid
         let list
         Taro.request({
-          url: Env.apiUrl + 'orgs?referrer=' + cid,
+          url: Env.apiUrl + 'orgs?referrer=' + uid,
         }).then((res) =>{
           list = []
           for (let i of res.data) {
@@ -38,7 +38,7 @@ export default class Orgreferral extends Component<PropsWithChildren> {
         })
 
         Taro.request({
-          url: Env.apiUrl + 'rewards?&referrer=' + cid,
+          url: Env.apiUrl + 'rewards?&referrer=' + uid,
           // url: Env.apiUrl + 'refretail/' + 55,
         }).then((res) =>{
           console.log(res.data)

@@ -9,9 +9,9 @@ export default class Chooselogin extends Component<PropsWithChildren> {
   state = {}
 
   onLoad(query) {
-    let cid = query.scene
-    console.log('onLoad cid: ' + cid)
-    this.setState({referrerId: cid})
+    let uid = query.scene
+    console.log('onLoad uid: ' + uid)
+    this.setState({referrerId: uid})
   }
 
   componentDidMount () {}

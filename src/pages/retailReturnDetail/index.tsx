@@ -37,7 +37,7 @@ export default class Retailreturndetail extends Component<PropsWithChildren> {
       <AtList>
       <AtListItem title='退货编号' extraText={this.state.entity.id} />
       <AtListItem title='门店' extraText={this.state.entity.store.name} />
-      <AtListItem title='顾客' extraText={this.state.entity.consumer.name} />
+      <AtListItem title='顾客' extraText={this.state.entity.customer.name} />
       <AtListItem title='商品' extraText={this.state.entity.product.name} />
       <AtListItem title='数量' extraText={this.state.entity.quantity} />
       <AtListItem title='金额' extraText={this.state.entity.amount / 100} />

@@ -9,7 +9,7 @@ import { AtButton, AtList, AtListItem} from "taro-ui"
 export default class Withdrawnew extends Component<PropsWithChildren> {
   role: int
   oid: int
-  cid: int
+  uid: int
   discount: float
   withdrawable: int
 
@@ -26,8 +26,8 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
         this.role = res.data.role
         let query
         if (this.role == 4) {
-          this.cid = res.data.cid
-          query = 'consumers/' + this.cid
+          this.uid = res.data.uid
+          query = 'customers/' + this.uid
         } else {
           this.oid = res.data.org.id
           query = 'orgs/' + this.oid
@@ -50,7 +50,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
     let data = e.detail.value
     data.amount = Number(data.amount)
     if (this.role == 4) {
-      data.consumer = '/api/consumers/' + this.cid
+      data.customer = '/api/customers/' + this.uid
     } else {
       data.applicant = '/api/orgs/' + this.oid
     }

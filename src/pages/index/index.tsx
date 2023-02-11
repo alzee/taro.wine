@@ -128,11 +128,11 @@ export default class Index extends Component<PropsWithChildren> {
     let page 
     let query = ''
     let requireLogin = false
-    let requireConsumer = false
+    let requireCustomer = false
     switch (e.index) {
       case 0:
         page = 'qr'
-        requireConsumer = true
+        requireCustomer = true
         break
       case 1:
         page = 'voucher'
@@ -145,7 +145,7 @@ export default class Index extends Component<PropsWithChildren> {
       case 3:
         page = 'poster'
         requireLogin = true
-        requireConsumer = true
+        requireCustomer = true
         break
       case 4:
         page = 'search'
@@ -164,7 +164,7 @@ export default class Index extends Component<PropsWithChildren> {
     }
     if (this.role == -1 && requireLogin) {
       Taro.navigateTo({url:  '/pages/chooseLogin/index' });
-    } else if (this.role != 4 && requireConsumer) {
+    } else if (this.role != 4 && requireCustomer) {
     } else {
       Taro.navigateTo({url:  '/pages/' + page + '/index' + query });
     }

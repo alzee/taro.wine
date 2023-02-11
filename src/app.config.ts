@@ -30,7 +30,7 @@ export default defineAppConfig({
     'pages/dineDetail/index',
     'pages/productDetail/index',
     'pages/qr/index',
-    'pages/consumerInfo/index',
+    'pages/customerInfo/index',
     'pages/about/index',
     'pages/chpwd/index',
     'pages/orgEdit/index',

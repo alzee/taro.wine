@@ -6,8 +6,8 @@ import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
 import { Taxon } from '../../Taxon'
 
-export default class Consumerinfo extends Component<PropsWithChildren> {
-  cid: int
+export default class Customerinfo extends Component<PropsWithChildren> {
+  uid: int
   state = {
     btnDisabled: true,
     isNew: true,
@@ -17,9 +17,9 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        this.cid = res.data.cid
+        this.uid = res.data.uid
         Taro.request({
-          url: Env.apiUrl + 'consumers/' + this.cid,
+          url: Env.apiUrl + 'users/' + this.uid,
         }).then((res) => {
           if (res.data.phone !== undefined && res.data.name !== undefined) {
             this.setState({
@@ -28,7 +28,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
             })
           }
           this.setState({
-            consumer: res.data,
+            customer: res.data,
             avatarUrl: Env.imgUrl + 'avatar/' + res.data.avatar
           })
         })
@@ -59,7 +59,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
     Taro.request({
       method: 'PATCH',
       data: data,
-      url: Env.apiUrl + 'consumers/' + this.cid,
+      url: Env.apiUrl + 'users/' + this.uid,
       header: {
         'content-type': 'application/merge-patch+json'
       }
@@ -86,7 +86,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
         name: 'upload',
         formData: {
           'type': 6,
-          'entityId': this.cid
+          'entityId': this.uid
         },
         success (res){
           that.setState({
@@ -122,8 +122,8 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
     // Updating an object with setState in React
     // https://stackoverflow.com/q/43638938/7714132
     this.setState(prevState => ({
-      consumer: {
-        ...prevState.consumer,
+      customer: {
+        ...prevState.customer,
         [k]: e.detail.value
       }
     }))
@@ -131,14 +131,14 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
 
   render () {
     return (
-      <View className='consumerInfo main'>
+      <View className='customerInfo main'>
       <View className='hint'>
         { this.state.isNew &&
         <Text>请完善姓名及电话</Text>
         }
       </View>
 
-      { this.state.consumer &&
+      { this.state.customer &&
       <Form className='form'
       onSubmit={this.formSubmit}
       >
@@ -150,7 +150,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
         <Input 
           name='name' 
           type='text' 
-          value={this.state.consumer.name}
+          value={this.state.customer.name}
           onBlur={(e) => this.handleChange('name', e)}
         />
         </View>
@@ -159,7 +159,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
         <input 
           name='nick' 
           type='nickname' 
-          value={this.state.consumer.nick}
+          value={this.state.customer.nick}
           onBlur={(e) => this.handleChange('nick', e)}
         />
         </View>
@@ -168,7 +168,7 @@ export default class Consumerinfo extends Component<PropsWithChildren> {
         <Input 
           name='phone' 
           type='text' 
-          value={this.state.consumer.phone}
+          value={this.state.customer.phone}
           onBlur={(e) => this.handleChange('phone', e)}
         />
         </View>

@@ -7,8 +7,8 @@ import Taro from '@tarojs/taro'
 
 export default class Retailnew extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
-  cid: int
-  consumerName: string
+  uid: int
+  customerName: string
   timestamp: string
   role: int
   oid: int
@@ -24,7 +24,7 @@ export default class Retailnew extends Component<PropsWithChildren> {
   formSubmit = e => {
     let data = e.detail.value
     data.quantity = Number(data.quantity)
-    data.cid = this.cid
+    data.uid = this.uid
     data.pid = this.pid
     data.oid = this.oid
     data.timestamp = this.timestamp
@@ -86,10 +86,10 @@ export default class Retailnew extends Component<PropsWithChildren> {
   }
 
   componentDidMount () {
-    this.cid = this.instance.router.params.cid
+    this.uid = this.instance.router.params.uid
     this.timestamp = this.instance.router.params.timestamp
-    this.consumerName = this.instance.router.params.name
-    console.log(this.cid, this.timestamp)
+    this.customerName = this.instance.router.params.name
+    console.log(this.uid, this.timestamp)
 
     Taro.getStorage({
       key: Env.storageKey,
@@ -138,7 +138,7 @@ export default class Retailnew extends Component<PropsWithChildren> {
       <Text className='label'>顾客</Text>
       <Input 
       type='text' 
-      value={[this.consumerName]}
+      value={[this.customerName]}
       disabled
       />
       </View>

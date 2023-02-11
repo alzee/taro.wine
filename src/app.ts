@@ -6,14 +6,14 @@ import { Env } from './env/env'
 
 class App extends Component<PropsWithChildren> {
   // onLaunch(options) {
-  //   let cid = options.query.scene
-  //   if (cid === undefined) {
-  //     cid = 0
+  //   let uid = options.query.scene
+  //   if (uid === undefined) {
+  //     uid = 0
   //   }
-  //   console.log('onLaunch cid: ' + cid)
+  //   console.log('onLaunch uid: ' + uid)
   //   Taro.setStorage({
   //     key: 'referrerId',
-  //     data: cid
+  //     data: uid
   //   });
   // }
 

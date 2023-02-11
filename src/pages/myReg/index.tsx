@@ -7,7 +7,7 @@ import { AtList, AtListItem} from "taro-ui"
 import { fmtDate } from '../../fmtDate'
 
 export default class Myreg extends Component<PropsWithChildren> {
-  cid: int
+  uid: int
   statuses = ['待处理', '达成']
   state = {
   }
@@ -17,9 +17,9 @@ export default class Myreg extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.setState({data: res.data})
-        this.cid = res.data.cid
+        this.uid = res.data.uid
         Taro.request({
-          url: Env.apiUrl + 'regs?submitter=' + this.cid
+          url: Env.apiUrl + 'regs?submitter=' + this.uid
         }).then((res) => {
           let list = []
           for (let i of res.data) {

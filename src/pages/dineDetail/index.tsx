@@ -37,7 +37,7 @@ export default class Dinedetail extends Component<PropsWithChildren> {
       <AtList>
       <AtListItem title='编号' extraText={this.state.entity.id} />
       <AtListItem title='餐厅' extraText={this.state.entity.restaurant.name} />
-      <AtListItem title='顾客' extraText={this.state.entity.consumer.name} />
+      <AtListItem title='顾客' extraText={this.state.entity.customer.name} />
       <AtListItem title='代金券' extraText={this.state.entity.voucher / 100} />
       <AtListItem title='日期' extraText={fmtDate(this.state.entity.date)} />
       </AtList>

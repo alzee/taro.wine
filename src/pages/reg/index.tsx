@@ -16,7 +16,7 @@ export default class Reg extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.setState({
-          cid: res.data.cid
+          uid: res.data.uid
         })
       }
     })
@@ -61,7 +61,7 @@ export default class Reg extends Component<PropsWithChildren> {
       }
     }
 
-    data.submitter = '/api/consumers/' + this.state.cid
+    data.submitter = '/api/customers/' + this.state.uid
     data.area = this.state.pca[0] + this.state.pca[1] + this.state.pca[2]
     Taro.request({
       method: 'POST',

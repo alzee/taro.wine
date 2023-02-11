@@ -8,17 +8,17 @@ import { AtButton, AtList, AtListItem} from "taro-ui"
 
 export default class Dinenew extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
-  cid: int
-  consumerName: string
+  uid: int
+  customerName: string
   timestamp: string
   role: int
   oid: int
 
   componentDidMount () {
-    this.cid = this.instance.router.params.cid
+    this.uid = this.instance.router.params.uid
     this.timestamp = this.instance.router.params.timestamp
-    this.consumerName = this.instance.router.params.name
-    console.log(this.cid, this.timestamp)
+    this.customerName = this.instance.router.params.name
+    console.log(this.uid, this.timestamp)
 
     Taro.getStorage({
       key: Env.storageKey,
@@ -47,7 +47,7 @@ export default class Dinenew extends Component<PropsWithChildren> {
   formSubmit = e => {
     let data = e.detail.value
     data.voucher = Number(data.voucher)
-    data.cid = this.cid
+    data.uid = this.uid
     data.oid = this.oid
     data.timestamp = this.timestamp
     if (data.voucher == "") {
@@ -108,7 +108,7 @@ export default class Dinenew extends Component<PropsWithChildren> {
       <AtList>
       <AtListItem
       title='顾客'
-      extraText={[this.consumerName]}
+      extraText={[this.customerName]}
       disabled
       />
       </AtList>
