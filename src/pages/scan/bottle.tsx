@@ -1,6 +1,6 @@
 import { Component, PropsWithChildren } from 'react'
 import { View, Text } from '@tarojs/components'
-import './box.scss'
+import './bottle.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
 
@@ -11,7 +11,7 @@ export default class Scan extends Component<PropsWithChildren> {
 
   render () {
     return (
-      <View className='scan-box'>
+      <View className='scan-bottle'>
       </View>
     )
   }
