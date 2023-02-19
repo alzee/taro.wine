@@ -47,10 +47,9 @@ export default defineAppConfig({
     'pages/share/index',
     'pages/transComplete/index',
     'pages/myReg/index',
-    'pages/draw/index',
-    'pages/stockin/index',
-    'pages/waiterScan/index',
     'pages/scan/index',
+    'pages/scan/box',
+    'pages/scan/bottle',
   ],
   window: {
     backgroundTextStyle: 'light',

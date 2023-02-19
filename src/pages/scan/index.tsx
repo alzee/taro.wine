@@ -18,13 +18,16 @@ export default class Scan extends Component<PropsWithChildren> {
     console.log(this.scan)
     switch (this.scan.t) {
       case "0":
-        Taro.redirectTo({url: '/pages/orderNew/index'})
+        Taro.redirectTo({url: '/pages/scan/box'})
         break
       case '1':
-        Taro.redirectTo({url: '/pages/retailNew/index'})
+        Taro.redirectTo({url: '/pages/scan/bottle'})
         break
       case "2":
         Taro.redirectTo({url: '/pages/orgSignUp/index'})
+        break
+      case "3":
+        Taro.redirectTo({url: '/pages/waiterSignUp/index'})
         break
     }
   }

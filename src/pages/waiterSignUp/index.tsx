@@ -2,7 +2,7 @@ import { Component, PropsWithChildren } from 'react'
 import { View, Text } from '@tarojs/components'
 import './index.scss'
 
-export default class Stockin extends Component<PropsWithChildren> {
+export default class Waitersignup extends Component<PropsWithChildren> {
 
   componentWillMount () { }
 
@@ -16,7 +16,7 @@ export default class Stockin extends Component<PropsWithChildren> {
 
   render () {
     return (
-      <View className='stockin'>
+      <View className='waiterSignUp'>
         <Text>Hello world!</Text>
       </View>
     )
