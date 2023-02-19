@@ -50,6 +50,7 @@ export default defineAppConfig({
     'pages/draw/index',
     'pages/stockin/index',
     'pages/waiterScan/index',
+    'pages/scan/index',
   ],
   window: {
     backgroundTextStyle: 'light',
