@@ -7,6 +7,6 @@ export const Env = {
   baseUrl: baseUrl,
   apiUrl: baseUrl + 'api/',
   imgUrl: baseUrl + 'img/',
-  wxqr: baseUrl + 'wxqr',
+  wxqrUrl: baseUrl + 'wxqr',
   storageKey: 'fuckWechat',
 }
