@@ -5,13 +5,39 @@ import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
 
 export default class Scan extends Component<PropsWithChildren> {
+  instance = Taro.getCurrentInstance();
 
   componentDidMount () {
+    let params = this.instance.router.params
+
+    Taro.getStorage({
+      key: Env.storageKey,
+      success: res => {
+        let data = {
+          oid: res.data.org.id,
+          s: params.s,
+          e: params.e
+        }
+        Taro.request({
+          method: 'POST',
+          data,
+          url: Env.apiUrl + 'scan/bottle',
+          success: function (res) { }
+        }).then((res) =>{
+          console.log(res.data);
+        })
+      }
+    })
+  }
+
+  done(){
+    Taro.exitMiniProgram()
   }
 
   render () {
     return (
       <View className='scan-box'>
+      <Button className='btn' size='small' onClick={this.done}>确定</Button>
       </View>
     )
   }
