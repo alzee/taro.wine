@@ -62,14 +62,22 @@ export default class Scan extends Component<PropsWithChildren> {
       </View>
       }
 
-      { this.state.data.prize &&
       <View className='info'>
+      { this.state.data.prize &&
+        <>
       {this.state.data.prize.name}   
       {this.state.data.prize.value}   
       {this.state.data.prize.value2}
-      </View>
+        </>
       }
 
+      { this.state.data.tip &&
+        <>
+      {this.state.data.tip} 元  
+        </>
+      }
+
+      </View>
       </View>
 
       { this.state.data.code > 10 &&
