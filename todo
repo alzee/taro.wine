@@ -1,5 +1,6 @@
 - page:
   - borrow
+  - myBorrow
   - myClaim
   - storeClaim
 - 分享卡片
