@@ -42,6 +42,7 @@ export default defineAppConfig({
     'pages/search/index',
     'pages/reg/index',
     'pages/orgSignUp/index',
+    'pages/orgSignUp/qr',
     'pages/stock/index',
     'pages/orgReferral/index',
     'pages/share/index',

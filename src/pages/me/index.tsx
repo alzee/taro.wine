@@ -180,6 +180,13 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.navTo('withdraw')}
       />
 
+      <AtListItem
+      title='我的奖品'
+      arrow='right'
+      thumb={cash}
+      onClick={() => this.navTo('myClaim')}
+      />
+
       { (this.role == 2 || this.role == 3) &&
       <AtListItem
       title='更新门店坐标'
@@ -215,6 +222,7 @@ export default class Me extends Component<PropsWithChildren> {
       }
 
       { this.role != 4 &&
+        <>
       <AtListItem
       title='修改密码'
       // note='描述信息'
@@ -223,6 +231,13 @@ export default class Me extends Component<PropsWithChildren> {
       thumb={lock}
       onClick={() => this.navTo('chpwd')}
       />
+      <AtListItem
+      title='商家注册'
+      arrow='right'
+      thumb={lock}
+      onClick={() => Taro.navigateTo({url: '/pages/orgSignUp/qr'})}
+      />
+        </>
       }
 
       { this.role == 4 &&
