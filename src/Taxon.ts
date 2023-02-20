@@ -1,4 +1,7 @@
 export const Taxon = {
+  borrowStatus: [
+    '待领','已审核','已领用','已兑付'
+  ],
   claimStatus: [
     '待领奖','已领奖','已过期'
   ],
