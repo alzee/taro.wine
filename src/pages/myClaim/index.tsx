@@ -20,7 +20,7 @@ export default class Myclaim extends Component<PropsWithChildren> {
         const self = this
         Taro.request({
           url: Env.apiUrl + 'claims?customer=' + data.uid,
-          success: function (res) { self.setState({data: res.data}) }
+          success: function (res) {}
         }).then((res) =>{
           let records = res.data
           let list = []
