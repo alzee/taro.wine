@@ -1,6 +1,7 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text } from '@tarojs/components'
-import './index.scss'
+import { View } from '@tarojs/components'
+import { Env } from '../../env/env'
+import { QRCode } from 'taro-code'
 
 export default class Waitersignup extends Component<PropsWithChildren> {
 

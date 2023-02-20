@@ -237,6 +237,12 @@ export default class Me extends Component<PropsWithChildren> {
       thumb={lock}
       onClick={() => Taro.navigateTo({url: '/pages/orgSignUp/qr'})}
       />
+      <AtListItem
+      title='服务员登记'
+      arrow='right'
+      thumb={lock}
+      onClick={() => Taro.navigateTo({url: '/pages/waiterSignUp/qr'})}
+      />
         </>
       }
 

@@ -1,8 +1,6 @@
 import { Component, PropsWithChildren } from 'react'
-import './qr.scss'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
-import { Taxon } from '../../Taxon'
 import { QRCode } from 'taro-code'
 import { View } from '@tarojs/components'
 
