@@ -55,6 +55,7 @@ export default defineAppConfig({
     'pages/orgClaim/index',
     'pages/borrow/index',
     'pages/borrow/new',
+    'pages/waiterSignUp/index',
   ],
   window: {
     backgroundTextStyle: 'light',

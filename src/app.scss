@@ -140,3 +140,16 @@ page{
     color: var(--color-1);
   }
 }
+.qr{
+  padding: 2rem;
+  text-align: center;
+  padding-top: 9rem;
+  .text {
+    font-size: 36px;
+    margin-bottom: 1rem;
+  }
+  .note {
+    margin-top: 1rem;
+    color: var(--color-note);
+  }
+}
