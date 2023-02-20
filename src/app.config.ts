@@ -50,6 +50,10 @@ export default defineAppConfig({
     'pages/scan/index',
     'pages/scan/box',
     'pages/scan/bottle',
+    'pages/myClaim/index',
+    'pages/orgClaim/index',
+    'pages/borrow/index',
+    'pages/borrow/new',
   ],
   window: {
     backgroundTextStyle: 'light',
