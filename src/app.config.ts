@@ -20,7 +20,6 @@ export default defineAppConfig({
     'pages/retailReturnNew/index',
     'pages/dineNew/index',
     'pages/withdrawNew/index',
-    'pages/voucherNew/index',
     'pages/orgDetail/index',
     'pages/orderDetail/index',
     'pages/returnDetail/index',
