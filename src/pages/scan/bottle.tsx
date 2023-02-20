@@ -65,9 +65,8 @@ export default class Scan extends Component<PropsWithChildren> {
       <View className='info'>
       { this.state.data.prize &&
         <>
-      {this.state.data.prize.name}   
-      {this.state.data.prize.value}   
-      {this.state.data.prize.value2}
+      {this.state.data.prize}   
+      {this.state.data.value}   
         </>
       }
 
