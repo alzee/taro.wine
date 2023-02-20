@@ -128,3 +128,15 @@ page{
   padding: 6px;
   border-radius: 5px;
 }
+.scan{
+  text-align: center;
+  padding: 2rem;
+  .msg{
+  }
+  .info{
+    margin-top: 1rem;
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--color-1);
+  }
+}

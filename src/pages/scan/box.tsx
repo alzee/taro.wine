@@ -17,8 +17,8 @@ export default class Scan extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         let data = {
-          // oid: res.data.org.id,
-          oid: 27,
+          oid: res.data.org.id,
+          // oid: 28,
           s: params.s,
           e: params.e
         }
@@ -43,17 +43,17 @@ export default class Scan extends Component<PropsWithChildren> {
 
   render () {
     return (
-      <View className='scan-box'>
-      <View className='msg'>
+      <View className='scan-box scan'>
+      <View className='scan'>
 
       { this.state.data &&
-      <View>
+      <View className='msg'>
       {this.state.data.msg}
       </View>
       }
 
       { this.state.data.ord &&
-      <View>
+      <View className='info'>
       {this.state.data.ord.product.name} x {this.state.data.ord.qty}
       </View>
       }

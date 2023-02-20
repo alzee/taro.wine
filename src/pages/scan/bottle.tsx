@@ -6,6 +6,9 @@ import Taro from '@tarojs/taro'
 
 export default class Scan extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
+  state = {
+    data: {}
+  }
 
   componentDidMount () {
     let params = this.instance.router.params
@@ -26,6 +29,9 @@ export default class Scan extends Component<PropsWithChildren> {
           success: function (res) { }
         }).then((res) =>{
           console.log(res.data);
+          this.setState({
+            data: res.data
+          })
         })
       }
     })
@@ -36,10 +42,45 @@ export default class Scan extends Component<PropsWithChildren> {
     Taro.exitMiniProgram()
   }
 
+  myClaim(){
+    Taro.redirectTo({url: '/pages/myClaim/index'})
+  }
+
+  myWallet(){
+    Taro.redirectTo({url: '/pages/withdraw/index'})
+  }
+
   render () {
     return (
       <View className='scan-bottle'>
+
+      <View className='scan'>
+
+      { this.state.data &&
+      <View className='msg'>
+      {this.state.data.msg}
+      </View>
+      }
+
+      { this.state.data.prize &&
+      <View className='info'>
+      {this.state.data.prize.name}   
+      {this.state.data.prize.value}   
+      {this.state.data.prize.value2}
+      </View>
+      }
+
+      </View>
+
+      { this.state.data.code > 10 &&
       <Button className='btn' size='small' onClick={this.done}>确定</Button>
+      }
+      { this.state.data.code == 0 &&
+      <Button className='btn' size='small' onClick={this.myClaim}>我的奖品</Button>
+      }
+      { this.state.data.code == 1 &&
+      <Button className='btn' size='small' onClick={this.myWallet}>我的钱包</Button>
+      }
       </View>
     )
   }
