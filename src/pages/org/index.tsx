@@ -85,19 +85,6 @@ export default class Org extends Component<PropsWithChildren> {
       }
 
       this.setState({[key]: list})
-      Taro.setStorage({
-        key,
-        data: list
-      });
-    })
-  }
-
-  makeList(page: int) {
-    Taro.getStorage({
-      key: '',
-      success: res => {
-        self.setState({data: res.data})
-      }
     })
   }
 
