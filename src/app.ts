@@ -5,17 +5,6 @@ import Taro from '@tarojs/taro'
 import { Env } from './env/env'
 
 class App extends Component<PropsWithChildren> {
-  // onLaunch(options) {
-  //   let uid = options.query.scene
-  //   if (uid === undefined) {
-  //     uid = 0
-  //   }
-  //   console.log('onLaunch uid: ' + uid)
-  //   Taro.setStorage({
-  //     key: 'referrerId',
-  //     data: uid
-  //   });
-  // }
 
   componentDidMount () {
     // Taro.clearStorage()
@@ -38,18 +27,6 @@ class App extends Component<PropsWithChildren> {
     //   key: Env.storageKey,
     //   data: {uid: 0, role: 1, token: 0}
     // });
-    Taro.getStorage({
-      key: Env.storageKey,
-      success: res => {
-        // console.log(res.data);
-        if (res.data.role == 0) {
-          // Taro.showTabBarRedDot({index: 2})
-        }
-      },
-      fail: res => {
-        console.log('fuck')
-      },
-    });
 
     Taro.getLocation({
       // type: 'wgs84',
@@ -61,29 +38,9 @@ class App extends Component<PropsWithChildren> {
         });
       }
     })
-
-    // Taro.checkSession({
-    //   success() {
-    //   },
-    //   fail() {
-    //     return Taro.login()
-    //     .then(res => {})
-    //     .then(res => {
-    //       if (1) {
-    //         Taro.setStorage({key: '111', data: {}})
-    //       } else {
-    //       }
-    //     })
-    //   }
-    // })
   }
 
-  componentDidShow () {}
-
-  componentDidHide () {}
-
   render () {
-    // this.props.children 是将要会渲染的页面
     return this.props.children
   }
 }
