@@ -8,6 +8,16 @@ export default class Scan extends Component<PropsWithChildren> {
   scan = {}
 
   onLoad(query) {
+    Taro.getStorage({
+      key: Env.storageKey,
+      success: res => {
+        this.role = res.data.role
+        if (this.role == -1) {
+          Taro.redirectTo({ url: '/pages/chooseLogin/index' })
+          return
+        }
+      }
+    })
     let q = decodeURIComponent(query.q)
     q = q.replace(Env.wxqrUrl + '?', '')
     // console.log(q);
