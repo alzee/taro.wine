@@ -41,6 +41,10 @@ export default class Product extends Component<PropsWithChildren> {
           }
           this.setState({list: list})
         })
+      },
+      fail: res => {
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
   }

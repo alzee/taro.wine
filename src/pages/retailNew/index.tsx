@@ -111,6 +111,10 @@ export default class Retailnew extends Component<PropsWithChildren> {
             products: list
           })
         })
+      },
+      fail: res => {
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
   }

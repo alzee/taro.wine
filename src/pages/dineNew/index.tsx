@@ -40,6 +40,10 @@ export default class Dinenew extends Component<PropsWithChildren> {
             products: list
           })
         })
+      },
+      fail: res => {
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
   }

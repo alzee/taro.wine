@@ -47,6 +47,9 @@ export default class Orgnew extends Component<PropsWithChildren> {
             selector: ['门店(异业)'],
           })
         }
+      },
+      fail: res => {
+        console.log('pls login');
       }
     })
   }

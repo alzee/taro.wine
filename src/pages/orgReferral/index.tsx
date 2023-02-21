@@ -62,6 +62,10 @@ export default class Orgreferral extends Component<PropsWithChildren> {
           }
           this.setState({list2: list})
         })
+      },
+      fail: res => {
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
   }

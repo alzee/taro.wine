@@ -32,7 +32,8 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
         }
       },
       fail: res => {
-        console.log('fuck')
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       },
     });
 

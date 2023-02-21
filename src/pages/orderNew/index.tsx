@@ -77,6 +77,10 @@ export default class Ordernew extends Component<PropsWithChildren> {
             downstreams: list
           })
         })
+      },
+      fail: res => {
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
   }

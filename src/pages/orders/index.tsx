@@ -179,9 +179,7 @@ export default class Orders extends Component<PropsWithChildren> {
       success: res => {
         self.setState({data: res.data})
         this.role = res.data.role
-        if (this.role == -1) {
-          Taro.redirectTo({ url: '/pages/chooseLogin/index' })
-        } else if (this.role != 4){
+        if (this.role != 4){
           this.orgid = res.data.org.id
         } else {
           this.uid = res.data.uid
@@ -241,14 +239,12 @@ export default class Orders extends Component<PropsWithChildren> {
             this.getData('retailReturns')
             break
         }
+      },
+      fail: res => {
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
-  }
-
-  componentDidShow () {
-    if (this.role == -1) {
-      Taro.redirectTo({ url: '/pages/chooseLogin/index' })
-    }
   }
 
   scan(type: int){

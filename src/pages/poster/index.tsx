@@ -13,6 +13,10 @@ export default class Poster extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.setState({uid: res.data.uid})
+      },
+      fail: res => {
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
   }

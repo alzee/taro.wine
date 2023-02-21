@@ -16,6 +16,10 @@ export default class Chpwd extends Component<PropsWithChildren> {
       success: res => {
         this.setState({data: res.data})
         this.uid = res.data.uid
+      },
+      fail: res => {
+        console.log('pls login');
+        // Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
   }

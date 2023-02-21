@@ -32,6 +32,10 @@ export default class Customerinfo extends Component<PropsWithChildren> {
             avatarUrl: Env.imgUrl + 'avatar/' + res.data.avatar
           })
         })
+      },
+      fail: res => {
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
   }

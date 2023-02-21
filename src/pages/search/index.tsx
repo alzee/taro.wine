@@ -22,6 +22,9 @@ export default class Search extends Component<PropsWithChildren> {
       success: res => {
         this.latitude = res.data.latitude
         this.longitude = res.data.longitude
+      },
+      fail: res => {
+        console.log('pls login');
       }
     })
     if (this.pid === undefined) {

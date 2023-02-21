@@ -90,6 +90,10 @@ export default class Referral extends Component<PropsWithChildren> {
           }
           this.setState({rewardList: list})
         })
+      },
+      fail: res => {
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
   }

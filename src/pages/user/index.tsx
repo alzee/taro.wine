@@ -26,6 +26,10 @@ export default class User extends Component<PropsWithChildren> {
             user: res.data
           })
         })
+      },
+      fail: res => {
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
   }

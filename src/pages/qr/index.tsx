@@ -52,6 +52,10 @@ export default class Qr extends Component<PropsWithChildren> {
         self.setState({data: res.data})
         this.uid = res.data.uid
         this.name = res.data.name
+      },
+      fail: res => {
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
 

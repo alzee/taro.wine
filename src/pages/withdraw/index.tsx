@@ -113,6 +113,8 @@ export default class Withdraw extends Component<PropsWithChildren> {
         })
       },
       fail: res => {
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       },
     });
   }

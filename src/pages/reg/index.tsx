@@ -18,6 +18,10 @@ export default class Reg extends Component<PropsWithChildren> {
         this.setState({
           uid: res.data.uid
         })
+      },
+      fail: res => {
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
   }

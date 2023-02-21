@@ -27,10 +27,6 @@ export default class Me extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.role = res.data.role
-        if (this.role == -1) {
-          Taro.redirectTo({ url: '/pages/chooseLogin/index' })
-          return
-        }
         let orgName
         let name
         switch (res.data.role) {
@@ -58,6 +54,10 @@ export default class Me extends Component<PropsWithChildren> {
           orgName,
           name
         })
+      },
+      fail: res => {
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
   }
@@ -104,15 +104,15 @@ export default class Me extends Component<PropsWithChildren> {
       content: '确定要退出当前账号？',
       success: function (res) {
         if (res.confirm) {
-          // clear
-          Taro.clearStorage()
-          // Taro.setStorage({
-          //   key: Env.storageKey,
-          //   data: {uid: 0, role: -1, token: 0}
-          // });
-          // redirect
-          // Taro.switchTab({ url: '/pages/index/index' })
-          // Taro.reLaunch({ url: '/pages/index/index' })
+          Taro.removeStorage({
+            key: Env.storageKey,
+            success: res => {
+              console.log('storeage removed: ' + Env.storageKey);
+            },
+            fail: res => {
+              console.log('storeage removed failed');
+            }
+          })
           Taro.redirectTo({ url: '/pages/chooseLogin/index'})
         } else if (res.cancel) {
         }

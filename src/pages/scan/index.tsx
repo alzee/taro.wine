@@ -12,10 +12,10 @@ export default class Scan extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.role = res.data.role
-        if (this.role == -1) {
-          Taro.redirectTo({ url: '/pages/chooseLogin/index' })
-          return
-        }
+      },
+      fail: res => {
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
     let q = decodeURIComponent(query.q)

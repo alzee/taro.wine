@@ -33,6 +33,10 @@ export default class Scan extends Component<PropsWithChildren> {
             data: res.data
           })
         })
+      },
+      fail: res => {
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
   }

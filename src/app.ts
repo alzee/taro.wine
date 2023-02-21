@@ -12,14 +12,14 @@ class App extends Component<PropsWithChildren> {
       success: res => {
         // if not found
         if (res.keys.indexOf(Env.storageKey) == -1) {
-          Taro.setStorage({
-            key: Env.storageKey,
-            data: {uid: 0, role: -1, token: 0}
-          });
+          // Taro.setStorage({
+          //   key: Env.storageKey,
+          //   data: {uid: 0, role: -1, token: 0}
+          // });
         }
       },
       fail: res => {
-        console.log('fuck');
+        console.log('pls login');
       }
     })
     // only for test

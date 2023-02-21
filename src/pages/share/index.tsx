@@ -49,6 +49,10 @@ export default class Share extends Component<PropsWithChildren> {
           }
           this.setState({shareList: list})
         })
+      },
+      fail: res => {
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
   }

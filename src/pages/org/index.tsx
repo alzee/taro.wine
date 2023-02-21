@@ -96,6 +96,9 @@ export default class Org extends Component<PropsWithChildren> {
       success: res => {
         this.latitude = res.data.latitude
         this.longitude = res.data.longitude
+      },
+      fail: res => {
+        console.log('get storage failed: coord');
       }
     })
 
@@ -121,16 +124,19 @@ export default class Org extends Component<PropsWithChildren> {
       this.setState(
         {industries}, 
         () => {
+          this.getOrgs(2)
+          this.getOrgs(3)
           Taro.getStorage({
             key: Env.storageKey,
             success: res => {
-              self.setState({data: res.data})
               this.role = res.data.role
-              this.getOrgs(2)
-              this.getOrgs(3)
               if (this.role == 0 || this.role == 10) {
                 this.getOrgs(1)
               }
+            },
+            fail: res => {
+              console.log('pls login');
+              // Taro.redirectTo({ url: '/pages/chooseLogin/index' })
             }
           })
         }

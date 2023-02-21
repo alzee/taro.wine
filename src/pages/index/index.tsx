@@ -35,6 +35,10 @@ export default class Index extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.role = res.data.role
+      },
+      fail: res => {
+        console.log('pls login');
+        // Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       }
     })
 
@@ -162,7 +166,7 @@ export default class Index extends Component<PropsWithChildren> {
         page = 'about'
         break
     }
-    if (this.role == -1 && requireLogin) {
+    if (this.role === undefined && requireLogin) {
       Taro.navigateTo({url:  '/pages/chooseLogin/index' });
     } else if (this.role != 4 && requireCustomer) {
     } else {

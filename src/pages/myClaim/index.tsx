@@ -39,7 +39,8 @@ export default class Myclaim extends Component<PropsWithChildren> {
         })
       },
       fail: res => {
-        console.log('fuck')
+        console.log('pls login');
+        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       },
     });
   }
