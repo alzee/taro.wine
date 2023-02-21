@@ -16,12 +16,10 @@ export default class Login extends Component<PropsWithChildren> {
       data: e.detail.value
     }).then((res) => {
       if (res.data.code == 0) {
-        // Taro.clearStorage()
         Taro.setStorage({
           key: Env.storageKey,
           data: res.data.data
         })
-        // Taro.switchTab({ url: '/pages/me/index' })
         Taro.reLaunch({ url: '/pages/me/index' })
       } else {
         // toast: wrong password
