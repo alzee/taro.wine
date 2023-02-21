@@ -105,11 +105,11 @@ export default class Me extends Component<PropsWithChildren> {
       success: function (res) {
         if (res.confirm) {
           // clear
-          // Taro.clearStorage()
-          Taro.setStorage({
-            key: Env.storageKey,
-            data: {uid: 0, role: -1, token: 0}
-          });
+          Taro.clearStorage()
+          // Taro.setStorage({
+          //   key: Env.storageKey,
+          //   data: {uid: 0, role: -1, token: 0}
+          // });
           // redirect
           // Taro.switchTab({ url: '/pages/index/index' })
           // Taro.reLaunch({ url: '/pages/index/index' })
