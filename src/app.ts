@@ -5,7 +5,7 @@ import Taro from '@tarojs/taro'
 import { Env } from './env/env'
 
 class App extends Component<PropsWithChildren> {
-  updateMark = '0'
+  updateMark = '1'
 
   componentDidMount () {
     // Taro.clearStorage()

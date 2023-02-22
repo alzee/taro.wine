@@ -238,6 +238,12 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.navTo('chpwd')}
       />
       <AtListItem
+      title='商家登记'
+      arrow='right'
+      thumb={lock}
+      // onClick={() => Taro.navigateTo({url: '/pages/userToOrg/index'})}
+      />
+      <AtListItem
       title='商家注册'
       arrow='right'
       thumb={lock}
