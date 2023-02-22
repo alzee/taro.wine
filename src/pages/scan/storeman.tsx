@@ -193,18 +193,18 @@ export default class Scan extends Component<PropsWithChildren> {
             success: function (res) { }
           }).then((res) =>{
             console.log(res.data)
-            // Taro.showToast({
-            //   title: '已完成',
-            //   icon: 'success',
-            //   duration: 2000,
-            //   success: () => {
-            //     setTimeout(
-            //       () => {
-            //         Taro.reLaunch({url: '/pages/me/index'})
-            //       }, 500
-            //     )
-            //   }
-            // })
+            Taro.showToast({
+              title: '已完成',
+              icon: 'success',
+              duration: 2000,
+              success: () => {
+                setTimeout(
+                  () => {
+                    Taro.reLaunch({url: '/pages/index/index'})
+                  }, 500
+                )
+              }
+            })
 
             // remove storeman_* storege
             Taro.removeStorage({
