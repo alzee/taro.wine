@@ -28,8 +28,6 @@ export default class Scan extends Component<PropsWithChildren> {
     this.sn = params.s
     this.getAgencies(1)
     this.getProducts()
-    let data = {
-    }
 
     // get product index
     Taro.getStorage({
@@ -173,15 +171,56 @@ export default class Scan extends Component<PropsWithChildren> {
     }
     console.log(this.state.sns)
 
-    // remove storeman_* storege
-    Taro.removeStorage({
-      key: this.snsKey
-    })
-    Taro.removeStorage({
-      key: this.pIndexKey
-    })
-    Taro.removeStorage({
-      key: this.oIndexKey
+    let oName = this.state.agencies[this.state.agencySelected].name
+    let pName = this.state.products[this.state.productSelected].name
+    let qty = this.state.sns.length
+    let self = this
+    Taro.showModal({
+      title: '确认订单',
+      content: '代理商: ' + oName + '\r\n产品: ' + pName + '\r\n数量: ' + qty,
+      success: function (res) {
+        if (res.confirm) {
+          console.log('confirmed')
+          let data = {
+            oid: self.state.agencies[self.state.agencySelected].id,
+            pid: self.state.products[self.state.productSelected].id,
+            sns: self.state.sns
+          }
+          Taro.request({
+            method: 'POST',
+            data,
+            url: Env.apiUrl + 'scan/storeman',
+            success: function (res) { }
+          }).then((res) =>{
+            console.log(res.data)
+            // Taro.showToast({
+            //   title: '已完成',
+            //   icon: 'success',
+            //   duration: 2000,
+            //   success: () => {
+            //     setTimeout(
+            //       () => {
+            //         Taro.reLaunch({url: '/pages/me/index'})
+            //       }, 500
+            //     )
+            //   }
+            // })
+
+            // remove storeman_* storege
+            Taro.removeStorage({
+              key: self.snsKey
+            })
+            Taro.removeStorage({
+              key: self.pIndexKey
+            })
+            Taro.removeStorage({
+              key: self.oIndexKey
+            })
+          })
+        } else if (res.cancel) {
+          console.log('canneled')
+        }
+      }
     })
   }
 
@@ -222,7 +261,7 @@ export default class Scan extends Component<PropsWithChildren> {
       </View>
       <View className='fixed'>
       <Button className='btn btn-outline-primary btn1'>继续扫描</Button>
-      <Button className='btn' formType='submit'>入库</Button>
+      <Button className='btn' formType='submit'>生成订单</Button>
       </View>
       </Form>
       </View>
