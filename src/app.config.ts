@@ -48,6 +48,7 @@ export default defineAppConfig({
     'pages/transComplete/index',
     'pages/myReg/index',
     'pages/scan/index',
+    'pages/scan/storeman',
     'pages/scan/box',
     'pages/scan/bottle',
     'pages/myClaim/index',
