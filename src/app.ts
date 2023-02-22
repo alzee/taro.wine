@@ -11,22 +11,23 @@ class App extends Component<PropsWithChildren> {
     // Taro.clearStorage()
     Taro.getStorageInfo({
       success: res => {
-        // if not found
+        console.log(res)
         // force log out
-        if (res.keys.indexOf(this.updateMark) == -1) {
+        let bitOr = (this.updateMark ^ 1).toString()
+        Taro.removeStorage({
+          key: bitOr,
+          success: res => {
+            console.log('storeage removed: ' + bitOr);
+          },
+          fail: res => {
+            console.log('storeage remove failed: ' + bitOr);
+          }
+        })
+        if (! res.keys.includes(this.updateMark)) {
           Taro.setStorage({
-            key: this.updateMark,
+            key: this.updateMark.toString(),
             data: 'fuck'
           });
-          Taro.removeStorage({
-            key: this.updateMark ^ 1,
-            success: res => {
-              console.log('storeage removed: ' + this.updateMark ^ 1);
-            },
-            fail: res => {
-              console.log('storeage remove failed: ' + this.updateMark ^ 1);
-            }
-          })
           Taro.removeStorage({
             key: Env.storageKey,
             success: res => {
