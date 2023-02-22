@@ -260,6 +260,7 @@ export default class Scan extends Component<PropsWithChildren> {
 
       </View>
       <View className='fixed'>
+      <Button className='btn btn-outline-primary btn1'>清空数据</Button>
       <Button className='btn btn-outline-primary btn1'>继续扫描</Button>
       <Button className='btn' formType='submit'>生成订单</Button>
       </View>
