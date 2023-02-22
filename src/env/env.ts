@@ -1,7 +1,23 @@
-// const baseUrl = 'https://127.0.0.1:8000/';
-// const baseUrl = 'http://localhost:8000/';
-const baseUrl = 'https://jiu.itove.com/';
-// const baseUrl = 'https://hbljk.cn/';
+import Taro from '@tarojs/taro'
+
+let baseUrl
+let ver = Taro.getAccountInfoSync().miniProgram.envVersion
+console.log(ver)
+
+switch (ver) {
+  case 'develop':
+    // baseUrl = 'https://127.0.0.1:8000/'
+    // baseUrl = 'http://localhost:8000/'
+    baseUrl = 'https://jiu.itove.com/'
+    break
+  case 'trial':
+    baseUrl = 'https://jiu.itove.com/'
+    break
+  case 'release':
+    baseUrl = 'https://hbljk.cn/';
+    break
+
+}
 
 export const Env = {
   baseUrl: baseUrl,
