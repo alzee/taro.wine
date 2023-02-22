@@ -56,11 +56,12 @@ export default class Scan extends Component<PropsWithChildren> {
     })
 
     // get sns
+    let sns = []
     Taro.getStorage({
       key: this.snsKey
     }).then(res => {
       // dedup
-      let sns = Array.from(new Set([...res.data, this.sn]))
+      sns = Array.from(new Set([...res.data, this.sn]))
       Taro.setStorage({
         key: this.snsKey,
         data: sns
@@ -70,53 +71,14 @@ export default class Scan extends Component<PropsWithChildren> {
       })
     }).catch((err) => {
       console.log(err)
+      sns = [this.sn]
       Taro.setStorage({
         key: this.snsKey,
-        data: [this.sn]
+        data: sns
       })
-    })
-    //Taro.setStorage({
-    //  key: this.snsKey,
-    //  data: 
-    //})
-
-    // Taro.getStorageInfo({})
-    // .then(res => {
-    //   console.log(res)
-    //     if (res.keys.includes(this.storageKey)) {
-    //       console.log('key found: ' + this.storageKey)
-    //       Taro.getStorage({
-    //       })
-    //     } else {
-    //       console.log('key not found: ' + this.storageKey)
-    //     }
-    // })
-
-    Taro.getStorage({
-      key: Env.storageKey,
-      success: res => {
-        // let data = {
-        //   oid: res.data.org.id,
-        //   // oid: 28,
-        //   s: params.s,
-        //   e: params.e
-        // }
-        // Taro.request({
-        //   method: 'POST',
-        //   data,
-        //   url: Env.apiUrl + 'scan/storeman',
-        //   success: function (res) { }
-        // }).then((res) =>{
-        //   console.log(res.data);
-        //   this.setState({
-        //     data: res.data
-        //   })
-        // })
-      },
-      fail: res => {
-        console.log('pls login');
-        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
-      }
+      this.setState({
+        sns
+      })
     })
   }
 
@@ -185,12 +147,41 @@ export default class Scan extends Component<PropsWithChildren> {
   }
 
   formSubmit = e => {
-    Taro.getStorage({
+    if (this.state.productSelected === undefined) {
+      Taro.showToast({
+        title: '请选择产品',
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
+    if (this.state.agencySelected === undefined) {
+      Taro.showToast({
+        title: '请选择代理商',
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
+    if (this.state.sns.length === 0) {
+      Taro.showToast({
+        title: '请扫描箱码',
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
+    console.log(this.state.sns)
+
+    // remove storeman_* storege
+    Taro.removeStorage({
       key: this.snsKey
-    }).then(res => {
-      console.log(res.data);
-    }).catch((err) => {
-      console.log(err)
+    })
+    Taro.removeStorage({
+      key: this.pIndexKey
+    })
+    Taro.removeStorage({
+      key: this.oIndexKey
     })
   }
 
@@ -230,6 +221,7 @@ export default class Scan extends Component<PropsWithChildren> {
 
       </View>
       <View className='fixed'>
+      <Button className='btn btn-outline-primary btn1'>继续扫描</Button>
       <Button className='btn' formType='submit'>入库</Button>
       </View>
       </Form>
