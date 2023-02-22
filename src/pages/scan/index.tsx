@@ -21,7 +21,7 @@ export default class Scan extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.roles = res.data.roles
-        this.roles = [...this.roles, 'ROLE_STOREMAN']
+        // this.roles = [...this.roles, 'ROLE_STOREMAN']
         if (this.roles.includes('ROLE_STOREMAN')) {
           console.log('storeman')
           Taro.redirectTo({url: '/pages/scan/storeman?' + q})
