@@ -39,6 +39,7 @@ export default class Scan extends Component<PropsWithChildren> {
             break
           case "3":
             // user qr
+            console.log('userqr scand. action: ' + this.scan.action);
             if (this.scan.action === undefined) {
               Taro.redirectTo({url: '/pages/dineNew/index'})
             }

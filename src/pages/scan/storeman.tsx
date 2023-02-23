@@ -277,13 +277,12 @@ export default class Scan extends Component<PropsWithChildren> {
   }
 
   goOn(){
-    let wxqrUrl = Env.wxqrUrl
     Taro.scanCode({
       onlyFromCamera: true,
     }).then(res => {
       console.log(res)
       let text = res.result
-      if (text.indexOf(wxqrUrl) === 0) {
+      if (text.indexOf(Env.wxqrUrl) === 0) {
         console.log('its wxqr code')
         Taro.redirectTo({url: '/pages/scan/index?q=' + encodeURIComponent(text)})
       }
