@@ -153,9 +153,9 @@ export default class Me extends Component<PropsWithChildren> {
         <Text className='note'>{this.state.orgName}</Text>
         </View>
         { this.role == 4 &&
-        <View className='qr' onClick={() => this.navTo('qr')}>
+        <View className='qricon' onClick={() => this.navTo('qr')}>
         <Image
-        style='width: 48px;height: 48px'
+        style='width: 36px;height: 36px'
         src={qr} />
         </View>
         }
