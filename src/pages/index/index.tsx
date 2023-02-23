@@ -32,14 +32,14 @@ export default class Index extends Component<PropsWithChildren> {
   componentDidMount () {
     const self = this;
     Taro.getStorage({
-      key: Env.storageKey,
-      success: res => {
-        this.role = res.data.role
-      },
-      fail: res => {
-        console.log('pls login');
-        // Taro.redirectTo({ url: '/pages/chooseLogin/index' })
-      }
+      key: Env.storageKey
+    })
+    .then(res => {
+      this.role = res.data.role
+    })
+    .catch(err => {
+      console.log(err);
+      console.log('pls login');
     })
 
     Taro.request({

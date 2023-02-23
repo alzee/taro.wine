@@ -5,7 +5,7 @@ import Taro from '@tarojs/taro'
 import { Env } from './env/env'
 
 class App extends Component<PropsWithChildren> {
-  updateMark = '1'
+  updateMark = '0'
 
   componentDidMount () {
     // Taro.clearStorage()
@@ -13,19 +13,19 @@ class App extends Component<PropsWithChildren> {
       success: res => {
         console.log(res)
         // force log out
-        let bitOr = (this.updateMark ^ 1).toString()
+        let xor = (this.updateMark ^ 1).toString()
         Taro.removeStorage({
-          key: bitOr,
+          key: xor,
           success: res => {
-            console.log('storeage removed: ' + bitOr);
+            console.log('storeage removed: ' + xor);
           },
           fail: res => {
-            console.log('storeage remove failed: ' + bitOr);
+            console.log('storeage remove failed: ' + xor);
           }
         })
         if (! res.keys.includes(this.updateMark)) {
           Taro.setStorage({
-            key: this.updateMark.toString(),
+            key: this.updateMark,
             data: 'fuck'
           });
           Taro.removeStorage({
