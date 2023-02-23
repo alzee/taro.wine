@@ -41,16 +41,16 @@ export default class Scan extends Component<PropsWithChildren> {
             // user qr
             console.log('userqr scand. action: ' + this.scan.action);
             if (this.scan.action === undefined) {
-              Taro.redirectTo({url: '/pages/dineNew/index'})
+              Taro.redirectTo({url: '/pages/dineNew/index?' + q})
             }
             if (this.scan.action === 0) {
-              Taro.redirectTo({url: '/pages/bindOrgAdmin/index'})
+              Taro.redirectTo({url: '/pages/bindOrgAdmin/index?' + q})
             }
             if (this.scan.action === 1) {
-              Taro.redirectTo({url: '/pages/addStaff/index'})
+              Taro.redirectTo({url: '/pages/addStaff/index?' + q})
             }
             if (this.scan.action === 2) {
-              Taro.redirectTo({url: '/pages/waiterSignUp/index'})
+              Taro.redirectTo({url: '/pages/waiterSignUp/index?' + q})
             }
             break
         }
