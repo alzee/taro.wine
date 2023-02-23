@@ -95,8 +95,9 @@ export default class Qr extends Component<PropsWithChildren> {
     // let text = '{"uid":' + this.uid + ', "timestamp": "' + this.timestamp + '", "name": "' + this.name + '"}'
     let text
     if (this.uid !== undefined) {
-      text = `{"uid": ${this.uid}, "timestamp": "${this.state.timestamp}", "name": "${this.name}"}`
-      // console.log(text)
+      // text = `{"uid": ${this.uid}, "timestamp": "${this.state.timestamp}", "name": "${this.name}"}`
+      text = Env.wxqrUrl + '?t=3&uid=' + this.uid + '&timestamp=' + this.state.timestamp
+      console.log(text)
     }
     return (
       <View className='qr'>
