@@ -37,10 +37,10 @@ export default class Scan extends Component<PropsWithChildren> {
           case "2":
             Taro.redirectTo({url: '/pages/orgSignUp/index'})
             break
+          // case "3":
+          //   Taro.redirectTo({url: '/pages/waiterSignUp/index'})
+          //   break
           case "3":
-            Taro.redirectTo({url: '/pages/waiterSignUp/index'})
-            break
-          case "4":
             // user qr
             if (this.scan.action === undefined) {
               Taro.redirectTo({url: '/pages/dineNew/index'})
@@ -52,7 +52,7 @@ export default class Scan extends Component<PropsWithChildren> {
               Taro.redirectTo({url: '/pages/addStaff/index'})
             }
             if (this.scan.action === 2) {
-              Taro.redirectTo({url: '/pages/addStaff/index'})
+              Taro.redirectTo({url: '/pages/waiterSignUp/index'})
             }
             break
         }

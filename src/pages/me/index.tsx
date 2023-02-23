@@ -16,6 +16,7 @@ import lock from '../../icon/lock.png'
 export default class Me extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
   role: int
+  roles: array = []
   oid: int
   state = {
     avatar: Env.imgUrl + 'avatar/default.jpg'
@@ -26,7 +27,9 @@ export default class Me extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
+        console.log(res.data)
         this.role = res.data.role
+        this.roles = res.data.roles
         let orgName
         let name
         switch (res.data.role) {
@@ -123,6 +126,22 @@ export default class Me extends Component<PropsWithChildren> {
   navTo(page: string) {
     Taro.navigateTo({ url: '/pages/' + page + '/index' })
   }
+  
+  scan(action: int){
+    console.log(action)
+    Taro.scanCode({
+      onlyFromCamera: true,
+    }).then(res => {
+      console.log(res)
+      let text = res.result + '&action=' + action
+      if (text.indexOf(wxqrUrl) === 0) {
+        console.log('its wxqr code')
+        Taro.redirectTo({url: '/pages/scan/index?q=' + encodeURIComponent(text)})
+      }
+    }).catch(err => {
+      console.log(err)
+    })
+  }
 
   render () {
     return (
@@ -201,6 +220,12 @@ export default class Me extends Component<PropsWithChildren> {
       { this.role != 4 &&
         <>
       <AtListItem
+      title='添加店员'
+      arrow='right'
+      thumb={gear}
+      onClick={() => this.scan(1)}
+      />
+      <AtListItem
       title='机构信息'
       // note='描述信息'
       // extraText='详细信息'
@@ -238,28 +263,33 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.navTo('chpwd')}
       />
       <AtListItem
-      title='商家登记'
+      title='我的领用'
       arrow='right'
       thumb={lock}
-      // onClick={() => Taro.navigateTo({url: '/pages/userToOrg/index'})}
+      onClick={() => this.navTo('borrow')}
+      />
+        </>
+      }
+
+      { this.roles.includes('ROLE_SALESMAN') &&
+        <>
+      <AtListItem
+      title='商家管理员绑定'
+      arrow='right'
+      thumb={lock}
+      onClick={() => this.scan(0)}
+      />
+      <AtListItem
+      title='服务员登记'
+      arrow='right'
+      thumb={lock}
+      onClick={() => this.scan(2)}
       />
       <AtListItem
       title='商家注册'
       arrow='right'
       thumb={lock}
       onClick={() => Taro.navigateTo({url: '/pages/orgSignUp/qr'})}
-      />
-      <AtListItem
-      title='服务员登记'
-      arrow='right'
-      thumb={lock}
-      onClick={() => Taro.navigateTo({url: '/pages/waiterSignUp/qr'})}
-      />
-      <AtListItem
-      title='我的领用'
-      arrow='right'
-      thumb={lock}
-      onClick={() => this.navTo('borrow')}
       />
         </>
       }
