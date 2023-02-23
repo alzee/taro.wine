@@ -22,25 +22,24 @@ export default class Scan extends Component<PropsWithChildren> {
       success: res => {
         this.roles = res.data.roles
         // this.roles = [...this.roles, 'ROLE_STOREMAN']
-        if (this.roles.includes('ROLE_STOREMAN')) {
-          console.log('storeman')
-          Taro.redirectTo({url: '/pages/scan/storeman?' + q})
-        } else {
-          console.log('not storeman')
-          switch (this.scan.t) {
-            case "0":
+        switch (this.scan.t) {
+          case "0":
+            if (this.roles.includes('ROLE_STOREMAN')) {
+              console.log('storeman')
+              Taro.redirectTo({url: '/pages/scan/storeman?' + q})
+            } else {
               Taro.redirectTo({url: '/pages/scan/box?' + q})
+            }
             break
-            case '1':
-              Taro.redirectTo({url: '/pages/scan/bottle?' + q})
+          case '1':
+            Taro.redirectTo({url: '/pages/scan/bottle?' + q})
             break
-            case "2":
-              Taro.redirectTo({url: '/pages/orgSignUp/index'})
+          case "2":
+            Taro.redirectTo({url: '/pages/orgSignUp/index'})
             break
-            case "3":
-              Taro.redirectTo({url: '/pages/waiterSignUp/index'})
+          case "3":
+            Taro.redirectTo({url: '/pages/waiterSignUp/index'})
             break
-          }
         }
       },
       fail: res => {
