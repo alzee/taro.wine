@@ -1,10 +1,10 @@
 import Taro from '@tarojs/taro'
 
 let baseUrl
-let ver = Taro.getAccountInfoSync().miniProgram.envVersion
-console.log(ver)
+let envVer = Taro.getAccountInfoSync().miniProgram.envVersion
+console.log(envVer)
 
-switch (ver) {
+switch (envVer) {
   case 'develop':
     // baseUrl = 'https://127.0.0.1:8000/'
     // baseUrl = 'http://localhost:8000/'
@@ -24,5 +24,6 @@ export const Env = {
   apiUrl: baseUrl + 'api/',
   imgUrl: baseUrl + 'img/',
   wxqrUrl: baseUrl + 'wxqr',
-  storageKey: 'fuckWechat',
+  storageKey: 'user',
+  ver: '3.0.12'
 }
