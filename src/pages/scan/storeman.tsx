@@ -201,7 +201,7 @@ export default class Scan extends Component<PropsWithChildren> {
               success: () => {
                 setTimeout(
                   () => {
-                    Taro.reLaunch({url: '/pages/index/index'})
+                    Taro.switchTab({url: '/pages/index/index'})
                   }, 500
                 )
               }
@@ -225,16 +225,41 @@ export default class Scan extends Component<PropsWithChildren> {
     })
   }
 
-  remove(e){
+  rm(e){
     console.log(this);
     console.log(e);
+  }
+  clear = () => {
+    Taro.showModal({
+      title: '确认清空',
+      content: '所选产品，代理商及所有扫描箱码',
+    }).then(res => {
+      if (res.confirm) {
+        console.log('clear confirmed')
+        // remove storeman_* storege
+        Taro.removeStorage({
+          key: this.snsKey
+        })
+        Taro.removeStorage({
+          key: this.pIndexKey
+        })
+        Taro.removeStorage({
+          key: this.oIndexKey
+        })
+        Taro.switchTab({url: '/pages/index/index'})
+      } else if (res.cancel) {
+        console.log('clear cancelled')
+      }
+    })
+  }
+  goOn(){
   }
 
   render () {
     let list = []
     for (let i of this.state.sns) {
       list.push(
-        <Button className='sn btn btn-outline-primary' onClick={this.remove}>
+        <Button className='sn btn btn-outline-primary' onClick={this.rm}>
         {i}
         </Button>
       )
@@ -267,8 +292,8 @@ export default class Scan extends Component<PropsWithChildren> {
       </View>
       <View className='fixed'>
       <View className='btn-wrapper'>
-      <Button className='btn btn-outline-primary btn1'>清空数据</Button>
-      <Button className='btn btn-outline-primary btn1'>继续扫描</Button>
+      <Button className='btn btn-outline-primary btn1' onClick={this.clear}>清空数据</Button>
+      <Button className='btn btn-outline-primary btn1' onClick={this.goOn}>继续扫描</Button>
       </View>
       <Button className='btn' formType='submit'>生成订单</Button>
       </View>
