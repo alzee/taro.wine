@@ -58,8 +58,9 @@ export default class Scan extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: this.snsKey
     }).then(res => {
+      res.data.unshift(this.sn)
       // dedup
-      sns = Array.from(new Set([...res.data, this.sn]))
+      sns = Array.from(new Set(res.data))
       Taro.setStorage({
         key: this.snsKey,
         data: sns
