@@ -225,10 +225,33 @@ export default class Scan extends Component<PropsWithChildren> {
     })
   }
 
-  rm(e){
-    console.log(this);
-    console.log(e);
+  rm = (i) => {
+    let sns = this.state.sns
+    Taro.showModal({
+      title: '确认删除',
+      content: '箱码 ' + sns[i],
+    }).then(res => {
+      if (res.confirm) {
+        console.log('rm confirmed')
+        sns.splice(i, 1)
+        this.setState({
+          sns
+        })
+        Taro.setStorage({
+          key: this.snsKey,
+          data: sns
+        }).then(res => (
+          console.log(res)
+        ))
+        if (sns.length === 0) {
+          Taro.switchTab({url: '/pages/index/index'})
+        }
+      } else if (res.cancel) {
+        console.log('rm cancelled')
+      }
+    })
   }
+
   clear = () => {
     Taro.showModal({
       title: '确认清空',
@@ -257,10 +280,10 @@ export default class Scan extends Component<PropsWithChildren> {
 
   render () {
     let list = []
-    for (let i of this.state.sns) {
+    for (let i in this.state.sns) {
       list.push(
-        <Button className='sn btn btn-outline-primary' onClick={this.rm}>
-        {i}
+        <Button className='sn btn btn-outline-primary' onClick={() => this.rm(i)}>
+        {this.state.sns[i]}
         </Button>
       )
     }
