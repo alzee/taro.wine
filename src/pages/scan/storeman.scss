@@ -1,7 +1,18 @@
-.sns{
-  display: grid;
-  grid-template-columns: 30% 30% 30%;
-}
-.btn1{
-  margin-bottom: 10px;
+.scan-storeman{
+  .sns{
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    .sn{
+      font-size: 26px;
+    }
+  }
+  .btn-wrapper{
+    display: flex;
+    width: 79%;
+    margin: auto;
+    margin-bottom: 10px;
+    .btn1{
+      margin: 0 2px;
+    }
+  }
 }

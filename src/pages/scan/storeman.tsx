@@ -224,13 +224,18 @@ export default class Scan extends Component<PropsWithChildren> {
     })
   }
 
+  remove(e){
+    console.log(this);
+    console.log(e);
+  }
+
   render () {
     let list = []
     for (let i of this.state.sns) {
       list.push(
-        <View className='sn'>
+        <Button className='sn btn btn-outline-primary' onClick={this.remove}>
         {i}
-        </View>
+        </Button>
       )
     }
     return (
@@ -260,8 +265,10 @@ export default class Scan extends Component<PropsWithChildren> {
 
       </View>
       <View className='fixed'>
+      <View className='btn-wrapper'>
       <Button className='btn btn-outline-primary btn1'>清空数据</Button>
       <Button className='btn btn-outline-primary btn1'>继续扫描</Button>
+      </View>
       <Button className='btn' formType='submit'>生成订单</Button>
       </View>
       </Form>
