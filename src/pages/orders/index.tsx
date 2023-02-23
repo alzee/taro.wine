@@ -403,33 +403,6 @@ export default class Orders extends Component<PropsWithChildren> {
       </AtTabs>
       }
 
-      <View className='fixed'>
-        { this.role == 0 && this.state.current == 0 &&
-          <Button className='btn btn-primary' onClick={() => this.create(1)}>新增销售</Button>
-        }
-        { this.role == 0 && this.state.current == 1 &&
-          <Button className='btn btn-primary' onClick={() => this.create(10)}>新增售后退货</Button>
-        }
-        { this.role == 1 && this.state.current == 1 &&
-          <Button className='btn btn-primary' onClick={() => this.create(1)}>新增销售</Button>
-        }
-        { this.role == 1 && this.state.current == 3 &&
-          <Button className='btn btn-primary' onClick={() => this.create(10)}>新增售后退货</Button>
-        }
-        { this.role == 10 && this.state.current == 1 &&
-          <Button className='btn btn-primary' onClick={() => this.create(1)}>新增销售</Button>
-        }
-        { this.role == 10 && this.state.current == 3 &&
-          <Button className='btn btn-primary' onClick={() => this.create(10)}>新增售后退货</Button>
-        }
-        { this.role == 11 && this.state.current == 1 &&
-          <Button className='btn btn-primary' onClick={() => this.create(1)}>新增销售</Button>
-        }
-        { this.role == 11 && this.state.current == 3 &&
-          <Button className='btn btn-primary' onClick={() => this.create(10)}>新增售后退货</Button>
-        }
-      </View>
-
       </View>
     )
   }
