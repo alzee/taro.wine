@@ -416,21 +416,6 @@ export default class Orders extends Component<PropsWithChildren> {
         { this.role == 1 && this.state.current == 3 &&
           <Button className='btn btn-primary' onClick={() => this.create(10)}>新增售后退货</Button>
         }
-        { this.role == 2 && this.state.current == 2 &&
-          <Button className='btn btn-primary' onClick={() => this.scan(0)}>新增零售</Button>
-        }
-        { this.role == 2 && this.state.current == 3 &&
-          <Button className='btn btn-primary' onClick={() => this.scan(10)}>新增零售退货</Button>
-        }
-        { this.role == 3 && this.state.current == 2 &&
-          <Button className='btn btn-primary' onClick={() => this.scan(0)}>新增零售</Button>
-        }
-        { this.role == 3 && this.state.current == 3 &&
-          <Button className='btn btn-primary' onClick={() => this.scan(10)}>新增零售退货</Button>
-        }
-        { this.role == 3 && this.state.current == 4 &&
-          <Button className='btn btn-primary' onClick={() => this.scan(1)}>新增餐饮消费</Button>
-        }
         { this.role == 10 && this.state.current == 1 &&
           <Button className='btn btn-primary' onClick={() => this.create(1)}>新增销售</Button>
         }
@@ -442,12 +427,6 @@ export default class Orders extends Component<PropsWithChildren> {
         }
         { this.role == 11 && this.state.current == 3 &&
           <Button className='btn btn-primary' onClick={() => this.create(10)}>新增售后退货</Button>
-        }
-        { this.role == 12 && this.state.current == 2 &&
-          <Button className='btn btn-primary' onClick={() => this.scan(0)}>新增零售</Button>
-        }
-        { this.role == 12 && this.state.current == 3 &&
-          <Button className='btn btn-primary' onClick={() => this.scan(10)}>新增零售退货</Button>
         }
       </View>
 
