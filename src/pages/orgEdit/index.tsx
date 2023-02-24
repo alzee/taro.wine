@@ -177,42 +177,6 @@ export default class Orgedit extends Component<PropsWithChildren> {
           onBlur={(e) => this.handleChange('address', e)}
         />
         </View>
-        <View className='input'>
-        <Text className='label'>收款人</Text>
-        <Input 
-          name='payee' 
-          type='text' 
-          value={this.state.org.payee}
-          onBlur={(e) => this.handleChange('payee', e)}
-        />
-        </View>
-        <View className='input'>
-        <Text className='label'>开户行</Text>
-        <Input 
-          name='bank' 
-          type='text' 
-          value={this.state.org.bank}
-          onBlur={(e) => this.handleChange('bank', e)}
-        />
-        </View>
-        <View className='input'>
-        <Text className='label'>收款账号</Text>
-        <Input 
-          name='bankAccount' 
-          type='text' 
-          value={this.state.org.bankAccount}
-          onBlur={(e) => this.handleChange('bankAccount', e)}
-        />
-        </View>
-        <View className='input'>
-        <Text className='label'>开户地址</Text>
-        <Input 
-          name='bankAddr' 
-          type='text' 
-          value={this.state.org.bankAddr}
-          onBlur={(e) => this.handleChange('bankAddr', e)}
-        />
-        </View>
 
         <View className='label'>
         <View>
