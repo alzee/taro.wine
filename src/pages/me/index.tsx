@@ -127,8 +127,7 @@ export default class Me extends Component<PropsWithChildren> {
     Taro.navigateTo({ url: '/pages/' + page + '/index' })
   }
   
-  scan(action: int){
-    console.log(action)
+  scan(action: string){
     Taro.scanCode({
       onlyFromCamera: true,
     }).then(res => {
@@ -223,7 +222,7 @@ export default class Me extends Component<PropsWithChildren> {
       title='添加店员'
       arrow='right'
       thumb={gear}
-      onClick={() => this.scan(2)}
+      onClick={() => this.scan('addStaff')}
       />
       <AtListItem
       title='机构信息'
@@ -277,19 +276,19 @@ export default class Me extends Component<PropsWithChildren> {
       title='商家管理员绑定'
       arrow='right'
       thumb={lock}
-      onClick={() => this.scan(1)}
+      onClick={() => this.scan('bindOrgAdmin')}
       />
       <AtListItem
       title='服务员登记'
       arrow='right'
       thumb={lock}
-      onClick={() => this.scan(3)}
+      onClick={() => this.scan('waiterSignUp')}
       />
       <AtListItem
       title='商家注册'
       arrow='right'
       thumb={lock}
-      onClick={() => this.scan(0)}
+      onClick={() => this.scan('orgSignUp')}
       />
         </>
       }
