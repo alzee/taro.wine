@@ -6,6 +6,9 @@ import { Taxon } from '../../Taxon'
 import { View, Text, Form, Input, Button, Picker } from '@tarojs/components'
 
 export default class Orgsignup extends Component<PropsWithChildren> {
+
+  instance = Taro.getCurrentInstance();
+  uid: int  //uid of whom was scanned
   state = {
     types: ['门店', '餐厅', '区域代理商(异业)', '门店(异业)'],
     agencyList: [],
@@ -31,6 +34,8 @@ export default class Orgsignup extends Component<PropsWithChildren> {
   }
 
   componentDidMount () {
+    let params = this.instance.router.params
+    this.uid = params.uid
   }
 
   pcaChange = (e) => {
@@ -93,13 +98,10 @@ export default class Orgsignup extends Component<PropsWithChildren> {
     }
     data.upstreamId = this.state.agencies[this.state.agencySelected].id
     let label = {
-      username: '用户名',
       name: '名称',
       contact: '联系人',
       phone: '电话',
       address: '地址',
-      plainPassword: '新密码',
-      confirmPass: '密码确认',
     }
     for (let i in data) {
       if (data[i] === "") {
@@ -111,46 +113,14 @@ export default class Orgsignup extends Component<PropsWithChildren> {
         return
       }
     }
-    if (data['username'].length < 6) {
-      Taro.showToast({
-        title: '用户名6位以上',
-        icon: 'error',
-        duration: 2000
-      })
-      return
-    }
-    if (data['confirmPass'] !== data['plainPassword']) {
-      Taro.showToast({
-        title: '密码不一致',
-        icon: 'error',
-        duration: 2000
-      })
-      return
-    }
-    if (data['plainPassword'].length < 6) {
-      Taro.showToast({
-        title: '密码须6位以上',
-        icon: 'error',
-        duration: 2000
-      })
-      return
-    }
     data.area = this.state.pca[0] + this.state.pca[1] + this.state.pca[2]
+    data.uid = this.uid
     Taro.request({
       method: 'POST',
       data: data,
-      url: Env.apiUrl + 'create-user-org',
+      url: Env.apiUrl + 'org/new',
       success: function (res) { }
     }).then((res) =>{
-      if (res.data.code === 1) {
-        Taro.showToast({
-          title: '用户名已存在',
-          icon: 'error',
-          duration: 2000,
-          success: () => { }
-        })
-        return
-      }
       if (res.data.code === 0) {
         Taro.showToast({
           title: '已完成',
@@ -159,7 +129,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
           success: () => {
             setTimeout(
               () => {
-                Taro.reLaunch({url: '/pages/org/index'})
+                Taro.reLaunch({url: '/pages/me/index'})
               }, 500
             )
           }
@@ -190,27 +160,6 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       </View>
       </Picker>
       }
-      <View className='input'>
-      <Text className='label'>用户名</Text>
-        <Input 
-          name='username' 
-          type='text' 
-        />
-      </View>
-      <View className='input'>
-      <Text className='label'>新密码</Text>
-        <Input 
-          name='plainPassword' 
-          type='password' 
-        />
-      </View>
-      <View className='input'>
-      <Text className='label'>密码确认</Text>
-        <Input 
-          name='confirmPass' 
-          type='password' 
-        />
-      </View>
       <View className='input'>
       <Text className='label'>店面名称</Text>
         <Input 
