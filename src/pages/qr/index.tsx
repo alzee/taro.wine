@@ -93,7 +93,7 @@ export default class Qr extends Component<PropsWithChildren> {
   render () {
     let text
     if (this.uid !== undefined) {
-      text = Env.wxqrUrl + '?t=3&uid=' + this.uid + '&timestamp=' + this.state.timestamp + '&name=' + this.name
+      text = Env.wxqrUrl + '?t=2&uid=' + this.uid + '&timestamp=' + this.state.timestamp + '&name=' + this.name
       console.log(text)
     }
     return (

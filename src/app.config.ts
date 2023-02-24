@@ -41,7 +41,6 @@ export default defineAppConfig({
     'pages/search/index',
     'pages/reg/index',
     'pages/orgSignUp/index',
-    'pages/orgSignUp/qr',
     'pages/stock/index',
     'pages/orgReferral/index',
     'pages/share/index',
@@ -56,7 +55,6 @@ export default defineAppConfig({
     'pages/borrow/index',
     'pages/borrow/new',
     'pages/waiterSignUp/index',
-    'pages/waiterSignUp/qr',
   ],
   window: {
     backgroundTextStyle: 'light',

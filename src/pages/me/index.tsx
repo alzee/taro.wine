@@ -223,7 +223,7 @@ export default class Me extends Component<PropsWithChildren> {
       title='添加店员'
       arrow='right'
       thumb={gear}
-      onClick={() => this.scan(1)}
+      onClick={() => this.scan(2)}
       />
       <AtListItem
       title='机构信息'
@@ -277,19 +277,19 @@ export default class Me extends Component<PropsWithChildren> {
       title='商家管理员绑定'
       arrow='right'
       thumb={lock}
-      onClick={() => this.scan(0)}
+      onClick={() => this.scan(1)}
       />
       <AtListItem
       title='服务员登记'
       arrow='right'
       thumb={lock}
-      onClick={() => this.scan(2)}
+      onClick={() => this.scan(3)}
       />
       <AtListItem
       title='商家注册'
       arrow='right'
       thumb={lock}
-      onClick={() => Taro.navigateTo({url: '/pages/orgSignUp/qr'})}
+      onClick={() => this.scan(0)}
       />
         </>
       }
