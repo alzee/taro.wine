@@ -25,7 +25,7 @@ export default class Borrow extends Component<PropsWithChildren> {
       >
       <Picker mode='selector' range={this.state.claims} onChange={this.pickerChange}>
       <View className='input'>
-      <Text className='label'>请选择兑奖单</Text>
+      <Text className='label'>选择兑奖单</Text>
       {this.state.selectorChecked}
       </View>
       </Picker>
