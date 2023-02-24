@@ -1,0 +1,18 @@
+.bindOrgAdmin{
+  .notice{
+    padding: 1rem;
+    .title{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: .5rem;
+      .text{
+        font-size: 32px;
+        font-weight: bold;
+      }
+    }
+    .info{
+      margin: 2px;
+    }
+  }
+}

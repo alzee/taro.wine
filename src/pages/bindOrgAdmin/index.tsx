@@ -3,7 +3,7 @@ import './index.scss'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 import { Taxon } from '../../Taxon'
-import { View, Text, Form, Input, Button, Picker } from '@tarojs/components'
+import { View, Text, Form, Input, Button, Picker, Icon } from '@tarojs/components'
 
 export default class Bindorgadmin extends Component<PropsWithChildren> {
 
@@ -24,7 +24,6 @@ export default class Bindorgadmin extends Component<PropsWithChildren> {
     Taro.request({
       url: Env.apiUrl + 'choices/org_types',
     }).then((res) =>{
-      console.log(res.data)
       this.setState({
         types: res.data
       })
@@ -39,7 +38,6 @@ export default class Bindorgadmin extends Component<PropsWithChildren> {
     Taro.request({
       url: Env.apiUrl + 'orgs?type=' + typeId,
     }).then((res) =>{
-      console.log(res.data);
       this.setState(
         {
           orgs: res.data,
@@ -61,7 +59,6 @@ export default class Bindorgadmin extends Component<PropsWithChildren> {
   orgChanged = e => {
     let orgIndex = Number(e.detail.value)
     let org = this.state.orgs[orgIndex]
-    console.log(org);
     this.setState({
       orgIndex,
       oid: this.state.orgs[orgIndex].id
@@ -69,7 +66,6 @@ export default class Bindorgadmin extends Component<PropsWithChildren> {
   }
 
   formSubmit = e => {
-    console.log(e);
     let data = {}
     if (this.state.oid === undefined) {
       Taro.showToast({
@@ -113,7 +109,7 @@ export default class Bindorgadmin extends Component<PropsWithChildren> {
       { this.state.types &&
       <Picker mode='selector' range={this.state.types} rangeKey='value' onChange={this.typeChanged}>
       <View className='input'>
-      <Text className='label'>请选择类型</Text>
+      <Text className='label'>商家类型</Text>
       {this.state.typeIndex !== undefined && this.state.types[this.state.typeIndex].value}
       </View>
       </Picker>
@@ -126,13 +122,11 @@ export default class Bindorgadmin extends Component<PropsWithChildren> {
       </View>
       </Picker>
       }
-      <View className='input'>
-      <Text className='label'>管理员</Text>
-        <Input 
-          type='text' 
-          value={this.state.name}
-          disabled
-        />
+      <View className='notice'>
+      <View className='title'> <Icon size='30' type='warn' /> <Text className='text'>重要提示！</Text></View>
+      <View className='info'>正在将用户 {this.state.name} 绑定为机构管理员。</View>
+      <View className='info'>完成后用户 {this.state.name} 须重新登录。</View>
+      <View className='info'>每个机构只能有一个管理员。</View>
       </View>
         <Button className='btn' formType='submit'>提交</Button>
       </Form>
