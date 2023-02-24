@@ -55,6 +55,7 @@ export default defineAppConfig({
     'pages/borrow/index',
     'pages/borrow/new',
     'pages/waiterSignUp/index',
+    'pages/bindOrgAdmin/index',
   ],
   window: {
     backgroundTextStyle: 'light',
