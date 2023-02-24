@@ -10,6 +10,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   uid: int  //uid of whom was scanned
   state = {
+    name: '', //name of whom was scanned
     types: ['门店', '餐厅', '区域代理商(异业)', '门店(异业)'],
     agencyList: [],
     pca: ['湖北省', '十堰市', '茅箭区']
@@ -36,6 +37,9 @@ export default class Orgsignup extends Component<PropsWithChildren> {
   componentDidMount () {
     let params = this.instance.router.params
     this.uid = params.uid
+    this.setState({
+      name: params.name
+    })
   }
 
   pcaChange = (e) => {
@@ -144,6 +148,14 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       <Form className='form'
       onSubmit={this.formSubmit}
       >
+      <View className='input'>
+      <Text className='label'>绑定管理员</Text>
+        <Input 
+          type='text' 
+          value={this.state.name}
+          disabled
+        />
+      </View>
       { this.state.types &&
       <Picker mode='selector' range={this.state.types} onChange={this.typeChanged}>
       <View className='input'>
