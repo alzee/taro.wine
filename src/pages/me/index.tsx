@@ -30,33 +30,22 @@ export default class Me extends Component<PropsWithChildren> {
         console.log(res.data)
         this.role = res.data.role
         this.roles = res.data.roles
-        let orgName
-        let name
-        switch (res.data.role) {
-          case 4:
-            orgName = '顾客'
-            name = res.data.name
-            Taro.request({
-              url: Env.apiUrl + 'users/' + res.data.uid
-            }).then(res => {
-              console.log(res.data);
-              if (res.data.phone === undefined || res.data.name === undefined) {
-                Taro.redirectTo({url: '/pages/customerInfo/index'})
-              } 
-              self.setState({
-                avatar: Env.imgUrl + 'avatar/' + res.data.avatar
-              })
-            })
-            break;
-          default:
-            orgName = res.data.org.name
-            name = res.data.username
-            this.oid = res.data.org.id
-        }
         this.setState({
-          orgName,
-          name
+          orgName: res.data.org.name,
+          name: res.data.name
         })
+        Taro.request({
+          url: Env.apiUrl + 'users/' + res.data.uid
+        }).then(res => {
+          console.log(res.data);
+          if (res.data.phone === undefined || res.data.name === undefined) {
+            Taro.redirectTo({url: '/pages/customerInfo/index'})
+          } 
+          self.setState({
+            avatar: Env.imgUrl + 'avatar/' + res.data.avatar
+          })
+        })
+        this.oid = res.data.org.id
       },
       fail: res => {
         console.log('pls login');
@@ -151,27 +140,14 @@ export default class Me extends Component<PropsWithChildren> {
         <Text className='title'>{this.state.name}</Text>
         <Text className='note'>{this.state.orgName}</Text>
         </View>
-        { this.role == 4 &&
         <View className='qricon' onClick={() => this.navTo('qr')}>
         <Image
         style='width: 36px;height: 36px'
         src={qr} />
         </View>
-        }
         </View>
 
       <AtList>
-
-      { this.role != 4  &&
-      <AtListItem
-      title='我的库存'
-      // note='描述信息'
-      // extraText='详细信息'
-      arrow='right'
-      thumb={wine}
-      onClick={() => this.navTo('stock')}
-      />
-      }
 
       <AtListItem
       title='我的代金券'
@@ -205,6 +181,26 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.navTo('myClaim')}
       />
 
+      <AtListItem
+      title='我的信息'
+      arrow='right'
+      thumb={lock}
+      onClick={() => this.navTo('customerInfo')}
+      />
+
+      <AtListItem
+      title='分销中心'
+      arrow='right'
+      thumb={lock}
+      onClick={() => this.navTo('referral')}
+      />
+      <AtListItem
+      title='业务报备'
+      arrow='right'
+      thumb={lock}
+      onClick={() => this.navTo('myReg')}
+      />
+
       { (this.role == 2 || this.role == 3) &&
       <AtListItem
       title='更新门店坐标'
@@ -218,6 +214,14 @@ export default class Me extends Component<PropsWithChildren> {
 
       { this.role != 4 &&
         <>
+      <AtListItem
+      title='我的库存'
+      // note='描述信息'
+      // extraText='详细信息'
+      arrow='right'
+      thumb={wine}
+      onClick={() => this.navTo('stock')}
+      />
       <AtListItem
       title='添加店员'
       arrow='right'
@@ -234,38 +238,10 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.navTo('orgEdit')}
       />
       <AtListItem
-      title='用户信息'
-      // note='描述信息'
-      // extraText='详细信息'
-      arrow='right'
-      thumb={gear}
-      // onClick={() => Taro.navigateTo({url: '/pages/orgDetail/index?id=' + this.oid})}
-      onClick={() => this.navTo('user')}
-      />
-      <AtListItem
       title='我的兑奖'
       arrow='right'
       thumb={gear}
       onClick={() => this.navTo('orgClaim')}
-      />
-        </>
-      }
-
-      { this.role != 4 &&
-        <>
-      <AtListItem
-      title='修改密码'
-      // note='描述信息'
-      // extraText='详细信息'
-      arrow='right'
-      thumb={lock}
-      onClick={() => this.navTo('chpwd')}
-      />
-      <AtListItem
-      title='我的领用'
-      arrow='right'
-      thumb={lock}
-      onClick={() => this.navTo('borrow')}
       />
         </>
       }
@@ -290,30 +266,13 @@ export default class Me extends Component<PropsWithChildren> {
       thumb={lock}
       onClick={() => this.scan('orgSignUp')}
       />
+      <AtListItem
+      title='我的领用'
+      arrow='right'
+      thumb={lock}
+      onClick={() => this.navTo('borrow')}
+      />
         </>
-      }
-
-      { this.role == 4 &&
-      <>
-      <AtListItem
-      title='分销中心'
-      arrow='right'
-      thumb={lock}
-      onClick={() => this.navTo('referral')}
-      />
-      <AtListItem
-      title='业务报备'
-      arrow='right'
-      thumb={lock}
-      onClick={() => this.navTo('myReg')}
-      />
-      <AtListItem
-      title='我的信息'
-      arrow='right'
-      thumb={lock}
-      onClick={() => this.navTo('customerInfo')}
-      />
-      </>
       }
 
       </AtList>
