@@ -19,7 +19,7 @@ export default class Borrow extends Component<PropsWithChildren> {
         let data = res.data
         const self = this
         Taro.request({
-          url: Env.apiUrl + 'claims?salesman=' + data.uid,
+          url: Env.apiUrl + 'borrows?salesman=' + data.uid,
           success: function (res) {}
         }).then((res) =>{
           let records = res.data
