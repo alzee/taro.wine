@@ -14,7 +14,6 @@ export default class Withdraw extends Component<PropsWithChildren> {
   uid: int
   role: int
   state = {
-    current: 0,
     withdrawable: 0,
     withdrawing: 0
   }
@@ -22,51 +21,19 @@ export default class Withdraw extends Component<PropsWithChildren> {
   getData (type: string) {
     const self = this;
     let api: string = 'withdraws'
-    // let filter: string
-    let title: string
-    let extraText: string
     let titlePrefix: string = ''
-    let query: string
-    switch (type) {
-      case 'customerWithdraws':
-        // filter = 'applicant'
-        title = 'amount'
-        extraText = 'status'
-        query = '?customer=' + this.uid
-        break
-      case 'orgWithdraws':
-        // filter = 'applicant'
-        title = 'amount'
-        extraText = 'status'
-        query = '?applicant=' + this.oid
-        break
-      case 'downstreamWithdraws':
-        // filter = 'approver'
-        title = 'amount'
-        extraText = 'status'
-        query = '?approver=' + this.oid
-        break
-      case 'all':
-        // filter = 'approver'
-        title = 'amount'
-        extraText = 'status'
-        query = ''
-        break
-    }
+    let query: string = '?customer=' + this.uid
     Taro.request({
       url: Env.apiUrl + api + query
     }).then((res) =>{
       let list = []
-      for (let i in res.data){
-        if (type == 'downstreamWithdraws') {
-          titlePrefix = res.data[i].applicant.name + '-'
-        }
+      for (let i of res.data){
         list.push(
           <AtListItem
-          onClick={() => this.navToDetail(res.data[i].id)}
-          title={titlePrefix + '申请提现 '+ res.data[i][title] / 100}
-          note={fmtDate(res.data[i].date)}
-          extraText={Taxon.status[res.data[i][extraText]]}
+          onClick={() => this.navToDetail(i.id)}
+          title={titlePrefix + '申请提现 '+ i.amount / 100}
+          note={fmtDate(i.date)}
+          extraText={Taxon.status[i.status]}
           arrow='right'
           />
         )
@@ -83,26 +50,11 @@ export default class Withdraw extends Component<PropsWithChildren> {
         let query
         this.role = res.data.role
         const self = this;
-        if (this.role == 4) {
-          this.uid = res.data.uid
-          this.getData('customerWithdraws')
-          query = 'users/' + this.uid
-        } else {
-          this.oid = res.data.org.id
-          query = 'orgs/' + this.oid
-          if (this.role == 0 ) {
-            this.getData('all')
-          }
-          if (this.role == 1 ) {
-            this.tabList = [{ title: '我的提现' }, { title: '下级提现' }]
-            this.getData('orgWithdraws')
-            this.getData('downstreamWithdraws')
-          }
-          if (this.role == 3 || this.role == 10 || this.role == 11 || this.role == 12) {
-            this.getData('orgWithdraws')
-          }
-        }
 
+        this.uid = res.data.uid
+        this.getData('customer')
+        query = 'users/' + this.uid
+        
         Taro.request({
           url: Env.apiUrl + query
         }).then((res) =>{
@@ -123,12 +75,6 @@ export default class Withdraw extends Component<PropsWithChildren> {
     Taro.redirectTo({url: '/pages/withdrawDetail/index?id=' + id})
   }
 
-  handleClick (value) {
-    this.setState({
-      current: value
-    })
-  }
-
   create () {
     Taro.redirectTo({url: '/pages/withdrawNew/index'})
   }
@@ -137,8 +83,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
     return (
       <View className='withdraw'>
 
-      { this.state && this.role != 0 &&
-        <View className='at-row card'>
+      <View className='at-row card'>
       <View className='at-col'>
       <View className='label'>可提金额</View>
       <View className='number'>{this.state.withdrawable / 100}</View>
@@ -149,41 +94,13 @@ export default class Withdraw extends Component<PropsWithChildren> {
       <View className='number'>{this.state.withdrawing / 100}</View>
       </View>
       </View>
-      }
 
-      { this.role == 0 &&
-        <AtList className="list">
-      {this.state.all}
-      </AtList>
-      }
-      { this.role == 1 &&
-        <AtTabs scroll className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
-      <AtTabsPane current={this.state.current} index={0} >
       <AtList className="list">
-      {this.state.orgWithdraws}
+      {this.state.customer}
       </AtList>
-      </AtTabsPane>
-      <AtTabsPane current={this.state.current} index={1} >
-      <AtList className="list">
-      {this.state.downstreamWithdraws}
-      </AtList>
-      </AtTabsPane>
-      </AtTabs>
-      }
-      { (this.role == 3 || this.role == 10 || this.role == 11 || this.role == 12) &&
-        <AtList className="list">
-      {this.state.orgWithdraws}
-      </AtList>
-      }
-      { this.role == 4 &&
-        <AtList className="list">
-        {this.state.customerWithdraws}
-        </AtList>
-      }
+
       <View className='fixed'>
-      { this.role != 0 && this.state.current == 0 &&
-        <Button className='btn btn-primary' onClick={this.create}>申请提现</Button>
-      }
+      <Button className='btn btn-primary' onClick={this.create}>申请提现</Button>
       </View>
 
       </View>
