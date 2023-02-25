@@ -3,7 +3,7 @@ export const Taxon = {
     '待领','已审核','已领用','已兑付'
   ],
   claimStatus: [
-    '待领奖','已领奖','已过期'
+    '待领奖','已兑奖','已过期'
   ],
   status: [
     '待处理',
@@ -11,7 +11,7 @@ export const Taxon = {
     '',
     '已审核',
     '已拒绝',
-    '已打款',
+    '成功',
   ],
   orgType: [
     '总公司',
@@ -19,8 +19,6 @@ export const Taxon = {
     '门店',
     '餐厅',
     '顾客',
-  ],
-  voucherType: [
   ],
   REWARD_SHARE_STATUSES: [
     '锁定',
