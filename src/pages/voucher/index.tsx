@@ -22,21 +22,12 @@ export default class Voucher extends Component<PropsWithChildren> {
         let data = res.data
         this.role = res.data.role
         const self = this;
-        if (data.role == 4) {
-          this.query = '?page=1&customer=' + data.uid
-          Taro.request({
-            url: Env.apiUrl + 'users/' + data.uid
-          }).then((res) =>{
-            this.setState({voucher: res.data.voucher})
-          })
-        } else {
-          this.query = '?page=1&org=' + data.org.id
-          Taro.request({
-            url: Env.apiUrl + 'orgs/' + data.org.id
-          }).then((res) =>{
-            this.setState({voucher: res.data.voucher})
-          })
-        }
+        this.query = '?page=1&customer=' + data.uid
+        Taro.request({
+          url: Env.apiUrl + 'users/' + data.uid
+        }).then((res) =>{
+          this.setState({voucher: res.data.voucher})
+        })
         Taro.request({
           url: Env.apiUrl + 'vouchers' + this.query,
           success: function (res) { self.setState({data: res.data}) }
