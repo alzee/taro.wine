@@ -6,6 +6,8 @@ import Taro from '@tarojs/taro'
 
 export default class Scan extends Component<PropsWithChildren> {
   scan = {}
+  roles: array
+  otype: int
 
   onLoad(query) {
     let q = decodeURIComponent(query.q)
@@ -21,7 +23,8 @@ export default class Scan extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.roles = res.data.roles
-        // this.roles = [...this.roles, 'ROLE_STOREMAN']
+        this.otype = res.data.role
+        console.log(this.otype);
         switch (this.scan.t) {
           case "0":
             if (this.roles.includes('ROLE_STOREMAN')) {
@@ -38,7 +41,11 @@ export default class Scan extends Component<PropsWithChildren> {
             // user qr
             console.log('userqr scanned. action: ' + this.scan.action);
             if (this.scan.action === undefined) {
-              Taro.redirectTo({url: '/pages/dineNew/index?' + q})
+              if (this.otype !== 3 && this.otype !== 12) {
+                Taro.redirectTo({url: '/pages/index/index'})
+              } else {
+                Taro.redirectTo({url: '/pages/dineNew/index?' + q})
+              }
             } else {
               console.log('redirectTo: ' + this.scan.action)
               Taro.redirectTo({url: `/pages/${this.scan.action}/index?${q}`})
