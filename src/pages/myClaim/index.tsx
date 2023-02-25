@@ -25,13 +25,13 @@ export default class Myclaim extends Component<PropsWithChildren> {
           let records = res.data
           let list = []
           for (let i of records) {
-            console.log(i);
             list.push(
               <AtListItem
+              onClick={() => this.navToDetail(i.id)}
               title={i.prize.name + ' ' + i.value}
               note={fmtDate(i.createdAt)}
               extraText={Taxon.claimStatus[i.status]}
-              // arrow='right'
+              arrow='right'
               />
             )
           }
@@ -43,6 +43,10 @@ export default class Myclaim extends Component<PropsWithChildren> {
         Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       },
     });
+  }
+
+  navToDetail(id){
+    Taro.redirectTo({url: '/pages/claimQr/index?id=' + id})
   }
 
   render () {
