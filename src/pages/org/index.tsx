@@ -131,7 +131,7 @@ export default class Org extends Component<PropsWithChildren> {
             success: res => {
               this.role = res.data.role
               if (this.role == 0 || this.role == 10) {
-                this.getOrgs(1)
+                // this.getOrgs(1)
               }
             },
             fail: res => {
@@ -183,7 +183,7 @@ export default class Org extends Component<PropsWithChildren> {
     }, () => {
       this.getOrgs(2)
       this.getOrgs(3)
-      this.getOrgs(1)
+      // this.getOrgs(1)
     })
   }
 
@@ -193,7 +193,7 @@ export default class Org extends Component<PropsWithChildren> {
     }, () => {
       this.getOrgs(2)
       this.getOrgs(3)
-      this.getOrgs(1)
+      // this.getOrgs(1)
     })
   }
 
@@ -210,19 +210,6 @@ export default class Org extends Component<PropsWithChildren> {
   }
 
   render () {
-    let tabList = []
-    if (this.role == 0 || this.role == 10) {
-      tabList = [
-        { title: '门店' },
-        { title: '餐厅' },
-        { title: '代理商' },
-      ]
-    } else {
-      tabList = [
-        { title: '门店' },
-        { title: '餐厅' },
-      ]
-    }
     return (
       <View className='org'>
 
@@ -242,25 +229,12 @@ export default class Org extends Component<PropsWithChildren> {
       />
       </View>
 
-      <AtTabs current={this.state.seg} tabList={tabList} onClick={this.switchSeg.bind(this)}>
-        <AtTabsPane current={this.state.seg} index={0}>
           <AtList>
           { this.state.storeList }
           </AtList>
-        </AtTabsPane>
-        <AtTabsPane current={this.state.seg} index={1}>
           <AtList>
           { this.state.restaurantList }
           </AtList>
-        </AtTabsPane>
-        { (this.role == 0 || this.role == 10) &&
-        <AtTabsPane current={this.state.seg} index={2} >
-          <AtList>
-          { this.state.agencyList }
-          </AtList>
-        </AtTabsPane>
-        }
-      </AtTabs>
 
       </View>
     )
