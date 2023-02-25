@@ -6,11 +6,11 @@ import { Taxon } from '../../Taxon'
 import { View, Text, Form, Input, Button, Picker, Icon } from '@tarojs/components'
 
 export default class Waitersignup extends Component<PropsWithChildren> {
+  uid: int  //uid of whom was scanned
 
   instance = Taro.getCurrentInstance();
   state = {
-    uid: undefined,
-    name: ''
+    name: '' //name of whom was scanned
   }
 
   componentDidMount () {
@@ -22,8 +22,6 @@ export default class Waitersignup extends Component<PropsWithChildren> {
   }
 
   formSubmit = e => {
-    let data = {}
-    data.uid = this.uid
     if (this.uid === undefined) {
       Taro.showToast({
         title: '请重新扫码',
@@ -32,6 +30,8 @@ export default class Waitersignup extends Component<PropsWithChildren> {
       })
       return
     }
+    let data = {}
+    data.uid = this.uid
     Taro.request({
       method: 'POST',
       data: data,
