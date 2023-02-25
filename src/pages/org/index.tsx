@@ -262,24 +262,6 @@ export default class Org extends Component<PropsWithChildren> {
         }
       </AtTabs>
 
-      <View className='fixed'>
-        { this.role == 1 && this.state.seg == 0 &&
-        <Button className='btn btn-primary' onClick={() => this.orgNew(0)}>新增门店</Button>
-        }
-        { this.role == 1 && this.state.seg == 1 &&
-        <Button className='btn btn-primary' onClick={() => this.orgNew(1)}>新增餐厅</Button>
-        }
-        { this.role == 0 && this.state.seg == 2 &&
-        <Button className='btn btn-primary' onClick={() => this.orgNew(2)}>新增代理商</Button>
-        }
-        { this.role == 11 && this.state.seg == 0 &&
-        <Button className='btn btn-primary' onClick={() => this.orgNew(3)}>新增门店</Button>
-        }
-        { this.role == 10 && this.state.seg == 2 &&
-        <Button className='btn btn-primary' onClick={() => this.orgNew(4)}>新增代理商</Button>
-        }
-      </View>
-
       </View>
     )
   }
