@@ -58,6 +58,7 @@ export default defineAppConfig({
     'pages/bindOrgAdmin/index',
     'pages/addStaff/index',
     'pages/claimQr/index',
+    'pages/claimSettle/index',
   ],
   window: {
     backgroundTextStyle: 'light',
