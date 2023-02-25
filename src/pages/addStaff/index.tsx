@@ -3,7 +3,7 @@ import './index.scss'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 import { Taxon } from '../../Taxon'
-import { View, Text, Form, Input, Button, Picker, Icon } from '@tarojs/components'
+import { View, Text, Form, Input, Button, Icon } from '@tarojs/components'
 
 export default class Addstaff extends Component<PropsWithChildren> {
   oid: int
