@@ -26,7 +26,7 @@ export default class Scan extends Component<PropsWithChildren> {
         this.otype = res.data.role
         console.log(this.otype);
         switch (this.scan.t) {
-          case "0":
+          case "0": // box
             if (this.roles.includes('ROLE_STOREMAN')) {
               console.log('storeman')
               Taro.redirectTo({url: '/pages/scan/storeman?' + q})
@@ -34,11 +34,10 @@ export default class Scan extends Component<PropsWithChildren> {
               Taro.redirectTo({url: '/pages/scan/box?' + q})
             }
             break
-          case '1':
+          case '1': // bottle
             Taro.redirectTo({url: '/pages/scan/bottle?' + q})
             break
-          case "2":
-            // user qr
+          case "2": // user qr
             console.log('userqr scanned. action: ' + this.scan.action);
             if (this.scan.action === undefined) {
               if (this.otype !== 3 && this.otype !== 12) {
@@ -50,6 +49,9 @@ export default class Scan extends Component<PropsWithChildren> {
               console.log('redirectTo: ' + this.scan.action)
               Taro.redirectTo({url: `/pages/${this.scan.action}/index?${q}`})
             }
+            break
+          case '3': // claim
+            Taro.redirectTo({url: '/pages/claimSettle/index?' + q})
             break
         }
       },

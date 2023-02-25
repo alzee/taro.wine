@@ -57,6 +57,7 @@ export default defineAppConfig({
     'pages/waiterSignUp/index',
     'pages/bindOrgAdmin/index',
     'pages/addStaff/index',
+    'pages/claimQr/index',
   ],
   window: {
     backgroundTextStyle: 'light',
