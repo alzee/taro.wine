@@ -19,7 +19,7 @@ export default class Orgclaim extends Component<PropsWithChildren> {
         let data = res.data
         const self = this
         Taro.request({
-          url: Env.apiUrl + 'claims?store=' + data.org.id,
+          url: Env.apiUrl + 'claims?serveStore=' + data.org.id,
           success: function (res) {}
         }).then((res) =>{
           let records = res.data
@@ -27,10 +27,11 @@ export default class Orgclaim extends Component<PropsWithChildren> {
           for (let i of records) {
             list.push(
               <AtListItem
+              onClick={() => this.navToDetail(i.id)}
               title={i.prize.name + ' ' + i.value}
               note={fmtDate(i.createdAt)}
               extraText={Taxon.claimStatus[i.status]}
-              // arrow='right'
+              arrow='right'
               />
             )
           }
@@ -42,6 +43,10 @@ export default class Orgclaim extends Component<PropsWithChildren> {
         Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       },
     });
+  }
+
+  navToDetail(id){
+    Taro.redirectTo({url: '/pages/claimQr/index?id=' + id})
   }
 
   render () {
