@@ -25,7 +25,6 @@ export default class Orgclaim extends Component<PropsWithChildren> {
           let records = res.data
           let list = []
           for (let i of records) {
-            console.log(i);
             list.push(
               <AtListItem
               title={i.prize.name + ' ' + i.value}
