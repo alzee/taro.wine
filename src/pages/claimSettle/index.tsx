@@ -114,7 +114,6 @@ export default class Claimsettle extends Component<PropsWithChildren> {
   }
 
   render () {
-      console.log(this.state)
     return (
       <View className='claimSettle'>
         { this.state.action === 'cannot' &&
