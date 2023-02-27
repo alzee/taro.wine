@@ -72,11 +72,6 @@ export default class Orders extends Component<PropsWithChildren> {
         filter = 'store'
         extraText = 'voucher'
         break
-      case 'retailReturns':
-        api = 'retail_returns'
-        filter = 'store'
-        extraText = 'voucher'
-        break
       case 'dines':
         api = 'order_restaurants'
         filter = 'restaurant'
@@ -112,9 +107,6 @@ export default class Orders extends Component<PropsWithChildren> {
             title = i.store.name
             break
           case 'retails':
-            title = i.product.name + ' x ' + i.quantity
-            break
-          case 'retailReturns':
             title = i.product.name + ' x ' + i.quantity
             break
           case 'sales':
@@ -157,9 +149,6 @@ export default class Orders extends Component<PropsWithChildren> {
     if (type == 'retails') {
       page = 'retailDetail'
     }
-    if (type == 'retailReturns') {
-      page = 'retailReturnDetail'
-    }
     if (type == 'dines') {
       page = 'dineDetail'
     }
@@ -199,18 +188,16 @@ export default class Orders extends Component<PropsWithChildren> {
         this.getData('returnsToMe')
         break
         case 2:
-          this.tabList = [{title: '进货'}, {title: '退货'}, {title: '零售'}, {title: '零售退货'}]
+          this.tabList = [{title: '进货'}, {title: '退货'}, {title: '零售'}]
         this.getData('buys')
         this.getData('myReturns')
         this.getData('retails')
-        this.getData('retailReturns')
         break
         case 3:
-          this.tabList = [{title: '进货'}, {title: '退货'}, {title: '零售'}, {title: '零售退货'}, {title: '餐饮'}]
+          this.tabList = [{title: '进货'}, {title: '退货'}, {title: '零售'}, {title: '餐饮'}]
         this.getData('buys')
         this.getData('myReturns')
         this.getData('retails')
-        this.getData('retailReturns')
         this.getData('dines')
         break
         case 4:
@@ -233,11 +220,10 @@ export default class Orders extends Component<PropsWithChildren> {
         this.getData('returnsToMe')
         break
         case 12:
-          this.tabList = [{title: '进货'}, {title: '退货'}, {title: '零售'}, {title: '零售退货'}]
+          this.tabList = [{title: '进货'}, {title: '退货'}, {title: '零售'}]
         this.getData('buys')
         this.getData('myReturns')
         this.getData('retails')
-        this.getData('retailReturns')
         break
       }
     })
@@ -350,11 +336,6 @@ export default class Orders extends Component<PropsWithChildren> {
           {this.state.retails}
           </AtList>
         </AtTabsPane>
-        <AtTabsPane current={this.state.current} index={3} >
-          <AtList className="list">
-          {this.state.retailReturns}
-          </AtList>
-        </AtTabsPane>
       </AtTabs>
       }
 
@@ -376,11 +357,6 @@ export default class Orders extends Component<PropsWithChildren> {
           </AtList>
         </AtTabsPane>
         <AtTabsPane current={this.state.current} index={3} >
-          <AtList className="list">
-          {this.state.retailReturns}
-          </AtList>
-        </AtTabsPane>
-        <AtTabsPane current={this.state.current} index={4} >
           <AtList className="list">
           {this.state.dines}
           </AtList>
