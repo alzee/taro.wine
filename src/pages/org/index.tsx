@@ -9,7 +9,7 @@ import { Env } from '../../env/env'
 import { Picker } from '@tarojs/components'
 
 export default class Org extends Component<PropsWithChildren> {
-  role: int;
+  otype: int;
   latitude: float
   longitude: float
   state = {
@@ -127,29 +127,21 @@ export default class Org extends Component<PropsWithChildren> {
           this.getOrgs(2)
           this.getOrgs(3)
           Taro.getStorage({
-            key: Env.storageKey,
-            success: res => {
-              this.role = res.data.role
-              if (this.role == 0 || this.role == 10) {
-                // this.getOrgs(1)
-              }
-            },
-            fail: res => {
-              console.log('pls login');
-              // Taro.redirectTo({ url: '/pages/chooseLogin/index' })
+            key: Env.storageKey
+          })
+          .then((res) => {
+            this.otype = res.data.otype
+            if (this.otype == 0 || this.otype == 10) {
+              // this.getOrgs(1)
             }
+          })
+          .catch(err => {
+            console.log(err)
           })
         }
       )
     })
   }
-
-  componentWillUnmount () { }
-
-  componentDidShow () {
-  }
-
-  componentDidHide () { }
 
   switchSeg (value) {
     this.setState({
