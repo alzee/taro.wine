@@ -11,7 +11,7 @@ import { fmtDate } from '../../fmtDate'
 
 export default class Orders extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
-  role: int;
+  otype: int;
   tabList = []
   orgid: int
   uid: int
@@ -175,75 +175,75 @@ export default class Orders extends Component<PropsWithChildren> {
   componentDidMount () {
     const self = this;
     Taro.getStorage({
-      key: Env.storageKey,
-      success: res => {
-        self.setState({data: res.data})
-        this.role = res.data.role
-        if (this.role != 4){
-          this.orgid = res.data.org.id
-        } else {
-          this.uid = res.data.uid
-        }
-        switch (this.role) {
-          case 0:
-            this.tabList = [{ title: '销售' }, {title: '退货'}]
-            this.getData('sales')
-            this.getData('returnsToMe')
-            break
-          case 1:
-            this.tabList = [{ title: '进货' }, { title: '销售' }, {title: '退货'}, {title: '售后退货'}]
-            this.getData('buys')
-            this.getData('sales')
-            this.getData('myReturns')
-            this.getData('returnsToMe')
-            break
-          case 2:
-            this.tabList = [{title: '进货'}, {title: '退货'}, {title: '零售'}, {title: '零售退货'}]
-            this.getData('buys')
-            this.getData('myReturns')
-            this.getData('retails')
-            this.getData('retailReturns')
-            break
-          case 3:
-            this.tabList = [{title: '进货'}, {title: '退货'}, {title: '零售'}, {title: '零售退货'}, {title: '餐饮'}]
-            this.getData('buys')
-            this.getData('myReturns')
-            this.getData('retails')
-            this.getData('retailReturns')
-            this.getData('dines')
-            break
-          case 4:
-            this.tabList = [{title: '酒品消费'}, {title: '餐饮消费'}]
-            this.getData('myRetails')
-            this.getData('myDines')
-            break
-          case 10:
-            this.tabList = [{ title: '进货' }, { title: '销售' }, {title: '退货'}, {title: '售后退货'}]
-            this.getData('buys')
-            this.getData('sales')
-            this.getData('myReturns')
-            this.getData('returnsToMe')
-            break
-          case 11:
-            this.tabList = [{ title: '进货' }, { title: '销售' }, {title: '退货'}, {title: '售后退货'}]
-            this.getData('buys')
-            this.getData('sales')
-            this.getData('myReturns')
-            this.getData('returnsToMe')
-            break
-          case 12:
-            this.tabList = [{title: '进货'}, {title: '退货'}, {title: '零售'}, {title: '零售退货'}]
-            this.getData('buys')
-            this.getData('myReturns')
-            this.getData('retails')
-            this.getData('retailReturns')
-            break
-        }
-      },
-      fail: res => {
-        console.log('pls login');
-        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
+      key: Env.storageKey
+    })
+    .then((res) => {
+      self.setState({data: res.data})
+      this.otype = res.data.otype
+      if (this.otype != 4){
+        this.orgid = res.data.org.id
+      } else {
+        this.uid = res.data.uid
       }
+      switch (this.otype) {
+        case 0:
+          this.tabList = [{ title: '销售' }, {title: '退货'}]
+        this.getData('sales')
+        this.getData('returnsToMe')
+        break
+        case 1:
+          this.tabList = [{ title: '进货' }, { title: '销售' }, {title: '退货'}, {title: '售后退货'}]
+        this.getData('buys')
+        this.getData('sales')
+        this.getData('myReturns')
+        this.getData('returnsToMe')
+        break
+        case 2:
+          this.tabList = [{title: '进货'}, {title: '退货'}, {title: '零售'}, {title: '零售退货'}]
+        this.getData('buys')
+        this.getData('myReturns')
+        this.getData('retails')
+        this.getData('retailReturns')
+        break
+        case 3:
+          this.tabList = [{title: '进货'}, {title: '退货'}, {title: '零售'}, {title: '零售退货'}, {title: '餐饮'}]
+        this.getData('buys')
+        this.getData('myReturns')
+        this.getData('retails')
+        this.getData('retailReturns')
+        this.getData('dines')
+        break
+        case 4:
+          this.tabList = [{title: '酒品消费'}, {title: '餐饮消费'}]
+        this.getData('myRetails')
+        this.getData('myDines')
+        break
+        case 10:
+          this.tabList = [{ title: '进货' }, { title: '销售' }, {title: '退货'}, {title: '售后退货'}]
+        this.getData('buys')
+        this.getData('sales')
+        this.getData('myReturns')
+        this.getData('returnsToMe')
+        break
+        case 11:
+          this.tabList = [{ title: '进货' }, { title: '销售' }, {title: '退货'}, {title: '售后退货'}]
+        this.getData('buys')
+        this.getData('sales')
+        this.getData('myReturns')
+        this.getData('returnsToMe')
+        break
+        case 12:
+          this.tabList = [{title: '进货'}, {title: '退货'}, {title: '零售'}, {title: '零售退货'}]
+        this.getData('buys')
+        this.getData('myReturns')
+        this.getData('retails')
+        this.getData('retailReturns')
+        break
+      }
+    })
+    .catch(err => {
+      console.log(err)
+      Taro.redirectTo({ url: '/pages/chooseLogin/index' })
     })
   }
 
@@ -293,7 +293,7 @@ export default class Orders extends Component<PropsWithChildren> {
     return (
       <View className='orders'>
 
-      { this.role == 0 &&
+      { this.otype == 0 &&
       <AtTabs className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
           <AtList className="list">
@@ -308,7 +308,7 @@ export default class Orders extends Component<PropsWithChildren> {
       </AtTabs>
       }
 
-      { (this.role == 1 || this.role == 10 || this.role == 11) &&
+      { (this.otype == 1 || this.otype == 10 || this.otype == 11) &&
       <AtTabs className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
           <AtList className="list">
@@ -333,7 +333,7 @@ export default class Orders extends Component<PropsWithChildren> {
       </AtTabs>
       }
 
-      { (this.role == 2 || this.role == 12) &&
+      { (this.otype == 2 || this.otype == 12) &&
       <AtTabs className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
           <AtList className="list">
@@ -358,7 +358,7 @@ export default class Orders extends Component<PropsWithChildren> {
       </AtTabs>
       }
 
-      { this.role == 3 &&
+      { this.otype == 3 &&
       <AtTabs className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
           <AtList className="list">
@@ -388,7 +388,7 @@ export default class Orders extends Component<PropsWithChildren> {
       </AtTabs>
       }
 
-      { this.role == 4 &&
+      { this.otype == 4 &&
       <AtTabs className='first' current={this.state.current} tabList={this.tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.current} index={0} >
           <AtList className="list">
