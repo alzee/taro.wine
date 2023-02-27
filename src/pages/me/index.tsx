@@ -14,7 +14,6 @@ import gear from '../../icon/gear.png'
 import lock from '../../icon/lock.png'
 
 export default class Me extends Component<PropsWithChildren> {
-  pageCtx = Taro.getCurrentInstance().page
   otype: int
   roles: array = []
   oid: int
@@ -25,44 +24,44 @@ export default class Me extends Component<PropsWithChildren> {
   componentDidMount () {
     const self = this;
     Taro.getStorage({
-      key: Env.storageKey,
-      success: res => {
-        console.log(res.data)
-        this.otype = res.data.otype
-        this.roles = res.data.roles
-        this.setState({
-          orgName: res.data.org.name,
-          name: res.data.name
-        })
-        Taro.request({
-          url: Env.apiUrl + 'users/' + res.data.uid
-        }).then(res => {
-          console.log(res.data);
-          if (res.data.phone === undefined || res.data.name === undefined) {
-            Taro.redirectTo({url: '/pages/customerInfo/index'})
-          } 
-          if (res.data.reloginRequired) {
-            Taro.removeStorage({
-              key: Env.storageKey,
-              success: res => {
-                console.log('storeage removed: ' + Env.storageKey);
-              },
-              fail: res => {
-                console.log('storeage removed failed');
-              }
-            })
-            Taro.redirectTo({ url: '/pages/chooseLogin/index'})
-          }
-          self.setState({
-            avatar: Env.imgUrl + 'avatar/' + res.data.avatar
+      key: Env.storageKey
+    })
+    .then((res => {
+      console.log(res.data)
+      this.otype = res.data.otype
+      this.roles = res.data.roles
+      this.setState({
+        orgName: res.data.org.name,
+        name: res.data.name
+      })
+      Taro.request({
+        url: Env.apiUrl + 'users/' + res.data.uid
+      }).then(res => {
+        console.log(res.data);
+        if (res.data.phone === undefined || res.data.name === undefined) {
+          Taro.redirectTo({url: '/pages/customerInfo/index'})
+        } 
+        if (res.data.reloginRequired) {
+          Taro.removeStorage({
+            key: Env.storageKey,
+            success: res => {
+              console.log('storeage removed: ' + Env.storageKey);
+            },
+            fail: res => {
+              console.log('storeage removed failed');
+            }
           })
+          Taro.redirectTo({ url: '/pages/chooseLogin/index'})
+        }
+        self.setState({
+          avatar: Env.imgUrl + 'avatar/' + res.data.avatar
         })
-        this.oid = res.data.org.id
-      },
-      fail: res => {
-        console.log('pls login');
-        Taro.redirectTo({ url: '/pages/chooseLogin/index' })
-      }
+      })
+      this.oid = res.data.org.id
+    }))
+    .catch(err => {
+      console.log(err)
+      Taro.redirectTo({ url: '/pages/chooseLogin/index' })
     })
   }
 
