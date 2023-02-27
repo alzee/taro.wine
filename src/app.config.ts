@@ -59,6 +59,7 @@ export default defineAppConfig({
     'pages/addStaff/index',
     'pages/claimQr/index',
     'pages/claimSettle/index',
+    'pages/reward/index',
   ],
   window: {
     backgroundTextStyle: 'light',

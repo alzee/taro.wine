@@ -228,6 +228,12 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.navTo('stock')}
       />
       <AtListItem
+      title='商家钱包'
+      arrow='right'
+      thumb={lock}
+      onClick={() => this.navTo('reward')}
+      />
+      <AtListItem
       title='添加店员'
       arrow='right'
       thumb={Env.imgUrl + 'icon/scan.svg'}

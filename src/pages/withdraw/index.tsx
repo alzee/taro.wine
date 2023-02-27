@@ -1,7 +1,7 @@
 import { Component, PropsWithChildren } from 'react'
 import { View, Text, Button } from '@tarojs/components'
 import './index.scss'
-import { AtList, AtListItem, AtCard, AtButton } from "taro-ui"
+import { AtList, AtListItem } from "taro-ui"
 import { AtTabs, AtTabsPane } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
