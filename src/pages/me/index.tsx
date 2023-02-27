@@ -214,6 +214,7 @@ export default class Me extends Component<PropsWithChildren> {
 
       { this.otype != 4 && this.roles.includes('ROLE_ORG_ADMIN') &&
         <>
+      <View className='label'>商家</View>
       <AtListItem
       title='更新门店坐标'
       arrow='right'
@@ -247,7 +248,10 @@ export default class Me extends Component<PropsWithChildren> {
         </>
       }
 
-      { this.otype === 3 && this.roles.includes('ROLE_SALESMAN') &&
+      { this.roles.includes('ROLE_SALESMAN') &&
+        <>
+      <View className='label'>业务员</View>
+      { this.otype === 3 &&
       <AtListItem
       title='服务员登记'
       arrow='right'
@@ -255,8 +259,6 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.scan('waiterSignUp')}
       />
       }
-      { this.roles.includes('ROLE_SALESMAN') &&
-        <>
       <AtListItem
       title='商家管理员绑定'
       arrow='right'
