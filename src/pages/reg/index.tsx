@@ -6,7 +6,7 @@ import Taro from '@tarojs/taro'
 
 export default class Reg extends Component<PropsWithChildren> {
   state = {
-    selector: ['门店', '代理商', '代理商(异业)', '区域代理商(异业)', '门店(异业)'],
+    selector: ['代理商', '门店', '餐厅', '代理商(异业)', '区域代理商(异业)', '门店(异业)'],
     selectorChecked: '',
     pca: ['湖北省', '十堰市', '茅箭区']
   }
