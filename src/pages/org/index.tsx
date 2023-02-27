@@ -28,11 +28,11 @@ export default class Org extends Component<PropsWithChildren> {
     return d * Math.PI / 180.0;
   }
 
+  /**
+   * lat1/lng1 user's
+   * lat2/lng2 org's
+   */
   getDistance(lat1, lng1, lat2, lng2) {
-      // lat1用户的纬度
-      // lng1用户的经度
-      // lat2商家的纬度
-      // lng2商家的经度
       var radLat1 = this.Rad(lat1);
       var radLat2 = this.Rad(lat2);
       var a = radLat1 - radLat2;
