@@ -15,7 +15,7 @@ import lock from '../../icon/lock.png'
 
 export default class Me extends Component<PropsWithChildren> {
   pageCtx = Taro.getCurrentInstance().page
-  role: int
+  otype: int
   roles: array = []
   oid: int
   state = {
@@ -28,7 +28,7 @@ export default class Me extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         console.log(res.data)
-        this.role = res.data.role
+        this.otype = res.data.otype
         this.roles = res.data.roles
         this.setState({
           orgName: res.data.org.name,
@@ -156,7 +156,7 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.navTo('voucher')}
       />
 
-      { this.role >= 10  &&
+      { this.otype >= 10  &&
       <AtListItem
       title='分润明细'
       arrow='right'
@@ -201,23 +201,16 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.navTo('myReg')}
       />
 
-      { (this.role == 2 || this.role == 3) &&
+      { this.otype != 4 && this.roles.includes('ROLE_ORG_ADMIN') &&
+        <>
       <AtListItem
       title='更新门店坐标'
-      // note='描述信息'
-      // extraText='详细信息'
       arrow='right'
       thumb={coord}
       onClick={this.getLocation.bind(this)}
       />
-      }
-
-      { this.role != 4 &&
-        <>
       <AtListItem
       title='我的库存'
-      // note='描述信息'
-      // extraText='详细信息'
       arrow='right'
       thumb={wine}
       onClick={() => this.navTo('stock')}
@@ -230,11 +223,8 @@ export default class Me extends Component<PropsWithChildren> {
       />
       <AtListItem
       title='机构信息'
-      // note='描述信息'
-      // extraText='详细信息'
       arrow='right'
       thumb={gear}
-      // onClick={() => Taro.navigateTo({url: '/pages/orgDetail/index?id=' + this.oid})}
       onClick={() => this.navTo('orgEdit')}
       />
       <AtListItem
@@ -246,6 +236,14 @@ export default class Me extends Component<PropsWithChildren> {
         </>
       }
 
+      { this.otype === 3 && this.roles.includes('ROLE_SALESMAN') &&
+      <AtListItem
+      title='服务员登记'
+      arrow='right'
+      thumb={lock}
+      onClick={() => this.scan('waiterSignUp')}
+      />
+      }
       { this.roles.includes('ROLE_SALESMAN') &&
         <>
       <AtListItem
@@ -253,12 +251,6 @@ export default class Me extends Component<PropsWithChildren> {
       arrow='right'
       thumb={lock}
       onClick={() => this.scan('bindOrgAdmin')}
-      />
-      <AtListItem
-      title='服务员登记'
-      arrow='right'
-      thumb={lock}
-      onClick={() => this.scan('waiterSignUp')}
       />
       <AtListItem
       title='商家注册'
