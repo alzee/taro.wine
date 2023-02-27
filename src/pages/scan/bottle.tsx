@@ -1,5 +1,5 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Text, Button } from '@tarojs/components'
+import { View, Text, Button, Image } from '@tarojs/components'
 import './bottle.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
@@ -55,10 +55,21 @@ export default class Scan extends Component<PropsWithChildren> {
   }
 
   render () {
+    let c = ''
+    if (this.state.data.code === 0) {
+      c = 'prize'
+    }
     return (
       <View className='scan-bottle'>
 
-      <View className='scan'>
+      <View className={'scan ' + c}>
+      { this.state.data.code === 0 &&
+        <Image
+      className='bg'
+      mode='widthFix'
+      src={Env.imgUrl + 'draw.jpg'}
+      />
+      }
 
       { this.state.data &&
       <View className='msg'>
@@ -81,13 +92,15 @@ export default class Scan extends Component<PropsWithChildren> {
       }
 
       </View>
+
+      { this.state.data.code == 0 &&
+      <View className='my-prize' onClick={this.myClaim}>我的奖品</View>
+      }
+
       </View>
 
       { this.state.data.code > 10 &&
       <Button className='btn' size='small' onClick={this.done}>确定</Button>
-      }
-      { this.state.data.code == 0 &&
-      <Button className='btn' size='small' onClick={this.myClaim}>我的奖品</Button>
       }
       { this.state.data.code == 1 &&
       <Button className='btn' size='small' onClick={this.myWallet}>我的钱包</Button>

@@ -1,0 +1,31 @@
+.scan-bottle{
+  .prize{
+    padding: 0;
+    position: relative;
+    .bg{
+      width: 100%;
+    }
+    .msg{
+      position: absolute;
+      width: 100%;
+      top: 400px;
+      color: #ffda9c;
+      font-size: 20px;
+    }
+    .info{
+      position: absolute;
+      width: 100%;
+      top: 450px;
+      color: #ffda9c;
+      font-weight: bold;
+      font-size: 48px;
+    }
+    .my-prize{
+      position: absolute;
+      width: 100%;
+      top: 910px;
+      color: #8c7447;
+      font-size: 20px;
+    }
+  }
+}
