@@ -41,6 +41,18 @@ export default class Me extends Component<PropsWithChildren> {
           if (res.data.phone === undefined || res.data.name === undefined) {
             Taro.redirectTo({url: '/pages/customerInfo/index'})
           } 
+          if (res.data.reloginRequired) {
+            Taro.removeStorage({
+              key: Env.storageKey,
+              success: res => {
+                console.log('storeage removed: ' + Env.storageKey);
+              },
+              fail: res => {
+                console.log('storeage removed failed');
+              }
+            })
+            Taro.redirectTo({ url: '/pages/chooseLogin/index'})
+          }
           self.setState({
             avatar: Env.imgUrl + 'avatar/' + res.data.avatar
           })
