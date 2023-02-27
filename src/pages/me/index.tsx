@@ -246,7 +246,14 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.navTo('orgEdit')}
       />
       <AtListItem
-      title='我的兑奖'
+      title='我的奖品'
+      arrow='right'
+      thumb={gear}
+      onClick={() => Taro.navigateTo({ url: '/pages/myClaim/index?t=1'})
+      }
+      />
+      <AtListItem
+      title='顾客兑奖'
       arrow='right'
       thumb={gear}
       onClick={() => this.navTo('orgClaim')}

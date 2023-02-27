@@ -9,18 +9,26 @@ import { Taxon } from '../../Taxon'
 
 export default class Myclaim extends Component<PropsWithChildren> {
 
+  instance = Taro.getCurrentInstance();
+
   state = {
   }
 
   componentDidMount () {
+    let params = this.instance.router.params
+
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
         let data = res.data
         const self = this
+        let query = 'customer=' + data.uid
+        if (params.t !== undefined) {
+          query = 'store=' + data.org.id
+        }
+        console.log(query);
         Taro.request({
-          url: Env.apiUrl + 'claims?customer=' + data.uid,
-          success: function (res) {}
+          url: Env.apiUrl + 'claims?' + query
         }).then((res) =>{
           let records = res.data
           let list = []
