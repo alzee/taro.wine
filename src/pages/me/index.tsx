@@ -229,7 +229,7 @@ export default class Me extends Component<PropsWithChildren> {
       <AtListItem
       title='添加店员'
       arrow='right'
-      thumb={gear}
+      thumb={Env.imgUrl + 'icon/scan.svg'}
       onClick={() => this.scan('addStaff')}
       />
       <AtListItem
@@ -251,7 +251,7 @@ export default class Me extends Component<PropsWithChildren> {
       <AtListItem
       title='服务员登记'
       arrow='right'
-      thumb={lock}
+      thumb={Env.imgUrl + 'icon/scan.svg'}
       onClick={() => this.scan('waiterSignUp')}
       />
       }
@@ -260,13 +260,13 @@ export default class Me extends Component<PropsWithChildren> {
       <AtListItem
       title='商家管理员绑定'
       arrow='right'
-      thumb={lock}
+      thumb={Env.imgUrl + 'icon/scan.svg'}
       onClick={() => this.scan('bindOrgAdmin')}
       />
       <AtListItem
       title='商家注册'
       arrow='right'
-      thumb={lock}
+      thumb={Env.imgUrl + 'icon/scan.svg'}
       onClick={() => this.scan('orgSignUp')}
       />
       <AtListItem
