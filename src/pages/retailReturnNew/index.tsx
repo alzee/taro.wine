@@ -10,7 +10,6 @@ export default class Retailreturnnew extends Component<PropsWithChildren> {
   uid: int
   customerName: string
   timestamp: string
-  role: int
   oid: int
   products = []
   pid: int
@@ -95,7 +94,6 @@ export default class Retailreturnnew extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.setState({data: res.data})
-        this.role = res.data.role
         this.oid = res.data.org.id
 
         Taro.request({

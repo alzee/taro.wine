@@ -12,7 +12,7 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
   id: int
   oid: int
   uid: int
-  rid: int
+  otype: int
   state = {}
 
   componentWillMount () { }
@@ -24,8 +24,8 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        this.rid = res.data.role
-        if (this.rid == 4) {
+        this.otype = res.data.otype
+        if (this.otype == 4) {
           this.uid = res.data.uid
         } else {
           this.oid = res.data.org.id
@@ -86,10 +86,10 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
       <View className='withdrawDetail'>
       { this.state.entity &&
       <AtList>
-      { this.rid == 4 &&
+      { this.otype == 4 &&
       <AtListItem title='顾客' extraText={this.state.entity.customer.name} />
       }
-      { this.rid != 4 &&
+      { this.otype != 4 &&
       <AtListItem title='申请方' extraText={this.state.entity.applicant.name} />
       }
       <AtListItem title='审核方' extraText={this.state.entity.approver.name} />
@@ -107,7 +107,7 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
       { this.state.entity && this.state.entity.status > 0 &&
         <Button className='btn' type='default' disabled>{Taxon.status[this.state.entity.status]}</Button>
       }
-      { this.state.entity && this.state.entity.status == 3 && this.rid == 0 &&
+      { this.state.entity && this.state.entity.status == 3 && this.otype == 0 &&
         <Button className='btn' type='primary' onClick={() => this.approve(5)}>打款</Button>
       }
       </View>

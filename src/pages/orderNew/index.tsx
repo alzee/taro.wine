@@ -7,7 +7,6 @@ import { Taxon } from '../../Taxon'
 
 export default class Ordernew extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
-  role: int
   orgid: int
   productid: int
   buyerid: int
@@ -48,7 +47,6 @@ export default class Ordernew extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        this.role = res.data.role
         this.orgid = res.data.org.id
 
         Taro.request({

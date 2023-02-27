@@ -9,10 +9,7 @@ import { Taxon } from '../../Taxon'
 import { fmtDate } from '../../fmtDate'
 
 export default class Withdraw extends Component<PropsWithChildren> {
-  tabList = []
-  oid: int
   uid: int
-  role: int
   state = {
     withdrawable: 0,
     withdrawing: 0
@@ -48,7 +45,6 @@ export default class Withdraw extends Component<PropsWithChildren> {
       success: res => {
         let data = res.data
         let query
-        this.role = res.data.role
         const self = this;
 
         this.uid = res.data.uid

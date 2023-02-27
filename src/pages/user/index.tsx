@@ -6,7 +6,6 @@ import Taro from '@tarojs/taro'
 import { Taxon } from '../../Taxon'
 
 export default class User extends Component<PropsWithChildren> {
-  role: int
   uid: int
   state = {}
 

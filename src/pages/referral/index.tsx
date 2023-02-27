@@ -14,7 +14,6 @@ export default class Referral extends Component<PropsWithChildren> {
     reward: 0,
     withdrawable: 0
   }
-  role: int
 
   componentDidMount () {
     Taro.getStorage({

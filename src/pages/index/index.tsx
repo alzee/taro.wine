@@ -8,7 +8,7 @@ import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 
 export default class Index extends Component<PropsWithChildren> {
-  role: int
+  otype: int
   pageCtx = Taro.getCurrentInstance().page
   apiUrl = Env.apiUrl;
   imgUrl = Env.imgUrl;
@@ -35,7 +35,7 @@ export default class Index extends Component<PropsWithChildren> {
       key: Env.storageKey
     })
     .then(res => {
-      this.role = res.data.role
+      this.otype = res.data.otype
     })
     .catch(err => {
       console.log(err);
@@ -166,9 +166,9 @@ export default class Index extends Component<PropsWithChildren> {
         page = 'about'
         break
     }
-    if (this.role === undefined && requireLogin) {
+    if (this.otype === undefined && requireLogin) {
       Taro.navigateTo({url:  '/pages/chooseLogin/index' });
-    } else if (this.role != 4 && requireCustomer) {
+    } else if (this.otype != 4 && requireCustomer) {
     } else {
       Taro.navigateTo({url:  '/pages/' + page + '/index' + query });
     }

@@ -7,7 +7,7 @@ import Taro from '@tarojs/taro'
 import { AtButton, AtList, AtListItem} from "taro-ui"
 
 export default class Withdrawnew extends Component<PropsWithChildren> {
-  role: int
+  otype: int
   oid: int
   uid: int
   discount: float
@@ -23,9 +23,9 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         // this.setState({data: res.data})
-        this.role = res.data.role
+        this.otype = res.data.otype
         let query
-        if (this.role == 4) {
+        if (this.otype == 4) {
           this.uid = res.data.uid
           query = 'users/' + this.uid
         } else {
@@ -36,7 +36,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
         Taro.request({
           url: Env.apiUrl + query
         }).then((res) =>{
-          if (this.role != 4) {
+          if (this.otype != 4) {
             this.discount = res.data.discount
           }
           this.withdrawable = res.data.withdrawable
@@ -49,7 +49,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
   formSubmit = e => {
     let data = e.detail.value
     data.amount = Number(data.amount)
-    if (this.role == 4) {
+    if (this.otype == 4) {
       data.customer = '/api/users/' + this.uid
     } else {
       data.applicant = '/api/orgs/' + this.oid
@@ -127,7 +127,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
       { this.state &&
         <View className='hint'>
         <Text>可提金额: {this.withdrawable / 100}</Text>
-        { this.role == 3 &&
+        { this.otype == 3 &&
           <Text> ，折扣: {this.discount * 100} %</Text>
         }
         </View>

@@ -11,7 +11,6 @@ export default class Dinenew extends Component<PropsWithChildren> {
   uid: int
   customerName: string
   timestamp: string
-  role: int
   oid: int
 
   componentDidMount () {
@@ -24,7 +23,6 @@ export default class Dinenew extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.setState({data: res.data})
-        this.role = res.data.role
         this.oid = res.data.org.id
 
         Taro.request({

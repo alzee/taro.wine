@@ -6,7 +6,6 @@ import Taro from '@tarojs/taro'
 import { AtButton, AtList, AtListItem, AtInput, AtForm} from "taro-ui"
 
 export default class Productnew extends Component<PropsWithChildren> {
-  role: int
   orgid: int
   label = {
     name: '名称',
@@ -24,7 +23,6 @@ export default class Productnew extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.setState({data: res.data})
-        this.role = res.data.role
         this.orgid = res.data.org.id
       }
     })

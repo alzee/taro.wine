@@ -10,7 +10,7 @@ import { fmtDate } from '../../fmtDate'
 
 export default class Voucher extends Component<PropsWithChildren> {
   query: string = '?page=1'
-  role: int
+  otype: int
   state = {
     voucher: 0
   }
@@ -20,7 +20,7 @@ export default class Voucher extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         let data = res.data
-        this.role = res.data.role
+        this.otype = res.data.otype
         const self = this;
         this.query = '?page=1&customer=' + data.uid
         Taro.request({
@@ -58,7 +58,7 @@ export default class Voucher extends Component<PropsWithChildren> {
     return (
       <View className='voucher'>
 
-      { this.state && this.role != 0 &&
+      { this.state && this.otype != 0 &&
       <View className='at-row card'>
       <View className='at-col'>
       <View className='label'>代金券</View>

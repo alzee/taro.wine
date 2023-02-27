@@ -6,7 +6,6 @@ import { Env } from '../../env/env'
 import { AtList, AtListItem, AtCard } from "taro-ui"
 
 export default class Stock extends Component<PropsWithChildren> {
-  role: int
   orgid: int
   state = {}
 
@@ -21,7 +20,6 @@ export default class Stock extends Component<PropsWithChildren> {
       success: res => {
         self.setState({data: res.data})
         this.orgid = res.data.org.id
-        this.role = res.data.role
         Taro.request({
           url: Env.apiUrl + 'stocks?org=' + this.orgid,
         }).then((res) =>{

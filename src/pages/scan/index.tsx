@@ -23,7 +23,7 @@ export default class Scan extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.roles = res.data.roles
-        this.otype = res.data.role
+        this.otype = res.data.otype
         console.log(this.otype);
         switch (this.scan.t) {
           case "0": // box

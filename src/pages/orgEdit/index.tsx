@@ -7,7 +7,6 @@ import { AtButton, AtList, AtListItem, AtImagePicker } from "taro-ui"
 import { Taxon } from '../../Taxon'
 
 export default class Orgedit extends Component<PropsWithChildren> {
-  role: int
   oid: int
   state = {}
 
@@ -17,7 +16,6 @@ export default class Orgedit extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.setState({data: res.data})
-        this.role = res.data.role
         this.oid = res.data.org.id
         Taro.request({
           url: Env.apiUrl + 'orgs/' + this.oid,
