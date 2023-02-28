@@ -27,11 +27,9 @@ export default class Orgclaim extends Component<PropsWithChildren> {
           for (let i of records) {
             list.push(
               <AtListItem
-              onClick={() => this.navToDetail(i.id)}
               title={i.prize.name + ' ' + i.value}
               note={fmtDate(i.createdAt)}
               extraText={Taxon.claimStatus[i.status]}
-              arrow='right'
               />
             )
           }
@@ -43,10 +41,6 @@ export default class Orgclaim extends Component<PropsWithChildren> {
         Taro.redirectTo({ url: '/pages/chooseLogin/index' })
       },
     });
-  }
-
-  navToDetail(id){
-    Taro.redirectTo({url: '/pages/claimQr/index?id=' + id})
   }
 
   render () {

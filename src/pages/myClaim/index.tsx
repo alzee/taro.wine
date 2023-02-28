@@ -12,6 +12,7 @@ export default class Myclaim extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   uid: int
   oid: int
+  isStore: bool = false
 
   state = {
     point: 0
@@ -19,6 +20,9 @@ export default class Myclaim extends Component<PropsWithChildren> {
 
   componentDidMount () {
     let params = this.instance.router.params
+    if (params.t !== undefined) {
+      this.isStore = true
+    }
 
     Taro.getStorage({
       key: Env.storageKey,
@@ -30,7 +34,7 @@ export default class Myclaim extends Component<PropsWithChildren> {
         let query = 'customer=' + data.uid
         let query2 = 'users/' + data.uid
         let value = 'toCustomer'
-        if (params.t !== undefined) {
+        if (this.isStore) {
           query = 'store=' + data.org.id
           query2 = 'orgs/' + data.org.id
           value = 'toStore'
@@ -44,6 +48,9 @@ export default class Myclaim extends Component<PropsWithChildren> {
             let title = i.prize.name + ' ' + i.prize[value] / 100
             if (i.prize.label === 'onemore') {
               title = i.prize.name
+            }
+            if (this.isStore && i.customer !== undefined) {
+              title += '(顾客抽奖)'
             }
             list.push(
               <AtListItem
@@ -90,8 +97,7 @@ export default class Myclaim extends Component<PropsWithChildren> {
       let data = {}
       data.uid = this.uid
       data.oid = this.oid
-      let params = this.instance.router.params
-      if (params.t !== undefined) {
+      if (this.isStore) {
         data.type = 1
       }
       Taro.request({
