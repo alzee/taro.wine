@@ -78,11 +78,11 @@ export default class Borrow extends Component<PropsWithChildren> {
       <Form className='form'
       onSubmit={this.formSubmit.bind(this)}
       >
-      <Picker mode='selector' range={this.state.claims} rangeKey='id' onChange={this.claimChanged}>
+      <Picker mode='selector' range={this.state.claims} rangeKey='name' onChange={this.claimChanged}>
       <View className='input'>
       <Text className='label'>选择兑奖单</Text>
       {this.state.selectorChecked}
-      {this.state.index !== undefined && this.state.claims[this.state.index].id}
+      {this.state.index !== undefined && this.state.claims[this.state.index].name}
       </View>
       </Picker>
       <Button className='btn' formType='submit'>提交</Button>

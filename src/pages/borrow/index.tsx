@@ -28,7 +28,7 @@ export default class Borrow extends Component<PropsWithChildren> {
             console.log(i);
             list.push(
               <AtListItem
-              title={i.claim.store.name}
+              title={i.claim.name}
               note={fmtDate(i.createdAt)}
               extraText={Taxon.borrowStatus[i.status]}
               // arrow='right'
