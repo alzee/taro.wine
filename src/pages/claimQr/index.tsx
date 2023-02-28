@@ -25,7 +25,6 @@ export default class Claimqr extends Component<PropsWithChildren> {
   }
 
   render () {
-    console.log(this.state.text)
     return (
       <View className='claimQr qr'>
       {this.state.text &&

@@ -8,6 +8,7 @@ import { View, Text, Form, Input, Button, Icon } from '@tarojs/components'
 export default class Claimsettle extends Component<PropsWithChildren> {
   oid: int
   otype: int
+  type: string
   id: int
   user = {}
   instance = Taro.getCurrentInstance();
@@ -17,6 +18,7 @@ export default class Claimsettle extends Component<PropsWithChildren> {
   componentDidMount () {
     let params = this.instance.router.params
     this.id = params.id
+    this.type = params.type
 
 
     Taro.getStorage({
@@ -32,34 +34,57 @@ export default class Claimsettle extends Component<PropsWithChildren> {
         this.setState({
           claim
         })
-        console.log(claim);
         let msg: string
         let action: string = 'cannot'
         if (this.otype !== 2 && ! this.user.roles.includes('ROLE_SALESMAN')) {
           msg = '您不能兑付奖品'
+        } 
+
+        switch (this.type) {
+          case 'user':
+            if (this.otype !== 2 && this.otype !== 12) {
+              msg = '您不能兑付奖品'
+            } else {
+              switch (claim.status) {
+                case 0:
+                  msg = 'pending'
+                  action = 'claim'
+                  break
+                case 1:
+                  msg = '请勿重复兑奖'
+                  break
+                case 2:
+                  msg = '该兑奖已过期'
+                  break
+              }
+            }
+            break
+          case 'store':
+            if (! this.user.roles.includes('ROLE_SALESMAN')) {
+              msg = '您不能兑付奖品'
+            } else {
+              if (claim.storeSettled) {
+                msg = '请勿重复兑付'
+              } else {
+                msg = '已兑付'
+                action = 'settle'
+              }
+            }
+            break
+          case 'serveStore':
+            if (! this.user.roles.includes('ROLE_SALESMAN')) {
+              msg = '您不能兑付奖品'
+            } else {
+              if (claim.serveSettled) {
+                msg = '请勿重复兑付'
+              } else {
+                msg = '已兑付'
+                action = 'settle'
+              }
+            }
+            break
         }
-        if (this.otype === 2) {
-          switch (claim.status) {
-            case 0:
-              msg = 'pending'
-              action = 'claim'
-              break
-            case 1:
-              msg = '请勿重复兑奖'
-              break
-            case 2:
-              msg = '该兑奖已过期'
-              break
-          }
-        }
-        if (this.user.roles.includes('ROLE_SALESMAN')) {
-          if (claim.settled) {
-            msg = '请勿重复兑付'
-          } else {
-            msg = '已兑付'
-            action = 'settle'
-          }
-        }
+
         this.setState({
           msg,
           action
@@ -93,6 +118,7 @@ export default class Claimsettle extends Component<PropsWithChildren> {
   settle = () => {
     let data = {}
     data.id = this.id
+    data.type = this.type
     Taro.request({
       method: 'POST',
       data: data,
