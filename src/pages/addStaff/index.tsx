@@ -7,7 +7,8 @@ import { View, Text, Form, Input, Button, Icon } from '@tarojs/components'
 
 export default class Addstaff extends Component<PropsWithChildren> {
   oid: int
-  uid: int  //uid of whom was scanned
+  uid: int
+  staffId: int  //uid of whom was scanned
 
   instance = Taro.getCurrentInstance();
   state = {
@@ -16,7 +17,7 @@ export default class Addstaff extends Component<PropsWithChildren> {
 
   componentDidMount () {
     let params = this.instance.router.params
-    this.uid = params.uid
+    this.staffId = params.uid
     this.setState({
       name: params.name
     })
@@ -24,11 +25,12 @@ export default class Addstaff extends Component<PropsWithChildren> {
       key: Env.storageKey
     }).then(res => {
       this.oid = res.data.org.id
+      this.uid = res.data.uid
     })
   }
 
   formSubmit = e => {
-    if (this.uid === undefined) {
+    if (this.staffId === undefined) {
       Taro.showToast({
         title: '请重新扫码',
         icon: 'error',
@@ -38,6 +40,7 @@ export default class Addstaff extends Component<PropsWithChildren> {
     }
     let data = {}
     data.uid = this.uid
+    data.staffId = this.staffId
     data.oid = this.oid
     Taro.request({
       method: 'POST',

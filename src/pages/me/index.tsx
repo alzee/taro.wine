@@ -26,7 +26,7 @@ export default class Me extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey
     })
-    .then((res => {
+    .then(res => {
       console.log(res.data)
       this.otype = res.data.otype
       this.roles = res.data.roles
@@ -58,7 +58,7 @@ export default class Me extends Component<PropsWithChildren> {
         })
       })
       this.oid = res.data.org.id
-    }))
+    })
     .catch(err => {
       console.log(err)
       Taro.redirectTo({ url: '/pages/chooseLogin/index' })

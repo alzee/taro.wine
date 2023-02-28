@@ -8,7 +8,8 @@ import { View, Text, Form, Input, Button, Picker, Icon } from '@tarojs/component
 export default class Bindorgadmin extends Component<PropsWithChildren> {
 
   instance = Taro.getCurrentInstance();
-  uid: int  //uid of whom was scanned
+  uid: int
+  adminId: int  //uid of whom was scanned
   state = {
     name: '', //name of whom was scanned
     // types: ['代理商', '门店', '餐厅', '代理商(异业)', '区域代理商(异业)', '门店(异业)'],
@@ -20,7 +21,14 @@ export default class Bindorgadmin extends Component<PropsWithChildren> {
 
   componentDidMount () {
     let params = this.instance.router.params
-    this.uid = params.uid
+    this.adminId = params.uid
+    Taro.getStorage({
+      key: Env.storageKey
+    })
+    .then(res => {
+      this.uid = res.data.uid
+    })
+
     Taro.request({
       url: Env.apiUrl + 'choices/org_types',
     }).then((res) =>{
@@ -76,6 +84,7 @@ export default class Bindorgadmin extends Component<PropsWithChildren> {
       return
     }
     data.uid = this.uid
+    data.adminId = this.adminId
     data.oid = this.state.oid
     Taro.request({
       method: 'POST',
