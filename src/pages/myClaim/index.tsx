@@ -12,6 +12,7 @@ export default class Myclaim extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   uid: int
   oid: int
+  type: string
   isStore: bool = false
 
   state = {
@@ -20,7 +21,8 @@ export default class Myclaim extends Component<PropsWithChildren> {
 
   componentDidMount () {
     let params = this.instance.router.params
-    if (params.t === 'store') {
+    this.type = params.type
+    if (this.type === 'store') {
       this.isStore = true
     }
 
@@ -59,7 +61,7 @@ export default class Myclaim extends Component<PropsWithChildren> {
             }
             list.push(
               <AtListItem
-              onClick={() => this.navToDetail(i.id)}
+              onClick={() => this.navToDetail(i.id, this.type)}
               title={title}
               note={fmtDate(i.createdAt)}
               extraText={extraText}
@@ -82,8 +84,8 @@ export default class Myclaim extends Component<PropsWithChildren> {
     });
   }
 
-  navToDetail(id){
-    Taro.redirectTo({url: '/pages/claimQr/index?id=' + id})
+  navToDetail(id, type){
+    Taro.redirectTo({url: '/pages/claimQr/index?id=' + id + '&type=' + type})
   }
 
   collect = () => {
