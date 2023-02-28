@@ -20,7 +20,7 @@ export default class Myclaim extends Component<PropsWithChildren> {
 
   componentDidMount () {
     let params = this.instance.router.params
-    if (params.t !== undefined) {
+    if (params.t === 'store') {
       this.isStore = true
     }
 
@@ -94,31 +94,40 @@ export default class Myclaim extends Component<PropsWithChildren> {
         }
       })
     } else {
-      let data = {}
-      data.uid = this.uid
-      data.oid = this.oid
-      if (this.isStore) {
-        data.type = 1
-      }
-      Taro.request({
-        method: 'POST',
-        url: Env.apiUrl + 'collect',
-        data
+      Taro.showModal({
+        title: '确认兑换',
+        content: '兑换再来一瓶',
       })
       .then(res => {
-        if (res.data.code === 0) {
-          Taro.showToast({
-            title: '已完成',
-            icon: 'success',
-            duration: 2000
+        if (res.confirm) {
+          let data = {}
+          data.uid = this.uid
+          data.oid = this.oid
+          if (this.isStore) {
+            data.type = 1
+          }
+          Taro.request({
+            method: 'POST',
+            url: Env.apiUrl + 'collect',
+            data
           })
           .then(res => {
-            setTimeout(
-              () => {
-                Taro.redirectTo({url: '/pages/me/index'})
-              }, 500
-            )
+            if (res.data.code === 0) {
+              Taro.showToast({
+                title: '已完成',
+                icon: 'success',
+                duration: 2000
+              })
+              .then(res => {
+                setTimeout(
+                  () => {
+                    Taro.redirectTo({url: '/pages/me/index'})
+                  }, 500
+                )
+              })
+            }
           })
+        } else if (res.cancel) {
         }
       })
     }

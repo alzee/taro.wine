@@ -189,7 +189,7 @@ export default class Me extends Component<PropsWithChildren> {
       title='我的奖品'
       arrow='right'
       thumb={cash}
-      onClick={() => this.navTo('myClaim')}
+      onClick={() => Taro.navigateTo({ url: '/pages/myClaim/index?t=user'})}
       />
 
       <AtListItem
@@ -249,8 +249,7 @@ export default class Me extends Component<PropsWithChildren> {
       title='我的奖品'
       arrow='right'
       thumb={gear}
-      onClick={() => Taro.navigateTo({ url: '/pages/myClaim/index?t=1'})
-      }
+      onClick={() => Taro.navigateTo({ url: '/pages/myClaim/index?t=store'})}
       />
       <AtListItem
       title='顾客兑奖'
