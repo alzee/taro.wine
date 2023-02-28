@@ -34,6 +34,7 @@ export default class Myclaim extends Component<PropsWithChildren> {
         let query = 'customer=' + data.uid
         let query2 = 'users/' + data.uid
         let value = 'toCustomer'
+        let extraText = ''
         if (this.isStore) {
           query = 'store=' + data.org.id
           query2 = 'orgs/' + data.org.id
@@ -52,12 +53,16 @@ export default class Myclaim extends Component<PropsWithChildren> {
             if (this.isStore && i.customer !== undefined) {
               title += '(顾客抽奖)'
             }
+            extraText = Taxon.claimStatus[i.status]
+            if (this.isStore && i.prize.label === 'onemore') {
+              extraText = Taxon.settleStatus[Number(i.settled)]
+            }
             list.push(
               <AtListItem
               onClick={() => this.navToDetail(i.id)}
               title={title}
               note={fmtDate(i.createdAt)}
-              extraText={Taxon.claimStatus[i.status]}
+              extraText={extraText}
               arrow='right'
               />
             )

@@ -5,6 +5,9 @@ export const Taxon = {
   claimStatus: [
     '待领奖','已兑奖','已过期'
   ],
+  settleStatus: [
+    '待兑付','已兑付'
+  ],
   status: [
     '待处理',
     '',

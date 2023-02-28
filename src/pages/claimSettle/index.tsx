@@ -36,7 +36,7 @@ export default class Claimsettle extends Component<PropsWithChildren> {
         let msg: string
         let action: string = 'cannot'
         if (this.otype !== 2 && ! this.user.roles.includes('ROLE_SALESMAN')) {
-          msg = 'cannot'
+          msg = '您不能兑付奖品'
         }
         if (this.otype === 2) {
           switch (claim.status) {
@@ -45,18 +45,18 @@ export default class Claimsettle extends Component<PropsWithChildren> {
               action = 'claim'
               break
             case 1:
-              msg = 'claimed'
+              msg = '请勿重复兑奖'
               break
             case 2:
-              msg = 'expired'
+              msg = '该兑奖已过期'
               break
           }
         }
         if (this.user.roles.includes('ROLE_SALESMAN')) {
           if (claim.settled) {
-            msg = 'settled'
+            msg = '请勿重复兑付'
           } else {
-            msg = 'notsettled'
+            msg = '已兑付'
             action = 'settle'
           }
         }
