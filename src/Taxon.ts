@@ -6,7 +6,7 @@ export const Taxon = {
     '待领奖','已兑奖','已过期'
   ],
   settleStatus: [
-    '待兑付','已兑付'
+    '未兑','已兑'
   ],
   status: [
     '待处理',
