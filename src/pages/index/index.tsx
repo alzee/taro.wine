@@ -181,7 +181,7 @@ export default class Index extends Component<PropsWithChildren> {
       {this.state.carousel}
       </Swiper>
 
-      <AtGrid columnNum='4' hasBorder={false} onClick={this.chooseGrid.bind(this)} data={
+      <AtGrid className='grid' columnNum='4' hasBorder={false} onClick={this.chooseGrid.bind(this)} data={
         [
           {
             image: Env.imgUrl + 'icon/card.png',
