@@ -84,12 +84,7 @@ export default class Index extends Component<PropsWithChildren> {
         featured.push(
           <View className="item at-col at-col-6" key={i}>
           <View className='img-wrapper rounded'>
-          <Image className='img' mode='aspectFill' src={this.imgUrl + 'node/' + i.img} onClick={()=>this.navToProduct(i.id)} ></Image>
-          <View className="banner">
-          <Text className="badge">
-          扫码中大奖
-          </Text>
-          </View>
+          <Image className='img' mode='widthFix' src={this.imgUrl + 'node/' + i.img} onClick={()=>this.navToProduct(i.id)} ></Image>
           </View>
           <View className="title">
           {i.title}
@@ -101,11 +96,6 @@ export default class Index extends Component<PropsWithChildren> {
           </Text>
           <Text className='unitPricePromo'>
           ¥{i.product.unitPrice / 100}
-          </Text>
-          </View>
-          <View className='right'>
-          <Text className="badge">
-          中奖率100%
           </Text>
           </View>
           </View>

@@ -62,15 +62,7 @@
   }
   .featured{
     .img-wrapper{
-      height: 420px;
       overflow: hidden;
-      position: relative;
-      .banner{
-        position: absolute;
-        bottom: 6px;
-        font-size: 28px;
-        font-weight: bold;
-      }
     }
     .price{
       display: flex;
