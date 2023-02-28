@@ -55,7 +55,7 @@ export default class Myclaim extends Component<PropsWithChildren> {
             }
             extraText = Taxon.claimStatus[i.status]
             if (this.isStore && i.prize.label === 'onemore') {
-              extraText = Taxon.settleStatus[Number(i.settled)]
+              extraText = Taxon.settleStatus[Number(i.storeSettled)]
             }
             list.push(
               <AtListItem

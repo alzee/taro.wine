@@ -27,9 +27,9 @@ export default class Orgclaim extends Component<PropsWithChildren> {
           for (let i of records) {
             list.push(
               <AtListItem
-              title={i.prize.name + ' ' + i.value}
+              title={i.prize.name}
               note={fmtDate(i.createdAt)}
-              extraText={Taxon.claimStatus[i.status]}
+              extraText={Taxon.settleStatus[Number(i.serveStoreSettled)]}
               />
             )
           }
