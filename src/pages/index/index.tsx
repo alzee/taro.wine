@@ -66,9 +66,6 @@ export default class Index extends Component<PropsWithChildren> {
         promo.push(
           <View className="item at-col at-col-6" key={i}>
           <Image className='img' mode='widthFix' src={this.imgUrl + 'node/' + i.img} onClick={()=>this.navToNode(i.id)} ></Image>
-          <View className="text">
-          {i.title}
-          </View>
           </View>
         );
       }
