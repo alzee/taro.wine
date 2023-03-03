@@ -10,8 +10,9 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
   otype: int
   oid: int
   uid: int
-  discount: float
-  withdrawable: int
+  state = {
+    withdrawable: 0
+  }
 
   componentWillMount () { }
 
@@ -24,23 +25,11 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
       success: res => {
         // this.setState({data: res.data})
         this.otype = res.data.otype
-        let query
-        if (this.otype == 4) {
-          this.uid = res.data.uid
-          query = 'users/' + this.uid
-        } else {
-          this.oid = res.data.org.id
-          query = 'orgs/' + this.oid
-        }
-
+        this.uid = res.data.uid
         Taro.request({
-          url: Env.apiUrl + query
+          url: Env.apiUrl + 'users/' + this.uid
         }).then((res) =>{
-          if (this.otype != 4) {
-            this.discount = res.data.discount
-          }
-          this.withdrawable = res.data.withdrawable
-          this.setState({withdrawable: this.withdrawable})
+          this.setState({withdrawable: res.data.withdrawable})
         })
       }
     })
@@ -78,7 +67,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
       })
       return
     }
-    if (data.amount * 100 > this.withdrawable) {
+    if (data.amount * 100 > this.state.withdrawable) {
       Taro.showToast({
         title: '可提金额不足' ,
         icon: 'error',
@@ -126,10 +115,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
       />
       { this.state &&
         <View className='hint'>
-        <Text>可提金额: {this.withdrawable / 100}</Text>
-        { this.otype == 3 &&
-          <Text> ，折扣: {this.discount * 100} %</Text>
-        }
+        <Text>可提金额: {this.state.withdrawable / 100}</Text>
         </View>
       }
         <Button className='btn' formType='submit'>提交</Button>
