@@ -46,12 +46,8 @@ export default class Scan extends Component<PropsWithChildren> {
     Taro.exitMiniProgram()
   }
 
-  myClaim(){
-    Taro.redirectTo({url: '/pages/myClaim/index'})
-  }
-
-  myWallet(){
-    Taro.redirectTo({url: '/pages/withdraw/index'})
+  navTo(page: string, query: string) {
+    Taro.navigateTo({ url: '/pages/' + page + '/index?' + query })
   }
 
   render () {
@@ -94,7 +90,10 @@ export default class Scan extends Component<PropsWithChildren> {
       </View>
 
       { this.state.data.code == 0 &&
-      <View className='my-prize' onClick={this.myClaim}>我的奖品</View>
+        <>
+      <View className='my-prize' onClick={() => this.navTo('myClaim')}>我的奖品</View>
+      <View className='my-prize' onClick={() => this.navTo('node')}>兑奖说明</View>
+        </>
       }
 
       </View>
@@ -103,7 +102,7 @@ export default class Scan extends Component<PropsWithChildren> {
       <Button className='btn' size='small' onClick={this.done}>确定</Button>
       }
       { this.state.data.code == 1 &&
-      <Button className='btn' size='small' onClick={this.myWallet}>我的钱包</Button>
+      <Button className='btn' size='small' onClick={() => this.navTo('withdraw')}>我的钱包</Button>
       }
       </View>
     )
