@@ -142,7 +142,7 @@ export default class Index extends Component<PropsWithChildren> {
         break
       case 5:
         page = 'node'
-        query = '?t=2'
+        query = '?tag=6'
         break
       case 6:
         page = 'search'

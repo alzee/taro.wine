@@ -42,6 +42,7 @@ export default class Node extends Component<PropsWithChildren> {
       } else {
         node = res.data
       }
+      Taro.setNavigationBarTitle({ title: node.title })
       this.setState({ node }) 
     })
   }
@@ -58,10 +59,12 @@ export default class Node extends Component<PropsWithChildren> {
       <View className='at-article__info'>
       {this.state.node.date}
       </View>
+      { this.state.node.img &&
       <Image 
       className='at-article__img' 
-      src={ this.state.node.img && Env.imgUrl + 'node/' + this.state.node.img}
+      src={ Env.imgUrl + 'node/' + this.state.node.img }
       mode='widthFix' />
+      }
       <View className='at-article__content'>
       <View dangerouslySetInnerHTML={{__html: this.state.node.body}} className='at-article__section'>
       </View>
