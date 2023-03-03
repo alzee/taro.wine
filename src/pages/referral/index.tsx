@@ -114,18 +114,6 @@ export default class Referral extends Component<PropsWithChildren> {
     ]
     return (
       <View className='referral'>
-      <View className='p-3'>
-      <View className='at-row card'>
-      <View className='at-col'>
-      <View className='label'>我的佣金</View>
-      <View className='number'>{this.state.reward / 100}</View>
-      </View>
-      <View className='at-col'>
-      <View className='label'>可提金额</View>
-      <View className='number'>{this.state.withdrawable / 100}</View>
-      </View>
-      </View>
-      </View>
 
       <AtTabs current={this.state.seg} tabList={tabList} onClick={this.handleClick.bind(this)}>
         <AtTabsPane current={this.state.seg} index={0}>
