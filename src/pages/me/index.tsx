@@ -260,10 +260,10 @@ export default class Me extends Component<PropsWithChildren> {
         </>
       }
 
-      { this.roles.includes('ROLE_SALESMAN') &&
+      { this.roles.includes('ROLE_SALESMAN') || this.roles.includes('ROLE_SALESMAN_RESTAURANT') &&
         <>
       <View className='label'>业务员</View>
-      { this.otype === 3 &&
+      { this.roles.includes('ROLE_SALESMAN_RESTAURANT') &&
       <AtListItem
       title='服务员登记'
       arrow='right'
