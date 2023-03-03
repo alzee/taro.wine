@@ -143,13 +143,16 @@ export default class Myclaim extends Component<PropsWithChildren> {
     }
   }
 
+  goToCollect(){
+    Taro.navigateTo({ url: '/pages/collect/index' })
+  }
+
   render () {
     return (
       <View className='myClaim main'>
-      <View className='at-row card' onClick={this.collect}>
+      <View className='at-row card' onClick={this.goToCollect}>
       <View className='at-col'>
       <View className='label'>集3瓶兑一瓶</View>
-      <View className='number'>{this.state.point / 100}</View>
       </View>
       </View>
 

@@ -49,6 +49,7 @@ export default defineAppConfig({
     'pages/claimQr/index',
     'pages/claimSettle/index',
     'pages/reward/index',
+    'pages/collect/index',
   ],
   window: {
     backgroundTextStyle: 'light',
