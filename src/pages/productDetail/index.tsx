@@ -63,16 +63,10 @@ export default class Productdetail extends Component<PropsWithChildren> {
       <View className='productDetail'>
       { this.state.entity &&
         <>
-      <Image className='pic' mode='aspectFill' src={Env.imgUrl + 'product/' + this.state.entity.img} />
+      <Image className='pic' mode='widthFix' src={Env.imgUrl + 'product/' + this.state.entity.img} />
       <View className='price'>
       <View className='amount'>
       {this.state.entity.price / 100} 元
-      </View>
-      <View className='note'>
-      <Text className='text'>
-      已售22件
-      </Text>
-      <AtIcon value='heart-2' size='15' color='#ff3333'></AtIcon>
       </View>
       </View>
 
@@ -90,27 +84,6 @@ export default class Productdetail extends Component<PropsWithChildren> {
       <View className='item'>
       <Text className='label'> 规格 </Text>
       {this.state.entity.spec}
-      </View>
-      <View className='item'>
-      <Text className='label'> 随赠代金券 </Text>
-      <Text className='voucher'>
-      {this.state.entity.voucher / 100} 元
-      </Text>
-      </View>
-      </View>
-
-      <View className='attr'>
-      <View className='item'>
-      <Image className='img' src={checkIcon} />
-      免邮费
-      </View>
-      <View className='item'>
-      <Image className='img' src={checkIcon} />
-      正品保障
-      </View>
-      <View className='item'>
-      <Image className='img' src={checkIcon} />
-      7天无理由退货
       </View>
       </View>
 
