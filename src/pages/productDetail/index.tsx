@@ -66,7 +66,7 @@ export default class Productdetail extends Component<PropsWithChildren> {
       <Image className='pic' mode='widthFix' src={Env.imgUrl + 'product/' + this.state.entity.img} />
       <View className='price'>
       <View className='amount'>
-      {this.state.entity.price / 100} 元
+      {this.state.entity.unitPricePromo / 100} 元
       </View>
       </View>
 
