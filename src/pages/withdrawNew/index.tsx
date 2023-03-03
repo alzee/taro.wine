@@ -105,9 +105,9 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
       >
       <Input 
       className="input"
-      name='amount' 
-      type='number' 
-      placeholder='提现金额' 
+      name='amount'
+      type='digit'
+      placeholder='提现金额'
       />
       { this.state &&
         <View className='hint'>
