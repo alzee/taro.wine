@@ -144,7 +144,13 @@ export default class Myclaim extends Component<PropsWithChildren> {
   }
 
   goToCollect(){
-    Taro.navigateTo({ url: '/pages/collect/index' })
+    let type: string
+    if (this.isStore) {
+      type = 'store'
+    } else {
+      type = 'user'
+    }
+    Taro.navigateTo({ url: '/pages/collect/index?type=' + type })
   }
 
   render () {
