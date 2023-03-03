@@ -25,19 +25,26 @@ export default class Node extends Component<PropsWithChildren> {
   
   componentDidMount () {
     let id = this.instance.router.params.id
-    const self = this;
+    let tag: int
+    let query: string
+    if (id === undefined) {
+      tag = this.instance.router.params.tag
+      query = 'nodes?itemsPerPage=1&tags=' + tag
+    } else {
+      query = 'nodes/' + id
+    }
     Taro.request({
-      url: Env.apiUrl + 'nodes/' + id,
-      success: function (res) { self.setState({node: res.data}) }
+      url: Env.apiUrl + query
     }).then((res) =>{
+      let node
+      if (id === undefined) {
+        node = res.data[0]
+      } else {
+        node = res.data
+      }
+      this.setState({ node }) 
     })
   }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
 
   render () {
     return (

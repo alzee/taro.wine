@@ -92,7 +92,7 @@ export default class Scan extends Component<PropsWithChildren> {
       { this.state.data.code == 0 &&
         <>
       <View className='my-prize' onClick={() => this.navTo('myClaim')}>我的奖品</View>
-      <View className='my-prize' onClick={() => this.navTo('node')}>兑奖说明</View>
+      <View className='my-prize' onClick={() => this.navTo('node', 'tag=5')}>兑奖说明</View>
         </>
       }
 
