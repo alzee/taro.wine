@@ -78,9 +78,9 @@ export default class Dinenew extends Component<PropsWithChildren> {
       url: Env.apiUrl + 'dine/new',
       success: function (res) { }
     }).then((res) =>{
-      if (res.statusCode == 500) {
+      if (res.statusCode === 500) {
         Taro.showToast({
-          title: '代金券不足',
+          title: '系统维护',
           icon: 'error',
           duration: 2000,
         })
