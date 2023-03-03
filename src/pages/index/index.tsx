@@ -141,12 +141,12 @@ export default class Index extends Component<PropsWithChildren> {
         query = '?t=3'
         break
       case 5:
-        page = 'search'
+        page = 'node'
         query = '?t=2'
         break
       case 6:
-        page = 'reg'
-        requireLogin = true
+        page = 'search'
+        query = '?t=2'
         break
       case 7:
         page = 'about'
@@ -210,7 +210,7 @@ export default class Index extends Component<PropsWithChildren> {
           },
           {
             image: Env.imgUrl + 'icon/heart.png',
-            value: '合作商家',
+            value: '门店活动',
             index: 5
           },
           {
