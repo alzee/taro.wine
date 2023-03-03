@@ -38,11 +38,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
   formSubmit = e => {
     let data = e.detail.value
     data.amount = Number(data.amount)
-    if (this.otype == 4) {
-      data.customer = '/api/users/' + this.uid
-    } else {
-      data.applicant = '/api/orgs/' + this.oid
-    }
+    data.customer = '/api/users/' + this.uid
     if (data.amount == "") {
       Taro.showToast({
         title: '请填写金额' ,
