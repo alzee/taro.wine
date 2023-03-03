@@ -52,6 +52,9 @@ export default class Myclaim extends Component<PropsWithChildren> {
             if (i.prize.label === 'onemore') {
               title = i.prize.name
             }
+            if (i.prize.label === 'voucher' && this.isStore) {
+              title = '可提现金额'
+            }
             if (this.isStore && i.customer !== undefined) {
               title += '(顾客抽奖)'
             }
