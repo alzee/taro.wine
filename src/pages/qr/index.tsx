@@ -100,7 +100,7 @@ export default class Qr extends Component<PropsWithChildren> {
       <View className='qr'>
       <View className='text'>
       <View>
-      消费时出示用代金券抵现
+      代金券付款
       </View>
       </View>
       { this.uid &&

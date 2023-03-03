@@ -185,7 +185,7 @@ export default class Index extends Component<PropsWithChildren> {
         [
           {
             image: Env.imgUrl + 'icon/card.png',
-            value: '会员码',
+            value: '付款码',
             index: 0
           },
           {
@@ -220,7 +220,7 @@ export default class Index extends Component<PropsWithChildren> {
           },
           {
             image: Env.imgUrl + 'icon/headset.png',
-            value: '客服电话',
+            value: '关于我们',
             index: 7
           }
         ]
