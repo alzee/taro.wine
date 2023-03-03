@@ -128,7 +128,7 @@ export default class Myclaim extends Component<PropsWithChildren> {
               .then(res => {
                 setTimeout(
                   () => {
-                    Taro.redirectTo({url: '/pages/me/index'})
+                    Taro.navigateBack({ delta: 1 })
                   }, 500
                 )
               })

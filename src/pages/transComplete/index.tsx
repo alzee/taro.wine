@@ -8,7 +8,6 @@ export default class TransComplete extends Component<PropsWithChildren> {
   componentDidMount () { }
 
   naviBack(){
-    // Taro.redirectTo({ url: '/pages/me/index' })
     Taro.navigateBack({
       delta: 1
     })
