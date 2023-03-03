@@ -81,7 +81,7 @@ export default class Scan extends Component<PropsWithChildren> {
       { this.state.data.prize &&
         <>
       {this.state.data.prize}   
-      {this.state.data.value}   
+      {this.state.data.value / 100}   
         </>
       }
 
