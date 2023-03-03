@@ -12,7 +12,6 @@ export default class Withdraw extends Component<PropsWithChildren> {
   uid: int
   state = {
     withdrawable: 0,
-    withdrawing: 0
   }
 
   getData (type: string) {
@@ -56,7 +55,6 @@ export default class Withdraw extends Component<PropsWithChildren> {
         }).then((res) =>{
           this.setState({
             withdrawable: res.data.withdrawable,
-            withdrawing: res.data.withdrawing
           })
         })
       },
@@ -85,10 +83,6 @@ export default class Withdraw extends Component<PropsWithChildren> {
       <View className='number'>{this.state.withdrawable / 100}</View>
       </View>
 
-      <View className='at-col'>
-      <View className='label'>提现中</View>
-      <View className='number'>{this.state.withdrawing / 100}</View>
-      </View>
       </View>
 
       <AtList className="list">
