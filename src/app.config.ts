@@ -50,6 +50,7 @@ export default defineAppConfig({
     'pages/claimSettle/index',
     'pages/reward/index',
     'pages/collect/index',
+    'pages/scan/ret',
   ],
   window: {
     backgroundTextStyle: 'light',
