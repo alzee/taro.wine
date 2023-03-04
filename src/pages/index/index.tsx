@@ -87,14 +87,12 @@ export default class Index extends Component<PropsWithChildren> {
           {i.title}
           </View>
           <View className="price">
-          <View className="left">
           <Text className='unitPrice'>
           ¥{i.product.unitPricePromo / 100}
           </Text>
           <Text className='unitPricePromo'>
           ¥{i.product.unitPrice / 100}
           </Text>
-          </View>
           </View>
           </View>
         );

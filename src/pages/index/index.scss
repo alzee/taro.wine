@@ -65,23 +65,17 @@
       overflow: hidden;
     }
     .price{
-      display: flex;
-      justify-content: space-between;
-      .left{
+      .unitPrice{
+        color: var(--color-1);
+        font-size: 36px;
+        font-weight: bold;
+        margin-right: 6px;
       }
-      .right{
+      .unitPricePromo{
+        color: var(--color-note);
+        font-size: 24px;
+        text-decoration: line-through;
       }
-    }
-    .unitPrice{
-      color: var(--color-1);
-      font-size: 36px;
-      font-weight: bold;
-      margin-right: 6px;
-    }
-    .unitPricePromo{
-      color: var(--color-note);
-      font-size: 24px;
-      text-decoration: line-through;
     }
     .bg-1{
       background-color: var(--color-1);
