@@ -41,7 +41,7 @@ export default class Scan extends Component<PropsWithChildren> {
             console.log('userqr scanned. action: ' + this.scan.action);
             if (this.scan.action === undefined) {
               if (this.otype !== 3 && this.otype !== 12) {
-                Taro.redirectTo({url: '/pages/index/index'})
+                Taro.switchTab({url: '/pages/index/index'})
               } else {
                 Taro.redirectTo({url: '/pages/dineNew/index?' + q})
               }
