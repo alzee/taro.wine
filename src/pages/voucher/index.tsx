@@ -58,14 +58,12 @@ export default class Voucher extends Component<PropsWithChildren> {
     return (
       <View className='voucher'>
 
-      { this.state && this.otype != 0 &&
       <View className='at-row card'>
       <View className='at-col'>
       <View className='label'>代金券</View>
       <View className='number'>{this.state.voucher / 100}</View>
       </View>
       </View>
-      }
 
       <AtList className="list">
       {this.state.list}
