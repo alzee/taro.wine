@@ -27,7 +27,9 @@ export default class Scan extends Component<PropsWithChildren> {
         console.log(this.otype);
         switch (this.scan.t) {
           case "0": // box
-            if (this.roles.includes('ROLE_STOREMAN')) {
+            if (this.scan.action === 'ret') {
+              Taro.redirectTo({url: '/pages/scan/ret?' + q})
+            } else if (this.roles.includes('ROLE_STOREMAN')) {
               console.log('storeman')
               Taro.redirectTo({url: '/pages/scan/storeman?' + q})
             } else {
