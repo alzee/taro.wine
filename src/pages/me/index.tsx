@@ -230,7 +230,7 @@ export default class Me extends Component<PropsWithChildren> {
       <AtListItem
       title='我要退货'
       arrow='right'
-      thumb={wine}
+      thumb={Env.imgUrl + 'icon/scan.svg'}
       onClick={() => this.scan('ret')}
       />
       <AtListItem
