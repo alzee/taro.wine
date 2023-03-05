@@ -140,6 +140,9 @@ export default class Me extends Component<PropsWithChildren> {
       if (text.indexOf(Env.wxqrUrl) === 0) {
         console.log('its wxqr code')
         Taro.redirectTo({url: '/pages/scan/index?q=' + encodeURIComponent(text)})
+      } else {
+        console.log('NOT wxqr code')
+        Taro.switchTab({url: '/pages/me/index'})
       }
     }).catch(err => {
       console.log(err)
