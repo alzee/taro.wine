@@ -4,8 +4,6 @@ import './index.scss'
 import { Env } from '../../env/env'
 import Taro from '@tarojs/taro'
 import { AtButton, AtList, AtListItem, AtIcon } from "taro-ui"
-import checkIcon from '../../icon/check-circle-fill.svg'
-import shopIcon from '../../icon/shop.svg'
 
 Taro.options.html.transformElement = (el) => {
   if (el.nodeName === 'image') {
@@ -104,7 +102,7 @@ export default class Productdetail extends Component<PropsWithChildren> {
       <View className='bottom'>
       <View className='left'>
       <View className='' onClick={this.search.bind(this)}>
-      <Image className='img' src={shopIcon} />
+      <Image className='img' src={Env.imgUrl + 'icon/shop.svg'} />
       </View>
       <View className='text'> 店铺 </View>
       </View>

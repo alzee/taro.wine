@@ -5,13 +5,6 @@ import { AtList, AtListItem} from "taro-ui"
 import { AtAvatar } from 'taro-ui'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
-import qr from '../../icon/qr.svg'
-import wine from '../../icon/wine.png'
-import voucher from '../../icon/voucher.png'
-import cash from '../../icon/cash.png'
-import coord from '../../icon/coord.png'
-import gear from '../../icon/gear.png'
-import lock from '../../icon/lock.png'
 
 export default class Me extends Component<PropsWithChildren> {
   otype: int
@@ -161,7 +154,8 @@ export default class Me extends Component<PropsWithChildren> {
         <View className='qricon' onClick={() => this.navTo('qr')}>
         <Image
         style='width: 36px;height: 36px'
-        src={qr} />
+        src={Env.imgUrl + 'icon/qr.svg'}
+        />
         </View>
         </View>
 
@@ -170,7 +164,7 @@ export default class Me extends Component<PropsWithChildren> {
       <AtListItem
       title='我的代金券'
       arrow='right'
-      thumb={voucher}
+      thumb={Env.imgUrl + 'icon/voucher.png'}
       onClick={() => this.navTo('voucher')}
       />
 
@@ -178,7 +172,7 @@ export default class Me extends Component<PropsWithChildren> {
       <AtListItem
       title='分润明细'
       arrow='right'
-      thumb={wine}
+      thumb={Env.imgUrl + 'icon/wine.png'}
       onClick={() => this.navTo('share')}
       />
       }
@@ -188,34 +182,34 @@ export default class Me extends Component<PropsWithChildren> {
       // note='描述信息'
       // extraText='详细信息'
       arrow='right'
-      thumb={cash}
+      thumb={Env.imgUrl + 'icon/cash.png'}
       onClick={() => this.navTo('withdraw')}
       />
 
       <AtListItem
       title='我的奖品'
       arrow='right'
-      thumb={cash}
+      thumb={Env.imgUrl + 'icon/cash.png'}
       onClick={() => Taro.navigateTo({ url: '/pages/myClaim/index?type=user'})}
       />
 
       <AtListItem
       title='我的信息'
       arrow='right'
-      thumb={lock}
+      thumb={Env.imgUrl + 'icon/lock.png'}
       onClick={() => this.navTo('customerInfo')}
       />
 
       <AtListItem
       title='分销中心'
       arrow='right'
-      thumb={lock}
+      thumb={Env.imgUrl + 'icon/lock.png'}
       onClick={() => this.navTo('referral')}
       />
       <AtListItem
       title='业务报备'
       arrow='right'
-      thumb={lock}
+      thumb={Env.imgUrl + 'icon/lock.png'}
       onClick={() => this.navTo('myReg')}
       />
 
@@ -225,13 +219,13 @@ export default class Me extends Component<PropsWithChildren> {
       <AtListItem
       title='更新门店坐标'
       arrow='right'
-      thumb={coord}
+      thumb={Env.imgUrl + 'icon/coord.png'}
       onClick={this.getLocation.bind(this)}
       />
       <AtListItem
       title='我的库存'
       arrow='right'
-      thumb={wine}
+      thumb={Env.imgUrl + 'icon/wine.png'}
       onClick={() => this.navTo('stock')}
       />
       <AtListItem
@@ -243,7 +237,7 @@ export default class Me extends Component<PropsWithChildren> {
       <AtListItem
       title='商家钱包'
       arrow='right'
-      thumb={lock}
+      thumb={Env.imgUrl + 'icon/lock.png'}
       onClick={() => this.navTo('reward')}
       />
       <AtListItem
@@ -255,19 +249,19 @@ export default class Me extends Component<PropsWithChildren> {
       <AtListItem
       title='机构信息'
       arrow='right'
-      thumb={gear}
+      thumb={Env.imgUrl + 'icon/gear.png'}
       onClick={() => this.navTo('orgEdit')}
       />
       <AtListItem
       title='我的奖品'
       arrow='right'
-      thumb={gear}
+      thumb={Env.imgUrl + 'icon/gear.png'}
       onClick={() => Taro.navigateTo({ url: '/pages/myClaim/index?type=store'})}
       />
       <AtListItem
       title='顾客兑奖'
       arrow='right'
-      thumb={gear}
+      thumb={Env.imgUrl + 'icon/gear.png'}
       onClick={() => this.navTo('orgClaim')}
       />
         </>
@@ -299,7 +293,7 @@ export default class Me extends Component<PropsWithChildren> {
       <AtListItem
       title='我的领用'
       arrow='right'
-      thumb={lock}
+      thumb={Env.imgUrl + 'icon/lock.png'}
       onClick={() => this.navTo('borrow')}
       />
         </>
