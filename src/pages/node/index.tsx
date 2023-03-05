@@ -53,12 +53,6 @@ export default class Node extends Component<PropsWithChildren> {
 
       { this.state.node &&
       <View>
-      <View className='at-article__h1'>
-      {this.state.node.title}
-      </View>
-      <View className='at-article__info'>
-      {this.state.node.date}
-      </View>
       { this.state.node.img &&
       <Image 
       className='at-article__img' 
