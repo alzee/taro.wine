@@ -42,7 +42,7 @@ export default class Collect extends Component<PropsWithChildren> {
           console.log(res.data);
           let collectList = []
           for (let i in res.data) {
-            list.push(
+            collectList.push(
               <AtListItem
               onClick={() => this.settle(i)}
               title={res.data[i].product.name}
