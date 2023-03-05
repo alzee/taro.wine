@@ -30,10 +30,6 @@ export default class Me extends Component<PropsWithChildren> {
       console.log(res.data)
       this.otype = res.data.otype
       this.roles = res.data.roles
-      this.setState({
-        orgName: res.data.org.name,
-        name: res.data.name
-      })
       Taro.request({
         url: Env.apiUrl + 'users/' + res.data.uid
       }).then(res => {
@@ -41,6 +37,10 @@ export default class Me extends Component<PropsWithChildren> {
         if (res.data.phone === undefined || res.data.name === undefined) {
           Taro.redirectTo({url: '/pages/customerInfo/index'})
         } 
+        this.setState({
+          orgName: res.data.org.name,
+          name: res.data.name
+        })
         if (res.data.reloginRequired) {
           Taro.removeStorage({
             key: Env.storageKey,
