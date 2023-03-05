@@ -32,7 +32,7 @@ export default class Collect extends Component<PropsWithChildren> {
         this.uid = res.data.uid
         this.oid = res.data.org.id
         let query: string
-        query = 'user=' + this.uid
+        query = 'customer=' + this.uid
         if (this.isStore) {
           query = 'store=' + this.oid
         }
