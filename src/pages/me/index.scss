@@ -1,6 +1,8 @@
 @import "~taro-ui/dist/style/components/list.scss";
 @import "~taro-ui/dist/style/components/icon.scss";
 .me{
+  padding-bottom: 1rem;
+  overflow-x: hidden;
   .avatar{
     margin-right: 1rem;
   }
