@@ -153,18 +153,9 @@ export default class Customerinfo extends Component<PropsWithChildren> {
         <Text className='label'>姓名</Text>
         <Input 
           name='name' 
-          type='text' 
+          type='nickname' 
           value={this.state.customer.name}
           onBlur={(e) => this.handleChange('name', e)}
-        />
-        </View>
-        <View className='input'>
-        <Text className='label'>昵称</Text>
-        <input 
-          name='nick' 
-          type='nickname' 
-          value={this.state.customer.nick}
-          onBlur={(e) => this.handleChange('nick', e)}
         />
         </View>
         <View className='input'>
