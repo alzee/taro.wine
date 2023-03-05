@@ -18,14 +18,19 @@
       top: 450px;
       color: #ffda9c;
       font-weight: bold;
-      font-size: 48px;
+      font-size: 36px;
     }
-    .my-prize{
+    .btns{
       position: absolute;
       width: 100%;
       top: 910px;
       color: #8c7447;
-      font-size: 20px;
+      font-size: 24px;
+      display: flex;
+      justify-content: center;
+      .my-prize{
+        margin: 0 .5rem;
+      }
     }
   }
 }
