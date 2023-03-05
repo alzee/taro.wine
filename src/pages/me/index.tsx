@@ -266,7 +266,7 @@ export default class Me extends Component<PropsWithChildren> {
         </>
       }
 
-      { this.roles.includes('ROLE_SALESMAN') || this.roles.includes('ROLE_SALESMAN_RESTAURANT') &&
+      { (this.roles.includes('ROLE_SALESMAN') || this.roles.includes('ROLE_SALESMAN_RESTAURANT')) &&
         <>
       <View className='label'>业务员</View>
       { this.roles.includes('ROLE_SALESMAN_RESTAURANT') &&
