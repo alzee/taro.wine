@@ -88,7 +88,7 @@ export default class Reward extends Component<PropsWithChildren> {
       </View>
 
       <View className='fixed'>
-      <Button className='btn btn-primary' onClick={this.move}>转入个人微信</Button>
+      <Button className='btn btn-primary' onClick={this.move}>转入我的钱包</Button>
       </View>
 
       </View>
