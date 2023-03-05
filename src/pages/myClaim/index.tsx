@@ -50,7 +50,7 @@ export default class Myclaim extends Component<PropsWithChildren> {
           for (let i of records) {
             let title = i.prize.name + ' ' + i.prize[value] / 100
             if (i.prize.label === 'onemore') {
-              title = i.prize.name
+              title = i.prize.name + ' ' + i.product.name
             }
             if (i.prize.label === 'voucher' && this.isStore) {
               title = '可提现金额'
