@@ -91,7 +91,7 @@ export default class Scan extends Component<PropsWithChildren> {
 
       { this.state.data.code == 0 &&
       <View className='btns'>
-      <View className='my-prize' onClick={() => this.navTo('myClaim')}>我的奖品</View>
+      <View className='my-prize' onClick={() => Taro.redirectTo({ url: '/pages/myClaim/index'})}>我的奖品</View>
       <View className='my-prize' onClick={() => this.navTo('node', 'tag=5')}>兑奖说明</View>
       </View>
       }
