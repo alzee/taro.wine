@@ -133,6 +133,10 @@ export default class Me extends Component<PropsWithChildren> {
     }).then(res => {
       console.log(res)
       let text = res.result + '&action=' + action
+      if (text.charCodeAt(0) === 0xFEFF) {
+        console.log('fucking 65279')
+        text = text.substr(1)
+      }
       if (text.indexOf(Env.wxqrUrl) === 0) {
         console.log('its wxqr code')
         Taro.redirectTo({url: '/pages/scan/index?q=' + encodeURIComponent(text)})
