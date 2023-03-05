@@ -83,7 +83,7 @@ export default class Scan extends Component<PropsWithChildren> {
 
       { this.state.data.tip &&
         <>
-      {this.state.data.tip} 元  
+      {this.state.data.tip / 100} 元  
         </>
       }
 
