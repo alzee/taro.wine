@@ -16,7 +16,6 @@ switch (envVer) {
   case 'release':
     baseUrl = 'https://hbljk.cn/';
     break
-
 }
 
 export const Env = {

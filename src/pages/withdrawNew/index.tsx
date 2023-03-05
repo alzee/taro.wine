@@ -11,7 +11,8 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
   oid: int
   uid: int
   state = {
-    withdrawable: 0
+    withdrawable: 0,
+    disabled: false
   }
 
   componentWillMount () { }
@@ -71,6 +72,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
       })
       return
     }
+    this.setState({disabled: true})
 
     data.amount = data.amount * 100
 
@@ -114,7 +116,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
         <Text>可提金额: {this.state.withdrawable / 100}</Text>
         </View>
       }
-        <Button className='btn' formType='submit'>提交</Button>
+        <Button className='btn' formType='submit' disabled={this.state.disabled}>提交</Button>
       </Form>
       </View>
     )
