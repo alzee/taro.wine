@@ -1,4 +1,10 @@
 .bindOrgAdmin{
+  padding: 1rem;
+  .search-picker{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   .notice{
     padding: 1rem;
     .title{

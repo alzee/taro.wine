@@ -20,7 +20,7 @@ export default class Dinedetail extends Component<PropsWithChildren> {
       url: Env.apiUrl + 'order_restaurants/' + this.id
     }).then((res) =>{
       self.setState({
-        entity: res.data
+        entity: res.data,
         discount: res.data.restaurant.discount
       }) 
     })
