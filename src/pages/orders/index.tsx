@@ -50,27 +50,27 @@ export default class Orders extends Component<PropsWithChildren> {
       case 'sales':
         api = 'orders'
         filter = 'exists%5BorderItems%5D=true&seller'
-        extraText = 'voucher'
+        extraText = 'amount'
         break
       case 'returnsToMe':
         api = 'returns'
         filter = 'exists%5BreturnItems%5D=true&recipient'
-        extraText = 'voucher'
+        extraText = 'amount'
         break
       case 'buys':
         api = 'orders'
         filter = 'exists%5BorderItems%5D=true&buyer'
-        extraText = 'voucher'
+        extraText = 'amount'
         break
       case 'myReturns':
         api = 'returns'
         filter = 'exists%5BreturnItems%5D=true&sender'
-        extraText = 'voucher'
+        extraText = 'amount'
         break
       case 'retails':
         api = 'retails'
         filter = 'store'
-        extraText = 'voucher'
+        extraText = 'amount'
         break
       case 'dines':
         api = 'order_restaurants'
@@ -86,7 +86,7 @@ export default class Orders extends Component<PropsWithChildren> {
       case 'myRetails':
         api = 'retails'
         filter = 'customer'
-        extraText = 'voucher'
+        extraText = 'amount'
         me = this.uid
         break
     }
