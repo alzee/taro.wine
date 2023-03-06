@@ -59,27 +59,41 @@ export default class Customerinfo extends Component<PropsWithChildren> {
       })
       return
     }
-    
     Taro.request({
-      method: 'PATCH',
-      data: data,
-      url: Env.apiUrl + 'users/' + this.uid,
-      header: {
-        'content-type': 'application/merge-patch+json'
-      }
+      method: 'POST',
+      data: {'phone': data.phone},
+      url: Env.apiUrl + 'chkphone'
     }).then((res) =>{
-      Taro.showToast({
-        title: '已完成',
-        icon: 'success',
-        duration: 2000,
-        success: () => {
-          setTimeout(
-            () => {
-              Taro.reLaunch({url: '/pages/me/index'})
-            }, 500
-          )
-        }
-      })
+      if (res.data.code === 0) {
+        Taro.request({
+          method: 'PATCH',
+          data: data,
+          url: Env.apiUrl + 'users/' + this.uid,
+          header: {
+            'content-type': 'application/merge-patch+json'
+          }
+        }).then((res) =>{
+          Taro.showToast({
+            title: '已完成',
+            icon: 'success',
+            duration: 2000,
+            success: () => {
+              setTimeout(
+                () => {
+                  Taro.reLaunch({url: '/pages/me/index'})
+                }, 500
+              )
+            }
+          })
+        })
+      } else {
+        Taro.showToast({
+          title: '手机号已使用',
+          icon: 'error',
+          duration: 2000
+        })
+        return
+      }
     })
 
     if (this.state.avatarChanged) {
