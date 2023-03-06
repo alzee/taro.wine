@@ -115,7 +115,7 @@ export default class Bindorgadmin extends Component<PropsWithChildren> {
       />
       </View>
       <Picker className='picker' mode='selector' range={this.state.orgs} rangeKey='name' onChange={this.orgChanged}>
-        <Button className=''>搜索</Button>
+        <Button className='picker-btn' size='mini'>搜索</Button>
       </Picker>
       </View>
       <View className='notice'>
