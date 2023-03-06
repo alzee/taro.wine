@@ -59,60 +59,55 @@ export default class Customerinfo extends Component<PropsWithChildren> {
       })
       return
     }
+
     Taro.request({
-      method: 'POST',
-      data: {'phone': data.phone},
-      url: Env.apiUrl + 'chkphone'
+      method: 'PATCH',
+      data: data,
+      url: Env.apiUrl + 'users/' + this.uid,
+      header: {
+        'content-type': 'application/merge-patch+json'
+      }
     }).then((res) =>{
-      if (res.data.code === 0) {
-        Taro.request({
-          method: 'PATCH',
-          data: data,
-          url: Env.apiUrl + 'users/' + this.uid,
-          header: {
-            'content-type': 'application/merge-patch+json'
-          }
-        }).then((res) =>{
-          Taro.showToast({
-            title: '已完成',
-            icon: 'success',
-            duration: 2000,
-            success: () => {
-              setTimeout(
-                () => {
-                  Taro.reLaunch({url: '/pages/me/index'})
-                }, 500
-              )
+      if (res.statusCode === 200) {
+        if (this.state.avatarChanged) {
+          let that = this
+          Taro.uploadFile({
+            url: Env.apiUrl + 'media_objects',
+            filePath: this.state.avatarUrl,
+            name: 'upload',
+            formData: {
+              'type': 6,
+              'entityId': this.uid
+            },
+            success (res){
+              that.setState({
+                avatarUrl: res.data.url
+              })
             }
           })
+        }
+
+        Taro.showToast({
+          title: '已完成',
+          icon: 'success',
+          duration: 2000,
+          success: () => {
+            setTimeout(
+              () => {
+                Taro.reLaunch({url: '/pages/me/index'})
+              }, 500
+            )
+          }
         })
       } else {
+      // } else if (res.statusCode === 422) {
         Taro.showToast({
           title: '手机号已使用',
           icon: 'error',
           duration: 2000
         })
-        return
       }
     })
-
-    if (this.state.avatarChanged) {
-      let that = this
-      Taro.uploadFile({
-        url: Env.apiUrl + 'media_objects',
-        filePath: this.state.avatarUrl,
-        name: 'upload',
-        formData: {
-          'type': 6,
-          'entityId': this.uid
-        },
-        success (res){
-          that.setState({
-            avatarUrl: res.data.url
-          })
-        }
-      })
-    }
   }
 
   checkboxChange(e){
