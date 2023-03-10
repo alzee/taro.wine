@@ -12,7 +12,8 @@ export default class Dinenew extends Component<PropsWithChildren> {
   timestamp: string
   oid: int
   state = {
-      customerName: ''
+    customerName: '',
+    disabled: false
   }
 
   componentDidMount () {
@@ -59,6 +60,7 @@ export default class Dinenew extends Component<PropsWithChildren> {
     }
     data.voucher = data.voucher * 100
     console.log(data)
+    this.setState({disabled: true})
 
     Taro.request({
       method: 'POST',
@@ -108,7 +110,7 @@ export default class Dinenew extends Component<PropsWithChildren> {
       type='number' 
       placeholder='代金券' 
       />
-        <Button className='btn' formType='submit'>提交</Button>
+        <Button className='btn' formType='submit' disabled={this.state.disabled}>提交</Button>
       </Form>
       </View>
     )
