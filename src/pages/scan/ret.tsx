@@ -44,7 +44,8 @@ export default class Scan extends Component<PropsWithChildren> {
   }
 
   done(){
-    Taro.exitMiniProgram()
+    // Taro.exitMiniProgram()
+    Taro.switchTab({ url: '/pages/me/index' })
   }
 
   goOn(){
@@ -86,7 +87,7 @@ export default class Scan extends Component<PropsWithChildren> {
       { this.oType !== 4 &&
       <Button className='btn btn-outline-primary btn1' onClick={this.goOn}>继续退货</Button>
       }
-      <Button className='btn' size='small' onClick={this.done}>确定</Button>
+      <Button className='btn' size='small' onClick={this.done}>返回</Button>
       </View>
 
       </View>
