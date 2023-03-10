@@ -7,6 +7,7 @@ import Taro from '@tarojs/taro'
 import { Taxon } from '../../Taxon'
 
 export default class Customerinfo extends Component<PropsWithChildren> {
+  user = {}
   uid: int
   state = {
     btnDisabled: true,
@@ -18,6 +19,7 @@ export default class Customerinfo extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.uid = res.data.id
+        this.user = res.data
         Taro.request({
           url: Env.apiUrl + 'users/' + this.uid,
         }).then((res) => {
@@ -69,6 +71,13 @@ export default class Customerinfo extends Component<PropsWithChildren> {
       }
     }).then((res) =>{
       if (res.statusCode === 200) {
+        this.user.name = data.name
+        this.user.phone = data.phone
+        Taro.setStorage({
+          key: Env.storageKey,
+          data: this.user
+        })
+
         if (this.state.avatarChanged) {
           let that = this
           Taro.uploadFile({
