@@ -172,7 +172,7 @@ export default class Orders extends Component<PropsWithChildren> {
       if (this.otype != 4){
         this.orgid = res.data.org.id
       } else {
-        this.uid = res.data.uid
+        this.uid = res.data.id
       }
       switch (this.otype) {
         case 0:

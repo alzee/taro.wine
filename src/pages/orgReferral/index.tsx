@@ -16,7 +16,7 @@ export default class Orgreferral extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        let uid = res.data.uid
+        let uid = res.data.id
         let list
         Taro.request({
           url: Env.apiUrl + 'orgs?referrer=' + uid,

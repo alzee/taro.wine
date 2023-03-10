@@ -24,7 +24,7 @@ export default class Me extends Component<PropsWithChildren> {
       this.otype = res.data.org.type
       this.roles = res.data.roles
       Taro.request({
-        url: Env.apiUrl + 'users/' + res.data.uid
+        url: Env.apiUrl + 'users/' + res.data.id
       }).then(res => {
         console.log(res.data);
         if (res.data.phone === undefined || res.data.name === undefined) {

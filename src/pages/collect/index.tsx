@@ -29,7 +29,7 @@ export default class Collect extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        this.uid = res.data.uid
+        this.uid = res.data.id
         this.oid = res.data.org.id
         let query: string
         query = 'customer=' + this.uid

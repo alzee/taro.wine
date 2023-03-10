@@ -12,7 +12,7 @@ export default class Poster extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        this.setState({uid: res.data.uid})
+        this.setState({uid: res.data.id})
       },
       fail: res => {
         console.log('pls login');

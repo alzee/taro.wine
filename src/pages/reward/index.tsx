@@ -21,7 +21,7 @@ export default class Reward extends Component<PropsWithChildren> {
     })
     .then( res => {
       this.oid = res.data.org.id
-      this.uid = res.data.uid
+      this.uid = res.data.id
         // Taro.request({
         //   url: Env.apiUrl + 'rewards?'
         // })

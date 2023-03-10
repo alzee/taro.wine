@@ -16,10 +16,9 @@ export default class Borrow extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        let data = res.data
         const self = this
         Taro.request({
-          url: Env.apiUrl + 'borrows?salesman=' + data.uid,
+          url: Env.apiUrl + 'borrows?salesman=' + res.data.id,
           success: function (res) {}
         }).then((res) =>{
           let records = res.data

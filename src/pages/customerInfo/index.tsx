@@ -17,7 +17,7 @@ export default class Customerinfo extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        this.uid = res.data.uid
+        this.uid = res.data.id
         Taro.request({
           url: Env.apiUrl + 'users/' + this.uid,
         }).then((res) => {
@@ -99,10 +99,21 @@ export default class Customerinfo extends Component<PropsWithChildren> {
             )
           }
         })
-      } else {
-      // } else if (res.statusCode === 422) {
+      } else if (res.statusCode === 422) {
         Taro.showToast({
           title: '手机号已使用',
+          icon: 'error',
+          duration: 2000
+        })
+      } else if (res.statusCode === 404) {
+        Taro.showToast({
+          title: '未找到用户',
+          icon: 'error',
+          duration: 2000
+        })
+      } else {
+        Taro.showToast({
+          title: '系统错误',
           icon: 'error',
           duration: 2000
         })

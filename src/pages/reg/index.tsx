@@ -16,7 +16,7 @@ export default class Reg extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.setState({
-          uid: res.data.uid
+          uid: res.data.id
         })
       },
       fail: res => {

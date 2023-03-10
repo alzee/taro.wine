@@ -19,7 +19,7 @@ export default class Referral extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        let uid = res.data.uid
+        let uid = res.data.id
         Taro.request({
           url: Env.apiUrl + 'users/' + uid,
         }).then((res) =>{

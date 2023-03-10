@@ -17,7 +17,7 @@ export default class Myreg extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.setState({data: res.data})
-        this.uid = res.data.uid
+        this.uid = res.data.id
         Taro.request({
           url: Env.apiUrl + 'regs?submitter=' + this.uid
         }).then((res) => {

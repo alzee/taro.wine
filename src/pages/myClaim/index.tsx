@@ -29,17 +29,16 @@ export default class Myclaim extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        let data = res.data
-        this.uid = data.uid
-        this.oid = data.org.id
+        this.uid = res.data.id
+        this.oid = res.data.org.id
         const self = this
-        let query = 'customer=' + data.uid
-        let query2 = 'users/' + data.uid
+        let query = 'customer=' + this.uid
+        let query2 = 'users/' + this.uid
         let value = 'toCustomer'
         let extraText = ''
         if (this.isStore) {
-          query = 'store=' + data.org.id
-          query2 = 'orgs/' + data.org.id
+          query = 'store=' + this.oid
+          query2 = 'orgs/' + this.oid
           value = 'toStore'
         }
         Taro.request({

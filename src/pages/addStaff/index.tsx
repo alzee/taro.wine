@@ -25,7 +25,7 @@ export default class Addstaff extends Component<PropsWithChildren> {
       key: Env.storageKey
     }).then(res => {
       this.oid = res.data.org.id
-      this.uid = res.data.uid
+      this.uid = res.data.id
     })
   }
 

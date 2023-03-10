@@ -18,7 +18,7 @@ export default class Scan extends Component<PropsWithChildren> {
       success: res => {
         console.log(res.data);
         let data = {
-          uid: res.data.uid,
+          uid: res.data.id,
           s: params.s,
           e: params.e
         }

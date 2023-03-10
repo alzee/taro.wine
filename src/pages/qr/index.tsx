@@ -50,7 +50,7 @@ export default class Qr extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         self.setState({data: res.data})
-        this.uid = res.data.uid
+        this.uid = res.data.id
         this.name = res.data.name
       },
       fail: res => {

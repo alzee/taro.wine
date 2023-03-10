@@ -10,6 +10,7 @@ import { fmtDate } from '../../fmtDate'
 
 export default class Voucher extends Component<PropsWithChildren> {
   query: string = '?page=1'
+  uid: int
   otype: int
   state = {
     voucher: 0
@@ -19,18 +20,17 @@ export default class Voucher extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        let data = res.data
+        this.uid = res.data.id
         this.otype = res.data.org.type
         const self = this;
-        this.query = '?page=1&customer=' + data.uid
+        this.query = '?page=1&customer=' + this.uid
         Taro.request({
-          url: Env.apiUrl + 'users/' + data.uid
+          url: Env.apiUrl + 'users/' + this.uid
         }).then((res) =>{
           this.setState({voucher: res.data.voucher})
         })
         Taro.request({
-          url: Env.apiUrl + 'vouchers' + this.query,
-          success: function (res) { self.setState({data: res.data}) }
+          url: Env.apiUrl + 'vouchers' + this.query
         }).then((res) =>{
           let records = res.data
           let list = []

@@ -24,7 +24,7 @@ export default class Waitersignup extends Component<PropsWithChildren> {
       key: Env.storageKey
     })
     .then(res => {
-      this.uid = res.data.uid
+      this.uid = res.data.id
     })
   }
 

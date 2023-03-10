@@ -46,7 +46,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
         let query
         const self = this;
 
-        this.uid = res.data.uid
+        this.uid = res.data.id
         this.getData('customer')
         query = 'users/' + this.uid
         

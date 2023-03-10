@@ -26,7 +26,7 @@ export default class Withdrawdetail extends Component<PropsWithChildren> {
       success: res => {
         this.otype = res.data.org.type
         if (this.otype == 4) {
-          this.uid = res.data.uid
+          this.uid = res.data.id
         } else {
           this.oid = res.data.org.id
         }

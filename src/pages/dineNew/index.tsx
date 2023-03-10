@@ -22,22 +22,7 @@ export default class Dinenew extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        this.setState({data: res.data})
         this.oid = res.data.org.id
-
-        Taro.request({
-          url: Env.apiUrl + 'products?org=' + this.oid
-        }).then((res) =>{
-          this.products = res.data
-          console.log(this.products)
-          let list = []
-          for (let i in this.products) {
-            list[i] = this.products[i].name
-          }
-          this.setState({
-            products: list
-          })
-        })
       },
       fail: res => {
         console.log('pls login');

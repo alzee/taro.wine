@@ -17,7 +17,7 @@ export default class Borrow extends Component<PropsWithChildren> {
       key: Env.storageKey
     })
     .then((res) => {
-      this.uid = res.data.uid
+      this.uid = res.data.id
     })
     Taro.request({
       url: Env.apiUrl + 'claims?status=1&settled=false',
