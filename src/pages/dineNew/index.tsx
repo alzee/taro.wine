@@ -9,15 +9,18 @@ import { AtButton, AtList, AtListItem} from "taro-ui"
 export default class Dinenew extends Component<PropsWithChildren> {
   instance = Taro.getCurrentInstance();
   uid: int
-  customerName: string
   timestamp: string
   oid: int
+  state = {
+      customerName: ''
+  }
 
   componentDidMount () {
     this.uid = this.instance.router.params.uid
     this.timestamp = this.instance.router.params.timestamp
-    this.customerName = this.instance.router.params.name
-    console.log(this.uid, this.timestamp)
+    this.setState({
+      customerName: this.instance.router.params.name
+    })
 
     Taro.getStorage({
       key: Env.storageKey,
@@ -65,7 +68,7 @@ export default class Dinenew extends Component<PropsWithChildren> {
     }).then((res) =>{
       if (res.statusCode === 500) {
         Taro.showToast({
-          title: '系统维护',
+          title: '系统错误',
           icon: 'error',
           duration: 2000,
         })
@@ -95,7 +98,7 @@ export default class Dinenew extends Component<PropsWithChildren> {
       <AtList>
       <AtListItem
       title='顾客'
-      extraText={[this.customerName]}
+      extraText={[this.state.customerName]}
       disabled
       />
       </AtList>
