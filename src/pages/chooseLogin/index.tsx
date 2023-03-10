@@ -33,11 +33,20 @@ export default class Chooselogin extends Component<PropsWithChildren> {
             url: Env.apiUrl + 'wxlogin',
             data
           }).then((res) => {
-            Taro.setStorage({
-              key: Env.storageKey,
-              data: res.data
-            });
-            Taro.reLaunch({ url: '/pages/me/index' })
+            if (res.statusCode === 200) {
+              Taro.setStorage({
+                key: Env.storageKey,
+                data: res.data
+              });
+              Taro.reLaunch({ url: '/pages/me/index' })
+            } else {
+              Taro.showToast({
+                title: '系统错误',
+                icon: 'error',
+                duration: 2000
+              })
+              console.log('server error！' + res.errMsg)
+            }
           })
         } else {
           console.log('登录失败！' + res.errMsg)
