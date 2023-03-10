@@ -21,7 +21,7 @@ export default class Product extends Component<PropsWithChildren> {
       success: res => {
         self.setState({data: res.data})
         this.orgid = res.data.org.id
-        this.otype = res.data.otype
+        this.otype = res.data.org.type
         let query = '?page=1&org=' + this.orgid
         Taro.request({
           url: Env.apiUrl + 'products' + query,

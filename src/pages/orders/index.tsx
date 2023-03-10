@@ -168,7 +168,7 @@ export default class Orders extends Component<PropsWithChildren> {
     })
     .then((res) => {
       self.setState({data: res.data})
-      this.otype = res.data.otype
+      this.otype = res.data.org.type
       if (this.otype != 4){
         this.orgid = res.data.org.id
       } else {

@@ -130,7 +130,7 @@ export default class Org extends Component<PropsWithChildren> {
             key: Env.storageKey
           })
           .then((res) => {
-            this.otype = res.data.otype
+            this.otype = res.data.org.type
             if (this.otype == 0 || this.otype == 10) {
               // this.getOrgs(1)
             }

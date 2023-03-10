@@ -23,8 +23,7 @@ export default class Scan extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.roles = res.data.roles
-        this.otype = res.data.otype
-        console.log(this.otype);
+        this.otype = res.data.org.type
         switch (this.scan.t) {
           case "0": // box
             if (this.scan.action === 'ret') {

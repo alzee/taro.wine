@@ -35,7 +35,7 @@ export default class Index extends Component<PropsWithChildren> {
       key: Env.storageKey
     })
     .then(res => {
-      this.otype = res.data.otype
+      this.otype = res.data.org.type
     })
     .catch(err => {
       console.log(err);

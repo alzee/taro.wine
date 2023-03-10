@@ -20,7 +20,7 @@ export default class Voucher extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         let data = res.data
-        this.otype = res.data.otype
+        this.otype = res.data.org.type
         const self = this;
         this.query = '?page=1&customer=' + data.uid
         Taro.request({

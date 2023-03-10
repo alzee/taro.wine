@@ -25,7 +25,7 @@ export default class Orgnew extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         this.setState({data: res.data})
-        this.otype = res.data.otype
+        this.otype = res.data.org.type
         this.oid = res.data.org.id
         if (this.otype == 0) {
           this.setState({

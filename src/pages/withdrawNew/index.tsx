@@ -25,7 +25,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         // this.setState({data: res.data})
-        this.otype = res.data.otype
+        this.otype = res.data.org.type
         this.uid = res.data.uid
         Taro.request({
           url: Env.apiUrl + 'users/' + this.uid

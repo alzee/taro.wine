@@ -21,7 +21,7 @@ export default class Me extends Component<PropsWithChildren> {
     })
     .then(res => {
       console.log(res.data)
-      this.otype = res.data.otype
+      this.otype = res.data.org.type
       this.roles = res.data.roles
       Taro.request({
         url: Env.apiUrl + 'users/' + res.data.uid
