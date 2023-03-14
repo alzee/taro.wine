@@ -90,58 +90,6 @@ export default class Myclaim extends Component<PropsWithChildren> {
     Taro.redirectTo({url: '/pages/claimQr/index?id=' + id + '&type=' + type})
   }
 
-  collect = () => {
-    if (this.state.point < 300) {
-      Taro.showModal({
-        title: '提示',
-        content: '须集齐3个才能兑换',
-        showCancel: false
-      })
-      .then(res => {
-        if (res.confirm) {
-        } else if (res.cancel) {
-        }
-      })
-    } else {
-      Taro.showModal({
-        title: '确认兑换',
-        content: '兑换再来一瓶',
-      })
-      .then(res => {
-        if (res.confirm) {
-          let data = {}
-          data.uid = this.uid
-          data.oid = this.oid
-          if (this.isStore) {
-            data.type = 1
-          }
-          Taro.request({
-            method: 'POST',
-            url: Env.apiUrl + 'collect',
-            data
-          })
-          .then(res => {
-            if (res.data.code === 0) {
-              Taro.showToast({
-                title: '已完成',
-                icon: 'success',
-                duration: 2000
-              })
-              .then(res => {
-                setTimeout(
-                  () => {
-                    Taro.navigateBack({ delta: 1 })
-                  }, 500
-                )
-              })
-            }
-          })
-        } else if (res.cancel) {
-        }
-      })
-    }
-  }
-
   goToCollect = () => {
     let type: string
     if (this.isStore) {
