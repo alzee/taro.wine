@@ -8,7 +8,8 @@ export default class Reg extends Component<PropsWithChildren> {
   state = {
     selector: ['代理商', '门店', '餐厅', '代理商(异业)', '区域代理商(异业)', '门店(异业)'],
     selectorChecked: '',
-    pca: ['湖北省', '十堰市', '茅箭区']
+    pca: ['湖北省', '十堰市', '茅箭区'],
+    disabled: false
   }
 
   componentDidMount () {
@@ -64,6 +65,8 @@ export default class Reg extends Component<PropsWithChildren> {
         return
       }
     }
+
+    this.setState({disabled: true})
 
     data.submitter = '/api/users/' + this.state.uid
     data.area = this.state.pca[0] + this.state.pca[1] + this.state.pca[2]
@@ -138,7 +141,7 @@ export default class Reg extends Component<PropsWithChildren> {
         type='text' 
       />
       </View>
-        <Button className='btn' formType='submit'>提交</Button>
+        <Button className='btn' formType='submit' disabled={this.state.disabled}>提交</Button>
       </Form>
       </View>
     )
