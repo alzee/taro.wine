@@ -15,11 +15,6 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
     disabled: false
   }
 
-  componentWillMount () { }
-
-  componentDidShow () {
-  }
-
   componentDidMount () {
     Taro.getStorage({
       key: Env.storageKey,
@@ -38,7 +33,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
 
   formSubmit = e => {
     let data = e.detail.value
-    data.amount = Number(data.amount)
+    data.amount = Number(data.amount) * 100
     data.customer = '/api/users/' + this.uid
     if (data.amount == "") {
       Taro.showToast({
@@ -48,7 +43,15 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
       })
       return
     } 
-    if (Number.isNaN(Number(data.amount))) {
+    if (Number.isNaN(data.amount)) {
+      Taro.showToast({
+        title: '请填写数字' ,
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
+    if (data.amount < 0) {
       Taro.showToast({
         title: '请填写正数' ,
         icon: 'error',
@@ -56,15 +59,15 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
       })
       return
     }
-    if (data.amount < 1) {
+    if (data.amount < 100) {
       Taro.showToast({
-        title: '请填写正数' ,
+        title: '最小金额 1' ,
         icon: 'error',
         duration: 2000
       })
       return
     }
-    if (data.amount * 100 > this.state.withdrawable) {
+    if (data.amount > this.state.withdrawable) {
       Taro.showToast({
         title: '可提金额不足' ,
         icon: 'error',
@@ -74,15 +77,10 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
     }
     this.setState({disabled: true})
 
-    data.amount = data.amount * 100
-
-    // console.log(data)
-    // return
     Taro.request({
       method: 'POST',
       data: data,
-      url: Env.apiUrl + 'withdraws',
-      success: function (res) { }
+      url: Env.apiUrl + 'withdraws'
     }).then((res) =>{
       Taro.showToast({
         title: '已完成',
