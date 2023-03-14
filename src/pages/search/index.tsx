@@ -13,7 +13,6 @@ export default class Search extends Component<PropsWithChildren> {
   latitude: float
   longitude: float
   state = {
-    seg: 0,
   }
 
   componentDidMount () {
@@ -28,8 +27,7 @@ export default class Search extends Component<PropsWithChildren> {
       }
     })
     if (this.pid === undefined) {
-      this.getOrgs(2)
-      this.getOrgs(3)
+      this.getOrgs()
     } else {
       this.getOrgsHaveProduct(this.pid)
     }
@@ -62,13 +60,7 @@ export default class Search extends Component<PropsWithChildren> {
         )
       }
 
-      this.setState({'orgsHaveStock': list})
-    })
-  }
-
-  switchSeg (value) {
-    this.setState({
-      seg: value
+      this.setState({list})
     })
   }
 
@@ -97,16 +89,12 @@ export default class Search extends Component<PropsWithChildren> {
     Taro.navigateTo({url: '/pages/orgDetail/index?id=' + id})
   }
 
-  getOrgs(type) {
-    let key: string
-    if (type == 2) {
-      key = 'storeList'
-    }
-    if (type == 3) {
-      key = 'restaurantList'
-    }
+  getOrgs() {
     if (this.keyword === undefined) this.keyword = ''
-    let query = '?display=true&type=' + type + '&name=' + this.keyword
+    let query = '?display=true&name=' + this.keyword
+    if (this.type !== undefined) {
+      query += '&type= ' + this.type
+    }
     Taro.request({
       url: Env.apiUrl + 'orgs' + query,
       success: function (res) {}
@@ -133,58 +121,29 @@ export default class Search extends Component<PropsWithChildren> {
         )
       }
 
-      this.setState({[key]: list})
+      this.setState({list})
     })
   }
 
   render () {
-    let tabList = [
-      { title: '门店' },
-      { title: '餐厅' },
-    ]
     return (
       <View className='search'>
-      { this.state.orgsHaveStock &&
-        <AtList>
-        { this.state.orgsHaveStock}
-        </AtList>
-      }
-      { ! this.state.orgsHaveStock &&
-      <AtTabs current={this.state.seg} tabList={tabList} onClick={this.switchSeg.bind(this)}>
-        <AtTabsPane current={this.state.seg} index={0}>
-        { this.state.storeList && 
+
+        { this.state.list &&
           <>
-        { this.state.storeList.length > 0 &&
+          { this.state.list.length > 0 &&
           <AtList>
-          { this.state.storeList }
+          { this.state.list }
           </AtList>
-        }
-        { this.state.storeList.length == 0 &&
+
+          ||
+
           <View className='no-result'>
           <Text>没有找到相应门店</Text>
           </View>
-        }
+          }
           </>
         }
-        </AtTabsPane>
-        <AtTabsPane current={this.state.seg} index={1}>
-        { this.state.restaurantList && 
-          <>
-        { this.state.restaurantList.length > 0 &&
-          <AtList>
-          { this.state.restaurantList }
-          </AtList>
-        }
-        { this.state.restaurantList.length == 0 &&
-          <View className='no-result'>
-          <Text>没有找到相应餐厅</Text>
-          </View>
-        }
-          </>
-        }
-        </AtTabsPane>
-      </AtTabs>
-      }
 
       </View>
     )
