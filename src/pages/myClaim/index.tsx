@@ -142,7 +142,7 @@ export default class Myclaim extends Component<PropsWithChildren> {
     }
   }
 
-  goToCollect(){
+  goToCollect = () => {
     let type: string
     if (this.isStore) {
       type = 'store'
