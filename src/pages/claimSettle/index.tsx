@@ -96,7 +96,7 @@ export default class Claimsettle extends Component<PropsWithChildren> {
   }
 
   done(){
-    Taro.navigateBack({ delta: 1 })
+    Taro.switchTab({ url: '/pages/me/index' })
   }
 
   setClaimed = () => {
