@@ -7,6 +7,7 @@ import { View, Text, Form, Input, Button, Icon } from '@tarojs/components'
 
 export default class Claimsettle extends Component<PropsWithChildren> {
   oid: int
+  uid: int
   otype: int
   type: string
   id: int
@@ -25,6 +26,7 @@ export default class Claimsettle extends Component<PropsWithChildren> {
       key: Env.storageKey
     }).then(res => {
       this.oid = res.data.org.id
+      this.uid = res.data.id
       this.otype = res.data.org.type
       this.user = res.data
       Taro.request({
@@ -119,6 +121,7 @@ export default class Claimsettle extends Component<PropsWithChildren> {
     let data = {}
     data.id = this.id
     data.type = this.type
+    data.uid = this.uid
     Taro.request({
       method: 'POST',
       data: data,

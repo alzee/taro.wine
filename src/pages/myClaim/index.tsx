@@ -52,7 +52,7 @@ export default class Myclaim extends Component<PropsWithChildren> {
               title = i.prize.name + ' ' + i.product.name
             }
             if (i.prize.label === 'voucher' && this.isStore) {
-              title = '可提现金额'
+              title = '可提现金额 ' + i.prize.toStore / 100
             }
             if (this.isStore && i.customer !== undefined) {
               title += '(顾客抽奖)'
