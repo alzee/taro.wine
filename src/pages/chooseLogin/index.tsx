@@ -6,7 +6,9 @@ import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
 
 export default class Chooselogin extends Component<PropsWithChildren> {
-  state = {}
+  state = {
+    disabled: false
+  }
 
   onLoad(query) {
     let uid = query.scene
@@ -18,6 +20,7 @@ export default class Chooselogin extends Component<PropsWithChildren> {
 
   wxlogin() {
     let that = this
+    this.setState({ disabled: true })
     Taro.login({
       success: function (res) {
         if (res.code) {
@@ -45,10 +48,12 @@ export default class Chooselogin extends Component<PropsWithChildren> {
                 icon: 'error',
                 duration: 2000
               })
+              this.setState({ disabled: false })
               console.log('server error！' + res.errMsg)
             }
           })
         } else {
+          this.setState({ disabled: false })
           console.log('登录失败！' + res.errMsg)
         }
       }
@@ -58,7 +63,7 @@ export default class Chooselogin extends Component<PropsWithChildren> {
   render () {
     return (
       <View className='chooseLogin main'>
-      <Button className="btn" onClick={this.wxlogin.bind(this)}>微信登录</Button>
+      <Button className="btn" onClick={this.wxlogin.bind(this)} disabled={this.state.disabled}>微信登录</Button>
       </View>
     )
   }
