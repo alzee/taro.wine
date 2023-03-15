@@ -1,6 +1,6 @@
 import { Component, PropsWithChildren } from 'react'
 import { View, Text, Button } from '@tarojs/components'
-import './index.scss'
+import './settle.scss'
 import { Env } from '../../env/env'
 import { fmtDate } from '../../fmtDate'
 import Taro from '@tarojs/taro'
@@ -23,8 +23,14 @@ export default class Settle extends Component<PropsWithChildren> {
       url: Env.apiUrl + 'settles/' + this.id
     })
     .then(res => {
+      let settled = false
+      if (res.data.status === 1) {
+        settled = true
+      }
       this.setState({
-        settle: res.data
+        productName: res.data.product.name,
+        salesmanName: res.data.salesman.name,
+        settled
       })
     })
   }
@@ -66,17 +72,33 @@ export default class Settle extends Component<PropsWithChildren> {
     })
   }
 
+  back(){
+    Taro.switchTab({url: '/pages/me/index'})
+  }
+
   render () {
     return (
       <View className='settle'>
-      <View>
-      <Text> 产品: {this.state.product} x 1 </Text>
-      <Text> 业务员: {this.state.salesman} </Text>
-      </View>
-      <View>
-      <Text>请勿重复核销</Text>
-      </View>
+      { this.state.settled && 
+        <>
+        <View className='msg'>
+        <Text>请勿重复核销</Text>
+        </View>
+        <Button className='btn' onClick={this.back}>返回</Button>
+        </>
+      }
+
+
+      { this.state.settled === false &&
+        <>
+        <View className='msg'>
+        <View> 产品: {this.state.productName} x 1 </View>
+        <View> 业务员: {this.state.salesmanName} </View>
+        </View>
         <Button className='btn' onClick={this.settle} disabled={this.state.disabled}>确定核销</Button>
+        </>
+      }
+
       </View>
     )
   }
