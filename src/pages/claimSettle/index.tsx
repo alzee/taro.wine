@@ -133,7 +133,7 @@ export default class Claimsettle extends Component<PropsWithChildren> {
       if (res.data.code === 0) {
         msg = '已兑付'
       } else {
-        msg = '请先创建领用单'
+        msg = res.data.msg
       }
       this.setState({
         msg,
