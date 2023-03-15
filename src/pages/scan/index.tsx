@@ -29,7 +29,6 @@ export default class Scan extends Component<PropsWithChildren> {
             if (this.scan.action === 'ret') {
               Taro.redirectTo({url: '/pages/scan/ret?' + q})
             } else if (this.scan.action === 'stockout') {
-              console.log('storeman')
               Taro.redirectTo({url: '/pages/scan/storeman?' + q})
             } else {
               Taro.redirectTo({url: '/pages/scan/box?' + q})
@@ -53,6 +52,13 @@ export default class Scan extends Component<PropsWithChildren> {
             break
           case '3': // claim
             Taro.redirectTo({url: '/pages/claimSettle/index?' + q})
+            break
+          case '4': // settle
+            if (this.roles.includes('ROLE_STOREMAN')) {
+              Taro.redirectTo({url: '/pages/settle/settle?' + q})
+            } else {
+              Taro.switchTab({url: '/pages/index/index'})
+            }
             break
         }
       },
