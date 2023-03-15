@@ -44,6 +44,7 @@ export default class Settle extends Component<PropsWithChildren> {
             />
           )
         }
+        this.setState({list})
       })
     })
     .catch(err => {
