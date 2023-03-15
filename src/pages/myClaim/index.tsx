@@ -14,9 +14,7 @@ export default class Myclaim extends Component<PropsWithChildren> {
   oid: int
   type: string
   isStore: bool = false
-
   state = {
-    point: 0
   }
 
   componentDidMount () {
@@ -33,12 +31,10 @@ export default class Myclaim extends Component<PropsWithChildren> {
         this.oid = res.data.org.id
         const self = this
         let query = 'customer=' + this.uid
-        let query2 = 'users/' + this.uid
         let value = 'toCustomer'
         let extraText = ''
         if (this.isStore) {
           query = 'store=' + this.oid
-          query2 = 'orgs/' + this.oid
           value = 'toStore'
         }
         Taro.request({
@@ -72,11 +68,6 @@ export default class Myclaim extends Component<PropsWithChildren> {
             )
           }
           this.setState({list: list})
-        })
-        Taro.request({
-          url: Env.apiUrl + query2
-        }).then((res) =>{
-          this.setState({point: res.data.point})
         })
       },
       fail: res => {

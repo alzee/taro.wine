@@ -1,8 +1,8 @@
 import { Component, PropsWithChildren } from 'react'
+import { View, Text } from '@tarojs/components'
 import './index.scss'
 import Taro from '@tarojs/taro'
 import { Env } from '../../env/env'
-import { View, Text, Form, Input, Button, Picker, Icon } from '@tarojs/components'
 import { QRCode } from 'taro-code'
 
 export default class Claimqr extends Component<PropsWithChildren> {
