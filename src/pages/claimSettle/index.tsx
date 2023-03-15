@@ -77,7 +77,7 @@ export default class Claimsettle extends Component<PropsWithChildren> {
             if (! this.user.roles.includes('ROLE_SALESMAN')) {
               msg = '您不能兑付奖品'
             } else {
-              if (claim.serveSettled) {
+              if (claim.serveStoreSettled) {
                 msg = '请勿重复兑付'
               } else {
                 msg = '已兑付'
