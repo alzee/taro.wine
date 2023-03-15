@@ -14,6 +14,8 @@ export default class Claimsettle extends Component<PropsWithChildren> {
   user = {}
   instance = Taro.getCurrentInstance();
   state = {
+    disabled: false,
+    disabled2: false,
   }
 
   componentDidMount () {
@@ -100,6 +102,7 @@ export default class Claimsettle extends Component<PropsWithChildren> {
   }
 
   setClaimed = () => {
+    this.setState({disabled: true})
     let data = {}
     data.oid = this.oid
     data.id = this.id
@@ -118,6 +121,7 @@ export default class Claimsettle extends Component<PropsWithChildren> {
   }
 
   settle = () => {
+    this.setState({disabled2: true})
     let data = {}
     data.id = this.id
     data.type = this.type
@@ -156,10 +160,10 @@ export default class Claimsettle extends Component<PropsWithChildren> {
           </View>
         }
         { this.state.action === 'claim' &&
-        <Button className='btn' onClick={this.setClaimed}>确定兑奖</Button>
+        <Button className='btn' onClick={this.setClaimed} disabled={this.state.disabled}>确定兑奖</Button>
         }
         { this.state.action === 'settle' &&
-        <Button className='btn' onClick={this.settle}>确定兑付</Button>
+        <Button className='btn' onClick={this.settle} disabled={this.state.disabled2}>确定兑付</Button>
         }
       </View>
     )
