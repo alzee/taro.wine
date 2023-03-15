@@ -294,7 +294,7 @@ export default class Me extends Component<PropsWithChildren> {
       title='门店兑付'
       arrow='right'
       thumb={Env.imgUrl + 'icon/lock.png'}
-      onClick={() => this.navTo('borrow')}
+      onClick={() => this.navTo('settle')}
       />
         </>
       }
