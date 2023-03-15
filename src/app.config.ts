@@ -41,8 +41,6 @@ export default defineAppConfig({
     'pages/scan/bottle',
     'pages/myClaim/index',
     'pages/orgClaim/index',
-    'pages/borrow/index',
-    'pages/borrow/new',
     'pages/waiterSignUp/index',
     'pages/bindOrgAdmin/index',
     'pages/addStaff/index',
@@ -51,6 +49,8 @@ export default defineAppConfig({
     'pages/reward/index',
     'pages/collect/index',
     'pages/scan/ret',
+    'pages/settle/index',
+    'pages/settle/qr',
   ],
   window: {
     backgroundTextStyle: 'light',
