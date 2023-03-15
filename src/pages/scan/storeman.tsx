@@ -281,7 +281,7 @@ export default class Scan extends Component<PropsWithChildren> {
       onlyFromCamera: true,
     }).then(res => {
       console.log(res)
-      let text = res.result
+      let text = res.result + '&action=stockout'
       if (text.indexOf(Env.wxqrUrl) === 0) {
         console.log('its wxqr code')
         Taro.redirectTo({url: '/pages/scan/index?q=' + encodeURIComponent(text)})

@@ -291,10 +291,30 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.scan('orgSignUp')}
       />
       <AtListItem
-      title='我的领用'
+      title='门店兑付'
       arrow='right'
       thumb={Env.imgUrl + 'icon/lock.png'}
       onClick={() => this.navTo('borrow')}
+      />
+        </>
+      }
+
+      { this.roles.includes('ROLE_STOREMAN') &&
+        <>
+      <View className='label'>仓管</View>
+      { this.otype === 0 &&
+      <AtListItem
+      title='出库'
+      arrow='right'
+      thumb={Env.imgUrl + 'icon/scan.svg'}
+      onClick={() => this.scan('stockout')}
+      />
+      }
+      <AtListItem
+      title='兑奖核销'
+      arrow='right'
+      thumb={Env.imgUrl + 'icon/scan.svg'}
+      onClick={() => this.scan('storemanSettle')}
       />
         </>
       }
