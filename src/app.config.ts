@@ -51,6 +51,7 @@ export default defineAppConfig({
     'pages/scan/ret',
     'pages/settle/index',
     'pages/settle/qr',
+    'pages/settle/settle',
   ],
   window: {
     backgroundTextStyle: 'light',
