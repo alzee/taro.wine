@@ -41,6 +41,8 @@ export default defineAppConfig({
     'pages/scan/bottle',
     'pages/myClaim/index',
     'pages/orgClaim/index',
+    'pages/claim/index',
+    'pages/claim/salesman',
     'pages/waiterSignUp/index',
     'pages/bindOrgAdmin/index',
     'pages/addStaff/index',
@@ -51,6 +53,7 @@ export default defineAppConfig({
     'pages/scan/ret',
     'pages/settle/index',
     'pages/settle/qr',
+    'pages/settle/settle',
     'pages/settle/settle',
   ],
   window: {
