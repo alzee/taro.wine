@@ -291,7 +291,7 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.scan('orgSignUp')}
       />
       <AtListItem
-      title='门店兑付'
+      title='门店兑付提醒'
       arrow='right'
       thumb={Env.imgUrl + 'icon/lock.png'}
       onClick={() => Taro.navigateTo({ url: '/pages/claim/salesman'})}

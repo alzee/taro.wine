@@ -1,3 +1,3 @@
 export default definePageConfig({
-  navigationBarTitleText: '业务员兑付'
+  navigationBarTitleText: '门店兑付提醒'
 })
