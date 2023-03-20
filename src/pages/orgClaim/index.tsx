@@ -24,11 +24,12 @@ export default class Orgclaim extends Component<PropsWithChildren> {
         }).then((res) =>{
           let records = res.data
           let list = []
+          let title = i.prize.name + ' ' + i.product.name
           for (let i of records) {
             list.push(
               <AtListItem
               onClick={() => this.navToDetail(i.id, 'serveStore')}
-              title={i.prize.name}
+              title={title}
               note={fmtDate(i.createdAt)}
               extraText={Taxon.settleStatus[Number(i.serveStoreSettled)]}
               arrow='right'
