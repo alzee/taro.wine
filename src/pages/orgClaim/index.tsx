@@ -24,8 +24,8 @@ export default class Orgclaim extends Component<PropsWithChildren> {
         }).then((res) =>{
           let records = res.data
           let list = []
-          let title = i.prize.name + ' ' + i.product.name
           for (let i of records) {
+            let title = i.prize.name + ' ' + i.product.name
             list.push(
               <AtListItem
               onClick={() => this.navToDetail(i.id, 'serveStore')}
