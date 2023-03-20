@@ -23,7 +23,8 @@ export default class Claim extends Component<PropsWithChildren> {
     .then(() => {
       Taro.request({
         url: Env.apiUrl + 'claim/salesman/' + this.uid
-      }).then((res) =>{
+      })
+      .then((res) =>{
         let list = []
         let title = i.prize.name + ' ' + i.product.name
         let extraText = Taxon.settleStatus[Number(i.status)]
@@ -37,6 +38,7 @@ export default class Claim extends Component<PropsWithChildren> {
           )
         }
         this.setState({list})
+      })
     })
   }
 
