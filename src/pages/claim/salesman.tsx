@@ -11,6 +11,7 @@ export default class Claim extends Component<PropsWithChildren> {
 
   uid: int
   oid: int
+  state = {}
 
   componentDidMount () {
     Taro.getStorage({
@@ -26,12 +27,11 @@ export default class Claim extends Component<PropsWithChildren> {
       })
       .then((res) =>{
         let list = []
-        let title = i.prize.name + ' ' + i.product.name
-        let extraText = Taxon.settleStatus[Number(i.status)]
         for (let i of res.data) {
+          let extraText = Taxon.settleStatus[Number(i.status)]
           list.push(
             <AtListItem
-            title={title}
+            title={i.title}
             note={fmtDate(i.createdAt)}
             extraText={extraText}
             />
