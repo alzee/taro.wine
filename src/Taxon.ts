@@ -15,6 +15,7 @@ export const Taxon = {
     '已审核',
     '已拒绝',
     '成功',
+    '失败',
   ],
   orgType: [
     '总公司',
