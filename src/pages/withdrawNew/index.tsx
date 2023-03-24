@@ -67,6 +67,14 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
       })
       return
     }
+    if (data.amount > 50000) {
+      Taro.showToast({
+        title: '单次最高500' ,
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
     if (data.amount > this.state.withdrawable) {
       Taro.showToast({
         title: '可提金额不足' ,
