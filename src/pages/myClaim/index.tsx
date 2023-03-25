@@ -51,7 +51,7 @@ export default class Myclaim extends Component<PropsWithChildren> {
               title = '可提现金额 ' + i.prize.toStore / 100
             }
             if (this.isStore && i.customer !== undefined) {
-              title += '(顾客抽奖)'
+              title += '(扫码奖)'
             }
             extraText = Taxon.claimStatus[i.status]
             if (this.isStore && i.prize.label === 'onemore') {
