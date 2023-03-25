@@ -13,6 +13,7 @@ export default class Orgsignup extends Component<PropsWithChildren> {
     name: '', //name of whom was scanned
     types: ['门店', '餐厅', '区域代理商(异业)', '门店(异业)'],
     agencyList: [],
+    industries: [],
     pca: ['湖北省', '十堰市', '茅箭区']
   }
 
@@ -39,6 +40,14 @@ export default class Orgsignup extends Component<PropsWithChildren> {
     this.uid = params.uid
     this.setState({
       name: params.name
+    })
+    Taro.request({
+      url: Env.apiUrl + 'industries'
+    })
+    .then(res => {
+      this.setState({
+        industries: res.data
+      })
     })
   }
 
@@ -80,6 +89,14 @@ export default class Orgsignup extends Component<PropsWithChildren> {
     })
   }
 
+  industryChanged = e => {
+    let index = Number(e.detail.value)
+    this.setState({
+      industrySelected: index,
+      industryId: this.state.industries[index].id
+    })
+  }
+
   formSubmit = e => {
     console.log(e);
     let data = e.detail.value
@@ -101,6 +118,17 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       return
     }
     data.upstreamId = this.state.agencies[this.state.agencySelected].id
+
+    if (this.state.industryId === undefined) {
+      Taro.showToast({
+        title: '请选择行业',
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
+    data.industryId = this.state.industryId
+
     let label = {
       name: '名称',
       contact: '联系人',
@@ -169,6 +197,14 @@ export default class Orgsignup extends Component<PropsWithChildren> {
       <View className='input'>
       <Text className='label'>代理商</Text>
       {this.state.agencyList[this.state.agencySelected]}
+      </View>
+      </Picker>
+      }
+      { this.state.industries &&
+      <Picker mode='selector' range={this.state.industries} rangeKey='name' onChange={this.industryChanged}>
+      <View className='input'>
+      <Text className='label'>行业</Text>
+      {this.state.industrySelected !== undefined && this.state.industries[this.state.industrySelected].name}
       </View>
       </Picker>
       }
