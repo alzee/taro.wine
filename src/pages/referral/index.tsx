@@ -75,7 +75,7 @@ export default class Referral extends Component<PropsWithChildren> {
             if (i.type == 0 || i.type == 1 || i.type == 2) {
               record = i.ord.orderItems[0]
             }
-            if (i.type == 3 || i.type == 4 || i.type == 5) {
+            if (i.type == 3 || i.type == 4 || i.type == 5 || i.type === 6) {
               record = i.retail
             }
             list.push(
