@@ -70,7 +70,7 @@ export default class Dinenew extends Component<PropsWithChildren> {
     }).then((res) =>{
       if (res.statusCode === 500) {
         Taro.showToast({
-          title: '系统错误',
+          title: '代金券不足',
           icon: 'error',
           duration: 2000,
         })
