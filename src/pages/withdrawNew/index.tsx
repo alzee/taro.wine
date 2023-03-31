@@ -111,12 +111,14 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
       <Form className='form'
       onSubmit={this.formSubmit}
       >
+      <View className='money-input'>
+      <Text className='cny'>￥</Text>
       <Input 
       className="input"
       name='amount'
       type='digit'
-      placeholder='提现金额'
       />
+      </View>
       { this.state &&
         <View className='hint'>
         <Text>可提金额: {this.state.withdrawable / 100}</Text>

@@ -1,11 +1,19 @@
 .withdrawNew{
+  .money-input{
+    display: flex;
+    align-items: baseline;
+    font-size: 48px;
+    font-weight: bold;
+  }
   .form .input{
     margin-bottom: 0;
+    font-size: 48px;
+    font-weight: bold;
   }
   .hint{
     margin-bottom: 1rem;
     color: #7b7b7b;
-    font-size: .8rem;
+    font-size: 1rem;
     padding: .5rem;
   }
 }
