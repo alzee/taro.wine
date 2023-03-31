@@ -135,14 +135,11 @@ export default class Claimsettle extends Component<PropsWithChildren> {
       let msg = ''
       let action = 'cannot'
       if (res.data.code === 0) {
-        msg = '已兑付'
-      } else {
-        msg = res.data.msg
+        this.setState({
+          msg: '恭喜你获得奖励 ' + res.data.tip / 100 + ' 元'
+          action
+        })
       }
-      this.setState({
-        msg,
-        action
-      })
     })
   }
 
