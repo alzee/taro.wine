@@ -10,6 +10,7 @@ export default class Search extends Component<PropsWithChildren> {
   keyword = this.instance.router.params.q
   pid = this.instance.router.params.p
   type = this.instance.router.params.t
+  salesman = this.instance.router.params.salesman
   latitude: float
   longitude: float
   state = {
@@ -85,15 +86,24 @@ export default class Search extends Component<PropsWithChildren> {
       return Number(s)
   }
 
+  showStock(oid: int) {
+    Taro.navigateTo({url: '/pages/stock/index?oid=' + oid})
+  }
+
   navToDetail(id){
     Taro.navigateTo({url: '/pages/orgDetail/index?id=' + id})
   }
 
   getOrgs() {
-    if (this.keyword === undefined) this.keyword = ''
-    let query = '?display=true&name=' + this.keyword
+    let query = '?display=true'
+    if (this.keyword !== undefined) {
+      query += '&name=' + this.keyword
+    }
     if (this.type !== undefined) {
-      query += '&type= ' + this.type
+      query += '&type=' + this.type
+    }
+    if (this.salesman !== undefined) {
+      query += '&salesman=' + this.salesman
     }
     Taro.request({
       url: Env.apiUrl + 'orgs' + query,
@@ -110,7 +120,13 @@ export default class Search extends Component<PropsWithChildren> {
       for (let i of orgs) {
         list.push(
           <AtListItem
-          onClick={() => this.navToDetail(i.id)}
+          onClick={() => {
+            if (this.salesman === undefined) {
+              this.navToDetail(i.id)
+            } else {
+              this.showStock(i.id)
+            }
+          }}
           title={i.name}
           note={i.address}
           extraText={i.distance + 'km'}
