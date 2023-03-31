@@ -46,7 +46,7 @@ export default class Claimsettle extends Component<PropsWithChildren> {
 
         switch (this.type) {
           case 'user':
-            if (this.otype !== 2 && this.otype !== 12) {
+            if (this.otype !== 2 && this.otype !== 3 && this.otype !== 12) {
               msg = '您不能兑付奖品'
             } else {
               switch (claim.status) {
