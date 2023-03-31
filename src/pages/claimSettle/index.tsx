@@ -48,6 +48,10 @@ export default class Claimsettle extends Component<PropsWithChildren> {
           case 'user':
             if (this.otype !== 2 && this.otype !== 3 && this.otype !== 12) {
               msg = '您不能兑付奖品'
+            } else if (claim.bottle.box.pack.forRestaurant && this.otype !== 3) {
+              msg = '只能在餐厅兑付该奖品'
+            } else if (!claim.bottle.box.pack.forRestaurant && this.otype === 3) {
+              msg = '只能在门店兑付该奖品'
             } else {
               switch (claim.status) {
                 case 0:
