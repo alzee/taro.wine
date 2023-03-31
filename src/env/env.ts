@@ -24,5 +24,5 @@ export const Env = {
   imgUrl: baseUrl + 'img/',
   wxqrUrl: baseUrl + 'wxqr',
   storageKey: 'user',
-  ver: '3.2.9'
+  ver: '3.3.0'
 }
