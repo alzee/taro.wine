@@ -101,8 +101,8 @@ page{
 }
 .card{
   padding: 1.5rem 0;
-  // background-color: #2aae67; // green
-  background-color: var(--color-2);
+  background-color: #2aad67;
+  // background-color: var(--color-2);
   margin: auto;
   width: 95%;
   border-radius: .5rem;
@@ -112,7 +112,7 @@ page{
     margin-bottom: .6rem;
   }
   .number{
-    color: var(--color-1);
+    color: #ffffff;
     font-weight: bold;
     font-size: 1.4rem;
   }
