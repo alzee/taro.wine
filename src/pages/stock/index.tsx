@@ -6,7 +6,8 @@ import { Env } from '../../env/env'
 import { AtList, AtListItem, AtCard } from "taro-ui"
 
 export default class Stock extends Component<PropsWithChildren> {
-  orgid: int
+  instance = Taro.getCurrentInstance();
+  oid = this.instance.router.params.oid
   state = {}
 
   navToDetail(pid){
@@ -19,9 +20,11 @@ export default class Stock extends Component<PropsWithChildren> {
       key: Env.storageKey,
       success: res => {
         self.setState({data: res.data})
-        this.orgid = res.data.org.id
+        if (this.oid === undefined) {
+          this.oid = res.data.org.id
+        }
         Taro.request({
-          url: Env.apiUrl + 'stocks?org=' + this.orgid,
+          url: Env.apiUrl + 'stocks?org=' + this.oid,
         }).then((res) =>{
           console.log(res.data);
           let list = []

@@ -9,6 +9,7 @@ import { Env } from '../../env/env'
 export default class Me extends Component<PropsWithChildren> {
   otype: int
   roles: array = []
+  uid: int
   oid: int
   state = {
     avatar: Env.imgUrl + 'avatar/default.jpg'
@@ -23,6 +24,7 @@ export default class Me extends Component<PropsWithChildren> {
       console.log(res.data)
       this.otype = res.data.org.type
       this.roles = res.data.roles
+      this.uid = res.data.id
       Taro.request({
         url: Env.apiUrl + 'users/' + res.data.id
       }).then(res => {
@@ -301,6 +303,12 @@ export default class Me extends Component<PropsWithChildren> {
       arrow='right'
       thumb={Env.imgUrl + 'icon/lock.png'}
       onClick={() => this.navTo('settle')}
+      />
+      <AtListItem
+      title='门店库存'
+      arrow='right'
+      thumb={Env.imgUrl + 'icon/lock.png'}
+      onClick={() => Taro.navigateTo({ url: '/pages/search/index?salesman=' + this.uid})}
       />
         </>
       }
