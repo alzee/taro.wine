@@ -31,11 +31,11 @@ export default class Stock extends Component<PropsWithChildren> {
           for (let i of res.data) {
             list.push(
               <AtListItem
-              onClick={() => this.navToDetail(i.product.id)}
+              // onClick={() => this.navToDetail(i.product.id)}
               title={i.product.name}
               note={'规格: ' + i.product.spec + ' 库存: ' + i.stock}
               extraText={'库存: ' + i.stock}
-              arrow='right'
+              // arrow='right'
               thumb={Env.imgUrl + 'product/' + i.product.img}
           />
             )
