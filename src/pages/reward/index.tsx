@@ -15,26 +15,58 @@ export default class Reward extends Component<PropsWithChildren> {
     list: undefined
   }
 
+  getData (entity: string) {
+    let id: int
+    if (entity === 'user') {
+      id = this.uid
+    }
+    if (entity === 'org') {
+      id = this.oid
+    }
+    let query: string = '?' + entity + '=' + id
+    Taro.request({
+      url: Env.apiUrl + 'transactions' + query
+    }).then((res) =>{
+      let list = []
+      let type
+      for (let i of res.data){
+        type = this.state.types.find(type => type.id === i.type)
+        list.push(
+          <AtListItem
+          title={type.value}
+          note={fmtDate(i.createdAt)}
+          extraText={i.amount / 100}
+          />
+        )
+      }
+      this.setState({[entity]: list})
+    })
+  }
+
   componentDidMount () {
+    Taro.request({
+      url: Env.apiUrl + 'choices/transaction_types'
+    })
+    .then(res => {
+      this.setState({types: res.data})
+    })
+
     Taro.getStorage({
       key: Env.storageKey
     })
     .then( res => {
       this.oid = res.data.org.id
       this.uid = res.data.id
-        // Taro.request({
-        //   url: Env.apiUrl + 'rewards?'
-        // })
-        // .then((res) =>{
-        // })
-        Taro.request({
-          url: Env.apiUrl + 'orgs/' + this.oid
+      this.getData('org')
+
+      Taro.request({
+        url: Env.apiUrl + 'orgs/' + this.oid
+      })
+      .then((res) =>{
+        this.setState({
+          withdrawable: res.data.withdrawable,
         })
-        .then((res) =>{
-          this.setState({
-            withdrawable: res.data.withdrawable,
-          })
-        })
+      })
     })
     .catch( err => {
       console.log(err)
@@ -86,6 +118,10 @@ export default class Reward extends Component<PropsWithChildren> {
       <View className='number'>{this.state.withdrawable / 100}</View>
       </View>
       </View>
+
+      <AtList className="list">
+      {this.state.org}
+      </AtList>
 
       <View className='fixed'>
       <Button className='btn btn-primary' onClick={this.move}>转入我的钱包</Button>

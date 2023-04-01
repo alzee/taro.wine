@@ -90,7 +90,6 @@ export default class Withdraw extends Component<PropsWithChildren> {
       <View className='label'>可提金额</View>
       <View className='number'>{this.state.withdrawable / 100}</View>
       </View>
-
       </View>
 
       <AtList className="list">
