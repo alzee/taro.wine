@@ -11,39 +11,46 @@ import { fmtDate } from '../../fmtDate'
 export default class Withdraw extends Component<PropsWithChildren> {
   uid: int
   oid: int
-  types = []
   state = {
     withdrawable: 0,
   }
 
-  getData (type: string) {
-    let titlePrefix: string = ''
+  getData (entity: string) {
     let id: int
-    if (type === 'user') {
+    if (entity === 'user') {
       id = this.uid
     }
-    if (type === 'org') {
+    if (entity === 'org') {
       id = this.oid
     }
-    let query: string = '?' + type + '=' + id
+    let query: string = '?' + entity + '=' + id
     Taro.request({
       url: Env.apiUrl + 'transactions' + query
     }).then((res) =>{
       let list = []
+      let type
       for (let i of res.data){
+        type = this.state.types.find(type => type.id === i.type)
         list.push(
           <AtListItem
-          title={this.types[i.type]}
+          title={type.value}
           note={fmtDate(i.createdAt)}
           extraText={i.amount / 100}
           />
         )
       }
-      this.setState({[type]: list})
+      this.setState({[entity]: list})
     })
   }
 
   componentDidMount () {
+    Taro.request({
+      url: Env.apiUrl + 'choices/transaction_types'
+    })
+    .then(res => {
+      this.setState({types: res.data})
+    })
+
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
