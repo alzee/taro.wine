@@ -25,32 +25,34 @@ export default class Reward extends Component<PropsWithChildren> {
     }
     let query: string = '?' + entity + '=' + id
     Taro.request({
-      url: Env.apiUrl + 'transactions' + query
-    }).then((res) =>{
-      let list = []
-      let type
-      for (let i of res.data){
-        type = this.state.types.find(type => type.id === i.type)
-        list.push(
-          <AtListItem
-          title={type.value}
-          note={fmtDate(i.createdAt)}
-          extraText={i.amount / 100}
-          />
-        )
-      }
-      this.setState({[entity]: list})
-    })
-  }
-
-  componentDidMount () {
-    Taro.request({
       url: Env.apiUrl + 'choices/transaction_types'
     })
     .then(res => {
       this.setState({types: res.data})
     })
+    .then(() => {
+      Taro.request({
+        url: Env.apiUrl + 'transactions' + query
+      })
+      .then((res) =>{
+        let list = []
+        let type
+        for (let i of res.data){
+          type = this.state.types.find(type => type.id === i.type)
+          list.push(
+            <AtListItem
+            title={type.value}
+            note={fmtDate(i.createdAt)}
+            extraText={i.amount / 100}
+            />
+          )
+        }
+        this.setState({[entity]: list})
+      })
+    })
+  }
 
+  componentDidMount () {
     Taro.getStorage({
       key: Env.storageKey
     })
