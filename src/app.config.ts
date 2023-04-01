@@ -54,6 +54,7 @@ export default defineAppConfig({
     'pages/settle/index',
     'pages/settle/qr',
     'pages/settle/settle',
+    'pages/wallet/index',
   ],
   window: {
     backgroundTextStyle: 'light',

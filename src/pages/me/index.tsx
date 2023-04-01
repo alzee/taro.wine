@@ -185,7 +185,7 @@ export default class Me extends Component<PropsWithChildren> {
       // extraText='详细信息'
       arrow='right'
       thumb={Env.imgUrl + 'icon/cash.png'}
-      onClick={() => this.navTo('withdraw')}
+      onClick={() => Taro.navigateTo({ url: '/pages/wallet/index?entity=user'})}
       />
 
       <AtListItem
@@ -240,7 +240,7 @@ export default class Me extends Component<PropsWithChildren> {
       title='商家钱包'
       arrow='right'
       thumb={Env.imgUrl + 'icon/lock.png'}
-      onClick={() => this.navTo('reward')}
+      onClick={() => Taro.navigateTo({ url: '/pages/wallet/index?entity=org'})}
       />
       <AtListItem
       title='添加店员'
