@@ -10,27 +10,32 @@ import { fmtDate } from '../../fmtDate'
 
 export default class Withdraw extends Component<PropsWithChildren> {
   uid: int
+  oid: int
+  types = []
   state = {
     withdrawable: 0,
   }
 
   getData (type: string) {
-    const self = this;
-    let api: string = 'withdraws'
     let titlePrefix: string = ''
-    let query: string = '?customer=' + this.uid
+    let id: int
+    if (type === 'user') {
+      id = this.uid
+    }
+    if (type === 'org') {
+      id = this.oid
+    }
+    let query: string = '?' + type + '=' + id
     Taro.request({
-      url: Env.apiUrl + api + query
+      url: Env.apiUrl + 'transactions' + query
     }).then((res) =>{
       let list = []
       for (let i of res.data){
         list.push(
           <AtListItem
-          onClick={() => this.navToDetail(i.id)}
-          title={titlePrefix + '申请提现 '+ i.amount / 100}
-          note={fmtDate(i.date)}
-          extraText={Taxon.status[i.status]}
-          arrow='right'
+          title={this.types[i.type]}
+          note={fmtDate(i.createdAt)}
+          extraText={i.amount / 100}
           />
         )
       }
@@ -42,16 +47,12 @@ export default class Withdraw extends Component<PropsWithChildren> {
     Taro.getStorage({
       key: Env.storageKey,
       success: res => {
-        let data = res.data
-        let query
-        const self = this;
-
         this.uid = res.data.id
-        this.getData('customer')
-        query = 'users/' + this.uid
+        this.oid = res.data.org.id
+        this.getData('user')
         
         Taro.request({
-          url: Env.apiUrl + query
+          url: Env.apiUrl + 'users/' + this.uid
         }).then((res) =>{
           this.setState({
             withdrawable: res.data.withdrawable,
@@ -86,7 +87,7 @@ export default class Withdraw extends Component<PropsWithChildren> {
       </View>
 
       <AtList className="list">
-      {this.state.customer}
+      {this.state.user}
       </AtList>
 
       <View className='fixed'>
