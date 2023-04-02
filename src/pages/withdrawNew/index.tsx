@@ -97,7 +97,7 @@ export default class Withdrawnew extends Component<PropsWithChildren> {
         success: () => {
           setTimeout(
             () => {
-              Taro.redirectTo({url: '/pages/withdraw/index'})
+              Taro.redirectTo({url: '/pages/wallet/index?entity=user'})
             }, 500
           )
         }

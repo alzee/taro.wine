@@ -102,7 +102,7 @@ export default class Scan extends Component<PropsWithChildren> {
       <Button className='btn' size='small' onClick={this.done}>确定</Button>
       }
       { this.state.data.code == 1 &&
-      <Button className='btn' size='small' onClick={() => this.navTo('withdraw')}>我的钱包</Button>
+      <Button className='btn' size='small' onClick={() => this.navTo('wallet', 'entity=user')}>我的钱包</Button>
       }
       </View>
     )
