@@ -12,6 +12,7 @@ export default class Wallet extends Component<PropsWithChildren> {
   entity = Taro.getCurrentInstance().router.params.entity
   oid: int
   uid: int
+  roles: array = []
   state = {
     withdrawable: 0,
     list: undefined
@@ -56,6 +57,7 @@ export default class Wallet extends Component<PropsWithChildren> {
     .then( res => {
       this.oid = res.data.org.id
       this.uid = res.data.id
+      this.roles = res.data.roles
       if (entity === 'user') {
         id = this.uid
       }
@@ -137,7 +139,7 @@ export default class Wallet extends Component<PropsWithChildren> {
       { this.entity === 'user' &&
         <Button className='btn btn-primary' onClick={this.create}>申请提现</Button>
       }
-      { this.entity === 'org' &&
+      { (this.entity === 'org' && this.roles.includes('ROLE_ORG_ADMIN')) &&
       <Button className='btn btn-primary' onClick={this.move}>转入我的钱包</Button>
       }
       </View>

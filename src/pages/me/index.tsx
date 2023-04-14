@@ -215,15 +215,10 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.navTo('myReg')}
       />
 
-      { this.otype != 4 && this.roles.includes('ROLE_ORG_ADMIN') &&
+      { this.otype != 4 &&
         <>
       <View className='label'>商家</View>
-      <AtListItem
-      title='更新门店坐标'
-      arrow='right'
-      thumb={Env.imgUrl + 'icon/coord.png'}
-      onClick={this.getLocation.bind(this)}
-      />
+
       <AtListItem
       title='我的库存'
       arrow='right'
@@ -231,28 +226,10 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => this.navTo('stock')}
       />
       <AtListItem
-      title='我要退货'
-      arrow='right'
-      thumb={Env.imgUrl + 'icon/scan.svg'}
-      onClick={() => this.scan('ret')}
-      />
-      <AtListItem
       title='商家钱包'
       arrow='right'
       thumb={Env.imgUrl + 'icon/lock.png'}
       onClick={() => Taro.navigateTo({ url: '/pages/wallet/index?entity=org'})}
-      />
-      <AtListItem
-      title='添加店员'
-      arrow='right'
-      thumb={Env.imgUrl + 'icon/scan.svg'}
-      onClick={() => this.scan('addStaff')}
-      />
-      <AtListItem
-      title='机构信息'
-      arrow='right'
-      thumb={Env.imgUrl + 'icon/gear.png'}
-      onClick={() => this.navTo('orgEdit')}
       />
       <AtListItem
       title='我的奖品'
@@ -266,6 +243,29 @@ export default class Me extends Component<PropsWithChildren> {
       thumb={Env.imgUrl + 'icon/gear.png'}
       onClick={() => this.navTo('orgClaim')}
       />
+
+      { this.roles.includes('ROLE_ORG_ADMIN') &&
+        <>
+      <AtListItem
+      title='更新门店坐标'
+      arrow='right'
+      thumb={Env.imgUrl + 'icon/coord.png'}
+      onClick={this.getLocation.bind(this)}
+      />
+      <AtListItem
+      title='我要退货'
+      arrow='right'
+      thumb={Env.imgUrl + 'icon/scan.svg'}
+      onClick={() => this.scan('ret')}
+      />
+      <AtListItem
+      title='机构信息'
+      arrow='right'
+      thumb={Env.imgUrl + 'icon/gear.png'}
+      onClick={() => this.navTo('orgEdit')}
+      />
+        </>
+      }
         </>
       }
 
