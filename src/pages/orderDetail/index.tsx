@@ -24,10 +24,15 @@ export default class Orderdetail extends Component<PropsWithChildren> {
       let data = res.data
       let items = data.orderItems
       let itemList = []
-      for (let i in items) {
+      for (let i of items) {
+        let sns = ''
+        for (let box of i.boxes) {
+          sns += ' ' + box.sn
+        }
         itemList.push(
           <View className='order-item'>
-          <Text>{items[i].product.name} x {items[i].quantity}</Text>
+          <Text>{i.product.name} x {i.quantity}</Text>
+          <Text>{sns}</Text>
           </View>
         )
       }
@@ -52,7 +57,6 @@ export default class Orderdetail extends Component<PropsWithChildren> {
       <AtListItem title='订单商品' />
       {this.state.itemList}
       <AtListItem title='金额' extraText={this.state.entity.amount / 100} />
-      <AtListItem title='代金券' extraText={this.state.entity.voucher / 100} />
       <AtListItem title='日期' extraText={fmtDate(this.state.entity.date)} />
       <AtListItem title='备注' extraText={this.state.entity.note} />
       </AtList>
