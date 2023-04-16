@@ -8,7 +8,7 @@ export default class Borrow extends Component<PropsWithChildren> {
   
   uid: int
   state = {
-    claims: {},
+    products: {},
     index: undefined
   }
 
@@ -20,30 +20,37 @@ export default class Borrow extends Component<PropsWithChildren> {
       this.uid = res.data.id
     })
     Taro.request({
-      url: Env.apiUrl + 'claims?status=1&settled=false',
+      url: Env.apiUrl + 'products',
     }).then((res) =>{
-      console.log(res.data)
       this.setState({
-        claims: res.data
+        products: res.data
       })
     })
   }
 
-  claimChanged = e => {
+  productChanged = e => {
     let index = Number(e.detail.value)
     this.setState({
       index,
-      claimId: this.state.claims[index].id
+      productId: this.state.products[index].id
     })
   }
 
   formSubmit = () => {
-    let data = {}
-    data.id = this.state.claimId
-    data.uid = this.uid
+    let data = e.detail.value
+    data.product = '/api/products/' + this.state.productId
+    data.salesman = '/api/users/' + this.uid
     if (this.state.index === undefined) {
       Taro.showToast({
-        title: '请选择兑奖单',
+        title: '请选择产品',
+        icon: 'error',
+        duration: 2000
+      })
+      return
+    }
+    if (isNaN(data.qty)) {
+      Taro.showToast({
+        title: '请填写数量',
         icon: 'error',
         duration: 2000
       })
@@ -78,13 +85,19 @@ export default class Borrow extends Component<PropsWithChildren> {
       <Form className='form'
       onSubmit={this.formSubmit.bind(this)}
       >
-      <Picker mode='selector' range={this.state.claims} rangeKey='name' onChange={this.claimChanged}>
+      <Picker mode='selector' range={this.state.products} rangeKey='name' onChange={this.productChanged}>
       <View className='input'>
-      <Text className='label'>选择兑奖单</Text>
-      {this.state.selectorChecked}
-      {this.state.index !== undefined && this.state.claims[this.state.index].name}
+      <Text className='label'>选择产品</Text>
+      {this.state.index !== undefined && this.state.products[this.state.index].name}
       </View>
       </Picker>
+
+      <Input 
+      className="input"
+      name='qty'
+      type='number'
+      />
+
       <Button className='btn' formType='submit'>提交</Button>
       </Form>
       </View>
