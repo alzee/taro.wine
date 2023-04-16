@@ -53,6 +53,8 @@ export default defineAppConfig({
     'pages/settle/qr',
     'pages/settle/settle',
     'pages/wallet/index',
+    'pages/borrow/index',
+    'pages/borrow/new',
   ],
   window: {
     backgroundTextStyle: 'light',
