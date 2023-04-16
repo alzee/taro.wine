@@ -25,17 +25,11 @@ export default class Borrow extends Component<PropsWithChildren> {
           let list = []
           let title = ''
           for (let i of records) {
-            console.log(i);
-            title = i.claim.store.name + ' ' + Taxon.settleStatus[Number(i.claim.storeSettled)]
-            if (i.claim.serveStore !== undefined) {
-              title += ' / ' + i.claim.serveStore.name + ' ' + Taxon.settleStatus[Number(i.claim.serveStoreSettled)]
-            }
             list.push(
               <AtListItem
-              title={title}
+              title={i.product.name + ' ' + i.used + '/' + i.qty}
               note={fmtDate(i.createdAt)}
               extraText={Taxon.borrowStatus[i.status]}
-              // arrow='right'
               />
             )
           }
