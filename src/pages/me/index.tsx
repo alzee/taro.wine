@@ -299,6 +299,12 @@ export default class Me extends Component<PropsWithChildren> {
       onClick={() => Taro.navigateTo({ url: '/pages/claim/salesman'})}
       />
       <AtListItem
+      title='我的领用'
+      arrow='right'
+      thumb={Env.imgUrl + 'icon/lock.png'}
+      onClick={() => this.navTo('borrow')}
+      />
+      <AtListItem
       title='我的兑付'
       arrow='right'
       thumb={Env.imgUrl + 'icon/lock.png'}

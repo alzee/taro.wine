@@ -36,8 +36,9 @@ export default class Borrow extends Component<PropsWithChildren> {
     })
   }
 
-  formSubmit = () => {
+  formSubmit = (e) => {
     let data = e.detail.value
+    data.qty = Number(data.qty)
     data.product = '/api/products/' + this.state.productId
     data.salesman = '/api/users/' + this.uid
     if (this.state.index === undefined) {
@@ -48,7 +49,7 @@ export default class Borrow extends Component<PropsWithChildren> {
       })
       return
     }
-    if (isNaN(data.qty)) {
+    if (isNaN(data.qty) || data.qty === 0) {
       Taro.showToast({
         title: '请填写数量',
         icon: 'error',
@@ -59,10 +60,11 @@ export default class Borrow extends Component<PropsWithChildren> {
     Taro.request({
       method: 'POST',
       data,
-      url: Env.apiUrl + 'borrow/new',
-      success: function (res) { }
-    }).then((res) =>{
-      if (res.data.code === 0) {
+      url: Env.apiUrl + 'borrows'
+    })
+    .then((res) =>{
+      console.log(res);
+      if (res.statusCode === 201) {
         Taro.showToast({
           title: '已完成',
           icon: 'success',
@@ -70,7 +72,7 @@ export default class Borrow extends Component<PropsWithChildren> {
           success: () => {
             setTimeout(
               () => {
-                Taro.reLaunch({url: '/pages/me/index'})
+                Taro.redirectTo({url: '/pages/borrow/index'})
               }, 500
             )
           }
@@ -92,11 +94,13 @@ export default class Borrow extends Component<PropsWithChildren> {
       </View>
       </Picker>
 
+      <View className='input'>
+      <Text className='label'>数量</Text>
       <Input 
-      className="input"
-      name='qty'
-      type='number'
+        name='qty'
+        type='number'
       />
+      </View>
 
       <Button className='btn' formType='submit'>提交</Button>
       </Form>
