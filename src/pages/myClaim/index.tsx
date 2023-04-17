@@ -96,7 +96,7 @@ export default class Myclaim extends Component<PropsWithChildren> {
       <View className='myClaim main'>
       <View className='at-row card' onClick={this.goToCollect}>
       <View className='at-col'>
-      <View className='label'>集3瓶兑一瓶</View>
+      <View className='label'>奖品明细</View>
       </View>
       </View>
 
