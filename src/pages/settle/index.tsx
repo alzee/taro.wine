@@ -54,7 +54,7 @@ export default class Settle extends Component<PropsWithChildren> {
   }
 
   navToDetail(id){
-    Taro.redirectTo({url: '/pages/settle/qr?id=' + id})
+    Taro.navigateTo({url: '/pages/settle/qr?id=' + id})
   }
 
   render () {

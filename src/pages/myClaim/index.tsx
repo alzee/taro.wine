@@ -78,7 +78,7 @@ export default class Myclaim extends Component<PropsWithChildren> {
   }
 
   navToDetail(id, type){
-    Taro.redirectTo({url: '/pages/claimQr/index?id=' + id + '&type=' + type})
+    Taro.navigateTo({url: '/pages/claimQr/index?id=' + id + '&type=' + type})
   }
 
   goToCollect = () => {

@@ -247,6 +247,12 @@ export default class Me extends Component<PropsWithChildren> {
       { this.roles.includes('ROLE_ORG_ADMIN') &&
         <>
       <AtListItem
+      title='添加店员'
+      arrow='right'
+      thumb={Env.imgUrl + 'icon/scan.svg'}
+      onClick={() => this.scan('addStaff')}
+      />
+      <AtListItem
       title='更新门店坐标'
       arrow='right'
       thumb={Env.imgUrl + 'icon/coord.png'}
