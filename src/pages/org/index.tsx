@@ -91,16 +91,29 @@ export default class Org extends Component<PropsWithChildren> {
   componentDidMount () { 
     const self = this;
 
-    Taro.getStorage({
-      key: 'coord',
-      success: res => {
+    Taro.getLocation({
+      // type: 'wgs84',
+      type: 'gcj02',
+      success: function (res) {
         this.latitude = res.data.latitude
         this.longitude = res.data.longitude
-      },
-      fail: res => {
-        console.log('get storage failed: coord');
+        Taro.setStorage({
+          key: 'coord',
+          data: res
+        });
       }
     })
+
+    // Taro.getStorage({
+    //   key: 'coord',
+    //   success: res => {
+    //     this.latitude = res.data.latitude
+    //     this.longitude = res.data.longitude
+    //   },
+    //   fail: res => {
+    //     console.log('get storage failed: coord');
+    //   }
+    // })
 
     Taro.request({
       url: Env.apiUrl + 'cities',

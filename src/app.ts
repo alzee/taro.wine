@@ -35,17 +35,6 @@ class App extends Component<PropsWithChildren> {
         })
       }
     })
-
-    Taro.getLocation({
-      // type: 'wgs84',
-      type: 'gcj02',
-      success: function (res) {
-        Taro.setStorage({
-          key: 'coord',
-          data: res
-        });
-      }
-    })
   }
 
   render () {

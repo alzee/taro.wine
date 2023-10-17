@@ -8,7 +8,7 @@ const config = {
     828: 1.81 / 2
   },
   sourceRoot: 'src',
-  outputRoot: '../../../../mnt/d/dist',
+  outputRoot: '../../../../mnt/d/jiu',
   plugins: ['@tarojs/plugin-html'],
   defineConstants: {
   },
