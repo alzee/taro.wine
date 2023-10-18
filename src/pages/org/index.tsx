@@ -9,9 +9,9 @@ import { Env } from '../../env/env'
 import { Picker } from '@tarojs/components'
 
 export default class Org extends Component<PropsWithChildren> {
-  otype: int;
-  latitude: float
-  longitude: float
+  otype: int
+  latitude: float //= 32.625821126302
+  longitude: float //= 110.80163384332
   state = {
     cities: ['十堰'],
     industryRange: ['零售'],
@@ -89,31 +89,21 @@ export default class Org extends Component<PropsWithChildren> {
   }
 
   componentDidMount () { 
-    const self = this;
+
+    const self = this
 
     Taro.getLocation({
       // type: 'wgs84',
       type: 'gcj02',
       success: function (res) {
-        this.latitude = res.data.latitude
-        this.longitude = res.data.longitude
+        self.latitude = res.latitude
+        self.longitude = res.longitude
         Taro.setStorage({
           key: 'coord',
           data: res
         });
       }
     })
-
-    // Taro.getStorage({
-    //   key: 'coord',
-    //   success: res => {
-    //     this.latitude = res.data.latitude
-    //     this.longitude = res.data.longitude
-    //   },
-    //   fail: res => {
-    //     console.log('get storage failed: coord');
-    //   }
-    // })
 
     Taro.request({
       url: Env.apiUrl + 'cities',
