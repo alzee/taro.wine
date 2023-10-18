@@ -95,55 +95,52 @@ export default class Org extends Component<PropsWithChildren> {
     Taro.getLocation({
       // type: 'wgs84',
       type: 'gcj02',
-      success: function (res) {
+      // success: function (res) { }
+      }).then((res) => {
+        console.log(res)
         self.latitude = res.latitude
         self.longitude = res.longitude
-        Taro.setStorage({
-          key: 'coord',
-          data: res
-        });
-      }
-    })
-
-    Taro.request({
-      url: Env.apiUrl + 'cities',
-    }).then((res) =>{
-      let cities = []
-      for (let i of res.data) {
-        cities.push(i.name)
-      }
-      this.setState({cities})
-    })
-
-    Taro.request({
-      url: Env.apiUrl + 'industries',
-    }).then((res) =>{
-      let industries = res.data
-      let industryRange = []
-      for (let i of res.data) {
-        industryRange.push(i.name)
-      }
-      this.setState({industryRange})
-      this.setState(
-        {industries}, 
-        () => {
-          this.getOrgs(2)
-          this.getOrgs(3)
-          Taro.getStorage({
-            key: Env.storageKey
-          })
-          .then((res) => {
-            this.otype = res.data.org.type
-            if (this.otype == 0 || this.otype == 10) {
-              // this.getOrgs(1)
+        }).then(() => {
+          Taro.request({
+            url: Env.apiUrl + 'cities',
+            }).then((res) =>{
+            let cities = []
+            for (let i of res.data) {
+              cities.push(i.name)
             }
+            this.setState({cities})
           })
-          .catch(err => {
-            console.log(err)
+
+          Taro.request({
+            url: Env.apiUrl + 'industries',
+          }).then((res) =>{
+            let industries = res.data
+            let industryRange = []
+            for (let i of res.data) {
+              industryRange.push(i.name)
+            }
+            this.setState({industryRange})
+            this.setState(
+              {industries}, 
+              () => {
+                this.getOrgs(2)
+                this.getOrgs(3)
+                Taro.getStorage({
+                  key: Env.storageKey
+                })
+                .then((res) => {
+                  this.otype = res.data.org.type
+                  if (this.otype == 0 || this.otype == 10) {
+                    // this.getOrgs(1)
+                  }
+                })
+                .catch(err => {
+                  console.log(err)
+                })
+              }
+            )
           })
-        }
-      )
-    })
+      })
   }
 
   switchSeg (value) {
