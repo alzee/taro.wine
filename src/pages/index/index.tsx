@@ -21,6 +21,9 @@ export default class Index extends Component<PropsWithChildren> {
   //    }
   //  }
 
+  onShareAppMessage() {}
+  onShareTimeline() {}
+
   navToNode(id: int) {
     Taro.navigateTo({ url: '/pages/node/index?id=' + id })
   }
