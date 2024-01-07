@@ -8,10 +8,10 @@ switch (envVer) {
   case 'develop':
     // baseUrl = 'https://127.0.0.1:8000/'
     // baseUrl = 'http://localhost:8000/'
-    baseUrl = 'https://jiu.itove.com/'
+    baseUrl = 'https://jiu.dev.itove.com/'
     break
   case 'trial':
-    baseUrl = 'https://jiu.itove.com/'
+    baseUrl = 'https://jiu.dev.itove.com/'
     break
   case 'release':
     baseUrl = 'https://hbljk.cn/';
